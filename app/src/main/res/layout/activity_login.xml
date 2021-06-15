@@ -8,6 +8,7 @@
     android:layout_gravity="center">
 
     <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:id="@+id/textEmail"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -18,6 +19,7 @@
         android:hint="Email Address">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etvEmail"
             android:layout_width="match_parent"
             android:inputType="textEmailAddress"
             android:layout_height="wrap_content"
@@ -26,6 +28,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:id="@+id/textPassword"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -37,6 +40,7 @@
         android:hint="Password">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etvPassword"
             android:layout_width="match_parent"
             android:inputType="textPassword"
             android:layout_height="wrap_content"
@@ -45,6 +49,8 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:id="@+id/etvLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Login"
