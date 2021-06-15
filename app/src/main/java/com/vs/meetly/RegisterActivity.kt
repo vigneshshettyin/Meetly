@@ -2,6 +2,7 @@ package com.vs.meetly
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_register.*
@@ -13,6 +14,8 @@ class RegisterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
+
+        hideDefaultUI()
 
         firebaseAuth = FirebaseAuth.getInstance()
 
@@ -38,5 +41,9 @@ class RegisterActivity : AppCompatActivity() {
                     Toast.makeText(this, "Error, while creating user!", Toast.LENGTH_SHORT).show()
                 }
             }
+    }
+    private fun hideDefaultUI(){
+        @Suppress("DEPRECATION")
+        window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_FULLSCREEN)
     }
 }
