@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "71136686810",
+    "project_id": "meetly-9633e",
+    "storage_bucket": "meetly-9633e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:71136686810:android:9b3ae3966dc1e00fbb6be3",
+        "android_client_info": {
+          "package_name": "com.vs.meetly"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "71136686810-d33g6sd00gej7u2k0vl4htgahi1bui4b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAvGniNEQqvZftJOgsRTKBqWVcb06PZ3sk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "71136686810-d33g6sd00gej7u2k0vl4htgahi1bui4b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
