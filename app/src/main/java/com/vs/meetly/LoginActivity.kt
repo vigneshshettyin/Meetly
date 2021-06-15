@@ -1,5 +1,6 @@
 package com.vs.meetly
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -9,7 +10,7 @@ import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
 
-    lateinit var firebaseAuth : FirebaseAuth
+    private lateinit var firebaseAuth : FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,12 +18,35 @@ class LoginActivity : AppCompatActivity() {
 
         hideDefaultUI()
 
+        val auth : FirebaseAuth = FirebaseAuth.getInstance()
+
+        if(auth.currentUser!=null){
+            Toast.makeText(this, "Already logged in!", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
         firebaseAuth = FirebaseAuth.getInstance()
 
         etvLogin.setOnClickListener {
             login()
         }
 
+        etvForgotPassword.setOnClickListener {
+            forgotPassword()
+        }
+        redirectToRegister.setOnClickListener {
+            val intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+    }
+
+    private fun forgotPassword() {
+        val intent = Intent(this, ForgotPassActivity::class.java)
+        startActivity(intent)
     }
 
     private fun login() {
@@ -32,7 +56,10 @@ class LoginActivity : AppCompatActivity() {
         firebaseAuth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) {
                 if(it.isSuccessful){
-                    Toast.makeText(this, "Login Successfull!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Login Successful!", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                    finish()
                 }
                 else{
                     Toast.makeText(this, "Incorrect login credentials or account not found!", Toast.LENGTH_SHORT).show()
