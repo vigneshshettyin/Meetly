@@ -48,6 +48,18 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
+    <TextView
+        android:id="@+id/etvForgotPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Forgot Password ?"
+        android:clickable="true"
+        app:layout_constraintTop_toBottomOf="@id/textPassword"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginRight="20dp"
+        android:padding="5dp"
+        android:focusable="true" />
+
     <com.google.android.material.button.MaterialButton
         style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:id="@+id/etvLogin"
@@ -59,4 +71,16 @@
         app:layout_constraintTop_toBottomOf="@id/textPassword"
         android:layout_margin="25dp"
         />
+
+    <TextView
+        android:id="@+id/redirectToRegister"
+        android:clickable="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Don't have a account? Register"
+        app:layout_constraintTop_toBottomOf="@id/etvLogin"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:padding="5dp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintRight_toRightOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
