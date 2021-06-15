@@ -21,9 +21,13 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
+//    TODO: Password Strong Progress Bar To Be Implemented
+
     private fun registerUser(){
         val email = etvEmail.text.toString()
         val password = etvPassword.text.toString()
+
+//        TODO: To Check If The Below Function Can Be Called Using A Coroutine
 
         firebaseAuth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) {
