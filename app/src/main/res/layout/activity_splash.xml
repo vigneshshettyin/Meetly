@@ -13,13 +13,13 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/righteous"
         android:text="Meetly"
-        android:textColor="@color/primary_blue"
+        android:textColor="@color/blue_500"
         android:textSize="45sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@id/hglmeetly"
-        app:layout_constraintVertical_bias="0.1" />
+        app:layout_constraintTop_toBottomOf="@id/logo"
+        app:layout_constraintVertical_bias="0" />
 
     <ImageView
         android:id="@+id/logo"
@@ -30,7 +30,7 @@
 
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text"
+        app:layout_constraintTop_toBottomOf="@id/hglmeetly"
 
 
         ></ImageView>
@@ -55,6 +55,19 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.080" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="@font/catamaran"
+        android:text="Version 1.0.0"
+        android:textColor="@color/primary_blue"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"></TextView>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
