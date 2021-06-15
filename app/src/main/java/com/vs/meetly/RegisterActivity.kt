@@ -28,7 +28,7 @@ class RegisterActivity : AppCompatActivity() {
         firebaseAuth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) {
                 if(it.isSuccessful){
-                    Toast.makeText(this, "Registration Successfull!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Registration Successful!", Toast.LENGTH_SHORT).show()
                 }
                 else{
                     Toast.makeText(this, "Error, while creating user!", Toast.LENGTH_SHORT).show()
