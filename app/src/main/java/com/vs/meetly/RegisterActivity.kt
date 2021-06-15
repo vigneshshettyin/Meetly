@@ -35,6 +35,8 @@ class RegisterActivity : AppCompatActivity() {
 //    TODO: Password Strong Progress Bar To Be Implemented
 
     private fun registerUser(){
+
+        val name = etvName.text.toString()
         val email = etvEmail.text.toString()
         val password = etvPassword.text.toString()
 
