@@ -25,7 +25,7 @@
         android:id="@+id/logo"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:src="@drawable/light_bg"
+        android:src="@drawable/light_logo"
 
 
         app:layout_constraintLeft_toLeftOf="parent"

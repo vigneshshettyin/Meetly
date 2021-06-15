@@ -3,6 +3,8 @@
     <array name="preloaded_fonts" translatable="false">
         <item>@font/</item>
         <item>@font/catamaran</item>
+        <item>@font/poppins_bold</item>
+        <item>@font/poppins_semibold</item>
         <item>@font/righteous</item>
     </array>
 </resources>
