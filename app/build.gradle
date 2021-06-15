@@ -11,8 +11,9 @@ android {
 
     defaultConfig {
         applicationId "com.vs.meetly"
-        minSdkVersion 16
+        minSdkVersion 21
         targetSdkVersion 30
+        multiDexEnabled true
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
@@ -38,6 +39,10 @@ android {
 dependencies {
     //multi dex
     implementation 'androidx.multidex:multidex:2.0.1'
+
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9'
+
+    implementation "androidx.multidex:multidex:2.0.1"
 
     // Splash Screen Animation
     implementation 'com.airbnb.android:lottie:3.7.0'
