@@ -1,9 +1,11 @@
 package com.vs.meetly
 
 import android.content.Intent
+import android.graphics.Paint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_login.*
@@ -17,6 +19,10 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
         hideDefaultUI()
+        val tvforgotpass:TextView=findViewById(R.id.etvForgotPassword)
+        val tvreg:TextView=findViewById(R.id.redirectToRegister)
+        tvforgotpass.underline()
+        tvreg.underline()
 
         val auth : FirebaseAuth = FirebaseAuth.getInstance()
 
@@ -66,7 +72,9 @@ class LoginActivity : AppCompatActivity() {
                 }
         }
     }
-
+    fun TextView.underline() {
+        paintFlags = paintFlags or Paint.UNDERLINE_TEXT_FLAG
+    }
     private fun hideDefaultUI(){
         @Suppress("DEPRECATION")
         window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_FULLSCREEN)
