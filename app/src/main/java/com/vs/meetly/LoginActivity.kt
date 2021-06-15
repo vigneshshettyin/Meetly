@@ -4,6 +4,7 @@ import android.content.Intent
 import android.graphics.Paint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.TextUtils
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
@@ -13,6 +14,7 @@ import kotlinx.android.synthetic.main.activity_login.*
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var firebaseAuth : FirebaseAuth
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,8 +58,20 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun login() {
-        val email = etvEmail.text.toString()
-        val password =etvPassword.text.toString()
+        val email = etvEmail.text.toString().trim()
+         val password =etvPassword.text.toString().trim()
+        //Validation
+        if(TextUtils.isEmpty(email)){
+            etvEmail.setError("Email id required!")
+            return
+
+        }
+        if(TextUtils.isEmpty(password)){
+            etvPassword.setError("Password required!")
+            return
+
+        }
+
 
         firebaseAuth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) {
@@ -71,6 +85,10 @@ class LoginActivity : AppCompatActivity() {
                     Toast.makeText(this, "Incorrect login credentials or account not found!", Toast.LENGTH_SHORT).show()
                 }
         }
+    }
+    fun validate():Boolean {
+
+        return true;
     }
     fun TextView.underline() {
         paintFlags = paintFlags or Paint.UNDERLINE_TEXT_FLAG

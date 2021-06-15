@@ -15,6 +15,7 @@ android {
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -35,6 +36,8 @@ android {
 }
 
 dependencies {
+    //multi dex
+    implementation 'androidx.multidex:multidex:2.0.1'
 
     // Splash Screen Animation
     implementation 'com.airbnb.android:lottie:3.7.0'
