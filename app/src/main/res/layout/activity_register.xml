@@ -81,5 +81,16 @@
         app:layout_constraintTop_toBottomOf="@id/textPassword"
         android:layout_margin="25dp"
         />
+    <TextView
+        android:id="@+id/redirectToLogin"
+        android:clickable="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Already have a account? Login"
+        app:layout_constraintTop_toBottomOf="@id/buttonRegister"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:padding="5dp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintRight_toRightOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
