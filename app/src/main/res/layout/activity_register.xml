@@ -81,6 +81,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textPassword"
         android:layout_margin="25dp"
+        android:background="@drawable/gradient_button"
         />
     <TextView
         android:id="@+id/redirectToLogin"
