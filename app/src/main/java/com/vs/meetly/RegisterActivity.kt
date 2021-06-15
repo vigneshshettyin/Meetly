@@ -8,6 +8,8 @@ import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
+import com.vs.meetly.daos.UserDao
+import com.vs.meetly.modals.User
 import kotlinx.android.synthetic.main.activity_register.*
 import kotlinx.android.synthetic.main.activity_register.etvEmail
 import kotlinx.android.synthetic.main.activity_register.etvPassword
@@ -41,15 +43,22 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun registerUser(){
 
+        val userDao = UserDao()
+
+        var user : User
+
         val name = etvName.text.toString()
         val email = etvEmail.text.toString()
         val password = etvPassword.text.toString()
+        val imageUrl = "https://ui-avatars.com/api/?background=random&rounded=true&size=128&name=${name}"
 
 //        TODO: To Check If The Below Function Can Be Called Using A Coroutine
 
         firebaseAuth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) {
                 if(it.isSuccessful){
+                    user = User(firebaseAuth.currentUser!!.uid, name, imageUrl)
+                    userDao.addUser(user)
                     Toast.makeText(this, "Registration Successful!", Toast.LENGTH_SHORT).show()
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
