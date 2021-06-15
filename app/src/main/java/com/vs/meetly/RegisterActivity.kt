@@ -44,6 +44,8 @@ class RegisterActivity : AppCompatActivity() {
         val name = etvName.text.toString()
         val email = etvEmail.text.toString()
         val password = etvPassword.text.toString()
+        // Validation
+
 
 //        TODO: To Check If The Below Function Can Be Called Using A Coroutine
 
