@@ -21,6 +21,7 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
         hideDefaultUI()
+
         val tvforgotpass:TextView=findViewById(R.id.etvForgotPassword)
         val tvreg:TextView=findViewById(R.id.redirectToRegister)
         tvforgotpass.underline()
@@ -62,12 +63,12 @@ class LoginActivity : AppCompatActivity() {
          val password =etvPassword.text.toString().trim()
         //Validation
         if(TextUtils.isEmpty(email)){
-            etvEmail.setError("Email id required!")
+            etvEmail.error = "Email id required!"
             return
 
         }
         if(TextUtils.isEmpty(password)){
-            etvPassword.setError("Password required!")
+            etvPassword.error = "Password required!"
             return
 
         }
