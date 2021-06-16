@@ -44,13 +44,15 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/hglafterhead"
         android:layout_margin="25dp"
-        android:hint="@string/name">
+        android:hint="@string/name"
+        >
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etvName"
             android:layout_width="match_parent"
             android:inputType="textPersonName"
             android:layout_height="wrap_content"
+            android:textSize="14sp"
             />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -76,6 +78,7 @@
             android:layout_width="match_parent"
             android:inputType="textEmailAddress"
             android:layout_height="wrap_content"
+            android:textSize="14sp"
             />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -98,6 +101,7 @@
             android:layout_width="match_parent"
             android:inputType="textPassword"
             android:layout_height="wrap_content"
+            android:textSize="14sp"
             />
 
     </com.google.android.material.textfield.TextInputLayout>
