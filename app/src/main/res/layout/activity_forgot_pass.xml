@@ -17,8 +17,8 @@
         android:id="@+id/animationView"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:layout_margin="25dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
 
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -28,7 +28,6 @@
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
         app:lottie_rawRes="@raw/forgot" />
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -41,7 +40,7 @@
         app:layout_constraintTop_toBottomOf="@id/hglforgotpass"
         android:layout_marginTop="30dp"
 
-        />
+        ></TextView>
 
     <com.google.android.material.textfield.TextInputLayout
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
