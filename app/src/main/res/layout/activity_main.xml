@@ -7,13 +7,49 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="50dp"
+        android:contentDescription="@string/testing" />
+
     <TextView
-        android:id="@+id/email"
+        android:id="@+id/demoTest"
+        app:layout_constraintTop_toBottomOf="@+id/image"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_height="0dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Activity Main"
+        style="@style/TextAppearance.AppCompat.Headline"
+        android:layout_margin="10dp"
         android:gravity="center"
         />
+
+    <TextView
+        android:id="@+id/demoTest2"
+        app:layout_constraintTop_toBottomOf="@+id/demoTest"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        style="@style/TextAppearance.AppCompat.Headline"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        />
+
+    <ProgressBar
+        android:id="@+id/testProgress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
