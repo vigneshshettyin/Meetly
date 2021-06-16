@@ -11,4 +11,5 @@
     <string name="name">Name</string>
     <string name="already_have_a_account_login">Already have a account? Login</string>
     <string name="for_forgot_pass">* Please enter your registered email</string>
+    <string name="display_calender">Display Calender</string>
 </resources>
