@@ -13,9 +13,9 @@ android:color="#50FFFFFF">
     <shape android:shape="rectangle">
         <gradient
             android:angle="45"
-            android:endColor="@color/primary_blue"
             android:centerColor="@color/blue_500"
-            android:startColor="@color/secondary_blue"
+            android:startColor="@color/blue_500"
+            android:endColor="@color/primary_blue"
             android:type="linear" />
         <corners android:radius="30dp" />
     </shape>
