@@ -8,6 +8,7 @@ import android.text.TextUtils
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_login.*
 
@@ -63,7 +64,9 @@ class LoginActivity : AppCompatActivity() {
          val password =etvPassword.text.toString().trim()
         //Validation
         if(TextUtils.isEmpty(email)){
-            etvEmail.error = "Email id required!"
+            val context = findViewById<TextView>(R.id.etvEmail) as TextView
+            Snackbar.make(context, "Email id required!", Snackbar.LENGTH_SHORT).show()
+//            etvEmail.error = "Email id required!"
             return
 
         }

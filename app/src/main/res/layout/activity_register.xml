@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".RegisterActivity"
     android:background="@drawable/bg_light">
-    />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/hglhead"
@@ -21,28 +20,31 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.38" />
+
     <TextView
         android:id="@+id/text_head"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_bold"
-        android:text="Register"
+        android:text="@string/register"
         android:textColor="@color/white"
         android:textSize="60sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/hglhead"></TextView>
+        app:layout_constraintTop_toBottomOf="@id/hglhead" />
 
     <com.google.android.material.textfield.TextInputLayout
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:id="@+id/textName"
         android:layout_width="0dp"
+        app:startIconDrawable="@drawable/ic_baseline_person_outline_24"
+        app:endIconMode="clear_text"
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/hglafterhead"
         android:layout_margin="25dp"
-        android:hint="Name">
+        android:hint="@string/name">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etvName"
@@ -60,12 +62,14 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:id="@+id/textEmail"
         android:layout_width="0dp"
+        app:startIconDrawable="@drawable/ic_baseline_email_24"
+        app:endIconMode="clear_text"
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textName"
         android:layout_margin="25dp"
-        android:hint="Email Address">
+        android:hint="@string/email">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etvEmail"
@@ -80,13 +84,14 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:id="@+id/textPassword"
         android:layout_width="0dp"
+        app:startIconDrawable="@drawable/ic_baseline_lock_24"
         android:layout_height="wrap_content"
         app:endIconMode="password_toggle"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textEmail"
         android:layout_margin="25dp"
-        android:hint="Password">
+        android:hint="@string/password">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etvPassword"
@@ -102,7 +107,7 @@
         android:id="@+id/buttonRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Register"
+        android:text="@string/register"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textPassword"
@@ -124,7 +129,7 @@
         android:clickable="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Already have a account? Login"
+        android:text="@string/already_have_a_account_login"
         app:layout_constraintTop_toBottomOf="@id/buttonRegister"
         app:layout_constraintLeft_toLeftOf="parent"
         android:padding="5dp"
@@ -132,6 +137,7 @@
         android:textColor="@color/blue_500"
         android:fontFamily="@font/poppins"
         android:textSize="14sp"
-        app:layout_constraintRight_toRightOf="parent"/>
+        app:layout_constraintRight_toRightOf="parent"
+        android:focusable="true" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
