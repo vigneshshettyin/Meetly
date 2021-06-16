@@ -4,8 +4,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import com.bumptech.glide.Glide
+import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.firebase.auth.FirebaseAuth
 import com.vs.meetly.daos.UserDao
 import com.vs.meetly.modals.User
@@ -18,6 +20,8 @@ import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 
 class MainActivity : AppCompatActivity() {
+
+
 
     lateinit var actionBarDrawerToggle: ActionBarDrawerToggle
 
@@ -44,6 +48,20 @@ class MainActivity : AppCompatActivity() {
                     loadImage(user.imageUrl)
                 }
             }
+
+        displayCalender.setOnClickListener {
+            val datePicker = MaterialDatePicker.Builder.datePicker().build()
+            datePicker.show(supportFragmentManager, "DatePicker")
+            datePicker.addOnPositiveButtonClickListener {
+                Toast.makeText(this, "+ ${datePicker.headerText}", Toast.LENGTH_SHORT).show()
+            }
+            datePicker.addOnNegativeButtonClickListener {
+                Toast.makeText(this, "-", Toast.LENGTH_SHORT).show()
+            }
+            datePicker.addOnCancelListener {
+                Toast.makeText(this, "<- Back", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     private fun loadImage(imageUrl: String) {
