@@ -102,7 +102,6 @@ class MainActivity : AppCompatActivity() {
                             // Respond to positive button press
                         FirebaseAuth.getInstance().signOut()
                         val intent = Intent(this, LoginActivity::class.java)
-                        Snackbar.make(this,"Logout Success!", Snackbar.LENGTH_LONG).show()
                         startActivity(intent)
                         finish()
                         }
