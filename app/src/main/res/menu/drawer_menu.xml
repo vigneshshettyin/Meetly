@@ -10,7 +10,8 @@
         android:icon="@drawable/ic_baseline_lock_24"
 
         />
-    <item android:title="Item 2"
+    <item android:title="New Meeting"
+        android:icon="@drawable/ic_baseline_connect_without_contact_24"
         android:id="@+id/menuItem2"/>
     <item android:title="Item 3" />
     <item android:title="Logout"

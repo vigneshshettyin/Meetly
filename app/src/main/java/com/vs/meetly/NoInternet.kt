@@ -6,11 +6,9 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.vs.meetly.internetcheck.isNetworkAvailable
-import java.util.*
 
 
 class NoInternet : AppCompatActivity() {

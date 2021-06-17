@@ -3,15 +3,20 @@ package com.vs.meetly
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.vs.meetly.adapters.MeetingAdapter
 import com.vs.meetly.daos.UserDao
+import com.vs.meetly.modals.Meeting
 import com.vs.meetly.modals.User
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.header_layout.*
@@ -29,11 +34,19 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var user : User
 
+    lateinit var adapter: MeetingAdapter
+
+    private var meetingList = mutableListOf<Meeting>()
+
+    lateinit var firestore: FirebaseFirestore
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         hideDefaultUI()
         setUpViews()
+        setUpFireStore()
+        setUpRecyclerView()
 
         auth = FirebaseAuth.getInstance()
         testProgress.visibility = View.VISIBLE
@@ -64,6 +77,27 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun setUpFireStore() {
+        firestore = FirebaseFirestore.getInstance()
+        val collectionReference = firestore.collection("meetings")
+        collectionReference.addSnapshotListener { value, error ->
+            if(value == null || error != null){
+                Toast.makeText(this, "Error fetching data", Toast.LENGTH_SHORT).show()
+                return@addSnapshotListener
+            }
+            Log.d("DATA", value.toObjects(Meeting::class.java).toString())
+            meetingList.clear()
+            meetingList.addAll(value.toObjects(Meeting::class.java))
+            adapter.notifyDataSetChanged()
+        }
+    }
+
+    private fun setUpRecyclerView() {
+        adapter = MeetingAdapter(this, meetingList)
+        meetingRecyclerview.layoutManager = LinearLayoutManager(this)
+        meetingRecyclerview.adapter = adapter
+    }
+
     private fun loadImage(imageUrl: String) {
         Glide.with(this).load(imageUrl).into(header_image)
         testProgress.visibility = View.GONE
@@ -84,7 +118,8 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.menuItem2 -> {
-                    Toast.makeText(this, "Hello 2", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this, NewMeeting::class.java)
+                    startActivity(intent)
                     true
                 }
                 R.id.logout -> {
