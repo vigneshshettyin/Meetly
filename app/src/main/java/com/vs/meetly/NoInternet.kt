@@ -1,11 +1,16 @@
 package com.vs.meetly
-import android.os.Build
-import com.vs.meetly.internetcheck.isNetworkAvailable
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Context
+import android.content.Intent
+import android.os.Build
 import android.os.Bundle
-import android.widget.Toast
+import android.os.Handler
+import android.os.Looper
+import android.util.Log
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
+import com.vs.meetly.internetcheck.isNetworkAvailable
+import java.util.*
 
 
 class NoInternet : AppCompatActivity() {
@@ -13,10 +18,32 @@ class NoInternet : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_no_internet)
+         var ctx:Context=applicationContext
+        val mainHandler = Handler(Looper.getMainLooper())
+        val intentl  = Intent(this, LoginActivity::class.java)
+
+        mainHandler.post(object : Runnable {
+            override fun run() {
+                if(isNetworkAvailable(ctx)){
+                    startActivity(intentl)
+                }
+                mainHandler.postDelayed(this, 10000)
+            }
+        })
 
 
-                            if(isNetworkAvailable(this))
-                                Toast.makeText(applicationContext,"Working ",Toast.LENGTH_SHORT).show()
+
+
+
+
+
+
+
+
+
+
 
     }
+
+
 }
