@@ -6,9 +6,11 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.vs.meetly.internetcheck.isNetworkAvailable
+import kotlin.system.exitProcess
 
 
 class NoInternet : AppCompatActivity() {
@@ -20,28 +22,19 @@ class NoInternet : AppCompatActivity() {
         val mainHandler = Handler(Looper.getMainLooper())
         val intentl  = Intent(this, LoginActivity::class.java)
 
+
         mainHandler.post(object : Runnable {
+            var x:Boolean=true
+
             override fun run() {
                 if(isNetworkAvailable(ctx)){
-                    startActivity(intentl)
+                     startActivity(intentl)
+                     finish()
+                     mainHandler.removeCallbacksAndMessages(null)
+                     mainHandler.looper.quitSafely()
                 }
                 mainHandler.postDelayed(this, 10000)
             }
         })
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
-
-
 }
