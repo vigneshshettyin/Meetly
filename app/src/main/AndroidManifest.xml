@@ -11,8 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Meetly">
-        <activity android:name=".NoInternet"></activity>
-
+        <activity android:name=".NewMeeting"></activity>
+        <activity android:name=".NoInternet" />
         <activity
             android:name=".ForgotPassActivity"
             android:screenOrientation="fullSensor"
@@ -25,7 +25,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity
             android:name=".RegisterActivity"
