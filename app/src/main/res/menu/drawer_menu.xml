@@ -10,6 +10,10 @@
         android:icon="@drawable/ic_baseline_lock_24"
 
         />
-    <item android:title="Item 2" />
+    <item android:title="Item 2"
+        android:id="@+id/menuItem2"/>
     <item android:title="Item 3" />
+    <item android:title="Logout"
+        android:id="@+id/logout"
+        android:icon="@drawable/ic_baseline_exit_to_app_24"/>
 </menu>

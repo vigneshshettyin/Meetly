@@ -1,13 +1,18 @@
 package com.vs.meetly
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import com.bumptech.glide.Glide
 import com.google.android.material.datepicker.MaterialDatePicker
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.navigation.NavigationView
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.vs.meetly.daos.UserDao
 import com.vs.meetly.modals.User
@@ -20,8 +25,6 @@ import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 
 class MainActivity : AppCompatActivity() {
-
-
 
     lateinit var actionBarDrawerToggle: ActionBarDrawerToggle
 
@@ -77,6 +80,38 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(appBar)
         actionBarDrawerToggle = ActionBarDrawerToggle(this, mainDrawer, R.string.app_name, R.string.app_name)
         actionBarDrawerToggle.syncState()
+        navigationList.setNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.menuItem1 -> {
+                    Toast.makeText(this, "Hello 1", Toast.LENGTH_SHORT).show()
+                    true
+                }
+                R.id.menuItem2 -> {
+                    Toast.makeText(this, "Hello 2", Toast.LENGTH_SHORT).show()
+                    true
+                }
+                R.id.logout -> {
+                    mainDrawer.closeDrawers()
+                    MaterialAlertDialogBuilder(this,
+                        R.style.Base_ThemeOverlay_MaterialComponents_MaterialAlertDialog)
+                        .setMessage(resources.getString(R.string.confirm_logout))
+                        .setNegativeButton(resources.getString(R.string.cancel)) { dialog, which ->
+                            // Respond to negative button press
+                        }
+                        .setPositiveButton(resources.getString(R.string.logout)) { dialog, which ->
+                            // Respond to positive button press
+                        FirebaseAuth.getInstance().signOut()
+                        val intent = Intent(this, LoginActivity::class.java)
+                        Snackbar.make(this,"Logout Success!", Snackbar.LENGTH_LONG).show()
+                        startActivity(intent)
+                        finish()
+                        }
+                        .show()
+                    true
+                }
+                else -> false
+            }
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -85,6 +120,7 @@ class MainActivity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
+
     private fun hideDefaultUI(){
         @Suppress("DEPRECATION")
         window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_FULLSCREEN)
