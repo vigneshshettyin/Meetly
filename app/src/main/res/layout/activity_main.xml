@@ -71,10 +71,10 @@
 </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navigationList"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        
         app:headerLayout="@layout/header_layout"
         app:menu="@menu/drawer_menu"
         >
