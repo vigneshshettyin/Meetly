@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="18dp"
-    android:backgroundTint="@color/primary_blue"
+    android:id="@+id/cardView"
     app:cardCornerRadius="15dp">
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
