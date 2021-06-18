@@ -21,6 +21,16 @@
         android:text="Select Date"
         android:layout_marginTop="40dp"/>
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/testSelectTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/testSelectDate"
+        android:text="Select Time"
+        android:layout_marginTop="40dp"/>
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/testTest"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -30,7 +40,7 @@
         android:layout_margin="25dp"
         android:hint="Meeting Text"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/testSelectDate"
+        app:layout_constraintTop_toBottomOf="@id/testSelectTime"
         app:layout_constraintRight_toRightOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
