@@ -10,6 +10,7 @@
     <string name="register">Register</string>
     <string name="name">Name</string>
     <string name="logout">Logout!</string>
+    <string name="yes">Yes!</string>
     <string name="cancel">Cancel</string>
     <string name="confirm_logout">Are you sure?</string>
     <string name="already_have_a_account_login">Already have a account? Login</string>
