@@ -26,6 +26,10 @@ class MeetingFilter : AppCompatActivity() {
         setUpFireStore(DATE)
         setUpRecyclerView()
 
+        topAppBar.setNavigationOnClickListener {
+            finish()
+        }
+
 
     }
 
