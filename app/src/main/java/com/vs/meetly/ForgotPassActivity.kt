@@ -25,11 +25,11 @@ class ForgotPassActivity : AppCompatActivity() {
         val email = etvEmail.text.toString()
 
         firebaseAuth.sendPasswordResetEmail(email).addOnCompleteListener(this) {
-            if(it.isComplete){
+            if (it.isComplete) {
                 Toast.makeText(this, "Rest Email Generated!", Toast.LENGTH_SHORT).show()
-            }
-            else{
-                Toast.makeText(this, "Something went wrong, ${it.toString()}!", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this, "Something went wrong, ${it.toString()}!", Toast.LENGTH_SHORT)
+                    .show()
             }
             finish()
         }

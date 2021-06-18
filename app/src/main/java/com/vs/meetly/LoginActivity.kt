@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
 
-    private lateinit var firebaseAuth : FirebaseAuth
+    private lateinit var firebaseAuth: FirebaseAuth
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,14 +23,14 @@ class LoginActivity : AppCompatActivity() {
 
         hideDefaultUI()
 
-        val tvforgotpass:TextView=findViewById(R.id.etvForgotPassword)
-        val tvreg:TextView=findViewById(R.id.redirectToRegister)
+        val tvforgotpass: TextView = findViewById(R.id.etvForgotPassword)
+        val tvreg: TextView = findViewById(R.id.redirectToRegister)
         tvforgotpass.underline()
         tvreg.underline()
 
-        val auth : FirebaseAuth = FirebaseAuth.getInstance()
+        val auth: FirebaseAuth = FirebaseAuth.getInstance()
 
-        if(auth.currentUser!=null){
+        if (auth.currentUser != null) {
             Toast.makeText(this, "Already logged in!", Toast.LENGTH_SHORT).show()
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
@@ -61,16 +61,16 @@ class LoginActivity : AppCompatActivity() {
 
     private fun login() {
         val email = etvEmail.text.toString().trim()
-         val password =etvPassword.text.toString().trim()
+        val password = etvPassword.text.toString().trim()
         //Validation
-        if(TextUtils.isEmpty(email)){
+        if (TextUtils.isEmpty(email)) {
             val context = findViewById<TextView>(R.id.etvEmail) as TextView
             Snackbar.make(context, "Email id required!", Snackbar.LENGTH_SHORT).show()
 //            etvEmail.error = "Email id required!"
             return
 
         }
-        if(TextUtils.isEmpty(password)){
+        if (TextUtils.isEmpty(password)) {
             etvPassword.error = "Password required!"
             return
 
@@ -79,25 +79,31 @@ class LoginActivity : AppCompatActivity() {
 
         firebaseAuth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) {
-                if(it.isSuccessful){
+                if (it.isSuccessful) {
                     Toast.makeText(this, "Login Successful!", Toast.LENGTH_SHORT).show()
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
                     finish()
+                } else {
+                    Toast.makeText(
+                        this,
+                        "Incorrect login credentials or account not found!",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
-                else{
-                    Toast.makeText(this, "Incorrect login credentials or account not found!", Toast.LENGTH_SHORT).show()
-                }
-        }
+            }
     }
-    fun validate():Boolean {
+
+    fun validate(): Boolean {
 
         return true;
     }
+
     fun TextView.underline() {
         paintFlags = paintFlags or Paint.UNDERLINE_TEXT_FLAG
     }
-    private fun hideDefaultUI(){
+
+    private fun hideDefaultUI() {
         @Suppress("DEPRECATION")
         window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_FULLSCREEN)
     }

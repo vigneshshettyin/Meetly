@@ -22,18 +22,18 @@ class SplashActivity : AppCompatActivity() {
         hideDefaultUI()
 
         Handler().postDelayed({
-            val intentl  = Intent(this, LoginActivity::class.java)
-            val intentno =Intent(this,NoInternet::class.java)
-            if(isNetworkAvailable(this))
+            val intentl = Intent(this, LoginActivity::class.java)
+            val intentno = Intent(this, NoInternet::class.java)
+            if (isNetworkAvailable(this))
                 startActivity(intentl)
             else
                 startActivity(intentno)
             finish()
-        }, 3000 )
+        }, 3000)
 
     }
 
-    private fun hideDefaultUI(){
+    private fun hideDefaultUI() {
         window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_FULLSCREEN)
     }
 }

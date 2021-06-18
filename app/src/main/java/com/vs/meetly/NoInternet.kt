@@ -18,20 +18,20 @@ class NoInternet : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_no_internet)
-         var ctx:Context=applicationContext
+        var ctx: Context = applicationContext
         val mainHandler = Handler(Looper.getMainLooper())
-        val intentl  = Intent(this, LoginActivity::class.java)
+        val intentl = Intent(this, LoginActivity::class.java)
 
 
         mainHandler.post(object : Runnable {
-            var x:Boolean=true
+            var x: Boolean = true
 
             override fun run() {
-                if(isNetworkAvailable(ctx)){
-                     startActivity(intentl)
-                     finish()
-                     mainHandler.removeCallbacksAndMessages(null)
-                     mainHandler.looper.quitSafely()
+                if (isNetworkAvailable(ctx)) {
+                    startActivity(intentl)
+                    finish()
+                    mainHandler.removeCallbacksAndMessages(null)
+                    mainHandler.looper.quitSafely()
                 }
                 mainHandler.postDelayed(this, 10000)
             }
