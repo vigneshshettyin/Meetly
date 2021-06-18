@@ -5,9 +5,10 @@ import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.card.MaterialCardView
+
 import com.vs.meetly.R
 import com.vs.meetly.miscellaneous.ColorPicker
 import com.vs.meetly.modals.Meeting
@@ -25,7 +26,7 @@ class MeetingAdapter(val context: Context, private val meeting: List<Meeting>) :
         holder.meetingdate.text = meeting[position].date
         holder.textContent.text = meeting[position].content
         holder.meetingtime.text = meeting[position].time
-        holder.cardView.setCardBackgroundColor(Color.parseColor(ColorPicker.getColor()))
+        holder.linearLayout.setBackgroundColor(Color.parseColor(ColorPicker.getColor()))
     }
 
     override fun getItemCount(): Int {
@@ -36,7 +37,8 @@ class MeetingAdapter(val context: Context, private val meeting: List<Meeting>) :
         val meetingdate: TextView = itemView.findViewById(R.id.meetingdate)
         val textContent: TextView = itemView.findViewById(R.id.textContent)
         val meetingtime : TextView = itemView.findViewById(R.id.meetingtime)
-        val cardView : MaterialCardView = itemView.findViewById(R.id.cardView)
+
+        val linearLayout:LinearLayout=itemView.findViewById(R.id.linearLayout)
     }
 }
 
