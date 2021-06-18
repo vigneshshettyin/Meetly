@@ -21,6 +21,7 @@ class MeetingAdapter(val context: Context, private val meeting: List<Meeting>) :
     override fun onBindViewHolder(holder: MeetingViewHolder, position: Int) {
         holder.meetingdate.text = meeting[position].date
         holder.textContent.text = meeting[position].content
+        holder.meetingtime.text = meeting[position].time
     }
 
     override fun getItemCount(): Int {
@@ -30,6 +31,7 @@ class MeetingAdapter(val context: Context, private val meeting: List<Meeting>) :
     inner class MeetingViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val meetingdate: TextView = itemView.findViewById(R.id.meetingdate)
         val textContent: TextView = itemView.findViewById(R.id.textContent)
+        val meetingtime : TextView = itemView.findViewById(R.id.meetingtime)
     }
 }
 

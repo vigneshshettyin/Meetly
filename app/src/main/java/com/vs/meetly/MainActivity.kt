@@ -67,6 +67,9 @@ class MainActivity : AppCompatActivity() {
             datePicker.show(supportFragmentManager, "DatePicker")
             datePicker.addOnPositiveButtonClickListener {
                 Toast.makeText(this, "+ ${datePicker.headerText}", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, MeetingFilter::class.java)
+                intent.putExtra("DATE", datePicker.headerText)
+                startActivity(intent)
             }
             datePicker.addOnNegativeButtonClickListener {
                 Toast.makeText(this, "-", Toast.LENGTH_SHORT).show()
