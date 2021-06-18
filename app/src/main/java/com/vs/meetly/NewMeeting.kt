@@ -19,9 +19,9 @@ import kotlinx.coroutines.launch
 
 class NewMeeting : AppCompatActivity() {
 
-    private lateinit var date : String
+    private lateinit var date: String
 
-    private lateinit var time : String
+    private lateinit var time: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -81,7 +81,6 @@ class NewMeeting : AppCompatActivity() {
             }
             finish()
         }
-
 
 
     }

@@ -22,7 +22,7 @@ class MeetingFilter : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_meeting_filter)
-        val DATE : String = intent.getStringExtra("DATE").toString()
+        val DATE: String = intent.getStringExtra("DATE").toString()
         setUpFireStore(DATE)
         setUpRecyclerView()
 
@@ -33,11 +33,11 @@ class MeetingFilter : AppCompatActivity() {
 
     }
 
-    private fun setUpFireStore(DATE : String) {
+    private fun setUpFireStore(DATE: String) {
         firestore = FirebaseFirestore.getInstance()
-        val collectionReference = firestore.collection("meetings").whereEqualTo("date",DATE)
+        val collectionReference = firestore.collection("meetings").whereEqualTo("date", DATE)
         collectionReference.addSnapshotListener { value, error ->
-            if(value == null || error != null){
+            if (value == null || error != null) {
                 Toast.makeText(this, "Error fetching data", Toast.LENGTH_SHORT).show()
                 return@addSnapshotListener
             }
