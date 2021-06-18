@@ -59,10 +59,9 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
-            android:id="@+id/imageButton"
+            android:id="@+id/deleteMeeting"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
             android:background="@color/design_default_color_on_primary"
@@ -76,11 +75,10 @@
             android:layout_width="15dp"
             android:layout_height="match_parent"
             android:background="#3C0E0E"
-
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"></LinearLayout>
+            app:layout_constraintTop_toTopOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

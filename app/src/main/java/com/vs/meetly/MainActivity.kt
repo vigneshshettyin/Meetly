@@ -14,19 +14,17 @@ import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.vs.meetly.adapters.IMeetingRVAdapter
 import com.vs.meetly.adapters.MeetingAdapter
 import com.vs.meetly.daos.UserDao
 import com.vs.meetly.modals.Meeting
 import com.vs.meetly.modals.User
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.header_layout.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import kotlinx.coroutines.tasks.await
-import kotlinx.coroutines.withContext
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
 
     lateinit var actionBarDrawerToggle: ActionBarDrawerToggle
 
@@ -43,6 +41,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        firestore = FirebaseFirestore.getInstance()
+
         hideDefaultUI()
         setUpViews()
         setUpFireStore()
@@ -81,8 +82,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setUpFireStore() {
-        firestore = FirebaseFirestore.getInstance()
-        val collectionReference = firestore.collection("meetings")
+      val collectionReference = firestore.collection("meetings")
         collectionReference.addSnapshotListener { value, error ->
             if (value == null || error != null) {
                 Toast.makeText(this, "Error fetching data", Toast.LENGTH_SHORT).show()
@@ -91,12 +91,13 @@ class MainActivity : AppCompatActivity() {
             Log.d("DATA", value.toObjects(Meeting::class.java).toString())
             meetingList.clear()
             meetingList.addAll(value.toObjects(Meeting::class.java))
+            Log.d("LIST-DATA", meetingList.toString())
             adapter.notifyDataSetChanged()
         }
     }
 
     private fun setUpRecyclerView() {
-        adapter = MeetingAdapter(this, meetingList)
+        adapter = MeetingAdapter(this, meetingList, this)
         meetingRecyclerview.layoutManager = LinearLayoutManager(this)
         meetingRecyclerview.adapter = adapter
     }
@@ -161,5 +162,48 @@ class MainActivity : AppCompatActivity() {
     private fun hideDefaultUI() {
         @Suppress("DEPRECATION")
         window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_FULLSCREEN)
+    }
+
+    override fun onItemClicked(meeting: Meeting) {
+//        Toast.makeText(this, meeting.content, Toast.LENGTH_SHORT).show()
+        val meetingColRef = firestore.collection("meetings")
+        CoroutineScope(Dispatchers.IO).launch {
+            val meetingQuery = meetingColRef
+                .whereEqualTo("content", meeting.content)
+                .whereEqualTo("date", meeting.date)
+                .whereEqualTo("time", meeting.time)
+                .get()
+                .await()
+            if(meetingQuery.documents.isNotEmpty()) {
+                for(document in meetingQuery) {
+                    try {
+                        withContext(Dispatchers.Main) {
+                            MaterialAlertDialogBuilder(
+                                this@MainActivity,
+                                R.style.Base_ThemeOverlay_MaterialComponents_MaterialAlertDialog
+                            )
+                                .setMessage(resources.getString(R.string.confirm_logout))
+                                .setNegativeButton(resources.getString(R.string.cancel)) { dialog, which ->
+                                    // Respond to negative button press
+                                }
+                                .setPositiveButton(resources.getString(R.string.yes)) { dialog, which ->
+                                        GlobalScope.launch {
+                                            meetingColRef.document(document.id).delete().await()
+                                        }
+                                }
+                                .show()
+                        }
+                    } catch (e: Exception) {
+                        withContext(Dispatchers.Main) {
+                            Toast.makeText(this@MainActivity, e.message, Toast.LENGTH_LONG).show()
+                        }
+                    }
+                }
+            } else {
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(this@MainActivity, "No meetings matched the query.", Toast.LENGTH_LONG).show()
+                }
+            }
+        }
     }
 }
