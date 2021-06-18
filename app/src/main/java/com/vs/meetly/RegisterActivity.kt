@@ -9,6 +9,7 @@ import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.vs.meetly.daos.UserDao
+import com.vs.meetly.miscellaneous.randAvatar
 import com.vs.meetly.modals.User
 import kotlinx.android.synthetic.main.activity_register.*
 import kotlinx.android.synthetic.main.activity_register.etvEmail
@@ -50,7 +51,7 @@ class RegisterActivity : AppCompatActivity() {
         val name = etvName.text.toString()
         val email = etvEmail.text.toString()
         val password = etvPassword.text.toString()
-        val imageUrl = "https://ui-avatars.com/api/?background=random&rounded=true&size=128&name=${name}"
+        val imageUrl = randAvatar()
 
 //        TODO: To Check If The Below Function Can Be Called Using A Coroutine
 
