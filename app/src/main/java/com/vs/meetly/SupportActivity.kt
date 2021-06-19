@@ -20,6 +20,8 @@ class SupportActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_support)
 
+//        hideDefaultUI()
+
         supportProgressBar.visibility = View.VISIBLE
 
         fetchData()
@@ -34,6 +36,11 @@ class SupportActivity : AppCompatActivity() {
             finish()
         }
 
+    }
+
+    private fun hideDefaultUI() {
+        @Suppress("DEPRECATION")
+        window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_FULLSCREEN)
     }
 
     private fun fetchData() {

@@ -1,8 +1,10 @@
 package com.vs.meetly
 
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
@@ -12,6 +14,11 @@ import com.vs.meetly.modals.Meeting
 import kotlinx.android.synthetic.main.activity_new_meeting.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.time.Instant
+import java.time.LocalDateTime
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
 
 //<!--    This is only for Mad Lab Assignment -->
 //
@@ -24,8 +31,11 @@ class NewMeeting : AppCompatActivity() {
 
     private lateinit var time: String
 
+    private var currentSelectedDate: Long? = null
+
     private lateinit var auth: FirebaseAuth
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_meeting)
@@ -34,12 +44,13 @@ class NewMeeting : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
 
         testSelectDate.setOnClickListener {
-            val datePicker = MaterialDatePicker.Builder.datePicker().build()
+
+            val selectedDateInMillis = currentSelectedDate ?: System.currentTimeMillis()
+
+            val datePicker = MaterialDatePicker.Builder.datePicker().setSelection(selectedDateInMillis).build()
             datePicker.show(supportFragmentManager, "DatePicker")
             datePicker.addOnPositiveButtonClickListener {
-                Toast.makeText(this, "+ ${datePicker.headerText}", Toast.LENGTH_SHORT).show()
-                testSelectDate.text = datePicker.headerText
-                date = datePicker.headerText
+                dateInMillis -> onDateSelected(dateInMillis)
             }
             datePicker.addOnNegativeButtonClickListener {
                 Toast.makeText(this, "-", Toast.LENGTH_SHORT).show()
@@ -91,5 +102,16 @@ class NewMeeting : AppCompatActivity() {
         }
 
 
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun onDateSelected(dateTimeStampInMillis: Long) {
+        currentSelectedDate = dateTimeStampInMillis
+        val dateTime: LocalDateTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(
+            currentSelectedDate!!
+        ), ZoneId.systemDefault())
+        val dateAsFormattedText: String = dateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
+        date = dateAsFormattedText
+        testSelectDate.text = date
     }
 }
