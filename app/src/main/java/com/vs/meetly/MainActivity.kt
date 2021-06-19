@@ -42,6 +42,8 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        auth = FirebaseAuth.getInstance()
+
         firestore = FirebaseFirestore.getInstance()
 
         hideDefaultUI()
@@ -49,7 +51,6 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
         setUpFireStore()
         setUpRecyclerView()
 
-        auth = FirebaseAuth.getInstance()
         testProgress.visibility = View.VISIBLE
 
         GlobalScope.launch(Dispatchers.IO) {
@@ -82,8 +83,7 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
     }
 
     private fun setUpFireStore() {
-        val collectionReference =
-            firestore.collection("meetings")
+      val collectionReference = firestore.collection("meetings").whereEqualTo("userId", auth.currentUser!!.uid)
         collectionReference.addSnapshotListener { value, error ->
             if (value == null || error != null) {
                 Toast.makeText(this, "Error fetching data", Toast.LENGTH_SHORT).show()
@@ -173,10 +173,11 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
                 .whereEqualTo("content", meeting.content)
                 .whereEqualTo("date", meeting.date)
                 .whereEqualTo("time", meeting.time)
+                .whereEqualTo("userId", meeting.userId)
                 .get()
                 .await()
-            if (meetingQuery.documents.isNotEmpty()) {
-                for (document in meetingQuery) {
+            if(meetingQuery.documents.isNotEmpty()) {
+                for(document in meetingQuery) {
                     try {
                         withContext(Dispatchers.Main) {
                             MaterialAlertDialogBuilder(
@@ -188,9 +189,9 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
                                     // Respond to negative button press
                                 }
                                 .setPositiveButton(resources.getString(R.string.yes)) { dialog, which ->
-                                    GlobalScope.launch {
-                                        meetingColRef.document(document.id).delete().await()
-                                    }
+                                        GlobalScope.launch {
+                                            meetingColRef.document(document.id).delete().await()
+                                        }
                                 }
                                 .show()
                         }
@@ -202,11 +203,7 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
                 }
             } else {
                 withContext(Dispatchers.Main) {
-                    Toast.makeText(
-                        this@MainActivity,
-                        "No meetings matched the query.",
-                        Toast.LENGTH_LONG
-                    ).show()
+                    Toast.makeText(this@MainActivity, "No meetings matched the query.", Toast.LENGTH_LONG).show()
                 }
             }
         }

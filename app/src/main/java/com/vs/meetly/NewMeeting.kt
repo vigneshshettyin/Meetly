@@ -24,11 +24,14 @@ class NewMeeting : AppCompatActivity() {
 
     private lateinit var time: String
 
-    private lateinit var auth : FirebaseAuth
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_meeting)
+
+
+        auth = FirebaseAuth.getInstance()
 
         testSelectDate.setOnClickListener {
             val datePicker = MaterialDatePicker.Builder.datePicker().build()
@@ -74,10 +77,11 @@ class NewMeeting : AppCompatActivity() {
         }
 
         testSubmit.setOnClickListener {
-            val uid = auth.currentUser!!.uid
+
+            val userId : String = auth.currentUser!!.uid
             var text = etvTestText.text.toString().trim()
 //            Toast.makeText(this, "${text} & ${date}", Toast.LENGTH_SHORT).show()
-            var newMeeting = Meeting(date, text, time, uid)
+            var newMeeting = Meeting(date, text, time, userId)
             Toast.makeText(this, "New Meeting Added!", Toast.LENGTH_SHORT).show()
             GlobalScope.launch {
                 val meetingDao = MeetingDao()
