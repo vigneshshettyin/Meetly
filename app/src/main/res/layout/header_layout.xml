@@ -10,7 +10,8 @@
         android:id="@+id/header_image"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="left"
+        android:layout_margin="10dp"/>
 
     <TextView
         android:id="@+id/header_title"
@@ -21,7 +22,8 @@
         android:textColor="@color/design_default_color_on_primary"
         android:textSize="18sp"
         android:fontFamily="@font/poppins"
-        android:layout_gravity="center_horizontal"
+        android:layout_gravity="left"
         android:letterSpacing="0.15"
+        android:layout_margin="10dp"
         />
 </LinearLayout>
