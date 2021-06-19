@@ -15,21 +15,23 @@
         android:id="@+id/testSelectDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="52dp"
+        android:text="Select Date"
+        app:icon="@drawable/ic_baseline_edit_calendar_24"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:text="Select Date"
-        android:layout_marginTop="40dp"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/testSelectTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:text="Select Time"
+        app:icon="@drawable/ic_baseline_more_time_24"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/testSelectDate"
-        android:text="Select Time"
-        android:layout_marginTop="40dp"/>
+        app:layout_constraintTop_toBottomOf="@id/testSelectDate" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/testTest"
@@ -39,32 +41,73 @@
         android:layout_height="wrap_content"
         android:layout_margin="25dp"
         android:hint="Meeting Text"
+        app:counterMaxLength="20"
+
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/testSelectTime"
         app:layout_constraintRight_toRightOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:padding="50dp"
+            android:padding="20dp"
+            android:inputType="textMultiLine"
             android:id="@+id/etvTestText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/primary_dark"
-            android:inputType="text"
+
             android:textColor="@color/primary_dark"
-            android:textSize="14sp" />
+            android:lines="2"
+            android:minLines="1"
+            android:gravity="top|left"
+            android:maxLines="10"
+
+
+            android:scrollbars="vertical"
+            android:textSize="18sp" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.button.MaterialButton
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/switchRepeat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Submit"
-        app:layout_constraintTop_toBottomOf="@id/testTest"
+        android:layout_marginTop="28dp"
+        android:checked="true"
+        android:text="Repeat eveyday "
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.741"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/testTest" />
+
+    <ImageButton
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_margin="20dp"
+        android:layout_marginTop="72dp"
+        android:background="@drawable/circular"
+        android:padding="15dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_baseline_add_alarm_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/switchRepeat"
+        app:tint="#FFFFFF"></ImageButton>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/testSubmit"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginTop="152dp"
+        android:text="add"
+
+        app:icon="@drawable/ic_baseline_add_task_24"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="10dp"
-        android:id="@+id/testSubmit"/>
-
+         />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

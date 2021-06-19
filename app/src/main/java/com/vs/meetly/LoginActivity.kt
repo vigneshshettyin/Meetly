@@ -71,7 +71,8 @@ class LoginActivity : AppCompatActivity() {
 
         }
         if (TextUtils.isEmpty(password)) {
-            etvPassword.error = "Password required!"
+            //etvPassword.setError = "Password required!"
+
             return
 
         }
