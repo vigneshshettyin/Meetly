@@ -24,6 +24,12 @@ class SupportActivity : AppCompatActivity() {
 
         fetchData()
 
+        swipeRefresh.setOnRefreshListener {
+            // This method performs the actual data-refresh operation.
+            // The method calls setRefreshing(false) when it's finished.
+            fetchData()
+        }
+
         topAppBar.setNavigationOnClickListener {
             finish()
         }
@@ -55,6 +61,7 @@ class SupportActivity : AppCompatActivity() {
                 adapter = SupportAdapter(this, supportArray)
                 SupportRecyclerView.layoutManager = LinearLayoutManager(this)
                 SupportRecyclerView.adapter = adapter
+                swipeRefresh.setRefreshing(false)
 
             },
             {
