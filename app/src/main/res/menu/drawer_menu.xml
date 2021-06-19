@@ -4,16 +4,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     >
-
-    <item android:title="Item 1 (Testing)"
-        android:id="@+id/menuItem1"
-        android:icon="@drawable/ic_baseline_lock_24"
-
-        />
     <item android:title="New Meeting"
         android:icon="@drawable/ic_baseline_connect_without_contact_24"
-        android:id="@+id/menuItem2"/>
+        android:id="@+id/newMeeting"/>
     <item android:title="Developer Support"
+            android:icon="@drawable/ic_baseline_developer_mode_24"
         android:id="@+id/devSupport"/>
     <item android:title="Logout"
         android:id="@+id/logout"

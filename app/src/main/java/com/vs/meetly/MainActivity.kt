@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
 
         firestore = FirebaseFirestore.getInstance()
 
-        hideDefaultUI()
+//        hideDefaultUI()
         setUpViews()
         setUpFireStore()
         setUpRecyclerView()
@@ -124,11 +124,7 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
         actionBarDrawerToggle.syncState()
         navigationList.setNavigationItemSelectedListener {
             when (it.itemId) {
-                R.id.menuItem1 -> {
-                    Toast.makeText(this, "Hello 1", Toast.LENGTH_SHORT).show()
-                    true
-                }
-                R.id.menuItem2 -> {
+                R.id.newMeeting -> {
                     val intent = Intent(this, NewMeeting::class.java)
                     startActivity(intent)
                     true
