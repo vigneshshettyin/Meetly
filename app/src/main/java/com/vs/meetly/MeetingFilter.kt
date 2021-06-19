@@ -54,7 +54,13 @@ class MeetingFilter : AppCompatActivity(), IMeetingRVAdapter {
             Log.d("DATA", value.toObjects(Meeting::class.java).toString())
             meetingList.clear()
             meetingList.addAll(value.toObjects(Meeting::class.java))
-            adapter.notifyDataSetChanged()
+            if(meetingList.isEmpty()){
+                Log.d("DATA-LIST_EMPTY", "List is empty")
+            }
+            else{
+                Log.d("DATA-LIST_EMPTY", meetingList.toString())
+                adapter.notifyDataSetChanged()
+            }
         }
     }
 
