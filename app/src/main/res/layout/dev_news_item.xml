@@ -45,7 +45,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textUsername" />
 
         <TextView
-            android:id="@+id/meetingtime"
+            android:id="@+id/lastTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"

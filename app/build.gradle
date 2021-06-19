@@ -37,6 +37,10 @@ android {
 }
 
 dependencies {
+
+    //volley for api
+    implementation 'com.android.volley:volley:1.2.0'
+
     //multi dex
     implementation 'androidx.multidex:multidex:2.0.1'
 
