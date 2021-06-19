@@ -6,6 +6,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.vs.meetly.adapters.IMeetingRVAdapter
 import com.vs.meetly.adapters.MeetingAdapter
@@ -20,6 +21,8 @@ class MeetingFilter : AppCompatActivity(), IMeetingRVAdapter {
     lateinit var adapter: MeetingAdapter
 
     private var meetingList = mutableListOf<Meeting>()
+
+    lateinit var auth: FirebaseAuth
 
     lateinit var firestore: FirebaseFirestore
 
@@ -39,7 +42,8 @@ class MeetingFilter : AppCompatActivity(), IMeetingRVAdapter {
 
     private fun setUpFireStore(DATE: String) {
         firestore = FirebaseFirestore.getInstance()
-        val collectionReference = firestore.collection("meetings").whereEqualTo("date", DATE)
+        val collectionReference =
+            firestore.collection("meetings").whereEqualTo("date", DATE)
         collectionReference.addSnapshotListener { value, error ->
             if (value == null || error != null) {
                 Toast.makeText(this, "Error fetching data", Toast.LENGTH_SHORT).show()
@@ -68,8 +72,8 @@ class MeetingFilter : AppCompatActivity(), IMeetingRVAdapter {
                 .whereEqualTo("time", meeting.time)
                 .get()
                 .await()
-            if(meetingQuery.documents.isNotEmpty()) {
-                for(document in meetingQuery) {
+            if (meetingQuery.documents.isNotEmpty()) {
+                for (document in meetingQuery) {
                     try {
                         withContext(Dispatchers.Main) {
                             MaterialAlertDialogBuilder(
@@ -95,7 +99,11 @@ class MeetingFilter : AppCompatActivity(), IMeetingRVAdapter {
                 }
             } else {
                 withContext(Dispatchers.Main) {
-                    Toast.makeText(this@MeetingFilter, "No meetings matched the query.", Toast.LENGTH_LONG).show()
+                    Toast.makeText(
+                        this@MeetingFilter,
+                        "No meetings matched the query.",
+                        Toast.LENGTH_LONG
+                    ).show()
                 }
             }
         }

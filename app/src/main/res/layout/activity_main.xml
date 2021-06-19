@@ -34,7 +34,6 @@
 
     <TextView
         android:id="@+id/user_id"
-        android:visibility="gone"
         app:layout_constraintTop_toBottomOf="@id/appBarLayout"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

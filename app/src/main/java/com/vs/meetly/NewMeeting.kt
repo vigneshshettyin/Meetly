@@ -6,6 +6,7 @@ import android.widget.Toast
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
+import com.google.firebase.auth.FirebaseAuth
 import com.vs.meetly.daos.MeetingDao
 import com.vs.meetly.modals.Meeting
 import kotlinx.android.synthetic.main.activity_new_meeting.*
@@ -22,6 +23,8 @@ class NewMeeting : AppCompatActivity() {
     private lateinit var date: String
 
     private lateinit var time: String
+
+    private lateinit var auth : FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -71,9 +74,10 @@ class NewMeeting : AppCompatActivity() {
         }
 
         testSubmit.setOnClickListener {
+            val uid = auth.currentUser!!.uid
             var text = etvTestText.text.toString().trim()
 //            Toast.makeText(this, "${text} & ${date}", Toast.LENGTH_SHORT).show()
-            var newMeeting = Meeting(date, text, time)
+            var newMeeting = Meeting(date, text, time, uid)
             Toast.makeText(this, "New Meeting Added!", Toast.LENGTH_SHORT).show()
             GlobalScope.launch {
                 val meetingDao = MeetingDao()
