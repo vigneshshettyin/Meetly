@@ -82,7 +82,8 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
     }
 
     private fun setUpFireStore() {
-      val collectionReference = firestore.collection("meetings")
+        val collectionReference =
+            firestore.collection("meetings")
         collectionReference.addSnapshotListener { value, error ->
             if (value == null || error != null) {
                 Toast.makeText(this, "Error fetching data", Toast.LENGTH_SHORT).show()
@@ -174,8 +175,8 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
                 .whereEqualTo("time", meeting.time)
                 .get()
                 .await()
-            if(meetingQuery.documents.isNotEmpty()) {
-                for(document in meetingQuery) {
+            if (meetingQuery.documents.isNotEmpty()) {
+                for (document in meetingQuery) {
                     try {
                         withContext(Dispatchers.Main) {
                             MaterialAlertDialogBuilder(
@@ -187,9 +188,9 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
                                     // Respond to negative button press
                                 }
                                 .setPositiveButton(resources.getString(R.string.yes)) { dialog, which ->
-                                        GlobalScope.launch {
-                                            meetingColRef.document(document.id).delete().await()
-                                        }
+                                    GlobalScope.launch {
+                                        meetingColRef.document(document.id).delete().await()
+                                    }
                                 }
                                 .show()
                         }
@@ -201,7 +202,11 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
                 }
             } else {
                 withContext(Dispatchers.Main) {
-                    Toast.makeText(this@MainActivity, "No meetings matched the query.", Toast.LENGTH_LONG).show()
+                    Toast.makeText(
+                        this@MainActivity,
+                        "No meetings matched the query.",
+                        Toast.LENGTH_LONG
+                    ).show()
                 }
             }
         }
