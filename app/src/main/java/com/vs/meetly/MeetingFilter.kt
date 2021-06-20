@@ -1,5 +1,6 @@
 package com.vs.meetly
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -37,6 +38,8 @@ class MeetingFilter : AppCompatActivity(), IMeetingRVAdapter {
         setUpRecyclerView()
 
         topAppBar.setNavigationOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
             finish()
         }
 
