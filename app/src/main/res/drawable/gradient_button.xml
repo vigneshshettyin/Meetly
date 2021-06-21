@@ -12,9 +12,9 @@ android:color="@color/secondary_dark">
 <item android:id="@android:id/background">
     <shape android:shape="rectangle">
         <gradient
-            android:angle="45"
-            android:centerColor="@color/blue_500"
-            android:startColor="@color/blue_500"
+
+            android:centerColor="@color/primary_blue"
+            android:startColor="@color/secondary_blue"
             android:endColor="@color/primary_blue"
             android:type="linear" />
         <corners android:radius="30dp" />
