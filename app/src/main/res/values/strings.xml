@@ -17,4 +17,6 @@
     <string name="for_forgot_pass">* Please enter your registered email</string>
     <string name="display_calender">Display Calender</string>
     <string name="please_wait">Please Wait...</string>
+    <string name="just_now">Just now</string>
+    <string name="user_avatar">User-Avatar</string>
 </resources>

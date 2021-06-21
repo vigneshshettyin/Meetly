@@ -18,10 +18,11 @@
         <TextView
             android:id="@+id/textUsername"
             android:layout_width="wrap_content"
+            android:layout_marginStart="5dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:fontFamily="@font/catamaran_medium"
-            android:text="Username"
+            android:text="@string/app_name"
             android:textColor="?attr/colorOnSecondary"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="@+id/guideline2"
@@ -31,34 +32,31 @@
             android:id="@+id/textDes"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="20dp"
+            android:layout_margin="10dp"
             android:fontFamily="@font/catamaran_medium"
-            android:text="Description"
+            android:text="@string/bottom_sheet_behavior"
             android:textColor="@color/secondary_dark"
             android:textSize="16sp"
             app:autoSizeTextType="none"
-            app:layout_constraintBottom_toTopOf="@id/lastTime"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/guideline2"
-            app:layout_constraintTop_toBottomOf="@+id/textUsername" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imageView3" />
 
         <TextView
             android:id="@+id/lastTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
-            android:layout_marginTop="14dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
             android:fontFamily="@font/catamaran"
-            android:text="Just now"
+            android:text="@string/just_now"
             android:textColor="@color/secondary_dark"
             android:textSize="16sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textDes" />
+            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toBottomOf="@+id/textUsername" />
 
         <ImageView
             android:id="@+id/imageView3"
@@ -68,7 +66,8 @@
             android:layout_marginTop="20dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@tools:sample/avatars" />
+            tools:srcCompat="@tools:sample/avatars"
+            android:contentDescription="@string/user_avatar" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline2"
