@@ -1,27 +1,38 @@
+@file:Suppress("DEPRECATION")
+
 package com.vs.meetly
 
+import android.app.Dialog
 import android.content.Intent
 import android.graphics.Paint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
+import android.view.WindowManager
 import android.widget.TextView
 import android.widget.Toast
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.dialog_progress.*
 
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var firebaseAuth: FirebaseAuth
+    private lateinit var mProgressDialog: Dialog
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        hideDefaultUI()
+        // This is used to hide the status bar and make the splash screen as a full screen activity.
+        window.setFlags(
+            WindowManager.LayoutParams.FLAG_FULLSCREEN,
+            WindowManager.LayoutParams.FLAG_FULLSCREEN
+        )
+
 
         val tvforgotpass: TextView = findViewById(R.id.etvForgotPassword)
         val tvreg: TextView = findViewById(R.id.redirectToRegister)
@@ -40,6 +51,7 @@ class LoginActivity : AppCompatActivity() {
         firebaseAuth = FirebaseAuth.getInstance()
 
         etvLogin.setOnClickListener {
+            showProgressDialog()
             login()
         }
 
@@ -80,7 +92,7 @@ class LoginActivity : AppCompatActivity() {
         firebaseAuth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) {
                 if (it.isSuccessful) {
-                    Toast.makeText(this, "Login Successful!", Toast.LENGTH_SHORT).show()
+                    mProgressDialog.dismiss()
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
                     finish()
@@ -95,16 +107,23 @@ class LoginActivity : AppCompatActivity() {
     }
 
     fun validate(): Boolean {
-
         return true;
+    }
+
+    fun showProgressDialog() {
+        mProgressDialog = Dialog(this)
+
+        /*Set the screen content from a layout resource.
+        The resource will be inflated, adding all top-level views to the screen.*/
+        mProgressDialog.setContentView(R.layout.dialog_progress)
+
+//        mProgressDialog.tv_progress_text.text = text
+
+        //Start the dialog and display it on screen.
+        mProgressDialog.show()
     }
 
     fun TextView.underline() {
         paintFlags = paintFlags or Paint.UNDERLINE_TEXT_FLAG
-    }
-
-    private fun hideDefaultUI() {
-        @Suppress("DEPRECATION")
-        window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_FULLSCREEN)
     }
 }

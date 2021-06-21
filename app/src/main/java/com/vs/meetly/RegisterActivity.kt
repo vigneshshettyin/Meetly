@@ -1,10 +1,14 @@
+@file:Suppress("DEPRECATION")
+
 package com.vs.meetly
 
+import android.app.Dialog
 import android.content.Intent
 import android.graphics.Paint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.view.WindowManager
 import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
@@ -19,11 +23,19 @@ class RegisterActivity : AppCompatActivity() {
 
     private lateinit var firebaseAuth: FirebaseAuth
 
+    private lateinit var mProgressDialog: Dialog
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
-        hideDefaultUI()
+
+        // This is used to hide the status bar and make the splash screen as a full screen activity.
+        window.setFlags(
+            WindowManager.LayoutParams.FLAG_FULLSCREEN,
+            WindowManager.LayoutParams.FLAG_FULLSCREEN
+        )
+
         //For Underline
         val tvlogin: TextView = findViewById(R.id.redirectToLogin)
         tvlogin.underline()
@@ -31,6 +43,7 @@ class RegisterActivity : AppCompatActivity() {
         firebaseAuth = FirebaseAuth.getInstance()
 
         buttonRegister.setOnClickListener {
+            showProgressDialog()
             registerUser()
         }
         redirectToLogin.setOnClickListener {
@@ -60,7 +73,7 @@ class RegisterActivity : AppCompatActivity() {
                 if (it.isSuccessful) {
                     user = User(firebaseAuth.currentUser!!.uid, name, imageUrl)
                     userDao.addUser(user)
-                    Toast.makeText(this, "Registration Successful!", Toast.LENGTH_SHORT).show()
+                    mProgressDialog.dismiss()
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
                     finish()
@@ -78,5 +91,18 @@ class RegisterActivity : AppCompatActivity() {
     private fun hideDefaultUI() {
         @Suppress("DEPRECATION")
         window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_FULLSCREEN)
+    }
+
+    fun showProgressDialog() {
+        mProgressDialog = Dialog(this)
+
+        /*Set the screen content from a layout resource.
+        The resource will be inflated, adding all top-level views to the screen.*/
+        mProgressDialog.setContentView(R.layout.dialog_progress)
+
+//        mProgressDialog.tv_progress_text.text = text
+
+        //Start the dialog and display it on screen.
+        mProgressDialog.show()
     }
 }
