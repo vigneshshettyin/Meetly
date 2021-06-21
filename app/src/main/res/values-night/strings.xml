@@ -11,4 +11,5 @@
     <string name="already_have_a_account_login">Already have a account? Login</string>
     <string name="testing">Testing</string>
     <string name="display_calender">Display Calender</string>
+    <string name="please_wait">Please Wait...</string>
 </resources>
