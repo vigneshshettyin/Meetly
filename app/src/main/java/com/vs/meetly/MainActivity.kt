@@ -209,6 +209,9 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
                                 .setPositiveButton(resources.getString(R.string.yes)) { dialog, which ->
                                         GlobalScope.launch {
                                             meetingColRef.document(document.id).delete().await()
+                                            withContext(Dispatchers.Main){
+                                                adapter.notifyDataSetChanged()
+                                            }
                                         }
                                 }
                                 .show()
