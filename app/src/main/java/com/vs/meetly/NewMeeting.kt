@@ -24,7 +24,6 @@ import java.time.format.DateTimeFormatter
 //
 //<!--    Don't Change anything for now-->
 
-
 class NewMeeting : AppCompatActivity() {
 
     private lateinit var date: String
