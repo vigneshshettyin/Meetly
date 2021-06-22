@@ -14,11 +14,9 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@id/guideline3"
-
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
         app:lottie_rawRes="@raw/girl" />
@@ -35,7 +33,6 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline3">
-
     </TextView>
 
     <com.google.android.material.button.MaterialButton
@@ -75,7 +72,6 @@
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
         android:layout_marginTop="25dp"
-
         android:layout_marginBottom="0dp"
         android:hint="Title"
         app:endIconMode="clear_text"
@@ -88,11 +84,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/primary_dark"
-
             android:padding="10dp"
             android:inputType="textMultiLine"
             android:scrollbars="vertical"
-
             android:textColor="@color/primary_dark"
             android:textSize="16sp" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -115,39 +109,27 @@
             android:id="@+id/etvEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             android:backgroundTint="@color/primary_dark"
             android:inputType="textMultiLine"
             android:scrollbars="vertical"
             android:padding="10dp"
             android:textColor="@color/primary_dark"
             android:textSize="14sp" />
-
-
     </com.google.android.material.textfield.TextInputLayout>
 
     <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email"
-        android:src="@drawable/ic_baseline_add_task_24"
-        android:scaleType="centerCrop"
-        android:padding="10dp"
-        android:background="@drawable/circular"></ImageButton>
-
-    <com.google.android.material.button.MaterialButton
         android:id="@+id/testSubmit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/gradient_button"
-        android:text="Submit"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        android:layout_marginTop="20dp"
+        android:background="@drawable/circular"
+        android:padding="10dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_baseline_add_task_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/email"/>
+
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline3"
