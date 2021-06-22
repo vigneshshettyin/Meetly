@@ -13,4 +13,5 @@
     <color name="secondary_dark">#414345</color>
     <color name="blue_500">#0094FF</color>
     <color name="light_grey">#EBEBEB</color>
+    <color name="snackbar_success">#4BB543</color>
 </resources>

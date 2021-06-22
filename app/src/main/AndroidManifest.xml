@@ -14,18 +14,22 @@
         android:theme="@style/Theme.Meetly">
 
         <activity android:name=".UserProfile"
-            android:screenOrientation="fullSensor"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize"/>
-        <activity android:name=".SupportActivity" />
-        <activity android:name=".MeetingFilter" />
-        <activity android:name=".NewMeeting" />
+        <activity android:name=".SupportActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".MeetingFilter"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".NewMeeting"
+            android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".NoInternet" />
         <activity
             android:name=".ForgotPassActivity"
-            android:screenOrientation="fullSensor"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".SplashActivity"
+            android:screenOrientation="portrait"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -36,15 +40,16 @@
         <activity
             android:name=".RegisterActivity"
             android:exported="true"
-            android:screenOrientation="fullSensor"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".LoginActivity"
             android:exported="true"
-            android:screenOrientation="fullSensor"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".MainActivity"
+            android:screenOrientation="portrait"
             android:exported="true" />
 
         <meta-data
