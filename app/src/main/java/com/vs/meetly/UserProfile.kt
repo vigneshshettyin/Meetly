@@ -2,6 +2,7 @@ package com.vs.meetly
 
 import android.Manifest
 import android.app.Activity
+import android.app.Dialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -26,11 +27,14 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
+import java.io.IOException
 
 class UserProfile : AppCompatActivity() {
 
     // A global variable for a user profile image URL
     private var mProfileImageURL: String = ""
+
+    private lateinit var mProgressDialog: Dialog
 
     // Add a global variable for URI of a selected image from phone storage.
     private var mSelectedImageFileUri: Uri? = null
@@ -41,27 +45,57 @@ class UserProfile : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_profile)
         auth = FirebaseAuth.getInstance()
+
         getUserInfo(auth.currentUser!!.uid)
 
         topAppBar.setNavigationOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
             finish()
         }
         profileImage.setOnClickListener {
-                if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
-                    == PackageManager.PERMISSION_GRANTED
-                ) {
-                    showImageChooser(this)
-                } else {
-                    /*Requests permissions to be granted to this application. These permissions
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
+                == PackageManager.PERMISSION_GRANTED
+            ) {
+                showImageChooser(this)
+            } else {
+                /*Requests permissions to be granted to this application. These permissions
                      must be requested in your manifest, they should not be granted to your app,
                      and they should have protection level*/
-                    ActivityCompat.requestPermissions(
-                        this,
-                        arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
-                        1
-                    )
-                }
+                ActivityCompat.requestPermissions(
+                    this,
+                    arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
+                    1
+                )
+            }
+
         }
+
+        buttonProfileUpdate.setOnClickListener {
+            updateUserProfileData()
+        }
+    }
+
+    private fun updateUserProfileData() {
+
+        val name=profileName.text.toString()
+        val email=profileEmail.text.toString()
+        val phone=profilePhone.text.toString()
+        val userAvatar = mProfileImageURL
+
+//        mProgressDialog.dismiss()
+
+//        Toast.makeText(this, "${name}, ${email}, ${phone}, ${userAvatar}", Toast.LENGTH_SHORT).show()
+
+        val user = User(auth.currentUser!!.uid, name, email, phone.toLong(), userAvatar)
+
+        GlobalScope.launch {
+            val userdao = UserDao()
+            userdao.addUser(user)
+        }
+
+        Toast.makeText(this, "Success!!", Toast.LENGTH_SHORT).show()
+
     }
 
     private fun getUserInfo(userId : String) {
@@ -94,6 +128,8 @@ class UserProfile : AppCompatActivity() {
 
     private fun uploadUserImage() {
 
+        progressPlsWait()
+
         if (mSelectedImageFileUri != null) {
 
             //getting the storage reference
@@ -119,8 +155,7 @@ class UserProfile : AppCompatActivity() {
                             // assign the image url to the variable.
                             mProfileImageURL = uri.toString()
 
-                            // Call a function to update user details in the database.
-                            getUserInfo(auth.currentUser!!.uid)
+                            mProgressDialog.dismiss()
                         }
                 }
                 .addOnFailureListener { exception ->
@@ -130,8 +165,34 @@ class UserProfile : AppCompatActivity() {
                         Toast.LENGTH_LONG
                     ).show()
 
+                    mProgressDialog.dismiss()
+
                 }
         }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK
+            && requestCode == 2
+            && data!!.data != null
+        ) {
+            // The uri of selection image from phone storage.
+            mSelectedImageFileUri = data.data!!
+
+            try {
+                // Load the user image in the ImageView.
+                Glide
+                    .with(this)
+                    .load(Uri.parse(mSelectedImageFileUri.toString())) // URI of the image
+                    .circleCrop() // Scale type of the image.
+                    .into(profileImage) // the view in which the image will be loaded.
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
+        }
+
+        uploadUserImage()
     }
 
     fun getFileExtension(activity: Activity, uri: Uri?): String? {
@@ -146,5 +207,18 @@ class UserProfile : AppCompatActivity() {
          */
         return MimeTypeMap.getSingleton()
             .getExtensionFromMimeType(activity.contentResolver.getType(uri!!))
+    }
+    fun progressPlsWait(){
+        //Progress Bar
+        mProgressDialog = Dialog(this)
+
+        /*Set the screen content from a layout resource.
+        The resource will be inflated, adding all top-level views to the screen.*/
+        mProgressDialog.setContentView(R.layout.dialog_progress)
+
+        //        mProgressDialog.tv_progress_text.text = text
+        //Start the dialog and display it on screen.
+        mProgressDialog.show()
+        // Call a function to update user details in the database.
     }
 }

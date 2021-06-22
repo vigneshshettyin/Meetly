@@ -23,6 +23,7 @@ import com.vs.meetly.modals.Meeting
 import com.vs.meetly.modals.User
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_new_meeting.*
+import kotlinx.android.synthetic.main.activity_user_profile.*
 import kotlinx.android.synthetic.main.header_layout.*
 import kotlinx.coroutines.*
 import kotlinx.coroutines.tasks.await
@@ -121,7 +122,7 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
     }
 
     private fun loadImage(imageUrl: String) {
-        Glide.with(this).load(imageUrl).into(header_image)
+        Glide.with(this).load(imageUrl).circleCrop().into(header_image)
         testProgress.visibility = View.GONE
     }
 
@@ -139,6 +140,7 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
                 R.id.profile ->{
                     val intent = Intent(this, UserProfile::class.java)
                     startActivity(intent)
+                    finish()
                     true
                 }
 
