@@ -4,6 +4,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     >
+    <item android:title="Profile"
+        android:icon="@drawable/ic_baseline_supervised_user_circle_24"
+        android:id="@+id/profile"/>
     <item android:title="New Meeting"
         android:icon="@drawable/ic_baseline_connect_without_contact_24"
         android:id="@+id/newMeeting"/>

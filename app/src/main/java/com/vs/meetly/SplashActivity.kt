@@ -24,9 +24,6 @@ class SplashActivity : AppCompatActivity() {
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
-
-
-
         Handler().postDelayed({
             val intentl = Intent(this, LoginActivity::class.java)
             val intentno = Intent(this, NoInternet::class.java)

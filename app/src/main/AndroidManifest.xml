@@ -3,6 +3,7 @@
     package="com.vs.meetly">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -11,7 +12,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Meetly">
-        <activity android:name=".SupportActivity"></activity>
+
+        <activity android:name=".UserProfile"
+            android:screenOrientation="fullSensor"
+            android:windowSoftInputMode="adjustResize"/>
+        <activity android:name=".SupportActivity" />
         <activity android:name=".MeetingFilter" />
         <activity android:name=".NewMeeting" />
         <activity android:name=".NoInternet" />

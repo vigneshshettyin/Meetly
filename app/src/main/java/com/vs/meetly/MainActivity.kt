@@ -136,6 +136,12 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
         actionBarDrawerToggle.syncState()
         navigationList.setNavigationItemSelectedListener {
             when (it.itemId) {
+                R.id.profile ->{
+                    val intent = Intent(this, UserProfile::class.java)
+                    startActivity(intent)
+                    true
+                }
+
                 R.id.newMeeting -> {
                     val intent = Intent(this, NewMeeting::class.java)
                     startActivity(intent)

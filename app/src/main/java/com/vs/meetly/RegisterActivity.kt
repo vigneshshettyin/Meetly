@@ -71,7 +71,7 @@ class RegisterActivity : AppCompatActivity() {
         firebaseAuth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) {
                 if (it.isSuccessful) {
-                    user = User(firebaseAuth.currentUser!!.uid, name, imageUrl)
+                    user = User(firebaseAuth.currentUser!!.uid, name, firebaseAuth.currentUser!!.email.toString(),0 , imageUrl)
                     userDao.addUser(user)
                     mProgressDialog.dismiss()
                     val intent = Intent(this, MainActivity::class.java)
