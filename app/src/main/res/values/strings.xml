@@ -19,4 +19,6 @@
     <string name="please_wait">Please Wait...</string>
     <string name="just_now">Just now</string>
     <string name="user_avatar">User-Avatar</string>
+    <string name="phone">Phone</string>
+    <string name="update_profile">Update Profile</string>
 </resources>
