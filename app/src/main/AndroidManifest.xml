@@ -21,6 +21,7 @@
         <activity android:name=".MeetingFilter"
             android:screenOrientation="portrait"/>
         <activity android:name=".NewMeeting"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".NoInternet" />
         <activity
