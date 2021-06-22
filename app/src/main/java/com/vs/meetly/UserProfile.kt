@@ -97,7 +97,13 @@ class UserProfile : AppCompatActivity() {
             userdao.addUser(user)
         }
 
-        Toast.makeText(this, "Success!", Toast.LENGTH_SHORT).show()
+        MotionToast.createToast(this,
+            "Success!",
+            "Profile updated!",
+            MotionToast.TOAST_SUCCESS,
+            MotionToast.GRAVITY_BOTTOM,
+            MotionToast.LONG_DURATION,
+            ResourcesCompat.getFont(this,R.font.helvetica_regular))
 
     }
 
