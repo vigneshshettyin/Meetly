@@ -13,67 +13,85 @@
         android:id="@+id/animationView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@id/guideline3"
+        android:layout_margin="10dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/filterAppbar"
+        app:layout_constraintBottom_toBottomOf="@+id/guideline4"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
         app:lottie_rawRes="@raw/girl" />
 
-    <TextView
-        android:id="@+id/head_for_new"
-        android:layout_width="wrap_content"
+    <!--    <TextView-->
+    <!--        android:id="@+id/head_for_new"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:fontFamily="@font/poppins_bold"-->
+    <!--        android:text="Add New Meeting"-->
+    <!--        android:textColor="@color/primary_blue"-->
+    <!--        android:textSize="34sp"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintLeft_toLeftOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="@+id/guideline3">-->
+    <!--    </TextView>-->
+
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/filterAppbar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/poppins_bold"
-        android:text="Add New Meeting"
-        android:textColor="@color/primary_blue"
-        android:textSize="34sp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline3">
-    </TextView>
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/topAppBar"
+            style="@style/Widget.MaterialComponents.Toolbar.Primary"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
+            app:title="New Meeting" />
+    </com.google.android.material.appbar.AppBarLayout>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/testSelectDate"
         android:layout_width="0dp"
-        android:layout_height="65dp"
+        android:layout_height="40dp"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="15dp"
-        android:text="Select Date"
-        app:layout_constraintEnd_toStartOf="@+id/guideline4"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/head_for_new"
+        android:background="@drawable/square_button_grad"
+        android:text="@string/select_date"
         app:backgroundTint="@null"
-        android:background="@drawable/square_button_grad"/>
+        app:layout_constraintEnd_toEndOf="@id/guideline3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/animationView" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/testSelectTime"
         android:layout_width="0dp"
-        android:layout_height="65dp"
+        android:layout_height="40dp"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="15dp"
-        android:text="Select Time"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guideline4"
-        app:layout_constraintTop_toBottomOf="@+id/head_for_new"
-        app:backgroundTint="@null"
         android:background="@drawable/square_button_grad"
-/>
+        android:text="@string/select_time"
+        app:backgroundTint="@null"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/guideline3"
+        app:layout_constraintTop_toBottomOf="@+id/animationView" />
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/testTest"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
-        android:layout_height="65dp"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="25dp"
+        android:layout_marginTop="20dp"
         android:layout_marginRight="25dp"
-        android:layout_marginTop="25dp"
         android:layout_marginBottom="0dp"
-        android:hint="Title"
+        android:hint="@string/title"
         app:endIconMode="clear_text"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -84,8 +102,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/primary_dark"
-            android:padding="10dp"
             android:inputType="textMultiLine"
+            android:padding="10dp"
             android:scrollbars="vertical"
             android:textColor="@color/primary_dark"
             android:textSize="16sp" />
@@ -95,24 +113,52 @@
         android:id="@+id/email"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
-        android:layout_height="65dp"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="25dp"
+        android:layout_marginTop="20dp"
         android:layout_marginRight="25dp"
-        android:layout_marginTop="0dp"
-        android:hint="Meeting Link"
+        android:hint="@string/meeting_link"
         app:endIconMode="clear_text"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/testTest">
+        app:layout_constraintTop_toBottomOf="@+id/testTest"
+        app:prefixText="https://">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etvEmail"
+            android:id="@+id/meetingLink"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/primary_dark"
             android:inputType="textMultiLine"
-            android:scrollbars="vertical"
             android:padding="10dp"
+            android:scrollbars="vertical"
+            android:textColor="@color/primary_dark"
+            android:textSize="14sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/detailOutline"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="25dp"
+        android:hint="@string/content"
+        app:endIconMode="clear_text"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/email">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/primary_dark"
+            android:inputType="textMultiLine"
+            android:lines="5"
+            android:padding="10dp"
+            android:scrollbars="vertical"
             android:textColor="@color/primary_dark"
             android:textSize="14sp" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -121,29 +167,29 @@
         android:id="@+id/testSubmit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_margin="10dp"
         android:background="@drawable/circular"
         android:padding="10dp"
         android:scaleType="centerCrop"
         android:src="@drawable/ic_baseline_add_task_24"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email"/>
-
+        app:layout_constraintTop_toBottomOf="@id/detailOutline" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.3" />
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.5" />
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.38" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

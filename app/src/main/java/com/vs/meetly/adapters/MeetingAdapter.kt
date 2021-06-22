@@ -26,7 +26,7 @@ class MeetingAdapter(val context: Context, private val meeting: List<Meeting>, p
 
     override fun onBindViewHolder(holder: MeetingViewHolder, position: Int) {
         holder.meetingdate.text = meeting[position].date
-        holder.textContent.text = meeting[position].content
+        holder.textContent.text = meeting[position].title
         holder.meetingtime.text = meeting[position].time
         holder.linearLayout.setBackgroundColor(Color.parseColor(ColorPicker.getColor()))
         holder.deleteMeeting.setOnClickListener {

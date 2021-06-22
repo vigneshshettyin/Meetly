@@ -21,4 +21,9 @@
     <string name="user_avatar">User-Avatar</string>
     <string name="phone">Phone</string>
     <string name="update_profile">Update Profile</string>
+    <string name="title">Title</string>
+    <string name="meeting_link">Meeting Link</string>
+    <string name="select_date">Select Date</string>
+    <string name="select_time">Select Time</string>
+    <string name="content">Content</string>
 </resources>
