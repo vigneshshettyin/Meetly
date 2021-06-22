@@ -14,7 +14,9 @@ import android.webkit.MimeTypeMap
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 import com.bumptech.glide.Glide
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
@@ -27,6 +29,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
+import www.sanju.motiontoast.MotionToast
 import java.io.IOException
 
 class UserProfile : AppCompatActivity() {
@@ -94,7 +97,7 @@ class UserProfile : AppCompatActivity() {
             userdao.addUser(user)
         }
 
-        Toast.makeText(this, "Success!!", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "Success!", Toast.LENGTH_SHORT).show()
 
     }
 
