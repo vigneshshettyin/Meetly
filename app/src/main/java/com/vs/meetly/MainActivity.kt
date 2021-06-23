@@ -275,6 +275,10 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
         }
     }
 
+    override fun getIntoActivity(meeting: Meeting) {
+        Toast.makeText(this, "${meeting.title}", Toast.LENGTH_SHORT).show()
+    }
+
     @RequiresApi(Build.VERSION_CODES.O)
     private fun onDateSelected(dateTimeStampInMillis: Long) {
         currentSelectedDate = dateTimeStampInMillis

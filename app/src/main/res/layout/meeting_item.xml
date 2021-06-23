@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="18dp"
+    android:clickable="true"
     android:backgroundTint="@color/white"
     app:cardCornerRadius="15dp"
-    android:id="@+id/cardView"
-    >
+    android:id="@+id/cardViewMeeting"
+    android:focusable="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -24,6 +24,7 @@
             app:layout_constraintStart_toEndOf="@+id/meetingdate"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_baseline_access_time_24"
+            android:contentDescription="@string/select_time"
             app:tint="?attr/colorOnSecondary" />
 
         <ImageView
@@ -35,7 +36,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/linearLayout"
             app:layout_constraintTop_toTopOf="parent"
-            app:tint="?attr/colorOnSecondary" />
+            app:tint="?attr/colorOnSecondary"
+            android:contentDescription="@string/display_calender" />
 
         <TextView
             android:id="@+id/meetingdate"
@@ -43,7 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:fontFamily="@font/poppins"
-            android:text="25-02-2000"
+            android:text="@string/_25_02_2000"
             android:textColor="?attr/colorOnSecondary"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -71,7 +73,7 @@
             android:layout_gravity="end"
             android:layout_marginStart="10dp"
             android:fontFamily="@font/poppins"
-            android:text="01-25 AM"
+            android:text="@string/_01_25_am"
             android:textColor="?attr/colorOnSecondary"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -90,7 +92,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView"
-            app:tint="@color/black" />
+            app:tint="@color/black"
+            android:contentDescription="@string/delete_meeting_icon" />
 
         <LinearLayout
             android:id="@+id/linearLayout"
@@ -114,17 +117,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/linearLayout"
             app:layout_constraintTop_toBottomOf="@+id/meetingdate" />
-
-<!--        Option to add other users to meeting by implementing a horizontal scroll view-->
-
-<!--        <androidx.recyclerview.widget.RecyclerView-->
-<!--            android:scrollbars="horizontal"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_centerVertical="true"-->
-<!--            android:layout_centerHorizontal="true"-->
-<!--            tools:listitem="@layout/users_meeting_list_horizonal" />-->
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
