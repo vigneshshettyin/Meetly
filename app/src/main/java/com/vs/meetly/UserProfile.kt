@@ -37,6 +37,8 @@ class UserProfile : AppCompatActivity() {
     // A global variable for a user profile image URL
     private var mProfileImageURL: String = ""
 
+    private var currentProfileImage : String = ""
+
     private lateinit var mProgressDialog: Dialog
 
     // Add a global variable for URI of a selected image from phone storage.
@@ -84,7 +86,14 @@ class UserProfile : AppCompatActivity() {
         val name=profileName.text.toString()
         val email=profileEmail.text.toString()
         val phone=profilePhone.text.toString()
-        val userAvatar = mProfileImageURL
+//        val userAvatar = mProfileImageURL
+        var userAvatar = ""
+        if (mProfileImageURL.isEmpty()){
+            userAvatar = currentProfileImage
+        }
+        else{
+            userAvatar = mProfileImageURL
+        }
 
 //        mProgressDialog.dismiss()
 
@@ -114,6 +123,7 @@ class UserProfile : AppCompatActivity() {
             val user = userDao.getUserById(userId).await().toObject(User::class.java)!!
             withContext(Dispatchers.Main) {
                 loadImage(user.imageUrl)
+                currentProfileImage = user.imageUrl
                 profileName.setText(user.displayName)
                 profileEmail.setText(user.email)
                 profilePhone.setText(user.phone.toString())
