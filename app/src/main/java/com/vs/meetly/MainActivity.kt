@@ -5,11 +5,13 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.google.android.material.datepicker.MaterialDatePicker
@@ -31,6 +33,7 @@ import java.time.Instant
 import java.time.LocalDateTime
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
+import java.util.*
 
 class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
 
@@ -43,6 +46,8 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
     lateinit var adapter: MeetingAdapter
 
     private var meetingList = mutableListOf<Meeting>()
+
+    private var tempMeetingList = mutableListOf<Meeting>()
 
     lateinit var firestore: FirebaseFirestore
 
@@ -111,11 +116,13 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
                 Log.d("DATA-LIST_EMPTY", meetingList.toString())
                 adapter.notifyDataSetChanged()
             }
+
+            tempMeetingList.addAll(meetingList)
         }
     }
 
     private fun setUpRecyclerView() {
-        adapter = MeetingAdapter(this, meetingList, this)
+        adapter = MeetingAdapter(this, tempMeetingList, this)
         meetingRecyclerview.layoutManager = LinearLayoutManager(this)
         meetingRecyclerview.adapter = adapter
     }
@@ -185,6 +192,37 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
         return super.onOptionsItemSelected(item)
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.right_menu_search_bar, menu)
+        val item = menu?.findItem(R.id.search_action)
+        val searchView = item?.actionView as androidx.appcompat.widget.SearchView
+
+        searchView.setOnQueryTextListener(object :SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                TODO("Not yet implemented")
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                tempMeetingList.clear()
+                val searchText = newText!!.toLowerCase(Locale.getDefault())
+                if(searchText.isNotEmpty()){
+                    meetingList.forEach {
+                        if (it.title.toLowerCase(Locale.getDefault()).contains(searchText)){
+                            tempMeetingList.add(it)
+                        }
+                    }
+                    adapter.notifyDataSetChanged()
+                }else{
+                    tempMeetingList.clear()
+                    tempMeetingList.addAll(meetingList)
+                    adapter.notifyDataSetChanged()
+                }
+                return false
+            }
+
+        })
+        return super.onCreateOptionsMenu(menu)
+    }
     private fun hideDefaultUI() {
         @Suppress("DEPRECATION")
         window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_FULLSCREEN)
