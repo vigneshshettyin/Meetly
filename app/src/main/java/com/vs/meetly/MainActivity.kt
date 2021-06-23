@@ -280,6 +280,7 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
         intent.putExtra("meetingName", meeting.title)
         intent.putExtra("usersList", meeting.userId)
         startActivity(intent)
+        finish()
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -293,6 +294,6 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
         val intent = Intent(this, MeetingFilter::class.java)
         intent.putExtra("DATE", dateAsFormattedText)
         startActivity(intent)
-
+        finish()
     }
 }
