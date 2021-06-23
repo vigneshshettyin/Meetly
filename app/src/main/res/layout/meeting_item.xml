@@ -7,7 +7,6 @@
     android:layout_margin="18dp"
     android:backgroundTint="@color/white"
     app:cardCornerRadius="15dp"
-
     android:id="@+id/cardView"
     >
 
@@ -25,7 +24,7 @@
             app:layout_constraintStart_toEndOf="@+id/meetingdate"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_baseline_access_time_24"
-            app:tint="?attr/colorOnSecondary"></ImageView>
+            app:tint="?attr/colorOnSecondary" />
 
         <ImageView
             android:id="@+id/imageView"
@@ -36,7 +35,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/linearLayout"
             app:layout_constraintTop_toTopOf="parent"
-            app:tint="?attr/colorOnSecondary"></ImageView>
+            app:tint="?attr/colorOnSecondary" />
 
         <TextView
             android:id="@+id/meetingdate"
@@ -109,12 +108,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="http://meet.com/whfuehirebceirrucgeiecirgyreccr"
+            android:text="@string/https_meet_com_demo"
             android:textColor="?attr/colorOnSecondary"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/linearLayout"
-            app:layout_constraintTop_toBottomOf="@+id/meetingdate"></TextView>
+            app:layout_constraintTop_toBottomOf="@+id/meetingdate" />
+
+<!--        Option to add other users to meeting by implementing a horizontal scroll view-->
+
+<!--        <androidx.recyclerview.widget.RecyclerView-->
+<!--            android:scrollbars="horizontal"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_centerVertical="true"-->
+<!--            android:layout_centerHorizontal="true"-->
+<!--            tools:listitem="@layout/users_meeting_list_horizonal" />-->
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
