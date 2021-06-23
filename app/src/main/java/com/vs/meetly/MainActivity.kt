@@ -98,9 +98,8 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
     }
 
 
-
     private fun setUpFireStore() {
-      val collectionReference = firestore.collection("meetings").whereEqualTo("userId", auth.currentUser!!.uid)
+      val collectionReference = firestore.collection("meetings").whereArrayContains("userId", auth.currentUser!!.uid)
         collectionReference.addSnapshotListener { value, error ->
             if (value == null || error != null) {
                 Toast.makeText(this, "Error fetching data", Toast.LENGTH_SHORT).show()
@@ -277,6 +276,10 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
 
     override fun getIntoActivity(meeting: Meeting) {
         Toast.makeText(this, "${meeting.title}", Toast.LENGTH_SHORT).show()
+        val intent = Intent(this, MeetingViewDetail::class.java)
+        intent.putExtra("meetingName", meeting.title)
+        intent.putExtra("usersList", meeting.userId)
+        startActivity(intent)
     }
 
     @RequiresApi(Build.VERSION_CODES.O)

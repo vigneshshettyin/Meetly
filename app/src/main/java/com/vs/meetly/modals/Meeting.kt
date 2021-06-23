@@ -6,5 +6,5 @@ data class Meeting (
         val content : String = "",
         val meeting_link : String = "",
         val time : String = "",
-        val userId : String ="",
+        val userId : ArrayList<String> = ArrayList(),
         )
