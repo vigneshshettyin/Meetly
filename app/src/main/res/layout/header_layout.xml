@@ -2,15 +2,23 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient_header"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/round_top_draw"
     android:orientation="vertical"
     android:padding="16dp">
 
-    <ImageView
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/header_image"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_gravity="left"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_gravity="start"
+        android:src="@drawable/light_logo"
         android:layout_margin="10dp"/>
 
     <TextView
@@ -18,12 +26,17 @@
         style="@style/TextAppearance.AppCompat.Subhead"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/header_image"
+        app:layout_constraintStart_toStartOf="@id/header_image"
+        app:layout_constraintEnd_toEndOf="@id/header_image"
         android:layout_marginTop="16dp"
-        android:textColor="@color/design_default_color_on_primary"
-        android:textSize="18sp"
-        android:fontFamily="@font/poppins"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:text="@string/app_name"
+        android:fontFamily="@font/catamaran"
         android:layout_gravity="left"
-        android:letterSpacing="0.15"
         android:layout_margin="10dp"
         />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>

@@ -70,7 +70,6 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
             user = userDao.getUserById(currentUserId).await().toObject(User::class.java)!!
             withContext(Dispatchers.Main) {
                 header_title.text = user.displayName
-                user_id.text = user.uid
                 loadImage(user.imageUrl)
             }
         }
