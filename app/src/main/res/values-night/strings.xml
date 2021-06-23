@@ -22,4 +22,7 @@
     <string name="select_time">Select Time</string>
     <string name="content">Content</string>
     <string name="https_meet_com_demo">https://meet.com/demo</string>
+    <string name="_25_02_2000">25-02-2000</string>
+    <string name="_01_25_am">01-25 AM</string>
+    <string name="delete_meeting_icon">delete meeting icon</string>
 </resources>

@@ -120,4 +120,8 @@ class MeetingFilter : AppCompatActivity(), IMeetingRVAdapter {
         }
     }
 
+    override fun getIntoActivity(meeting: Meeting) {
+        Toast.makeText(this, "${meeting.title}", Toast.LENGTH_SHORT).show()
+    }
+
 }

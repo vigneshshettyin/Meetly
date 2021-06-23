@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 
 import com.vs.meetly.R
@@ -32,6 +33,9 @@ class MeetingAdapter(val context: Context, private val meeting: List<Meeting>, p
         holder.deleteMeeting.setOnClickListener {
             listener.onItemClicked(meeting[position])
         }
+        holder.cardViewMeeting.setOnClickListener {
+            listener.getIntoActivity(meeting[position])
+        }
     }
 
     override fun getItemCount(): Int {
@@ -44,9 +48,11 @@ class MeetingAdapter(val context: Context, private val meeting: List<Meeting>, p
         val meetingtime : TextView = itemView.findViewById(R.id.meetingtime)
         val linearLayout:LinearLayout=itemView.findViewById(R.id.linearLayout)
         val deleteMeeting : ImageView = itemView.findViewById(R.id.deleteMeeting)
+        val cardViewMeeting : CardView = itemView.findViewById(R.id.cardViewMeeting)
     }
 }
 interface IMeetingRVAdapter{
     fun onItemClicked(meeting: Meeting)
+    fun getIntoActivity(meeting: Meeting)
 }
 
