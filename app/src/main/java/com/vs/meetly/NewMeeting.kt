@@ -94,7 +94,9 @@ class NewMeeting : AppCompatActivity() {
 
         testSubmit.setOnClickListener {
 
-            val userId : String = auth.currentUser!!.uid
+            val userId : ArrayList<String> = ArrayList()
+
+            userId.add(auth.currentUser!!.uid)
 
             val title = etvTestText.text.toString().trim()
 

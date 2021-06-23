@@ -25,4 +25,6 @@
     <string name="_25_02_2000">25-02-2000</string>
     <string name="_01_25_am">01-25 AM</string>
     <string name="delete_meeting_icon">delete meeting icon</string>
+    <string name="user_meeting_list_image">User Meeting List Image</string>
+    <string name="meetly_meetly_vigneshcodes_in">meetly@meetly.vigneshcodes.in</string>
 </resources>

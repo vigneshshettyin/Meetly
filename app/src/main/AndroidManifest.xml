@@ -12,17 +12,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Meetly">
-
-        <activity android:name=".UserProfile"
+        <activity android:name=".MeetingViewDetail"></activity>
+        <activity
+            android:name=".UserProfile"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustResize"/>
-        <activity android:name=".SupportActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".MeetingFilter"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".NewMeeting"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".SupportActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MeetingFilter"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".NewMeeting"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustResize"/>
+            android:windowSoftInputMode="adjustResize" />
         <activity android:name=".NoInternet" />
         <activity
             android:name=".ForgotPassActivity"
@@ -30,8 +34,8 @@
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".SplashActivity"
-            android:screenOrientation="portrait"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -50,8 +54,8 @@
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".MainActivity"
-            android:screenOrientation="portrait"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait" />
 
         <meta-data
             android:name="preloaded_fonts"

@@ -48,7 +48,7 @@ class MeetingFilter : AppCompatActivity(), IMeetingRVAdapter {
 
     private fun setUpFireStore(DATE: String) {
         firestore = FirebaseFirestore.getInstance()
-        val collectionReference = firestore.collection("meetings").whereEqualTo("date", DATE).whereEqualTo("userId", auth.currentUser!!.uid)
+        val collectionReference = firestore.collection("meetings").whereEqualTo("date", DATE).whereArrayContains("userId", auth.currentUser!!.uid)
         collectionReference.addSnapshotListener { value, error ->
             if (value == null || error != null) {
                 Toast.makeText(this, "Error fetching data", Toast.LENGTH_SHORT).show()
