@@ -17,4 +17,20 @@
         app:lottie_loop="true"
         app:lottie_rawRes="@raw/no_internet" />
 
+    <ImageButton
+        android:id="@+id/deleteMeeting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:contentDescription="@string/delete_meeting_icon"
+        android:tooltipText="Retry"
+        android:src="@drawable/ic_baseline_sync_24"
+        android:background="@drawable/white_bg_br"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/animationView"
+        android:onClick="checkcon"
+         />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

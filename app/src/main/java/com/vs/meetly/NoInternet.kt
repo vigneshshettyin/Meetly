@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
+import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.vs.meetly.internetcheck.isNetworkAvailable
@@ -14,27 +15,17 @@ import kotlin.system.exitProcess
 
 
 class NoInternet : AppCompatActivity() {
+    lateinit var ctx:Context
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_no_internet)
-        var ctx: Context = applicationContext
-        val mainHandler = Handler(Looper.getMainLooper())
-        val intentl = Intent(this, LoginActivity::class.java)
+         ctx = applicationContext
+    }
 
-
-        mainHandler.post(object : Runnable {
-            var x: Boolean = true
-
-            override fun run() {
-                if (isNetworkAvailable(ctx)) {
-                    startActivity(intentl)
-                    finish()
-                    mainHandler.removeCallbacksAndMessages(null)
-                    mainHandler.looper.quitSafely()
-                }
-                mainHandler.postDelayed(this, 10000)
-            }
-        })
+    @RequiresApi(Build.VERSION_CODES.M)
+    fun checkcon(view: View) {
+            val intentl = Intent(this, SplashActivity::class.java)
+             startActivity(intentl)
     }
 }
