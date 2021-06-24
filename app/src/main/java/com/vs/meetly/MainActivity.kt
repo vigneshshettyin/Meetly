@@ -277,8 +277,7 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
     override fun getIntoActivity(meeting: Meeting) {
         Toast.makeText(this, "${meeting.title}", Toast.LENGTH_SHORT).show()
         val intent = Intent(this, MeetingViewDetail::class.java)
-        intent.putExtra("meetingName", meeting.title)
-        intent.putExtra("usersList", meeting.userId)
+        intent.putExtra("meeting_data", meeting)
         startActivity(intent)
         finish()
     }
