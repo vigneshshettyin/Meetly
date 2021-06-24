@@ -3,6 +3,8 @@
     <array name="preloaded_fonts" translatable="false">
         <item>@font/catamaran</item>
         <item>@font/catamaran_medium</item>
+        <item>@font/montserrat_alternates_bold</item>
+        <item>@font/montserrat_bold</item>
         <item>@font/poppins</item>
         <item>@font/poppins_bold</item>
         <item>@font/poppins_semibold</item>

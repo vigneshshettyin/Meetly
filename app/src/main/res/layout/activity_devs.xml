@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DevsActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="270dp"
+        android:id="@+id/vigneshetty"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <LinearLayout
+            android:id="@+id/vBackground"
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:background="@drawable/profile_bg"
+            android:backgroundTint="@color/secondary_blue"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/vdp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/profile"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"></ImageView>
+
+        <TextView
+            android:id="@+id/vname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/montserrat_alternates_bold"
+            android:text="Vignesh Shetty"
+            android:textColor="@color/design_default_color_on_primary"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/vdp"></TextView>
+
+        <TextView
+            android:id="@+id/vdesc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Android Developer"
+            android:textColor="@color/light_grey"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/vname"></TextView>
+
+        <ImageView
+            android:id="@+id/viVlinkedin"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="20dp"
+            android:onClick="iVclick"
+            android:src="@drawable/ic_linkedin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/vdesc"></ImageView>
+
+        <ImageView
+            android:id="@+id/viVgmail"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/ic_gmail"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:onClick="iVclick"
+
+            app:layout_constraintStart_toEndOf="@+id/viVlinkedin"
+            app:layout_constraintTop_toBottomOf="@+id/vdesc"></ImageView>
+
+        <ImageView
+            android:id="@+id/viVgithub"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/ic_github"
+            android:onClick="iVclick"
+
+            app:layout_constraintEnd_toStartOf="@+id/viVlinkedin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/vdesc"></ImageView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/sriganesh"
+        android:layout_width="match_parent"
+        android:layout_height="270dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/vigneshetty">
+
+
+        <LinearLayout
+            android:id="@+id/sBackground"
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:background="@drawable/profile_bg"
+            android:backgroundTint="@color/secondary_blue"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/sdp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/profile"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"></ImageView>
+
+        <TextView
+            android:id="@+id/sname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/montserrat_alternates_bold"
+            android:text="Sriganesh"
+            android:textColor="@color/design_default_color_on_primary"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sdp"></TextView>
+
+        <TextView
+            android:id="@+id/sdesc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Android Developer"
+            android:textColor="@color/light_grey"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sname"></TextView>
+
+        <ImageView
+            android:id="@+id/siVlinkedin"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="20dp"
+            android:onClick="iVclick"
+            android:src="@drawable/ic_linkedin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sdesc"></ImageView>
+
+        <ImageView
+            android:id="@+id/siVgmail"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/ic_gmail"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:onClick="iVclick"
+
+            app:layout_constraintStart_toEndOf="@+id/siVlinkedin"
+            app:layout_constraintTop_toBottomOf="@+id/sdesc"></ImageView>
+
+        <ImageView
+            android:id="@+id/siVgithub"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/ic_github"
+            android:onClick="iVclick"
+
+            app:layout_constraintEnd_toStartOf="@+id/siVlinkedin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sdesc"></ImageView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

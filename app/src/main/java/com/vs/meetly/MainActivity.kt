@@ -159,6 +159,12 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
                     startActivity(intent)
                     true
                 }
+                R.id.meetDevs ->{
+                    val intent = Intent(this, DevsActivity::class.java)
+                    startActivity(intent)
+                    true
+
+                }
                 R.id.logout -> {
                     mainDrawer.closeDrawers()
                     MaterialAlertDialogBuilder(

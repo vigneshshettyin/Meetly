@@ -13,6 +13,9 @@
     <item android:title="Developer Support"
             android:icon="@drawable/ic_baseline_developer_mode_24"
         android:id="@+id/devSupport"/>
+    <item android:title="Meet The Devs"
+        android:icon="@drawable/ic_baseline_person_outline_24"
+        android:id="@+id/meetDevs"/>
     <item android:title="Logout"
         android:id="@+id/logout"
         android:icon="@drawable/ic_baseline_exit_to_app_24"/>
