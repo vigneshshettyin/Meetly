@@ -23,6 +23,8 @@ class MeetingFilter : AppCompatActivity(), IMeetingRVAdapter {
 
     private var meetingList = mutableListOf<Meeting>()
 
+    private var tempMeetingList = mutableListOf<Meeting>()
+
     lateinit var firestore: FirebaseFirestore
 
     lateinit var auth : FirebaseAuth

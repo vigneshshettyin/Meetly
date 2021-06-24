@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -18,6 +19,7 @@ import kotlinx.android.synthetic.main.activity_meeting_view_detail.*
 import kotlinx.android.synthetic.main.dialog_new_user_meeting.*
 import kotlinx.coroutines.*
 import kotlinx.coroutines.tasks.await
+import www.sanju.motiontoast.MotionToast
 
 class MeetingViewDetail : AppCompatActivity() {
 
@@ -27,6 +29,8 @@ class MeetingViewDetail : AppCompatActivity() {
 
     lateinit var adapter: UsersListAdapter
 
+    private var tempUsersList = mutableListOf<String>()
+
     lateinit var firestore: FirebaseFirestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,8 +38,6 @@ class MeetingViewDetail : AppCompatActivity() {
         setContentView(R.layout.activity_meeting_view_detail)
 
         topAppBar.setNavigationOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
             finish()
         }
 
@@ -49,7 +51,11 @@ class MeetingViewDetail : AppCompatActivity() {
 
         topAppBar.title = meeting.title
 
-        adapter = UsersListAdapter(this, meeting.userId)
+        tempUsersList.clear()
+
+        tempUsersList.addAll(meeting.userId)
+
+        adapter = UsersListAdapter(this, tempUsersList)
         meeting_info_recycle_view.layoutManager = LinearLayoutManager(this)
         meeting_info_recycle_view.adapter = adapter
 
@@ -67,8 +73,8 @@ class MeetingViewDetail : AppCompatActivity() {
         with(builder) {
             setTitle(" ")
             setPositiveButton("ADD USER") { dialog, which ->
-                Toast.makeText(this@MeetingViewDetail, editText.text.toString(), Toast.LENGTH_SHORT)
-                    .show()
+//                Toast.makeText(this@MeetingViewDetail, editText.text.toString(), Toast.LENGTH_SHORT)
+//                    .show()
                 addUserToCurrentMeeting(editText.text.toString())
             }
             setNegativeButton("CANCEL") { dialog, which ->
@@ -82,7 +88,6 @@ class MeetingViewDetail : AppCompatActivity() {
     private fun addUserToCurrentMeeting(email: String) {
 
         var userList = mutableListOf<User>()
-        val UserList = ArrayList<String>()
 
         GlobalScope.launch {
             val collectionReference = firestore.collection("users").whereEqualTo("email", email)
@@ -99,42 +104,64 @@ class MeetingViewDetail : AppCompatActivity() {
                 userList.clear()
                 userList.addAll(value.toObjects(User::class.java))
                 Log.d("USER_LIST", userList.toString())
-                UserList.clear()
-                UserList.addAll(meeting.userId)
-                UserList.add(userList[0].uid)
-            }
-        }
-            CoroutineScope(Dispatchers.IO).launch {
-                val newMeeting: Meeting = Meeting(
-                    meeting.date,
-                    meeting.title,
-                    meeting.content,
-                    meeting.meeting_link,
-                    meeting.time,
-                    UserList
-                )
 
-                val meetingColRef = firestore.collection("meetings")
-                val meetingQuery = meetingColRef
-                    .whereEqualTo("content", meeting.content)
-                    .whereEqualTo("title", meeting.title)
-                    .whereEqualTo("meeting_link", meeting.meeting_link)
-                    .whereEqualTo("date", meeting.date)
-                    .whereEqualTo("time", meeting.time)
-                    .whereEqualTo("userId", meeting.userId)
-                    .get()
-                    .await()
-                if (meetingQuery.documents.isNotEmpty()) {
-                    for (document in meetingQuery) {
-                        withContext(Dispatchers.Main) {
-                            meetingColRef.document(document.id).set(newMeeting)
-                            withContext(Dispatchers.Main) {
-                                adapter.notifyDataSetChanged()
-                            }
-                        }
-                    }
+                if (userList.isNullOrEmpty()) {
+                    alertUserNotPresent()
+                    tempUsersList.clear()
+                    tempUsersList.addAll(meeting.userId)
 
+                } else {
+
+                    //Update Recycleview on update operation
+                    tempUsersList.clear()
+                    tempUsersList.addAll(meeting.userId)
+                    tempUsersList.add(userList[0].uid)
                 }
             }
+        }
+        CoroutineScope(Dispatchers.IO).launch {
+            val newMeeting: Meeting = Meeting(
+                meeting.date,
+                meeting.title,
+                meeting.content,
+                meeting.meeting_link,
+                meeting.time,
+                tempUsersList as ArrayList<String>
+            )
+
+            val meetingColRef = firestore.collection("meetings")
+            val meetingQuery = meetingColRef
+                .whereEqualTo("content", meeting.content)
+                .whereEqualTo("title", meeting.title)
+                .whereEqualTo("meeting_link", meeting.meeting_link)
+                .whereEqualTo("date", meeting.date)
+                .whereEqualTo("time", meeting.time)
+                .whereEqualTo("userId", meeting.userId)
+                .get()
+                .await()
+            if (meetingQuery.documents.isNotEmpty()) {
+                for (document in meetingQuery) {
+                    meetingColRef.document(document.id).set(newMeeting)
+                    withContext(Dispatchers.Main) {
+                        adapter.notifyDataSetChanged()
+                    }
+                }
+
+            }
+        }
+
+
     }
+
+    private fun alertUserNotPresent() {
+        MotionToast.createToast(
+            this,
+            "Failed ☹️",
+            "User don't have a account at Meetly!",
+            MotionToast.TOAST_ERROR,
+            MotionToast.GRAVITY_BOTTOM,
+            MotionToast.LONG_DURATION,
+            ResourcesCompat.getFont(this, R.font.helvetica_regular)
+        )
     }
+}
