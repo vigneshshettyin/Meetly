@@ -228,6 +228,8 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
         })
         return super.onCreateOptionsMenu(menu)
     }
+
+
     private fun hideDefaultUI() {
         @Suppress("DEPRECATION")
         window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_FULLSCREEN)
@@ -285,7 +287,6 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
         val intent = Intent(this, MeetingViewDetail::class.java)
         intent.putExtra("meeting_data", meeting)
         startActivity(intent)
-        finish()
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
