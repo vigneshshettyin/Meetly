@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.vs.meetly
 
 import android.Manifest
@@ -54,8 +56,6 @@ class UserProfile : AppCompatActivity() {
         getUserInfo(auth.currentUser!!.uid)
 
         topAppBar.setNavigationOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
             finish()
         }
         profileImage.setOnClickListener {
@@ -113,6 +113,8 @@ class UserProfile : AppCompatActivity() {
             MotionToast.GRAVITY_BOTTOM,
             MotionToast.LONG_DURATION,
             ResourcesCompat.getFont(this,R.font.helvetica_regular))
+
+        setResult(Activity.RESULT_OK)
 
     }
 

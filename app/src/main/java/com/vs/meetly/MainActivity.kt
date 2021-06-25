@@ -1,5 +1,6 @@
 package com.vs.meetly
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -35,6 +36,7 @@ import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.util.*
 
+@Suppress("DEPRECATION")
 class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
 
     lateinit var actionBarDrawerToggle: ActionBarDrawerToggle
@@ -69,24 +71,17 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
 
         testProgress.visibility = View.VISIBLE
 
-        GlobalScope.launch(Dispatchers.IO) {
-            val currentUserId = auth.currentUser!!.uid
-            val userDao = UserDao()
-            user = userDao.getUserById(currentUserId).await().toObject(User::class.java)!!
-            withContext(Dispatchers.Main) {
-                header_title.text = user.displayName
-                loadImage(user.imageUrl)
-            }
-        }
+        loadUserData()
 
         displayCalender.setOnClickListener {
 
             val selectedDateInMillis = currentSelectedDate ?: System.currentTimeMillis()
 
-            val datePicker = MaterialDatePicker.Builder.datePicker().setSelection(selectedDateInMillis).build()
+            val datePicker =
+                MaterialDatePicker.Builder.datePicker().setSelection(selectedDateInMillis).build()
             datePicker.show(supportFragmentManager, "DatePicker")
-            datePicker.addOnPositiveButtonClickListener {
-                dateInMillis -> onDateSelected(dateInMillis)
+            datePicker.addOnPositiveButtonClickListener { dateInMillis ->
+                onDateSelected(dateInMillis)
             }
             datePicker.addOnNegativeButtonClickListener {
                 Toast.makeText(this, "-", Toast.LENGTH_SHORT).show()
@@ -98,8 +93,41 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
     }
 
 
+    private fun loadUserData() {
+        GlobalScope.launch(Dispatchers.IO) {
+            val currentUserId = auth.currentUser!!.uid
+            val userDao = UserDao()
+            user = userDao.getUserById(currentUserId).await().toObject(User::class.java)!!
+            withContext(Dispatchers.Main) {
+                header_title.text = user.displayName
+                loadImage(user.imageUrl)
+            }
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (resultCode == Activity.RESULT_OK
+            && requestCode == MY_PROFILE_REQUEST_CODE
+        ) {
+            loadUserData()
+        } else if (resultCode == Activity.RESULT_OK
+            && requestCode == MEETING_FILTER_REQUEST_CODE
+        ) {
+            Toast.makeText(this, "<- pressed!!", Toast.LENGTH_SHORT).show()
+            setUpFireStore()
+            setUpRecyclerView()
+            adapter.notifyDataSetChanged()
+        }
+        else {
+            Log.e("Cancelled", "Cancelled")
+        }
+    }
+
     private fun setUpFireStore() {
-      val collectionReference = firestore.collection("meetings").whereArrayContains("userId", auth.currentUser!!.uid)
+        val collectionReference =
+            firestore.collection("meetings").whereArrayContains("userId", auth.currentUser!!.uid)
         collectionReference.addSnapshotListener { value, error ->
             if (value == null || error != null) {
                 Toast.makeText(this, "Error fetching data", Toast.LENGTH_SHORT).show()
@@ -108,14 +136,13 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
             Log.d("DATA", value.toObjects(Meeting::class.java).toString())
             meetingList.clear()
             meetingList.addAll(value.toObjects(Meeting::class.java))
-            if(meetingList.isEmpty()){
+            if (meetingList.isEmpty()) {
                 Log.d("DATA-LIST_EMPTY", "List is empty")
-            }
-            else{
+            } else {
                 Log.d("DATA-LIST_EMPTY", meetingList.toString())
                 adapter.notifyDataSetChanged()
             }
-
+            tempMeetingList.clear()
             tempMeetingList.addAll(meetingList)
         }
     }
@@ -142,10 +169,9 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
         actionBarDrawerToggle.syncState()
         navigationList.setNavigationItemSelectedListener {
             when (it.itemId) {
-                R.id.profile ->{
+                R.id.profile -> {
                     val intent = Intent(this, UserProfile::class.java)
-                    startActivity(intent)
-                    finish()
+                    startActivityForResult(intent, MY_PROFILE_REQUEST_CODE)
                     true
                 }
 
@@ -154,12 +180,12 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
                     startActivity(intent)
                     true
                 }
-                R.id.devSupport ->{
+                R.id.devSupport -> {
                     val intent = Intent(this, SupportActivity::class.java)
                     startActivity(intent)
                     true
                 }
-                R.id.meetDevs ->{
+                R.id.meetDevs -> {
                     val intent = Intent(this, DevsActivity::class.java)
                     startActivity(intent)
                     true
@@ -202,7 +228,7 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
         val item = menu?.findItem(R.id.search_action)
         val searchView = item?.actionView as androidx.appcompat.widget.SearchView
 
-        searchView.setOnQueryTextListener(object :SearchView.OnQueryTextListener{
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 TODO("Not yet implemented")
             }
@@ -210,14 +236,14 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
             override fun onQueryTextChange(newText: String?): Boolean {
                 tempMeetingList.clear()
                 val searchText = newText!!.toLowerCase(Locale.getDefault())
-                if(searchText.isNotEmpty()){
+                if (searchText.isNotEmpty()) {
                     meetingList.forEach {
-                        if (it.title.toLowerCase(Locale.getDefault()).contains(searchText)){
+                        if (it.title.toLowerCase(Locale.getDefault()).contains(searchText)) {
                             tempMeetingList.add(it)
                         }
                     }
                     adapter.notifyDataSetChanged()
-                }else{
+                } else {
                     tempMeetingList.clear()
                     tempMeetingList.addAll(meetingList)
                     adapter.notifyDataSetChanged()
@@ -241,13 +267,15 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
         CoroutineScope(Dispatchers.IO).launch {
             val meetingQuery = meetingColRef
                 .whereEqualTo("content", meeting.content)
+                .whereEqualTo("title", meeting.title)
+                .whereEqualTo("meeting_link", meeting.meeting_link)
                 .whereEqualTo("date", meeting.date)
                 .whereEqualTo("time", meeting.time)
                 .whereEqualTo("userId", meeting.userId)
                 .get()
                 .await()
-            if(meetingQuery.documents.isNotEmpty()) {
-                for(document in meetingQuery) {
+            if (meetingQuery.documents.isNotEmpty()) {
+                for (document in meetingQuery) {
                     try {
                         withContext(Dispatchers.Main) {
                             MaterialAlertDialogBuilder(
@@ -259,12 +287,12 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
                                     // Respond to negative button press
                                 }
                                 .setPositiveButton(resources.getString(R.string.yes)) { dialog, which ->
-                                        GlobalScope.launch {
-                                            meetingColRef.document(document.id).delete().await()
-                                            withContext(Dispatchers.Main){
-                                                adapter.notifyDataSetChanged()
-                                            }
+                                    GlobalScope.launch {
+                                        meetingColRef.document(document.id).delete().await()
+                                        withContext(Dispatchers.Main) {
+                                            adapter.notifyDataSetChanged()
                                         }
+                                    }
                                 }
                                 .show()
                         }
@@ -276,7 +304,11 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
                 }
             } else {
                 withContext(Dispatchers.Main) {
-                    Toast.makeText(this@MainActivity, "No meetings matched the query.", Toast.LENGTH_LONG).show()
+                    Toast.makeText(
+                        this@MainActivity,
+                        "No meetings matched the query.",
+                        Toast.LENGTH_LONG
+                    ).show()
                 }
             }
         }
@@ -294,12 +326,19 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
         currentSelectedDate = dateTimeStampInMillis
         val dateTime: LocalDateTime = LocalDateTime.ofInstant(
             Instant.ofEpochMilli(
-            currentSelectedDate!!
-        ), ZoneId.systemDefault())
+                currentSelectedDate!!
+            ), ZoneId.systemDefault()
+        )
         val dateAsFormattedText: String = dateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
         val intent = Intent(this, MeetingFilter::class.java)
         intent.putExtra("DATE", dateAsFormattedText)
-        startActivity(intent)
-        finish()
+        startActivityForResult(intent, MEETING_FILTER_REQUEST_CODE)
+    }
+
+    companion object {
+        //A unique code for starting the activity for result
+        const val MY_PROFILE_REQUEST_CODE: Int = 11
+
+        const val MEETING_FILTER_REQUEST_CODE : Int = 22
     }
 }
