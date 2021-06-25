@@ -3,8 +3,10 @@ package com.vs.meetly
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.browser.customtabs.CustomTabsIntent
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_meeting_filter.*
 
 
@@ -13,6 +15,8 @@ class DevsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_devs)
 
+        loadImage()
+
         topAppBar.setNavigationOnClickListener {
             finish()
         }
@@ -20,7 +24,21 @@ class DevsActivity : AppCompatActivity() {
 
     }
 
-    fun iVclick(view: View) {
+    private fun loadImage() {
+        val vdp = findViewById<ImageView>(R.id.vdp) as ImageView
+        val sdp = findViewById<ImageView>(R.id.sdp) as ImageView
+
+        // TODO: Change to dev images at last!
+
+        val url_vdp = "https://res.cloudinary.com/vigneshshettyin/image/upload/v1624102716/dfgmvgwtlyc08gcfmtly.png"
+
+        val url_sdp = "https://res.cloudinary.com/vigneshshettyin/image/upload/v1624102716/dfgmvgwtlyc08gcfmtly.png"
+
+        Glide.with(vdp).load(url_vdp).circleCrop().into(vdp)
+        Glide.with(sdp).load(url_sdp).circleCrop().into(sdp)
+    }
+
+    private fun iVclick(view: View) {
         var url=""
         when(view.id){
             R.id.viVgithub->{ url="https://github.com/vigneshshettyin" }
