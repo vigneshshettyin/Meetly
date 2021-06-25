@@ -27,4 +27,8 @@
     <string name="delete_meeting_icon">delete meeting icon</string>
     <string name="user_meeting_list_image">User Meeting List Image</string>
     <string name="meetly_meetly_vigneshcodes_in">meetly@meetly.vigneshcodes.in</string>
+    <string name="android_developer">Android Developer</string>
+    <string name="devsection">DevSection</string>
+    <string name="sriganesh">Sriganesh Rao</string>
+    <string name="vignesh_shetty">Vignesh Shetty</string>
 </resources>
