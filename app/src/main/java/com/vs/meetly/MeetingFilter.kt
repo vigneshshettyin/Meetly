@@ -1,5 +1,6 @@
 package com.vs.meetly
 
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -40,8 +41,6 @@ class MeetingFilter : AppCompatActivity(), IMeetingRVAdapter {
         setUpRecyclerView()
 
         topAppBar.setNavigationOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
             finish()
         }
 
@@ -81,6 +80,8 @@ class MeetingFilter : AppCompatActivity(), IMeetingRVAdapter {
         CoroutineScope(Dispatchers.IO).launch {
             val meetingQuery = meetingColRef
                 .whereEqualTo("content", meeting.content)
+                .whereEqualTo("title", meeting.title)
+                .whereEqualTo("meeting_link", meeting.meeting_link)
                 .whereEqualTo("date", meeting.date)
                 .whereEqualTo("time", meeting.time)
                 .whereEqualTo("userId", meeting.userId)
@@ -103,6 +104,7 @@ class MeetingFilter : AppCompatActivity(), IMeetingRVAdapter {
                                         meetingColRef.document(document.id).delete().await()
                                         withContext(Dispatchers.Main){
                                             adapter.notifyDataSetChanged()
+                                            setResult(Activity.RESULT_OK)
                                         }
                                     }
                                 }
@@ -125,10 +127,8 @@ class MeetingFilter : AppCompatActivity(), IMeetingRVAdapter {
     override fun getIntoActivity(meeting: Meeting) {
         Toast.makeText(this, "${meeting.title}", Toast.LENGTH_SHORT).show()
         val intent = Intent(this, MeetingViewDetail::class.java)
-        intent.putExtra("meetingName", meeting.title)
-        intent.putExtra("usersList", meeting.userId)
+        intent.putExtra("meeting_data", meeting)
         startActivity(intent)
-        finish()
     }
 
 }

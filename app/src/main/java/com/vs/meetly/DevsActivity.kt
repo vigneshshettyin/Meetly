@@ -20,8 +20,6 @@ class DevsActivity : AppCompatActivity() {
         topAppBar.setNavigationOnClickListener {
             finish()
         }
-
-
     }
 
     private fun loadImage() {
