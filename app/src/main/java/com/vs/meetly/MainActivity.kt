@@ -138,7 +138,9 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
             meetingList.addAll(value.toObjects(Meeting::class.java))
             if (meetingList.isEmpty()) {
                 Log.d("DATA-LIST_EMPTY", "List is empty")
+                mainNoData.visibility = View.VISIBLE
             } else {
+                mainNoData.visibility = View.GONE
                 Log.d("DATA-LIST_EMPTY", meetingList.toString())
                 adapter.notifyDataSetChanged()
             }
@@ -240,10 +242,15 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
                     meetingList.forEach {
                         if (it.title.toLowerCase(Locale.getDefault()).contains(searchText)) {
                             tempMeetingList.add(it)
+                            mainNoData.visibility = View.GONE
+                        }
+                        else{
+                            mainNoData.visibility = View.VISIBLE
                         }
                     }
                     adapter.notifyDataSetChanged()
                 } else {
+                    mainNoData.visibility = View.GONE
                     tempMeetingList.clear()
                     tempMeetingList.addAll(meetingList)
                     adapter.notifyDataSetChanged()
