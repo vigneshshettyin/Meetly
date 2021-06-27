@@ -89,6 +89,7 @@ class NewMeeting : AppCompatActivity() {
                 }
 
                 time = testSelectTime.text.toString()
+                nm_time.text = testSelectTime.text.toString()
             }
         }
 
@@ -126,5 +127,6 @@ class NewMeeting : AppCompatActivity() {
         val dateAsFormattedText: String = dateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
         date = dateAsFormattedText
         testSelectDate.text = date
+        nm_date.text = date
     }
 }

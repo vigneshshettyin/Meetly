@@ -58,7 +58,8 @@
         android:id="@+id/testSelectDate"
         android:layout_width="0dp"
         android:layout_height="40dp"
-        android:layout_marginEnd="15dp"
+        android:layout_margin="10dp"
+        android:layout_marginEnd="10dp"
         android:background="@drawable/square_button_grad"
         android:text="@string/select_date"
         app:backgroundTint="@null"
@@ -71,7 +72,8 @@
         android:layout_width="0dp"
         android:layout_height="40dp"
         android:layout_marginStart="15dp"
-        android:layout_marginEnd="15dp"
+        android:layout_marginEnd="10dp"
+        android:layout_margin="10dp"
         android:background="@drawable/square_button_grad"
         android:text="@string/select_time"
         app:backgroundTint="@null"
@@ -103,7 +105,7 @@
                 android:id="@+id/nm_date_logo"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_marginLeft="15dp"
+                android:layout_marginStart="15dp"
                 android:contentDescription="@string/display_calender"
                 android:src="@drawable/ic_baseline_calendar_today_24"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -115,26 +117,26 @@
                 android:id="@+id/nm_date_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
+                android:layout_marginStart="15dp"
                 android:fontFamily="@font/poppins_semibold"
-                android:text="Date"
+                android:text="@string/date"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/nm_date_logo"
                 app:layout_constraintTop_toTopOf="parent"
                 android:textColor="@color/secondary_blue"
-                android:textSize="16sp"></TextView>
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/nm_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="25dp"
-                android:text="2021-06-30"
+                android:layout_marginEnd="25dp"
+                android:text="@string/_25_02_2000"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 android:fontFamily="@font/poppins_semibold"
-                android:textSize="24sp"></TextView>
+                android:textSize="24sp" />
 
             <View
                 android:layout_width="match_parent"
@@ -142,7 +144,7 @@
                 android:background="@color/primary_blue"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"></View>
+                app:layout_constraintStart_toStartOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -157,7 +159,7 @@
                 android:id="@+id/nm_time_logo"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_marginLeft="15dp"
+                android:layout_marginStart="15dp"
                 android:contentDescription="@string/display_calender"
                 android:src="@drawable/ic_baseline_access_time_24"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -169,25 +171,26 @@
                 android:id="@+id/nm_time_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
+                android:layout_marginStart="15dp"
                 android:fontFamily="@font/poppins_semibold"
-                android:text="Time"
+                android:text="@string/time"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/nm_time_logo"
                 app:layout_constraintTop_toTopOf="parent"
                 android:textColor="@color/secondary_blue"
-                android:textSize="16sp"></TextView>
+                android:textSize="16sp" />
 
             <TextView
+                android:id="@+id/nm_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="25dp"
-                android:text="00:00 AM"
+                android:layout_marginEnd="25dp"
+                android:text="@string/_01_25_am"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 android:fontFamily="@font/poppins_semibold"
-                android:textSize="24sp"></TextView>
+                android:textSize="24sp" />
 
             <View
                 android:layout_width="match_parent"
@@ -195,7 +198,7 @@
                 android:background="@color/primary_blue"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"></View>
+                app:layout_constraintStart_toStartOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -289,11 +292,10 @@
         android:background="@drawable/circular"
         android:padding="10dp"
         android:scaleType="centerCrop"
-
         android:src="@drawable/ic_baseline_add_task_24"
-
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline6" />
+        app:layout_constraintTop_toTopOf="@+id/guideline6"
+        android:contentDescription="@string/appbar_scrolling_view_behavior" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline3"
