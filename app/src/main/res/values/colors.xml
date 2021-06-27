@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="lblue_200">#FF599CFF</color>
+    <color name="lblue_200">#bfdbf7</color>
     <color name="lblue_700">#FF4E8AFF</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
@@ -11,4 +11,6 @@
     <color name="blue_500">#0094FF</color>
     <color name="light_grey">#EBEBEB</color>
     <color name="snackbar_success">#4BB543</color>
+    <color name="blue_100">#603a86ff</color>
+    <color name="green_600">#1dab45</color>
 </resources>
