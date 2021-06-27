@@ -12,7 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Meetly">
-        <activity android:name=".MeetingViewDetail"></activity>
+        <activity android:name=".MeetingViewDetail"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".UserProfile"
             android:screenOrientation="portrait"
