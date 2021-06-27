@@ -12,7 +12,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp">
+        android:layout_height="170dp">
 
 
         <ImageView
@@ -20,11 +20,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
+            android:contentDescription="@string/select_time"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/meetingdate"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_baseline_access_time_24"
-            android:contentDescription="@string/select_time"
             app:tint="?attr/colorOnSecondary" />
 
         <ImageView
@@ -32,12 +32,12 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginStart="30dp"
+            android:contentDescription="@string/display_calender"
             android:src="@drawable/ic_baseline_calendar_today_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/linearLayout"
             app:layout_constraintTop_toTopOf="parent"
-            app:tint="?attr/colorOnSecondary"
-            android:contentDescription="@string/display_calender" />
+            app:tint="?attr/colorOnSecondary" />
 
         <TextView
             android:id="@+id/meetingdate"
@@ -57,12 +57,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
-            android:layout_marginTop="10dp"
 
             android:fontFamily="@font/righteous"
             android:text="@string/app_name"
             android:textColor="?attr/colorOnSecondary"
             android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/meetingdate"
             app:layout_constraintStart_toEndOf="@+id/linearLayout"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -88,12 +88,12 @@
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
             android:background="@color/design_default_color_on_primary"
+            android:contentDescription="@string/delete_meeting_icon"
             android:src="@android:drawable/ic_menu_delete"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView"
-            app:tint="@color/black"
-            android:contentDescription="@string/delete_meeting_icon" />
+            app:tint="@color/black" />
 
         <LinearLayout
             android:id="@+id/linearLayout"
@@ -113,9 +113,8 @@
             android:layout_marginTop="20dp"
             android:text="@string/https_meet_com_demo"
             android:textColor="?attr/colorOnSecondary"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/linearLayout"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/imageView"
             app:layout_constraintTop_toBottomOf="@+id/meetingdate" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
