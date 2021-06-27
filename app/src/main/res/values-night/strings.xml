@@ -31,4 +31,6 @@
     <string name="devsection">DevSection</string>
     <string name="sriganesh">Sriganesh Rao</string>
     <string name="vignesh_shetty">Vignesh Shetty</string>
+    <string name="date">Date</string>
+    <string name="time">Time</string>
 </resources>
