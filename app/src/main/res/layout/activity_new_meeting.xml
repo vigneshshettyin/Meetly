@@ -58,11 +58,13 @@
         android:id="@+id/testSelectDate"
         android:layout_width="0dp"
         android:layout_height="40dp"
-        android:layout_margin="10dp"
+        android:layout_margin="20dp"
+        android:layout_marginStart="5dp"
         android:layout_marginEnd="10dp"
         android:background="@drawable/square_button_grad"
         android:text="@string/select_date"
         app:backgroundTint="@null"
+        app:layout_constraintTop_toBottomOf="@id/detailOutline"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/guideline3"
         app:layout_constraintStart_toStartOf="parent" />
@@ -73,10 +75,11 @@
         android:layout_height="40dp"
         android:layout_marginStart="15dp"
         android:layout_marginEnd="10dp"
-        android:layout_margin="10dp"
+        android:layout_margin="20dp"
         android:background="@drawable/square_button_grad"
         android:text="@string/select_time"
         app:backgroundTint="@null"
+        app:layout_constraintTop_toBottomOf="@id/detailOutline"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -223,10 +226,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/design_default_color_on_primary"
-            android:inputType="textMultiLine"
-
+            android:inputType="text"
             android:scrollbars="vertical"
-
             android:textSize="16sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -250,8 +251,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/design_default_color_on_primary"
-            android:inputType="textMultiLine"
-
+            android:inputType="text"
             android:scrollbars="vertical"
             android:textColor="@color/primary_dark"
             android:textSize="14sp" />
@@ -277,7 +277,6 @@
             android:backgroundTint="@color/design_default_color_on_primary"
             android:inputType="textMultiLine"
             android:lines="3"
-
             android:scrollbars="vertical"
             android:textColor="@color/primary_dark"
             android:textSize="14sp" />
