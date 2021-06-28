@@ -352,4 +352,9 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
 
         const val MEETING_FILTER_REQUEST_CODE : Int = 22
     }
+
+    fun closeLayoutDrawer(view: View){
+        mainDrawer.closeDrawers()
+    }
+
 }
