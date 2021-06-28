@@ -33,8 +33,11 @@ class MeetingAdapter(val context: Context, private val meeting: List<Meeting>, p
             listener.onItemClicked(meeting[position])
         }
         holder.cardViewMeeting.setOnClickListener {
-            listener.getIntoActivity(meeting[position])
+//            listener.getIntoActivity(meeting[position])
+            holder.textViewTestingSlider.visibility = View.VISIBLE
         }
+
+
     }
 
     override fun getItemCount(): Int {
@@ -48,6 +51,7 @@ class MeetingAdapter(val context: Context, private val meeting: List<Meeting>, p
         val linearLayout:LinearLayout=itemView.findViewById(R.id.linearLayout)
         val deleteMeeting : ImageView = itemView.findViewById(R.id.deleteMeeting)
         val cardViewMeeting : CardView = itemView.findViewById(R.id.cardViewMeeting)
+        val textViewTestingSlider : TextView = itemView.findViewById(R.id.textViewTestingSlider)
     }
 }
 interface IMeetingRVAdapter{
