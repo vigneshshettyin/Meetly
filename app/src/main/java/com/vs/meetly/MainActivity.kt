@@ -64,7 +64,7 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
 
         firestore = FirebaseFirestore.getInstance()
 
-//        hideDefaultUI()
+
         setUpViews()
         setUpFireStore()
         setUpRecyclerView()
@@ -268,12 +268,6 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
 
         })
         return super.onCreateOptionsMenu(menu)
-    }
-
-
-    private fun hideDefaultUI() {
-        @Suppress("DEPRECATION")
-        window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_FULLSCREEN)
     }
 
     override fun onItemClicked(meeting: Meeting) {

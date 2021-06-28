@@ -1,6 +1,5 @@
 package com.vs.meetly
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -21,6 +20,8 @@ import kotlinx.android.synthetic.main.dialog_new_user_meeting.*
 import kotlinx.coroutines.*
 import kotlinx.coroutines.tasks.await
 import www.sanju.motiontoast.MotionToast
+import java.util.*
+import kotlin.collections.ArrayList
 
 class MeetingViewDetail : AppCompatActivity() {
 
