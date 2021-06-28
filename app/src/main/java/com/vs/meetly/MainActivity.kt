@@ -172,22 +172,26 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
         navigationList.setNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.profile -> {
+                    mainDrawer.closeDrawers()
                     val intent = Intent(this, UserProfile::class.java)
                     startActivityForResult(intent, MY_PROFILE_REQUEST_CODE)
                     true
                 }
 
                 R.id.newMeeting -> {
+                    mainDrawer.closeDrawers()
                     val intent = Intent(this, NewMeeting::class.java)
                     startActivity(intent)
                     true
                 }
                 R.id.devSupport -> {
+                    mainDrawer.closeDrawers()
                     val intent = Intent(this, SupportActivity::class.java)
                     startActivity(intent)
                     true
                 }
                 R.id.meetDevs -> {
+                    mainDrawer.closeDrawers()
                     val intent = Intent(this, DevsActivity::class.java)
                     startActivity(intent)
                     true
