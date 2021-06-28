@@ -58,14 +58,13 @@
         android:id="@+id/testSelectDate"
         android:layout_width="0dp"
         android:layout_height="40dp"
-        android:layout_margin="20dp"
+        android:layout_margin="30dp"
         android:layout_marginStart="5dp"
         android:layout_marginEnd="10dp"
         android:background="@drawable/square_button_grad"
         android:text="@string/select_date"
         app:backgroundTint="@null"
         app:layout_constraintTop_toBottomOf="@id/detailOutline"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/guideline3"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -75,14 +74,12 @@
         android:layout_height="40dp"
         android:layout_marginStart="15dp"
         android:layout_marginEnd="10dp"
-        android:layout_margin="20dp"
+        android:layout_margin="30dp"
         android:background="@drawable/square_button_grad"
         android:text="@string/select_time"
         app:backgroundTint="@null"
         app:layout_constraintTop_toBottomOf="@id/detailOutline"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@id/guideline3" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -209,7 +206,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/testTest"
-
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="25dp"
@@ -233,11 +230,11 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/email"
-
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="25dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:layout_marginRight="25dp"
         android:hint="@string/meeting_link"
         app:endIconMode="clear_text"
@@ -260,6 +257,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/detailOutline"
         android:layout_width="0dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         android:layout_height="wrap_content"
         android:layout_marginLeft="25dp"
         android:layout_marginTop="20dp"
@@ -317,5 +315,13 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.32" />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Note: Don't include http in meeting link!"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/testSelectDate"
+        android:layout_margin="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
