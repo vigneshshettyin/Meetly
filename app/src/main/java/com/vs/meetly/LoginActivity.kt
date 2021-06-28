@@ -18,7 +18,7 @@ import kotlinx.android.synthetic.main.activity_login.*
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var firebaseAuth: FirebaseAuth
-    private lateinit var mProgressDialog: Dialog
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,7 +49,7 @@ class LoginActivity : AppCompatActivity() {
         firebaseAuth = FirebaseAuth.getInstance()
 
         etvLogin.setOnClickListener {
-            showProgressDialog()
+            SupportClass.showProgressDialog(this)
             login()
         }
 
@@ -90,11 +90,12 @@ class LoginActivity : AppCompatActivity() {
         firebaseAuth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) {
                 if (it.isSuccessful) {
-                    mProgressDialog.dismiss()
+                    SupportClass.progressBarDismiss()
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
                     finish()
                 } else {
+                    SupportClass.progressBarDismiss()
                     Toast.makeText(
                         this,
                         "Incorrect login credentials or account not found!",
@@ -108,18 +109,6 @@ class LoginActivity : AppCompatActivity() {
         return true;
     }
 
-    fun showProgressDialog() {
-        mProgressDialog = Dialog(this)
-
-        /*Set the screen content from a layout resource.
-        The resource will be inflated, adding all top-level views to the screen.*/
-        mProgressDialog.setContentView(R.layout.dialog_progress)
-
-//        mProgressDialog.tv_progress_text.text = text
-
-        //Start the dialog and display it on screen.
-        mProgressDialog.show()
-    }
 
     fun TextView.underline() {
         paintFlags = paintFlags or Paint.UNDERLINE_TEXT_FLAG
