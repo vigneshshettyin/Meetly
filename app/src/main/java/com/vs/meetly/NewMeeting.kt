@@ -169,10 +169,6 @@ class  NewMeeting : AppCompatActivity() {
         ), ZoneId.systemDefault())
         val dateAsFormattedText: String = dateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
         date = dateAsFormattedText
-<<<<<<< Updated upstream
-        testSelectDate.text = date
-=======
->>>>>>> Stashed changes
         nm_date.text = date
     }
 }
