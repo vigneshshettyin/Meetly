@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     >
 
-    <item android:title="Subscriber">
+    <item android:title="SUBSCRIBER">
         <menu>
             <item android:title="Profile"
                 android:tooltipText="Edit your profile here!"
@@ -13,21 +12,21 @@
                 android:id="@+id/profile"/>
         </menu>
     </item>
-    <item android:title="Meeting">
+    <item android:title="MEETING'S">
         <menu>
             <item android:title="Today's"
                 android:icon="@drawable/ic_baseline_connect_without_contact_24"
                 android:id="@+id/todayMeeting"/>
             <item android:title="Create"
-                android:icon="@drawable/ic_baseline_connect_without_contact_24"
+                android:icon="@drawable/ic_baseline_add_24"
                 android:id="@+id/newMeeting"/>
         </menu>
     </item>
 
-    <item android:title="Developer">
+    <item android:title="HELP &amp; SUPPORT">
         <menu>
             <item android:title="Support Updates"
-                android:icon="@drawable/ic_baseline_developer_mode_24"
+                android:icon="@drawable/ic_baseline_new_releases_24"
                 android:id="@+id/devSupport"/>
             <item android:title="Team"
                 android:icon="@drawable/ic_baseline_person_outline_24"

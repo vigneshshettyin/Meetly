@@ -91,6 +91,7 @@
         android:soundEffectsEnabled="true"
         android:layout_height="match_parent"
         android:layout_gravity="start"
+        app:itemTextAppearance="@style/drawerListItems"
         app:headerLayout="@layout/header_layout"
         app:menu="@menu/drawer_menu"
         />
