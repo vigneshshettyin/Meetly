@@ -9,6 +9,7 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.res.ResourcesCompat
+import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -56,7 +57,10 @@ class MeetingViewDetail : AppCompatActivity() {
         tempUsersList.addAll(meeting.userId)
 
         adapter = UsersListAdapter(this, tempUsersList)
-        meeting_info_recycle_view.layoutManager = LinearLayoutManager(this)
+        val mLayoutManager = LinearLayoutManager(this)
+        mLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
+        meeting_info_recycle_view.layoutManager = mLayoutManager
+        meeting_info_recycle_view.itemAnimator = DefaultItemAnimator()
         meeting_info_recycle_view.adapter = adapter
 
         add_new_user.setOnClickListener {

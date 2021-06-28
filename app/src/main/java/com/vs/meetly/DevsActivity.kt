@@ -36,7 +36,7 @@ class DevsActivity : AppCompatActivity() {
         Glide.with(sdp).load(url_sdp).circleCrop().into(sdp)
     }
 
-    private fun iVclick(view: View) {
+    fun iVclick(view: View) {
         var url=""
         when(view.id){
             R.id.viVgithub->{ url="https://github.com/vigneshshettyin" }
