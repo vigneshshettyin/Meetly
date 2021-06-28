@@ -88,6 +88,33 @@ class  NewMeeting : AppCompatActivity() {
                 .setTitleText("Select Time")
                 .build()
 
+            picker.show(supportFragmentManager, "Meetly")
+
+            picker.addOnPositiveButtonClickListener {
+                if (picker.hour > 12) {
+                    nm_time.text =
+                        String.format("%02d", picker.hour - 12) + ":" + String.format(
+                            "%02d", picker.minute
+                        ) + " PM"
+                } else {
+                    nm_time.text = String.format("%02d", picker.hour) + ":" + String.format(
+                        "%02d", picker.minute
+                    ) + " AM"
+
+                }
+                time = nm_time.text.toString()
+            }
+
+        }
+
+        nm_time.setOnClickListener {
+            var picker = MaterialTimePicker.Builder()
+                .setTimeFormat(TimeFormat.CLOCK_12H)
+                .setHour(12)
+                .setMinute(0)
+                .setTitleText("Select Time")
+                .build()
+
             picker.show(supportFragmentManager, "mediLite")
 
             picker.addOnPositiveButtonClickListener {
@@ -104,35 +131,6 @@ class  NewMeeting : AppCompatActivity() {
                 }
 
                 time = nm_time.text.toString()
-            }
-
-        }
-
-        testSelectTime.setOnClickListener {
-            var picker = MaterialTimePicker.Builder()
-                .setTimeFormat(TimeFormat.CLOCK_12H)
-                .setHour(12)
-                .setMinute(0)
-                .setTitleText("Select Time")
-                .build()
-
-            picker.show(supportFragmentManager, "mediLite")
-
-            picker.addOnPositiveButtonClickListener {
-                if (picker.hour > 12) {
-                    testSelectTime.text =
-                        String.format("%02d", picker.hour - 12) + ":" + String.format(
-                            "%02d", picker.minute
-                        ) + " PM"
-                } else {
-                    testSelectTime.text = String.format("%02d", picker.hour) + ":" + String.format(
-                        "%02d", picker.minute
-                    ) + " AM"
-
-                }
-
-                time = testSelectTime.text.toString()
-                nm_time.text = testSelectTime.text.toString()
             }
         }
 

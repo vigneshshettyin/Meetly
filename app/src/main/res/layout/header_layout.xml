@@ -18,7 +18,8 @@
             android:layout_height="40dp"
             android:src="@drawable/ic_baseline_close_24"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintRight_toRightOf="parent"/>
+            app:layout_constraintRight_toRightOf="parent"
+            android:contentDescription="@string/app_name" />
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/header_image"
@@ -46,8 +47,7 @@
         android:textStyle="bold"
         android:text="@string/app_name"
         android:fontFamily="@font/catamaran"
-        android:layout_gravity="start"
-        android:layout_margin="10dp"
+        android:layout_gravity="center"
         />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>
