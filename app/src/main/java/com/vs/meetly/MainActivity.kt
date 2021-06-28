@@ -249,7 +249,11 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
                         }
                     }
                     adapter.notifyDataSetChanged()
-                } else {
+                }
+                else if(meetingList.isEmpty()){
+                    mainNoData.visibility = View.VISIBLE
+                }
+                else {
                     mainNoData.visibility = View.GONE
                     tempMeetingList.clear()
                     tempMeetingList.addAll(meetingList)
