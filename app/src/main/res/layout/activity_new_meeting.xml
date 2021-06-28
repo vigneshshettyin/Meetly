@@ -51,7 +51,8 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
-            app:title="New Meeting" />
+            app:title="New Meeting"
+            android:background="@color/secondary_blue"/>
     </com.google.android.material.appbar.AppBarLayout>
 
     <com.google.android.material.button.MaterialButton
@@ -85,7 +86,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@color/lblue_200"
+        android:background="@color/primary_blue"
         app:layout_constraintBottom_toBottomOf="@+id/guideline4"
 
         app:layout_constraintLeft_toLeftOf="parent"
@@ -111,7 +112,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:tint="@color/secondary_blue" />
+                 />
 
             <TextView
                 android:id="@+id/nm_date_text"
@@ -123,15 +124,26 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/nm_date_logo"
                 app:layout_constraintTop_toTopOf="parent"
+<<<<<<< Updated upstream
                 android:textColor="@color/secondary_blue"
                 android:textSize="16sp" />
+=======
+                android:textColor="@color/white"
+                android:textSize="16sp"></TextView>
+>>>>>>> Stashed changes
 
             <TextView
                 android:id="@+id/nm_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+<<<<<<< Updated upstream
                 android:layout_marginEnd="25dp"
                 android:text="@string/_25_02_2000"
+=======
+                android:layout_marginRight="25dp"
+                android:text="2021-06-30"
+                android:textColor="@color/white"
+>>>>>>> Stashed changes
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -141,7 +153,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-                android:background="@color/primary_blue"
+                android:background="#70ffffff"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
@@ -165,7 +177,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:tint="@color/secondary_blue" />
+                app:tint="@color/white"
+                 />
 
             <TextView
                 android:id="@+id/nm_time_text"
@@ -177,25 +190,41 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/nm_time_logo"
                 app:layout_constraintTop_toTopOf="parent"
+<<<<<<< Updated upstream
                 android:textColor="@color/secondary_blue"
                 android:textSize="16sp" />
+=======
+                android:textColor="@color/white"
+                android:textSize="16sp"></TextView>
+>>>>>>> Stashed changes
 
             <TextView
                 android:id="@+id/nm_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+<<<<<<< Updated upstream
                 android:layout_marginEnd="25dp"
                 android:text="@string/_01_25_am"
+=======
+                android:layout_marginRight="25dp"
+                android:text="00:00 AM"
+                android:textColor="@color/white"
+>>>>>>> Stashed changes
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 android:fontFamily="@font/poppins_semibold"
+<<<<<<< Updated upstream
                 android:textSize="24sp" />
+=======
+                android:textSize="24sp"
+                android:id="@+id/nm_time"></TextView>
+>>>>>>> Stashed changes
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-                android:background="@color/primary_blue"
+                android:background="#70ffffff"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />

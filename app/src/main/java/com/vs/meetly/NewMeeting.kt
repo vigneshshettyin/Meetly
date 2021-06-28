@@ -26,7 +26,7 @@ import java.time.format.DateTimeFormatter
 //
 //<!--    Don't Change anything for now-->
 
-class NewMeeting : AppCompatActivity() {
+class  NewMeeting : AppCompatActivity() {
 
     private lateinit var date: String
 
@@ -47,8 +47,24 @@ class NewMeeting : AppCompatActivity() {
         topAppBar.setNavigationOnClickListener {
             finish()
         }
+        nm_for_date.setOnClickListener{
+            val selectedDateInMillis = currentSelectedDate ?: System.currentTimeMillis()
 
-        testSelectDate.setOnClickListener {
+            val datePicker = MaterialDatePicker.Builder.datePicker().setSelection(selectedDateInMillis).build()
+            datePicker.show(supportFragmentManager, "DatePicker")
+            datePicker.addOnPositiveButtonClickListener {
+                    dateInMillis -> onDateSelected(dateInMillis)
+            }
+            datePicker.addOnNegativeButtonClickListener {
+                Toast.makeText(this, "-", Toast.LENGTH_SHORT).show()
+            }
+            datePicker.addOnCancelListener {
+                Toast.makeText(this, "<- Back", Toast.LENGTH_SHORT).show()
+            }
+
+        }
+
+  /*      testSelectDate.setOnClickListener {
 
             val selectedDateInMillis = currentSelectedDate ?: System.currentTimeMillis()
 
@@ -63,6 +79,33 @@ class NewMeeting : AppCompatActivity() {
             datePicker.addOnCancelListener {
                 Toast.makeText(this, "<- Back", Toast.LENGTH_SHORT).show()
             }
+        }*/
+        nm_for_time.setOnClickListener{
+            var picker = MaterialTimePicker.Builder()
+                .setTimeFormat(TimeFormat.CLOCK_12H)
+                .setHour(12)
+                .setMinute(0)
+                .setTitleText("Select Time")
+                .build()
+
+            picker.show(supportFragmentManager, "mediLite")
+
+            picker.addOnPositiveButtonClickListener {
+                if (picker.hour > 12) {
+                    nm_time.text =
+                        String.format("%02d", picker.hour - 12) + ":" + String.format(
+                            "%02d", picker.minute
+                        ) + " PM"
+                } else {
+                    nm_time.text = String.format("%02d", picker.hour) + ":" + String.format(
+                        "%02d", picker.minute
+                    ) + " AM"
+
+                }
+
+                time = nm_time.text.toString()
+            }
+
         }
 
         testSelectTime.setOnClickListener {
@@ -126,7 +169,10 @@ class NewMeeting : AppCompatActivity() {
         ), ZoneId.systemDefault())
         val dateAsFormattedText: String = dateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
         date = dateAsFormattedText
+<<<<<<< Updated upstream
         testSelectDate.text = date
+=======
+>>>>>>> Stashed changes
         nm_date.text = date
     }
 }
