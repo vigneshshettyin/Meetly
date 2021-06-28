@@ -4,19 +4,40 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     >
-    <item android:title="Profile"
-        android:icon="@drawable/ic_baseline_supervised_user_circle_24"
-        android:id="@+id/profile"/>
-    <item android:title="New Meeting"
-        android:icon="@drawable/ic_baseline_connect_without_contact_24"
-        android:id="@+id/newMeeting"/>
-    <item android:title="Developer Support"
-            android:icon="@drawable/ic_baseline_developer_mode_24"
-        android:id="@+id/devSupport"/>
-    <item android:title="Meet The Devs"
-        android:icon="@drawable/ic_baseline_person_outline_24"
-        android:id="@+id/meetDevs"/>
-    <item android:title="Logout"
-        android:id="@+id/logout"
-        android:icon="@drawable/ic_baseline_exit_to_app_24"/>
+
+    <item android:title="Subscriber">
+        <menu>
+            <item android:title="Profile"
+                android:tooltipText="Edit your profile here!"
+                android:icon="@drawable/ic_baseline_supervised_user_circle_24"
+                android:id="@+id/profile"/>
+        </menu>
+    </item>
+    <item android:title="Meeting">
+        <menu>
+            <item android:title="Today's"
+                android:icon="@drawable/ic_baseline_connect_without_contact_24"
+                android:id="@+id/todayMeeting"/>
+            <item android:title="Create"
+                android:icon="@drawable/ic_baseline_connect_without_contact_24"
+                android:id="@+id/newMeeting"/>
+        </menu>
+    </item>
+
+    <item android:title="Developer">
+        <menu>
+            <item android:title="Support Updates"
+                android:icon="@drawable/ic_baseline_developer_mode_24"
+                android:id="@+id/devSupport"/>
+            <item android:title="Team"
+                android:icon="@drawable/ic_baseline_person_outline_24"
+                android:id="@+id/meetDevs"/>
+        </menu>
+    </item>
+    <group android:id="@+id/logoutGroup">
+        <item android:title="Logout"
+            android:id="@+id/logout"
+            android:icon="@drawable/ic_baseline_exit_to_app_24"/>
+    </group>
+
 </menu>
