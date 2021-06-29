@@ -10,6 +10,7 @@ import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
 import com.google.firebase.auth.FirebaseAuth
 import com.vs.meetly.daos.MeetingDao
+import com.vs.meetly.miscellaneous.LinkPicker
 import com.vs.meetly.modals.Meeting
 import kotlinx.android.synthetic.main.activity_meeting_filter.*
 import kotlinx.android.synthetic.main.activity_new_meeting.*
@@ -144,10 +145,13 @@ class  NewMeeting : AppCompatActivity() {
 
             val meetingLink = meetingLink.text.toString().trim()
 
+            val finalMeetingLink = LinkPicker.getLink()+"-r-"+meetingLink.lowercase()
+
+
             val detail = detail.text.toString().trim()
 
 //            Toast.makeText(this, "${text} & ${date}", Toast.LENGTH_SHORT).show()
-            val newMeeting = Meeting(date, title, detail,meetingLink, time, userId)
+            val newMeeting = Meeting(date, title, detail,finalMeetingLink, time, userId)
             Toast.makeText(this, "New Meeting Added!", Toast.LENGTH_SHORT).show()
             GlobalScope.launch {
                 val meetingDao = MeetingDao()

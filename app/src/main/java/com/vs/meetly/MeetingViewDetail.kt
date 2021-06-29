@@ -65,7 +65,7 @@ class MeetingViewDetail : AppCompatActivity() {
 
         meeting = intent.getParcelableExtra("meeting_data")!!
 
-        meeting_info_name.text = meeting.title
+        meeting_info_name.text = meeting.title + meeting.meeting_link
 
         topAppBar.title = meeting.title
 
@@ -272,6 +272,7 @@ class MeetingViewDetail : AppCompatActivity() {
     private fun hangUp() {
         val hangupBroadcastIntent: Intent = BroadcastIntentHelper.buildHangUpIntent()
         LocalBroadcastManager.getInstance(org.webrtc.ContextUtils.getApplicationContext()).sendBroadcast(hangupBroadcastIntent)
+        finish()
     }
 
 
