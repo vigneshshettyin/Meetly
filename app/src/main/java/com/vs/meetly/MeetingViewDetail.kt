@@ -18,10 +18,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.vs.meetly.adapters.UsersListAdapter
+import com.vs.meetly.daos.UserDao
 import com.vs.meetly.modals.Meeting
 import com.vs.meetly.modals.User
 import kotlinx.android.synthetic.main.activity_meeting_view_detail.*
 import kotlinx.android.synthetic.main.dialog_new_user_meeting.*
+import kotlinx.android.synthetic.main.header_layout.*
 import kotlinx.coroutines.*
 import kotlinx.coroutines.tasks.await
 import org.jitsi.meet.sdk.*
@@ -91,8 +93,23 @@ class MeetingViewDetail : AppCompatActivity() {
             e.printStackTrace()
             throw RuntimeException("Invalid server URL!")
         }
+
+        val userInfo = JitsiMeetUserInfo()
+
+        GlobalScope.launch(Dispatchers.IO) {
+            val currentUserId = auth.currentUser!!.uid
+            val userDao = UserDao()
+            val user = userDao.getUserById(currentUserId).await().toObject(User::class.java)!!
+            userInfo.avatar = URL(user.imageUrl)
+            userInfo.displayName = user.displayName
+            userInfo.email = user.email
+        }
+
+
         val defaultOptions = JitsiMeetConferenceOptions.Builder()
             .setServerURL(serverURL)
+            .setSubject(meeting.title)
+            .setUserInfo(userInfo)
             // When using JaaS, set the obtained JWT here
             //.setToken("MyJWT")
             // Different features flags can be set
