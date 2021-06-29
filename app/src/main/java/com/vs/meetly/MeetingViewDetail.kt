@@ -85,9 +85,11 @@ class MeetingViewDetail : AppCompatActivity() {
         }
 
         // Initialize default options for Jitsi Meet conferences.
+
         val serverURL: URL
         serverURL = try {
             // When using JaaS, replace "https://meet.jit.si" with the proper serverURL
+
             URL("https://meet.jit.si")
         } catch (e: MalformedURLException) {
             e.printStackTrace()

@@ -9,7 +9,6 @@
     <string name="register">Register</string>
     <string name="name">Name</string>
     <string name="already_have_a_account_login">Already have a account? Login</string>
-    <string name="testing">Testing</string>
     <string name="display_calender">Display Calender</string>
     <string name="please_wait">Please Wait...</string>
     <string name="just_now">Just now</string>
@@ -37,4 +36,6 @@
     <string name="meeting_attendees">Meeting Attendees</string>
     <string name="share">Share</string>
     <string name="launch_meeting">Launch Meeting</string>
+    <string name="room_name">Room Name</string>
+    <string name="dropbox_app_key">sz56rdeqes3x9uo</string>
 </resources>
