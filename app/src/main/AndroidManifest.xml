@@ -63,6 +63,18 @@
             android:exported="true"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:configChanges="keyboard|orientation"
+            android:launchMode="singleTask"
+            android:name="com.dropbox.core.android.AuthActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:scheme="db-sz56rdeqes3x9uo" />
+            </intent-filter>
+        </activity>
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
