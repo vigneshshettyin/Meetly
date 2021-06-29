@@ -11,7 +11,7 @@ android {
 
     defaultConfig {
         applicationId "com.vs.meetly"
-        minSdkVersion 21
+        minSdkVersion 23
         targetSdkVersion 30
         multiDexEnabled true
         versionCode 1
@@ -37,6 +37,9 @@ android {
 }
 
 dependencies {
+
+    // Jitsi Meet
+    implementation ('org.jitsi.react:jitsi-meet-sdk:3.0.0') { transitive = true }
 
     // Swipe-up to refresh
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
