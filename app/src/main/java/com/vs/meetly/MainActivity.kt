@@ -354,5 +354,4 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
     fun closeLayoutDrawer(view: View){
         mainDrawer.closeDrawers()
     }
-
 }

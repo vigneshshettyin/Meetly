@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
@@ -19,7 +18,6 @@ import kotlinx.android.synthetic.main.activity_meeting_view_detail.*
 import kotlinx.android.synthetic.main.dialog_new_user_meeting.*
 import kotlinx.coroutines.*
 import kotlinx.coroutines.tasks.await
-import www.sanju.motiontoast.MotionToast
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -159,14 +157,6 @@ class MeetingViewDetail : AppCompatActivity() {
     }
 
     private fun alertUserNotPresent() {
-        MotionToast.createToast(
-            this,
-            "Failed ☹️",
-            "User don't have a account at Meetly!",
-            MotionToast.TOAST_ERROR,
-            MotionToast.GRAVITY_BOTTOM,
-            MotionToast.LONG_DURATION,
-            ResourcesCompat.getFont(this, R.font.helvetica_regular)
-        )
+        SupportClass.alertUserDanger(this, "User don't have a account at Meetly!")
     }
 }

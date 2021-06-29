@@ -48,7 +48,7 @@ class LoginActivity : AppCompatActivity() {
         firebaseAuth = FirebaseAuth.getInstance()
 
         etvLogin.setOnClickListener {
-            SupportClass.showProgressDialog(this)
+
             login()
         }
 
@@ -89,12 +89,12 @@ class LoginActivity : AppCompatActivity() {
         firebaseAuth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) {
                 if (it.isSuccessful) {
-                    SupportClass.progressBarDismiss()
+
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
                     finish()
                 } else {
-                    SupportClass.progressBarDismiss()
+
                     Toast.makeText(
                         this,
                         "Incorrect login credentials or account not found!",
