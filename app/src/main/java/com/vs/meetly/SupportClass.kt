@@ -1,28 +1,39 @@
 package com.vs.meetly
 
-import android.app.Dialog
+import android.app.Activity
 import android.content.Context
+import androidx.core.content.res.ResourcesCompat
+import www.sanju.motiontoast.MotionToast
+
 
 object SupportClass {
-    private lateinit var mProgressDialog: Dialog
 
-
-    fun showProgressDialog(context : Context) {
-        mProgressDialog = Dialog(context)
-
-        /*Set the screen content from a layout resource.
-        The resource will be inflated, adding all top-level views to the screen.*/
-        mProgressDialog.setContentView(R.layout.dialog_progress)
-
-//        mProgressDialog.tv_progress_text.text = text
-
-        //Start the dialog and display it on screen.
-        mProgressDialog.show()
+    fun alertUserDanger(context: Context, message : String){
+        MotionToast.createColorToast(
+            context as Activity,
+            "Failed ☹️",
+            message,
+            MotionToast.TOAST_ERROR,
+            MotionToast.GRAVITY_TOP,
+            MotionToast.LONG_DURATION,
+            ResourcesCompat.getFont(context, R.font.catamaran)
+        )
     }
 
-    fun progressBarDismiss(){
-        mProgressDialog.dismiss()
+    fun alertSuccess(context: Context, message : String){
+        fun alertUserDanger(context: Context, message : String){
+            MotionToast.createColorToast(
+                context as Activity,
+                "Hurray success 😍",
+                message,
+                MotionToast.TOAST_SUCCESS,
+                MotionToast.GRAVITY_BOTTOM,
+                MotionToast.LONG_DURATION,
+                ResourcesCompat.getFont(context, R.font.catamaran)
+            )
+        }
     }
+
 
 
 }
