@@ -120,6 +120,14 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
             setUpRecyclerView()
             adapter.notifyDataSetChanged()
         }
+        else if (resultCode == Activity.RESULT_OK
+            && requestCode == MEETING_VIEW_DETAIL_CODE
+        ) {
+            Toast.makeText(this, "Meeting View Detail!", Toast.LENGTH_SHORT).show()
+            setUpFireStore()
+            setUpRecyclerView()
+            adapter.notifyDataSetChanged()
+        }
         else {
             Log.e("Cancelled", "Cancelled")
         }
@@ -327,7 +335,7 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
         Toast.makeText(this, "${meeting.title}", Toast.LENGTH_SHORT).show()
         val intent = Intent(this, MeetingViewDetail::class.java)
         intent.putExtra("meeting_data", meeting)
-        startActivity(intent)
+        startActivityForResult(intent, MEETING_VIEW_DETAIL_CODE)
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -349,6 +357,8 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
         const val MY_PROFILE_REQUEST_CODE: Int = 11
 
         const val MEETING_FILTER_REQUEST_CODE : Int = 22
+
+        const val MEETING_VIEW_DETAIL_CODE : Int = 33
     }
 
     fun closeLayoutDrawer(view: View){

@@ -17,7 +17,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 
-class UsersListAdapter(val context: Context, private val usersList: MutableList<String>) :
+class UsersListAdapter(val context: Context, private val usersList: MutableList<String>, private val listener : IVdeleteUser) :
     RecyclerView.Adapter<UsersListAdapter.UsersListViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UsersListViewHolder {
@@ -34,6 +34,9 @@ class UsersListAdapter(val context: Context, private val usersList: MutableList<
                 holder.userName.text = user.displayName
                 holder.userEmail.text = user.email
                 Glide.with(holder.userAvatar.context).load(user.imageUrl).circleCrop().into(holder.userAvatar)
+                holder.deleteUser.setOnClickListener {
+                    listener.onItemClicked(user.email)
+                }
             }
         }
     }
@@ -46,5 +49,10 @@ class UsersListAdapter(val context: Context, private val usersList: MutableList<
         val userName: TextView = itemView.findViewById(R.id.users_list_meeting_name)
         val userEmail: TextView = itemView.findViewById(R.id.users_list_meeting_email)
         val userAvatar : ImageView = itemView.findViewById(R.id.users_list_meeting_image)
+        val deleteUser : ImageView = itemView.findViewById(R.id.user_list_meeting_delete)
     }
+}
+
+interface IVdeleteUser {
+    fun onItemClicked(email : String)
 }

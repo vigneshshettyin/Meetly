@@ -15,8 +15,10 @@ import androidx.appcompat.app.AlertDialog
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.vs.meetly.adapters.IVdeleteUser
 import com.vs.meetly.adapters.UsersListAdapter
 import com.vs.meetly.daos.UserDao
 import com.vs.meetly.modals.Meeting
@@ -33,7 +35,7 @@ import java.net.URL
 import java.util.*
 import kotlin.collections.ArrayList
 
-class MeetingViewDetail : AppCompatActivity() {
+class MeetingViewDetail : AppCompatActivity(), IVdeleteUser {
 
     private val broadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
@@ -73,7 +75,7 @@ class MeetingViewDetail : AppCompatActivity() {
 
         tempUsersList.addAll(meeting.userId)
 
-        adapter = UsersListAdapter(this, tempUsersList)
+        adapter = UsersListAdapter(this, tempUsersList, this)
         val mLayoutManager = LinearLayoutManager(this)
         mLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
         meeting_info_recycle_view.layoutManager = mLayoutManager
@@ -90,7 +92,7 @@ class MeetingViewDetail : AppCompatActivity() {
         serverURL = try {
             // When using JaaS, replace "https://meet.jit.si" with the proper serverURL
 
-            URL("https://jitsi.vigneshcodes.in")
+            URL("https://meet.jit.si")
         } catch (e: MalformedURLException) {
             e.printStackTrace()
             throw RuntimeException("Invalid server URL!")
@@ -133,11 +135,10 @@ class MeetingViewDetail : AppCompatActivity() {
         val dialogLayout = inflater.inflate(R.layout.dialog_new_user_meeting, null)
         val editText = dialogLayout.findViewById<EditText>(R.id.et_editText)
         with(builder) {
-            setTitle(" ")
-            setPositiveButton("ADD USER") { dialog, which ->
+            setPositiveButton("OK!") { dialog, which ->
 //                Toast.makeText(this@MeetingViewDetail, editText.text.toString(), Toast.LENGTH_SHORT)
 //                    .show()
-                addUserToCurrentMeeting(editText.text.toString())
+                addUserToCurrentMeeting(editText.text.toString(), true)
             }
             setNegativeButton("CANCEL") { dialog, which ->
                 Log.d("MAIN-DIALOG", "Canceled")
@@ -147,7 +148,7 @@ class MeetingViewDetail : AppCompatActivity() {
         }
     }
 
-    private fun addUserToCurrentMeeting(email: String) {
+    private fun addUserToCurrentMeeting(email: String, flag : Boolean) {
 
         var userList = mutableListOf<User>()
 
@@ -175,9 +176,22 @@ class MeetingViewDetail : AppCompatActivity() {
                 } else {
 
                     //Update Recycleview on update operation
-                    tempUsersList.clear()
-                    tempUsersList.addAll(meeting.userId)
-                    tempUsersList.add(userList[0].uid)
+
+                    if(flag){
+                        tempUsersList.clear()
+                        tempUsersList.addAll(meeting.userId)
+                        tempUsersList.add(userList[0].uid)
+                    }
+                    else if(!flag){
+                        tempUsersList.clear()
+                        tempUsersList.addAll(meeting.userId)
+                        if(userList[0].uid==auth.currentUser!!.uid.toString()){
+                            userCannotBeDeleted()
+                        }
+                        else{
+                            tempUsersList.remove(userList[0].uid)
+                        }
+                    }
                 }
             }
         }
@@ -215,6 +229,36 @@ class MeetingViewDetail : AppCompatActivity() {
 
     }
 
+    private fun userCannotBeDeleted(){
+        Snackbar.make(activity_view_detail_cr,
+            "You can't delete yourself!!",Snackbar.LENGTH_LONG)
+            .show()
+    }
+
+    private fun deleteMeeting(){
+        CoroutineScope(Dispatchers.IO).launch {
+            val meetingColRef = firestore.collection("meetings")
+            val meetingQuery = meetingColRef
+                .whereEqualTo("content", meeting.content)
+                .whereEqualTo("title", meeting.title)
+                .whereEqualTo("meeting_link", meeting.meeting_link)
+                .whereEqualTo("date", meeting.date)
+                .whereEqualTo("time", meeting.time)
+                .whereEqualTo("userId", meeting.meeting_link)
+                .get()
+                .await()
+            if (meetingQuery.documents.isNotEmpty()) {
+                for (document in meetingQuery) {
+                    meetingColRef.document(document.id).delete().await()
+                    withContext(Dispatchers.Main) {
+                        adapter.notifyDataSetChanged()
+                    }
+                }
+
+            }
+        }
+    }
+
     private fun alertUserNotPresent() {
         SupportClass.alertUserDanger(this, "User don't have a account at Meetly!")
     }
@@ -222,7 +266,6 @@ class MeetingViewDetail : AppCompatActivity() {
         LocalBroadcastManager.getInstance(this).unregisterReceiver(broadcastReceiver)
         super.onDestroy()
     }
-
 
     fun onButtonClick(v: View?) {
         val text = meeting.meeting_link
@@ -275,6 +318,13 @@ class MeetingViewDetail : AppCompatActivity() {
         val hangupBroadcastIntent: Intent = BroadcastIntentHelper.buildHangUpIntent()
         LocalBroadcastManager.getInstance(org.webrtc.ContextUtils.getApplicationContext()).sendBroadcast(hangupBroadcastIntent)
         finish()
+    }
+
+    override fun onItemClicked(email: String) {
+        Snackbar.make(activity_view_detail_cr,
+            "This is SnackBar Toast Massage",Snackbar.LENGTH_LONG)
+            .show()
+        addUserToCurrentMeeting(email, false)
     }
 
 
