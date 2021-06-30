@@ -90,7 +90,7 @@ class MeetingViewDetail : AppCompatActivity() {
         serverURL = try {
             // When using JaaS, replace "https://meet.jit.si" with the proper serverURL
 
-            URL("https://meet.jit.si")
+            URL("https://jitsi.vigneshcodes.in")
         } catch (e: MalformedURLException) {
             e.printStackTrace()
             throw RuntimeException("Invalid server URL!")
