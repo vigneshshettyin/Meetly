@@ -34,6 +34,15 @@
         android:textSize="20sp"
         android:fontFamily="@font/catamaran"/>
 
+    <ImageView
+        android:id="@+id/user_list_meeting_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_delete_"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/users_list_meeting_email"
+        android:padding="10dp"/>
+
     <TextView
         android:id="@+id/users_list_meeting_email"
         android:layout_width="wrap_content"
