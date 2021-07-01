@@ -332,10 +332,28 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
     }
 
     override fun getIntoActivity(meeting: Meeting) {
-        Toast.makeText(this, "${meeting.title}", Toast.LENGTH_SHORT).show()
-        val intent = Intent(this, MeetingViewDetail::class.java)
-        intent.putExtra("meeting_data", meeting)
-        startActivityForResult(intent, MEETING_VIEW_DETAIL_CODE)
+        CoroutineScope(Dispatchers.IO).launch {
+            val meetingColRef = firestore.collection("meetings")
+            val meetingQuery = meetingColRef
+                .whereEqualTo("content", meeting.content)
+                .whereEqualTo("title", meeting.title)
+                .whereEqualTo("meeting_link", meeting.meeting_link)
+                .whereEqualTo("date", meeting.date)
+                .whereEqualTo("time", meeting.time)
+                .whereEqualTo("userId", meeting.userId)
+                .get()
+                .await()
+            if (meetingQuery.documents.isNotEmpty()) {
+                for (document in meetingQuery) {
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(this@MainActivity, document.id, Toast.LENGTH_SHORT).show()
+                        val intent = Intent(this@MainActivity, MeetingViewDetail::class.java)
+                        intent.putExtra("meeting_document_id", document.id)
+                        startActivityForResult(intent, MEETING_VIEW_DETAIL_CODE)
+                    }
+                }
+            }
+        }
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
