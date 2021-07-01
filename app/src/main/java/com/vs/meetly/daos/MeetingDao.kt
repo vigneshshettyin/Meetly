@@ -1,5 +1,7 @@
 package com.vs.meetly.daos
 
+import com.google.android.gms.tasks.Task
+import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.vs.meetly.modals.Meeting
 import kotlinx.coroutines.Dispatchers
@@ -17,4 +19,9 @@ class MeetingDao {
             }
         }
     }
+
+    fun getMeetingById(uID : String) : Task<DocumentSnapshot> {
+        return meetingsCollection.document(uID).get()
+    }
+
 }

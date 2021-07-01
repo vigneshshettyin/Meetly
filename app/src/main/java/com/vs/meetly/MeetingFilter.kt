@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.vs.meetly
 
 import android.app.Activity
@@ -28,6 +30,8 @@ class MeetingFilter : AppCompatActivity(), IMeetingRVAdapter {
 
     lateinit var firestore: FirebaseFirestore
 
+    lateinit var DATE : String
+
     lateinit var auth : FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,7 +40,7 @@ class MeetingFilter : AppCompatActivity(), IMeetingRVAdapter {
 
         auth = FirebaseAuth.getInstance()
 
-        val DATE: String = intent.getStringExtra("DATE").toString()
+         DATE = intent.getStringExtra("DATE").toString()
         setUpFireStore(DATE)
         setUpRecyclerView()
 
@@ -46,6 +50,23 @@ class MeetingFilter : AppCompatActivity(), IMeetingRVAdapter {
 
 
     }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (resultCode == Activity.RESULT_OK
+            && requestCode == MainActivity.MEETING_VIEW_DETAIL_CODE
+        ) {
+            Toast.makeText(this, "Meeting View Detail!", Toast.LENGTH_SHORT).show()
+            setUpFireStore(DATE)
+            setUpRecyclerView()
+            adapter.notifyDataSetChanged()
+        }
+        else {
+            Log.e("Cancelled", "Cancelled")
+        }
+    }
+
 
     private fun setUpFireStore(DATE: String) {
         firestore = FirebaseFirestore.getInstance()
@@ -125,10 +146,27 @@ class MeetingFilter : AppCompatActivity(), IMeetingRVAdapter {
     }
 
     override fun getIntoActivity(meeting: Meeting) {
-        Toast.makeText(this, "${meeting.title}", Toast.LENGTH_SHORT).show()
-        val intent = Intent(this, MeetingViewDetail::class.java)
-        intent.putExtra("meeting_data", meeting)
-        startActivity(intent)
+        CoroutineScope(Dispatchers.IO).launch {
+            val meetingColRef = firestore.collection("meetings")
+            val meetingQuery = meetingColRef
+                .whereEqualTo("content", meeting.content)
+                .whereEqualTo("title", meeting.title)
+                .whereEqualTo("meeting_link", meeting.meeting_link)
+                .whereEqualTo("date", meeting.date)
+                .whereEqualTo("time", meeting.time)
+                .whereEqualTo("userId", meeting.userId)
+                .get()
+                .await()
+            if (meetingQuery.documents.isNotEmpty()) {
+                for (document in meetingQuery) {
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(this@MeetingFilter, document.id, Toast.LENGTH_SHORT).show()
+                        val intent = Intent(this@MeetingFilter, MeetingViewDetail::class.java)
+                        intent.putExtra("meeting_document_id", document.id)
+                        startActivityForResult(intent, MainActivity.MEETING_VIEW_DETAIL_CODE)
+                    }
+                }
+            }
+        }
     }
-
 }

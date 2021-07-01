@@ -1,5 +1,6 @@
 package com.vs.meetly
 
+import android.app.Activity
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
@@ -20,6 +21,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.vs.meetly.adapters.IVdeleteUser
 import com.vs.meetly.adapters.UsersListAdapter
+import com.vs.meetly.daos.MeetingDao
 import com.vs.meetly.daos.UserDao
 import com.vs.meetly.modals.Meeting
 import com.vs.meetly.modals.User
@@ -45,9 +47,11 @@ class MeetingViewDetail : AppCompatActivity(), IVdeleteUser {
 
     private lateinit var auth: FirebaseAuth
 
-    private lateinit var meeting: Meeting
+    private lateinit var localMeeting : Meeting
 
     lateinit var adapter: UsersListAdapter
+
+    private lateinit var currentMeetingId : String
 
     private var tempUsersList = mutableListOf<String>()
 
@@ -57,34 +61,46 @@ class MeetingViewDetail : AppCompatActivity(), IVdeleteUser {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_meeting_view_detail)
 
-        topAppBar.setNavigationOnClickListener {
-            finish()
-        }
+        currentMeetingId = intent.getStringExtra("meeting_document_id").toString()
+
+        loadCurrentMeetingData(currentMeetingId)
 
         auth = FirebaseAuth.getInstance()
 
         firestore = FirebaseFirestore.getInstance()
 
-        meeting = intent.getParcelableExtra("meeting_data")!!
+        topAppBar.setNavigationOnClickListener {
+            finish()
+        }
 
-        meeting_info_name.text = meeting.title + meeting.meeting_link
+        add_new_user.setOnClickListener {
+            showEditTextDialog()
+        }
 
-        topAppBar.title = meeting.title
+        deleteCustomMeeting.setOnClickListener {
+            deleteCustomMeeting()
+        }
 
-        tempUsersList.clear()
+    }
 
-        tempUsersList.addAll(meeting.userId)
 
-        adapter = UsersListAdapter(this, tempUsersList, this)
+    fun topBarSetup(){
+        meeting_info_name.text = localMeeting.title + localMeeting.meeting_link
+        topAppBar.title = localMeeting.title
+    }
+
+
+    fun recycleViewSetup(){
+        adapter = UsersListAdapter(this, localMeeting.userId, this)
         val mLayoutManager = LinearLayoutManager(this)
         mLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
         meeting_info_recycle_view.layoutManager = mLayoutManager
         meeting_info_recycle_view.itemAnimator = DefaultItemAnimator()
         meeting_info_recycle_view.adapter = adapter
+    }
 
-        add_new_user.setOnClickListener {
-            showEditTextDialog()
-        }
+
+    fun jitsiServerSetup(){
 
         // Initialize default options for Jitsi Meet conferences.
 
@@ -112,8 +128,10 @@ class MeetingViewDetail : AppCompatActivity(), IVdeleteUser {
 
         val defaultOptions = JitsiMeetConferenceOptions.Builder()
             .setServerURL(serverURL)
-            .setSubject(meeting.title)
+            .setSubject(localMeeting.title)
             .setUserInfo(userInfo)
+            .setAudioMuted(true)
+            .setVideoMuted(true)
             // When using JaaS, set the obtained JWT here
             //.setToken("MyJWT")
             // Different features flags can be set
@@ -125,9 +143,8 @@ class MeetingViewDetail : AppCompatActivity(), IVdeleteUser {
 
         registerForBroadcastMessages()
 
-
-
     }
+
 
     private fun showEditTextDialog() {
         val builder = AlertDialog.Builder(this)
@@ -163,112 +180,89 @@ class MeetingViewDetail : AppCompatActivity(), IVdeleteUser {
                     ).show()
                     return@addSnapshotListener
                 }
-                Log.d("DATA", value.toObjects(User::class.java).toString())
                 userList.clear()
                 userList.addAll(value.toObjects(User::class.java))
-                Log.d("USER_LIST", userList.toString())
-
                 if (userList.isNullOrEmpty()) {
-                    alertUserNotPresent()
-                    tempUsersList.clear()
-                    tempUsersList.addAll(meeting.userId)
-
+                    Snackbar.make(activity_view_detail_cr,
+                        "User doesn't have a account at Meetly!",Snackbar.LENGTH_LONG)
+                        .show()
                 } else {
-
                     //Update Recycleview on update operation
-
                     if(flag){
-                        tempUsersList.clear()
-                        tempUsersList.addAll(meeting.userId)
-                        tempUsersList.add(userList[0].uid)
+                        if(localMeeting.userId.contains(userList[0].uid))
+                        {
+                            Snackbar.make(activity_view_detail_cr,
+                                "User already exists!!",Snackbar.LENGTH_LONG)
+                                .show()
+                        }
+                        else
+                        {
+                            tempUsersList.clear()
+                            tempUsersList.addAll(localMeeting.userId)
+                            tempUsersList.add(userList[0].uid)
+                            Snackbar.make(activity_view_detail_cr,
+                                "User added successfully!!",Snackbar.LENGTH_LONG)
+                                .show()
+                            updateMyMeetingData(tempUsersList as ArrayList<String>)
+                        }
                     }
                     else if(!flag){
-                        tempUsersList.clear()
-                        tempUsersList.addAll(meeting.userId)
                         if(userList[0].uid==auth.currentUser!!.uid.toString()){
-                            userCannotBeDeleted()
+                            Snackbar.make(activity_view_detail_cr,
+                                "You can't delete yourself!!",Snackbar.LENGTH_LONG)
+                                .show()
                         }
                         else{
+                            tempUsersList.clear()
+                            tempUsersList.addAll(localMeeting.userId)
                             tempUsersList.remove(userList[0].uid)
+                            Snackbar.make(activity_view_detail_cr,
+                                "User deleted successfully!!",Snackbar.LENGTH_LONG)
+                                .show()
+                            updateMyMeetingData(tempUsersList as ArrayList<String>)
                         }
                     }
                 }
             }
         }
+    }
+
+    fun deleteCustomMeeting(){
+        CoroutineScope(Dispatchers.IO).launch {
+            val meetingColRef = firestore.collection("meetings")
+            meetingColRef.document(currentMeetingId).delete().await()
+            withContext(Dispatchers.Main) {
+                setResult(Activity.RESULT_OK)
+                finish()
+            }
+        }
+    }
+
+    fun updateMyMeetingData(tempUserArrayList :  ArrayList<String>){
         CoroutineScope(Dispatchers.IO).launch {
             val newMeeting: Meeting = Meeting(
-                meeting.date,
-                meeting.title,
-                meeting.content,
-                meeting.meeting_link,
-                meeting.time,
-                tempUsersList as ArrayList<String>
+                localMeeting.date,
+                localMeeting.title,
+                localMeeting.content,
+                localMeeting.meeting_link,
+                localMeeting.time,
+                tempUserArrayList
             )
-
             val meetingColRef = firestore.collection("meetings")
-            val meetingQuery = meetingColRef
-                .whereEqualTo("content", meeting.content)
-                .whereEqualTo("title", meeting.title)
-                .whereEqualTo("meeting_link", meeting.meeting_link)
-                .whereEqualTo("date", meeting.date)
-                .whereEqualTo("time", meeting.time)
-                .whereEqualTo("userId", meeting.userId)
-                .get()
-                .await()
-            if (meetingQuery.documents.isNotEmpty()) {
-                for (document in meetingQuery) {
-                    meetingColRef.document(document.id).set(newMeeting)
-                    withContext(Dispatchers.Main) {
-                        adapter.notifyDataSetChanged()
-                    }
-                }
-
-            }
-        }
-
-
-    }
-
-    private fun userCannotBeDeleted(){
-        Snackbar.make(activity_view_detail_cr,
-            "You can't delete yourself!!",Snackbar.LENGTH_LONG)
-            .show()
-    }
-
-    private fun deleteMeeting(){
-        CoroutineScope(Dispatchers.IO).launch {
-            val meetingColRef = firestore.collection("meetings")
-            val meetingQuery = meetingColRef
-                .whereEqualTo("content", meeting.content)
-                .whereEqualTo("title", meeting.title)
-                .whereEqualTo("meeting_link", meeting.meeting_link)
-                .whereEqualTo("date", meeting.date)
-                .whereEqualTo("time", meeting.time)
-                .whereEqualTo("userId", meeting.meeting_link)
-                .get()
-                .await()
-            if (meetingQuery.documents.isNotEmpty()) {
-                for (document in meetingQuery) {
-                    meetingColRef.document(document.id).delete().await()
-                    withContext(Dispatchers.Main) {
-                        adapter.notifyDataSetChanged()
-                    }
-                }
-
+            meetingColRef.document(currentMeetingId).set(newMeeting)
+            withContext(Dispatchers.Main) {
+                loadCurrentMeetingData(currentMeetingId)
             }
         }
     }
 
-    private fun alertUserNotPresent() {
-        SupportClass.alertUserDanger(this, "User don't have a account at Meetly!")
-    }
     override fun onDestroy() {
         LocalBroadcastManager.getInstance(this).unregisterReceiver(broadcastReceiver)
         super.onDestroy()
     }
 
     fun onButtonClick(v: View?) {
-        val text = meeting.meeting_link
+        val text = localMeeting.meeting_link
         if (text.length > 0) {
             // Build options object for joining the conference. The SDK will merge the default
             // one we set earlier and this one when joining.
@@ -321,11 +315,18 @@ class MeetingViewDetail : AppCompatActivity(), IVdeleteUser {
     }
 
     override fun onItemClicked(email: String) {
-        Snackbar.make(activity_view_detail_cr,
-            "This is SnackBar Toast Massage",Snackbar.LENGTH_LONG)
-            .show()
         addUserToCurrentMeeting(email, false)
     }
 
-
+    private fun loadCurrentMeetingData(currentMeetingId: String){
+        GlobalScope.launch(Dispatchers.IO) {
+            val meetingDao = MeetingDao()
+            localMeeting = meetingDao.getMeetingById(currentMeetingId).await().toObject(Meeting::class.java)!!
+            withContext(Dispatchers.Main) {
+                topBarSetup()
+                recycleViewSetup()
+                jitsiServerSetup()
+            }
+        }
+    }
 }
