@@ -16,6 +16,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -47,11 +48,11 @@ class MeetingViewDetail : AppCompatActivity(), IVdeleteUser {
 
     private lateinit var auth: FirebaseAuth
 
-    private lateinit var localMeeting : Meeting
+    private lateinit var localMeeting: Meeting
 
     lateinit var adapter: UsersListAdapter
 
-    private lateinit var currentMeetingId : String
+    private lateinit var currentMeetingId: String
 
     private var tempUsersList = mutableListOf<String>()
 
@@ -84,13 +85,13 @@ class MeetingViewDetail : AppCompatActivity(), IVdeleteUser {
     }
 
 
-    fun topBarSetup(){
+    fun topBarSetup() {
         meeting_info_name.text = localMeeting.title + localMeeting.meeting_link
         topAppBar.title = localMeeting.title
     }
 
 
-    fun recycleViewSetup(){
+    fun recycleViewSetup() {
         adapter = UsersListAdapter(this, localMeeting.userId, this)
         val mLayoutManager = LinearLayoutManager(this)
         mLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
@@ -100,7 +101,7 @@ class MeetingViewDetail : AppCompatActivity(), IVdeleteUser {
     }
 
 
-    fun jitsiServerSetup(){
+    fun jitsiServerSetup() {
 
         // Initialize default options for Jitsi Meet conferences.
 
@@ -165,7 +166,7 @@ class MeetingViewDetail : AppCompatActivity(), IVdeleteUser {
         }
     }
 
-    private fun addUserToCurrentMeeting(email: String, flag : Boolean) {
+    private fun addUserToCurrentMeeting(email: String, flag: Boolean) {
 
         var userList = mutableListOf<User>()
 
@@ -183,43 +184,59 @@ class MeetingViewDetail : AppCompatActivity(), IVdeleteUser {
                 userList.clear()
                 userList.addAll(value.toObjects(User::class.java))
                 if (userList.isNullOrEmpty()) {
-                    Snackbar.make(activity_view_detail_cr,
-                        "User doesn't have a account at Meetly!",Snackbar.LENGTH_LONG)
+                    Snackbar.make(
+                        activity_view_detail_cr,
+                        "User doesn't have a account at Meetly!", Snackbar.LENGTH_LONG
+                    )
                         .show()
                 } else {
                     //Update Recycleview on update operation
-                    if(flag){
-                        if(localMeeting.userId.contains(userList[0].uid))
-                        {
-                            Snackbar.make(activity_view_detail_cr,
-                                "User already exists!!",Snackbar.LENGTH_LONG)
+                    if (flag) {
+                        if (localMeeting.userId.contains(userList[0].uid)) {
+                            Snackbar.make(
+                                activity_view_detail_cr,
+                                "User already exists!!", Snackbar.LENGTH_LONG
+                            )
                                 .show()
-                        }
-                        else
-                        {
+                        } else {
                             tempUsersList.clear()
                             tempUsersList.addAll(localMeeting.userId)
                             tempUsersList.add(userList[0].uid)
-                            Snackbar.make(activity_view_detail_cr,
-                                "User added successfully!!",Snackbar.LENGTH_LONG)
+                            Snackbar.make(
+                                activity_view_detail_cr,
+                                "User added successfully!!", Snackbar.LENGTH_LONG
+                            )
                                 .show()
                             updateMyMeetingData(tempUsersList as ArrayList<String>)
                         }
-                    }
-                    else if(!flag){
-                        if(userList[0].uid==auth.currentUser!!.uid.toString()){
-                            Snackbar.make(activity_view_detail_cr,
-                                "You can't delete yourself!!",Snackbar.LENGTH_LONG)
+                    } else if (!flag) {
+                        if (userList[0].uid == auth.currentUser!!.uid.toString()) {
+                            Snackbar.make(
+                                activity_view_detail_cr,
+                                "You can't delete yourself!!", Snackbar.LENGTH_LONG
+                            )
                                 .show()
-                        }
-                        else{
+                        } else {
                             tempUsersList.clear()
                             tempUsersList.addAll(localMeeting.userId)
                             tempUsersList.remove(userList[0].uid)
-                            Snackbar.make(activity_view_detail_cr,
-                                "User deleted successfully!!",Snackbar.LENGTH_LONG)
+                            MaterialAlertDialogBuilder(
+                                this@MeetingViewDetail,
+                                R.style.Base_ThemeOverlay_MaterialComponents_MaterialAlertDialog
+                            )
+                                .setMessage(resources.getString(R.string.confirm_logout))
+                                .setNegativeButton(resources.getString(R.string.cancel)) { dialog, which ->
+                                    // Respond to negative button press
+                                }
+                                .setPositiveButton(resources.getString(R.string.yes)) { dialog, which ->
+                                    Snackbar.make(
+                                        activity_view_detail_cr,
+                                        "User deleted successfully!!", Snackbar.LENGTH_LONG
+                                    )
+                                        .show()
+                                    updateMyMeetingData(tempUsersList as ArrayList<String>)
+                                }
                                 .show()
-                            updateMyMeetingData(tempUsersList as ArrayList<String>)
                         }
                     }
                 }
@@ -227,18 +244,33 @@ class MeetingViewDetail : AppCompatActivity(), IVdeleteUser {
         }
     }
 
-    fun deleteCustomMeeting(){
+    fun deleteCustomMeeting() {
         CoroutineScope(Dispatchers.IO).launch {
             val meetingColRef = firestore.collection("meetings")
-            meetingColRef.document(currentMeetingId).delete().await()
             withContext(Dispatchers.Main) {
-                setResult(Activity.RESULT_OK)
-                finish()
+                MaterialAlertDialogBuilder(
+                    this@MeetingViewDetail,
+                    R.style.Base_ThemeOverlay_MaterialComponents_MaterialAlertDialog
+                )
+                    .setMessage(resources.getString(R.string.confirm_logout))
+                    .setNegativeButton(resources.getString(R.string.cancel)) { dialog, which ->
+                        // Respond to negative button press
+                    }
+                    .setPositiveButton(resources.getString(R.string.yes)) { dialog, which ->
+                        GlobalScope.launch {
+                            meetingColRef.document(currentMeetingId).delete().await()
+                            withContext(Dispatchers.Main) {
+                                setResult(Activity.RESULT_OK)
+                                finish()
+                            }
+                        }
+                    }
+                    .show()
             }
         }
     }
 
-    fun updateMyMeetingData(tempUserArrayList :  ArrayList<String>){
+    fun updateMyMeetingData(tempUserArrayList: ArrayList<String>) {
         CoroutineScope(Dispatchers.IO).launch {
             val newMeeting: Meeting = Meeting(
                 localMeeting.date,
@@ -301,8 +333,14 @@ class MeetingViewDetail : AppCompatActivity(), IVdeleteUser {
         if (intent != null) {
             val event = BroadcastEvent(intent)
             when (event.getType()) {
-                BroadcastEvent.Type.CONFERENCE_JOINED -> Timber.i("Conference Joined with url%s", event.getData().get("url"))
-                BroadcastEvent.Type.PARTICIPANT_JOINED -> Timber.i("Participant joined%s", event.getData().get("name"))
+                BroadcastEvent.Type.CONFERENCE_JOINED -> Timber.i(
+                    "Conference Joined with url%s",
+                    event.getData().get("url")
+                )
+                BroadcastEvent.Type.PARTICIPANT_JOINED -> Timber.i(
+                    "Participant joined%s",
+                    event.getData().get("name")
+                )
             }
         }
     }
@@ -310,7 +348,8 @@ class MeetingViewDetail : AppCompatActivity(), IVdeleteUser {
     // Example for sending actions to JitsiMeetSDK
     private fun hangUp() {
         val hangupBroadcastIntent: Intent = BroadcastIntentHelper.buildHangUpIntent()
-        LocalBroadcastManager.getInstance(org.webrtc.ContextUtils.getApplicationContext()).sendBroadcast(hangupBroadcastIntent)
+        LocalBroadcastManager.getInstance(org.webrtc.ContextUtils.getApplicationContext())
+            .sendBroadcast(hangupBroadcastIntent)
         finish()
     }
 
@@ -318,10 +357,11 @@ class MeetingViewDetail : AppCompatActivity(), IVdeleteUser {
         addUserToCurrentMeeting(email, false)
     }
 
-    private fun loadCurrentMeetingData(currentMeetingId: String){
+    private fun loadCurrentMeetingData(currentMeetingId: String) {
         GlobalScope.launch(Dispatchers.IO) {
             val meetingDao = MeetingDao()
-            localMeeting = meetingDao.getMeetingById(currentMeetingId).await().toObject(Meeting::class.java)!!
+            localMeeting =
+                meetingDao.getMeetingById(currentMeetingId).await().toObject(Meeting::class.java)!!
             withContext(Dispatchers.Main) {
                 topBarSetup()
                 recycleViewSetup()
