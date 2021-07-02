@@ -7,6 +7,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -76,14 +77,13 @@ class MeetingFilter : AppCompatActivity(), IMeetingRVAdapter {
                 Toast.makeText(this, "Error fetching data", Toast.LENGTH_SHORT).show()
                 return@addSnapshotListener
             }
-            Log.d("DATA", value.toObjects(Meeting::class.java).toString())
             meetingList.clear()
             meetingList.addAll(value.toObjects(Meeting::class.java))
             if(meetingList.isEmpty()){
-                Log.d("DATA-LIST_EMPTY", "List is empty")
+                mainNoFilterData.visibility = View.VISIBLE
             }
             else{
-                Log.d("DATA-LIST_EMPTY", meetingList.toString())
+                mainNoFilterData.visibility = View.GONE
                 adapter.notifyDataSetChanged()
             }
         }
@@ -106,6 +106,7 @@ class MeetingFilter : AppCompatActivity(), IMeetingRVAdapter {
                 .whereEqualTo("date", meeting.date)
                 .whereEqualTo("time", meeting.time)
                 .whereEqualTo("userId", meeting.userId)
+                .whereEqualTo("color", meeting.color)
                 .get()
                 .await()
             if(meetingQuery.documents.isNotEmpty()) {
@@ -155,6 +156,7 @@ class MeetingFilter : AppCompatActivity(), IMeetingRVAdapter {
                 .whereEqualTo("date", meeting.date)
                 .whereEqualTo("time", meeting.time)
                 .whereEqualTo("userId", meeting.userId)
+                .whereEqualTo("color", meeting.color)
                 .get()
                 .await()
             if (meetingQuery.documents.isNotEmpty()) {

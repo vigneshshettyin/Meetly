@@ -10,6 +10,7 @@ import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
 import com.google.firebase.auth.FirebaseAuth
 import com.vs.meetly.daos.MeetingDao
+import com.vs.meetly.miscellaneous.ColorPicker
 import com.vs.meetly.miscellaneous.LinkPicker
 import com.vs.meetly.modals.Meeting
 import kotlinx.android.synthetic.main.activity_meeting_filter.*
@@ -65,22 +66,6 @@ class  NewMeeting : AppCompatActivity() {
 
         }
 
-  /*      testSelectDate.setOnClickListener {
-
-            val selectedDateInMillis = currentSelectedDate ?: System.currentTimeMillis()
-
-            val datePicker = MaterialDatePicker.Builder.datePicker().setSelection(selectedDateInMillis).build()
-            datePicker.show(supportFragmentManager, "DatePicker")
-            datePicker.addOnPositiveButtonClickListener {
-                dateInMillis -> onDateSelected(dateInMillis)
-            }
-            datePicker.addOnNegativeButtonClickListener {
-                Toast.makeText(this, "-", Toast.LENGTH_SHORT).show()
-            }
-            datePicker.addOnCancelListener {
-                Toast.makeText(this, "<- Back", Toast.LENGTH_SHORT).show()
-            }
-        }*/
         nm_for_time.setOnClickListener{
             var picker = MaterialTimePicker.Builder()
                 .setTimeFormat(TimeFormat.CLOCK_12H)
@@ -151,7 +136,7 @@ class  NewMeeting : AppCompatActivity() {
             val detail = detail.text.toString().trim()
 
 //            Toast.makeText(this, "${text} & ${date}", Toast.LENGTH_SHORT).show()
-            val newMeeting = Meeting(date, title, detail,finalMeetingLink, time, userId)
+            val newMeeting = Meeting(date, title, detail,finalMeetingLink, time, userId, ColorPicker.getColor())
             Toast.makeText(this, "New Meeting Added!", Toast.LENGTH_SHORT).show()
             GlobalScope.launch {
                 val meetingDao = MeetingDao()

@@ -1,39 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:orientation="vertical">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/testTest"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingBottom="25dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:helperText="@string/note_user_must_have_account_at_meetly"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:paddingTop="40dp"
-        app:startIconDrawable="@drawable/ic_baseline_email_24"
-        android:hint="@string/email"
-        app:endIconMode="clear_text">
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_editText"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/testTest"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/primary_dark"
-            android:inputType="textEmailAddress"
-            android:textColor="@color/primary_dark"
-            android:layout_marginHorizontal="8dp"
-            android:textSize="16sp" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:hint="@string/email"
+            android:paddingTop="40dp"
+            android:paddingBottom="25dp"
+            app:endIconMode="clear_text"
+            app:helperText="@string/note_user_must_have_account_at_meetly"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:startIconDrawable="@drawable/ic_baseline_email_24">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_editText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:backgroundTint="@color/primary_dark"
+                android:inputType="textEmailAddress"
+                android:textColor="@color/primary_dark"
+                android:textSize="16sp" />
+        </com.google.android.material.textfield.TextInputLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

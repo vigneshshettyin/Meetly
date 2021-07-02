@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ForgotPassActivity">
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/hglforgotpass"
         android:layout_width="wrap_content"
@@ -18,46 +19,45 @@
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:layout_marginStart="40dp"
+        app:layout_constraintBottom_toTopOf="@id/hglforgotpass"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/hglforgotpass"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
         app:lottie_rawRes="@raw/forgot" />
 
     <TextView
+        android:id="@+id/titlepass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:id="@+id/titlepass"
+        android:layout_marginTop="30dp"
+        android:text="@string/for_forgot_pass"
         android:textColor="@color/blue_500"
         android:textSize="16sp"
-        android:text="@string/for_forgot_pass"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/hglforgotpass"
-        android:layout_marginTop="30dp"
 
         />
 
     <com.google.android.material.textfield.TextInputLayout
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:id="@+id/textEmail"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
-        app:startIconDrawable="@drawable/ic_baseline_email_24"
-        app:endIconMode="clear_text"
         android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        android:hint="@string/email"
+        app:endIconMode="clear_text"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/titlepass"
-        android:layout_margin="30dp"
-        android:hint="@string/email">
+        app:startIconDrawable="@drawable/ic_baseline_email_24">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etvEmail"
             android:layout_width="match_parent"
-            android:inputType="textEmailAddress"
             android:layout_height="wrap_content"
-            />
+            android:inputType="textEmailAddress" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -67,19 +67,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="25dp"
-        android:text="@string/rest_password"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textEmail"
+        android:background="@drawable/gradient_button"
         android:fontFamily="@font/poppins_semibold"
-        android:textAllCaps="false"
         android:paddingLeft="30dp"
-        android:paddingRight="30dp"
         android:paddingTop="5dp"
+        android:paddingRight="30dp"
         android:paddingBottom="5dp"
+        android:text="@string/rest_password"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
         android:textSize="16sp"
         app:backgroundTint="@null"
-        android:textColor="@color/white"
-        android:background="@drawable/gradient_button"/>
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textEmail" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -24,14 +24,14 @@
         android:id="@+id/textEmail"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
-        app:startIconDrawable="@drawable/ic_baseline_email_24"
-        app:endIconMode="clear_text"
         android:layout_height="wrap_content"
         android:layout_margin="25dp"
         android:hint="@string/email"
+        app:endIconMode="clear_text"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/hglafterhead">
+        app:layout_constraintTop_toBottomOf="@+id/hglafterhead"
+        app:startIconDrawable="@drawable/ic_baseline_email_24">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etvEmail"
@@ -50,12 +50,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="25dp"
-        app:startIconDrawable="@drawable/ic_baseline_lock_24"
         android:hint="@string/password"
         app:endIconMode="password_toggle"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textEmail">
+        app:layout_constraintTop_toBottomOf="@id/textEmail"
+        app:startIconDrawable="@drawable/ic_baseline_lock_24">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etvPassword"
@@ -91,21 +91,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="40dp"
-        android:text="@string/log_in"
+        android:background="@drawable/gradient_button"
         android:fontFamily="@font/poppins_semibold"
-        android:textAllCaps="false"
         android:paddingLeft="30dp"
-        android:paddingRight="30dp"
         android:paddingTop="5dp"
+        android:paddingRight="30dp"
         android:paddingBottom="5dp"
-android:textSize="16sp"
+        android:text="@string/log_in"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:backgroundTint="@null"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textPassword"
-        app:backgroundTint="@null"
-        android:textColor="@color/white"
-        android:background="@drawable/gradient_button"
-        />
+        app:layout_constraintTop_toBottomOf="@id/textPassword" />
 
     <TextView
         android:id="@+id/redirectToRegister"
@@ -113,15 +112,15 @@ android:textSize="16sp"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:clickable="true"
+        android:focusable="true"
+        android:fontFamily="@font/poppins"
         android:padding="5dp"
         android:text="@string/don_t_have_a_account_register"
+        android:textColor="@color/blue_500"
+        android:textSize="14sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/etvLogin"
-        android:textColor="@color/blue_500"
-        android:fontFamily="@font/poppins"
-        android:textSize="14sp"
-        android:focusable="true" />
+        app:layout_constraintTop_toBottomOf="@id/etvLogin" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/hglhead"
@@ -139,32 +138,31 @@ android:textSize="16sp"
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/loginPreloader"
-        android:visibility="visible"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        >
-        <androidx.cardview.widget.CardView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:cardCornerRadius="20dp">
+        android:visibility="visible">
 
-            <com.airbnb.lottie.LottieAnimationView
-                android:layout_gravity="center"
-                android:id="@+id/animationView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:lottie_autoPlay="true"
-                app:lottie_loop="true"
-                app:lottie_rawRes="@raw/loaderanim1" />
+        <!--        <androidx.cardview.widget.CardView-->
+        <!--            android:layout_width="100dp"-->
+        <!--            android:layout_height="100dp"-->
+        <!--            app:cardCornerRadius="20dp"-->
+        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--            app:layout_constraintLeft_toLeftOf="parent"-->
+        <!--            app:layout_constraintRight_toRightOf="parent"-->
+        <!--            app:layout_constraintTop_toTopOf="parent">-->
 
-        </androidx.cardview.widget.CardView>
+        <!--            <com.airbnb.lottie.LottieAnimationView-->
+        <!--                android:id="@+id/animationView"-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="match_parent"-->
+        <!--                android:layout_gravity="center"-->
+        <!--                app:lottie_autoPlay="true"-->
+        <!--                app:lottie_loop="true"-->
+        <!--                app:lottie_rawRes="@raw/loaderanim1" />-->
+
+        <!--        </androidx.cardview.widget.CardView>-->
+
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

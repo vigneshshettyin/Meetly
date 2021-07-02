@@ -11,4 +11,5 @@ data class Meeting (
         val meeting_link : String = "",
         val time : String = "",
         val userId : ArrayList<String> = ArrayList(),
+        val color : String = "",
         ) : Parcelable

@@ -302,6 +302,7 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
                 .whereEqualTo("date", meeting.date)
                 .whereEqualTo("time", meeting.time)
                 .whereEqualTo("userId", meeting.userId)
+                .whereEqualTo("color", meeting.color)
                 .get()
                 .await()
             if (meetingQuery.documents.isNotEmpty()) {
@@ -354,6 +355,7 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
                 .whereEqualTo("date", meeting.date)
                 .whereEqualTo("time", meeting.time)
                 .whereEqualTo("userId", meeting.userId)
+                .whereEqualTo("color", meeting.color)
                 .get()
                 .await()
             if (meetingQuery.documents.isNotEmpty()) {
