@@ -6,6 +6,7 @@ import android.content.Intent
 import android.graphics.Paint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.view.WindowManager
 import android.widget.TextView
 import android.widget.Toast
@@ -49,7 +50,7 @@ class LoginActivity : AppCompatActivity() {
         firebaseAuth = FirebaseAuth.getInstance()
 
         etvLogin.setOnClickListener {
-
+            loginPreloader.visibility = View.VISIBLE
             login()
         }
 
@@ -80,6 +81,7 @@ class LoginActivity : AppCompatActivity() {
                 "Enter all the fields!", Snackbar.LENGTH_LONG
             )
                 .show()
+            loginPreloader.visibility = View.GONE
         }
         else if (!email.matches(emailPattern.toRegex())) {
             Snackbar.make(
@@ -87,22 +89,25 @@ class LoginActivity : AppCompatActivity() {
                 "Enter a valid email id!", Snackbar.LENGTH_LONG
             )
                 .show()
+            loginPreloader.visibility = View.GONE
         } else if (password.length < 6) {
             Snackbar.make(
                 loginSnackbar,
                 "Password is too short!", Snackbar.LENGTH_LONG
             )
                 .show()
+            loginPreloader.visibility = View.GONE
         }
         else{
             firebaseAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this) {
                     if (it.isSuccessful) {
-
+                        loginPreloader.visibility = View.GONE
                         val intent = Intent(this, MainActivity::class.java)
                         startActivity(intent)
                         finish()
                     } else {
+                        loginPreloader.visibility = View.GONE
                         Snackbar.make(
                             loginSnackbar,
                             "Incorrect login credentials or account not found!", Snackbar.LENGTH_LONG
@@ -112,11 +117,6 @@ class LoginActivity : AppCompatActivity() {
                 }
         }
     }
-
-    fun validate(): Boolean {
-        return true;
-    }
-
 
     fun TextView.underline() {
         paintFlags = paintFlags or Paint.UNDERLINE_TEXT_FLAG

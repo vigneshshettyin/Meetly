@@ -40,7 +40,7 @@ class RegisterActivity : AppCompatActivity() {
         firebaseAuth = FirebaseAuth.getInstance()
 
         buttonRegister.setOnClickListener {
-
+            registerPreloader.visibility = View.VISIBLE
             registerUser()
         }
         redirectToLogin.setOnClickListener {
@@ -68,18 +68,21 @@ class RegisterActivity : AppCompatActivity() {
                 "Enter all the fields!", Snackbar.LENGTH_LONG
             )
                 .show()
+            registerPreloader.visibility = View.GONE
         } else if (!email.matches(emailPattern.toRegex())) {
             Snackbar.make(
                 registerSnackbar,
                 "Enter a valid email id!", Snackbar.LENGTH_LONG
             )
                 .show()
+            registerPreloader.visibility = View.GONE
         } else if (password.length < 6) {
             Snackbar.make(
                 registerSnackbar,
                 "Password should be atleast 6 digits long!", Snackbar.LENGTH_LONG
             )
                 .show()
+            registerPreloader.visibility = View.GONE
         } else {
             firebaseAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this) {
@@ -97,6 +100,7 @@ class RegisterActivity : AppCompatActivity() {
                         )
                             .show()
                         userDao.addUser(user)
+                        registerPreloader.visibility = View.GONE
                         val intent = Intent(this, MainActivity::class.java)
                         startActivity(intent)
                         finish()
@@ -106,6 +110,7 @@ class RegisterActivity : AppCompatActivity() {
                             "Error, while creating user!", Snackbar.LENGTH_LONG
                         )
                             .show()
+                        registerPreloader.visibility = View.GONE
                     }
                 }
         }

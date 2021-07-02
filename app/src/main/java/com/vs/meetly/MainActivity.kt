@@ -65,13 +65,10 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
 
         firestore = FirebaseFirestore.getInstance()
 
-
+        mainPreloader.visibility = View.VISIBLE
         setUpViews()
         setUpFireStore()
         setUpRecyclerView()
-
-        testProgress.visibility = View.VISIBLE
-
         loadUserData()
 
         displayCalender.setOnClickListener {
@@ -166,7 +163,7 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
 
     private fun loadImage(imageUrl: String) {
         Glide.with(this).load(imageUrl).circleCrop().into(header_image)
-        testProgress.visibility = View.GONE
+        mainPreloader.visibility = View.GONE
     }
 
     private fun setUpViews() {
