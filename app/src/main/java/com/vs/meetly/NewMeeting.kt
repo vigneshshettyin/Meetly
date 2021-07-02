@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import com.google.android.material.datepicker.MaterialDatePicker
+import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
 import com.google.firebase.auth.FirebaseAuth
@@ -13,12 +14,10 @@ import com.vs.meetly.daos.MeetingDao
 import com.vs.meetly.miscellaneous.ColorPicker
 import com.vs.meetly.miscellaneous.LinkPicker
 import com.vs.meetly.modals.Meeting
-import kotlinx.android.synthetic.main.activity_meeting_filter.*
 import kotlinx.android.synthetic.main.activity_new_meeting.*
 import kotlinx.android.synthetic.main.activity_new_meeting.topAppBar
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import java.text.SimpleDateFormat
 import java.time.Instant
 import java.time.LocalDateTime
 import java.time.ZoneId
@@ -33,6 +32,10 @@ class  NewMeeting : AppCompatActivity() {
     private lateinit var date: String
 
     private lateinit var time: String
+
+    var timeFlag : Boolean = false
+
+    var dateFlag : Boolean = false
 
     private var currentSelectedDate: Long? = null
 
@@ -77,6 +80,7 @@ class  NewMeeting : AppCompatActivity() {
             picker.show(supportFragmentManager, "Meetly")
 
             picker.addOnPositiveButtonClickListener {
+                timeFlag = true
                 if (picker.hour > 12) {
                     nm_time.text =
                         String.format("%02d", picker.hour - 12) + ":" + String.format(
@@ -91,33 +95,6 @@ class  NewMeeting : AppCompatActivity() {
                 time = nm_time.text.toString()
             }
 
-        }
-
-        nm_time.setOnClickListener {
-            var picker = MaterialTimePicker.Builder()
-                .setTimeFormat(TimeFormat.CLOCK_12H)
-                .setHour(12)
-                .setMinute(0)
-                .setTitleText("Select Time")
-                .build()
-
-            picker.show(supportFragmentManager, "mediLite")
-
-            picker.addOnPositiveButtonClickListener {
-                if (picker.hour > 12) {
-                    nm_time.text =
-                        String.format("%02d", picker.hour - 12) + ":" + String.format(
-                            "%02d", picker.minute
-                        ) + " PM"
-                } else {
-                    nm_time.text = String.format("%02d", picker.hour) + ":" + String.format(
-                        "%02d", picker.minute
-                    ) + " AM"
-
-                }
-
-                time = nm_time.text.toString()
-            }
         }
 
         testSubmit.setOnClickListener {
@@ -135,17 +112,27 @@ class  NewMeeting : AppCompatActivity() {
 
             val detail = detail.text.toString().trim()
 
-//            Toast.makeText(this, "${text} & ${date}", Toast.LENGTH_SHORT).show()
-            val newMeeting = Meeting(date, title, detail,finalMeetingLink, time, userId, ColorPicker.getColor())
-            Toast.makeText(this, "New Meeting Added!", Toast.LENGTH_SHORT).show()
-            GlobalScope.launch {
-                val meetingDao = MeetingDao()
-                meetingDao.addMeeting(newMeeting)
+            if(title.isEmpty() || detail.isEmpty() || meetingLink.isEmpty() || !dateFlag || !timeFlag){
+                Snackbar.make(
+                    newMeetingSnackbar,
+                    "Enter all the fields!", Snackbar.LENGTH_LONG
+                )
+                    .show()
             }
-            finish()
+            else{
+                val newMeeting = Meeting(date, title, detail,finalMeetingLink, time, userId, ColorPicker.getColor())
+                Snackbar.make(
+                    newMeetingSnackbar,
+                    "Meeting added successfully!", Snackbar.LENGTH_LONG
+                )
+                    .show()
+                GlobalScope.launch {
+                    val meetingDao = MeetingDao()
+                    meetingDao.addMeeting(newMeeting)
+                }
+                finish()
+            }
         }
-
-
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -157,5 +144,6 @@ class  NewMeeting : AppCompatActivity() {
         val dateAsFormattedText: String = dateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
         date = dateAsFormattedText
         nm_date.text = date
+        dateFlag = true
     }
 }

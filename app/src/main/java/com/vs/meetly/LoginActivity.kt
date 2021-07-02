@@ -6,13 +6,14 @@ import android.content.Intent
 import android.graphics.Paint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.TextUtils
 import android.view.WindowManager
 import android.widget.TextView
 import android.widget.Toast
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.activity_login.etvEmail
+import kotlinx.android.synthetic.main.activity_login.etvPassword
 
 class LoginActivity : AppCompatActivity() {
 
@@ -39,7 +40,7 @@ class LoginActivity : AppCompatActivity() {
         val auth: FirebaseAuth = FirebaseAuth.getInstance()
 
         if (auth.currentUser != null) {
-            Toast.makeText(this, "Already logged in!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "logged in!", Toast.LENGTH_SHORT).show()
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
@@ -71,37 +72,45 @@ class LoginActivity : AppCompatActivity() {
     private fun login() {
         val email = etvEmail.text.toString().trim()
         val password = etvPassword.text.toString().trim()
-        //Validation
-        if (TextUtils.isEmpty(email)) {
-            val context = findViewById<TextView>(R.id.etvEmail) as TextView
-            Snackbar.make(context, "Email id is required!", Snackbar.LENGTH_SHORT).show()
-//            etvEmail.error = "Email id required!"
-            return
+        val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
 
+        if (email.isEmpty() || password.isEmpty()){
+            Snackbar.make(
+                loginSnackbar,
+                "Enter all the fields!", Snackbar.LENGTH_LONG
+            )
+                .show()
         }
-        if (TextUtils.isEmpty(password)) {
-            etvPassword.error = "Password required!"
-            return
-
+        else if (!email.matches(emailPattern.toRegex())) {
+            Snackbar.make(
+                loginSnackbar,
+                "Enter a valid email id!", Snackbar.LENGTH_LONG
+            )
+                .show()
+        } else if (password.length < 6) {
+            Snackbar.make(
+                loginSnackbar,
+                "Password is too short!", Snackbar.LENGTH_LONG
+            )
+                .show()
         }
+        else{
+            firebaseAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this) {
+                    if (it.isSuccessful) {
 
-
-        firebaseAuth.signInWithEmailAndPassword(email, password)
-            .addOnCompleteListener(this) {
-                if (it.isSuccessful) {
-
-                    val intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
-                    finish()
-                } else {
-
-                    Toast.makeText(
-                        this,
-                        "Incorrect login credentials or account not found!",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                        val intent = Intent(this, MainActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    } else {
+                        Snackbar.make(
+                            loginSnackbar,
+                            "Incorrect login credentials or account not found!", Snackbar.LENGTH_LONG
+                        )
+                            .show()
+                    }
                 }
-            }
+        }
     }
 
     fun validate(): Boolean {
