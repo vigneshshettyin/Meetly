@@ -2,7 +2,6 @@
 
 package com.vs.meetly
 
-import android.app.Dialog
 import android.content.Intent
 import android.graphics.Paint
 import androidx.appcompat.app.AppCompatActivity
@@ -10,7 +9,7 @@ import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
 import android.widget.TextView
-import android.widget.Toast
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.vs.meetly.daos.UserDao
 import com.vs.meetly.miscellaneous.randAvatar
@@ -22,8 +21,6 @@ import kotlinx.android.synthetic.main.activity_register.etvPassword
 class RegisterActivity : AppCompatActivity() {
 
     private lateinit var firebaseAuth: FirebaseAuth
-
-    private lateinit var mProgressDialog: Dialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,7 +40,7 @@ class RegisterActivity : AppCompatActivity() {
         firebaseAuth = FirebaseAuth.getInstance()
 
         buttonRegister.setOnClickListener {
-            showProgressDialog()
+
             registerUser()
         }
         redirectToLogin.setOnClickListener {
@@ -52,8 +49,6 @@ class RegisterActivity : AppCompatActivity() {
             finish()
         }
     }
-
-//    TODO: Password Strong Progress Bar To Be Implemented
 
     private fun registerUser() {
 
@@ -65,22 +60,55 @@ class RegisterActivity : AppCompatActivity() {
         val email = etvEmail.text.toString()
         val password = etvPassword.text.toString()
         val imageUrl = randAvatar()
+        val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
 
-//        TODO: To Check If The Below Function Can Be Called Using A Coroutine
-
-        firebaseAuth.createUserWithEmailAndPassword(email, password)
-            .addOnCompleteListener(this) {
-                if (it.isSuccessful) {
-                    user = User(firebaseAuth.currentUser!!.uid, name, firebaseAuth.currentUser!!.email.toString(),0 , imageUrl)
-                    userDao.addUser(user)
-                    mProgressDialog.dismiss()
-                    val intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
-                    finish()
-                } else {
-                    Toast.makeText(this, "Error, while creating user!", Toast.LENGTH_SHORT).show()
+        if (name.isEmpty() || email.isEmpty() || password.isEmpty()) {
+            Snackbar.make(
+                registerSnackbar,
+                "Enter all the fields!", Snackbar.LENGTH_LONG
+            )
+                .show()
+        } else if (!email.matches(emailPattern.toRegex())) {
+            Snackbar.make(
+                registerSnackbar,
+                "Enter a valid email id!", Snackbar.LENGTH_LONG
+            )
+                .show()
+        } else if (password.length < 6) {
+            Snackbar.make(
+                registerSnackbar,
+                "Password should be atleast 6 digits long!", Snackbar.LENGTH_LONG
+            )
+                .show()
+        } else {
+            firebaseAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this) {
+                    if (it.isSuccessful) {
+                        user = User(
+                            firebaseAuth.currentUser!!.uid,
+                            name,
+                            firebaseAuth.currentUser!!.email.toString(),
+                            0,
+                            imageUrl
+                        )
+                        Snackbar.make(
+                            registerSnackbar,
+                            "Registration successfully complete!", Snackbar.LENGTH_LONG
+                        )
+                            .show()
+                        userDao.addUser(user)
+                        val intent = Intent(this, MainActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    } else {
+                        Snackbar.make(
+                            registerSnackbar,
+                            "Error, while creating user!", Snackbar.LENGTH_LONG
+                        )
+                            .show()
+                    }
                 }
-            }
+        }
     }
 
     //Function to put Underline
@@ -93,16 +121,4 @@ class RegisterActivity : AppCompatActivity() {
         window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_FULLSCREEN)
     }
 
-    fun showProgressDialog() {
-        mProgressDialog = Dialog(this)
-
-        /*Set the screen content from a layout resource.
-        The resource will be inflated, adding all top-level views to the screen.*/
-        mProgressDialog.setContentView(R.layout.dialog_progress)
-
-//        mProgressDialog.tv_progress_text.text = text
-
-        //Start the dialog and display it on screen.
-        mProgressDialog.show()
-    }
 }
