@@ -7,27 +7,26 @@
     tools:context=".DevsActivity">
 
     <com.google.android.material.appbar.AppBarLayout
-        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/filterAppbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_width="match_parent"
-        android:id="@+id/filterAppbar"
-        android:layout_height="wrap_content">
+        app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/topAppBar"
+            style="@style/Widget.MaterialComponents.Toolbar.Primary"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:title="Team Section"
             app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
-            style="@style/Widget.MaterialComponents.Toolbar.Primary"
-            />
+            app:title="Team Section" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/vigneshetty"
         android:layout_width="match_parent"
         android:layout_height="270dp"
-        android:id="@+id/vigneshetty"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -89,36 +88,36 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginTop="20dp"
+            android:contentDescription="@string/devsection"
             android:onClick="iVclick"
             android:src="@drawable/ic_linkedin"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/vdesc"
-            android:contentDescription="@string/devsection" />
+            app:layout_constraintTop_toBottomOf="@+id/vdesc" />
 
         <ImageView
             android:id="@+id/viVgmail"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginTop="20dp"
+            android:contentDescription="@string/devsection"
+            android:onClick="iVclick"
             android:src="@drawable/ic_gmail"
             app:layout_constraintEnd_toEndOf="parent"
-            android:onClick="iVclick"
             app:layout_constraintStart_toEndOf="@+id/viVlinkedin"
-            app:layout_constraintTop_toBottomOf="@+id/vdesc"
-            android:contentDescription="@string/devsection" />
+            app:layout_constraintTop_toBottomOf="@+id/vdesc" />
 
         <ImageView
             android:id="@+id/viVgithub"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginTop="20dp"
-            android:src="@drawable/ic_github"
+            android:contentDescription="@string/devsection"
             android:onClick="iVclick"
+            android:src="@drawable/ic_github"
             app:layout_constraintEnd_toStartOf="@+id/viVlinkedin"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/vdesc"
-            android:contentDescription="@string/devsection" />
+            app:layout_constraintTop_toBottomOf="@+id/vdesc" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -151,11 +150,11 @@
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_marginTop="10dp"
+            android:contentDescription="@string/devsection"
             android:src="@drawable/profile"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:contentDescription="@string/devsection" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/sname"
@@ -188,38 +187,37 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginTop="20dp"
+            android:contentDescription="@string/devsection"
             android:onClick="iVclick"
             android:src="@drawable/ic_linkedin"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/sdesc"
-            android:contentDescription="@string/devsection" />
+            app:layout_constraintTop_toBottomOf="@+id/sdesc" />
 
         <ImageView
             android:id="@+id/siVgmail"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginTop="20dp"
+            android:contentDescription="@string/devsection"
+            android:onClick="iVclick"
             android:src="@drawable/ic_gmail"
             app:layout_constraintEnd_toEndOf="parent"
-            android:onClick="iVclick"
             app:layout_constraintStart_toEndOf="@+id/siVlinkedin"
-            app:layout_constraintTop_toBottomOf="@+id/sdesc"
-            android:contentDescription="@string/devsection" />
+            app:layout_constraintTop_toBottomOf="@+id/sdesc" />
 
         <ImageView
             android:id="@+id/siVgithub"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginTop="20dp"
-            android:src="@drawable/ic_github"
+            android:contentDescription="@string/devsection"
             android:onClick="iVclick"
+            android:src="@drawable/ic_github"
             app:layout_constraintEnd_toStartOf="@+id/siVlinkedin"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/sdesc"
-            android:contentDescription="@string/devsection" />
+            app:layout_constraintTop_toBottomOf="@+id/sdesc" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

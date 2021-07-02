@@ -278,7 +278,8 @@ class MeetingViewDetail : AppCompatActivity(), IVdeleteUser {
                 localMeeting.content,
                 localMeeting.meeting_link,
                 localMeeting.time,
-                tempUserArrayList
+                tempUserArrayList,
+                localMeeting.color
             )
             val meetingColRef = firestore.collection("meetings")
             meetingColRef.document(currentMeetingId).set(newMeeting)

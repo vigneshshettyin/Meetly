@@ -1,5 +1,6 @@
 package com.vs.meetly.adapters
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
 import android.view.LayoutInflater
@@ -24,11 +25,12 @@ class MeetingAdapter(val context: Context, private val meeting: List<Meeting>, p
         return MeetingViewHolder(view)
     }
 
+    @SuppressLint("Range")
     override fun onBindViewHolder(holder: MeetingViewHolder, position: Int) {
         holder.meetingdate.text = meeting[position].date
         holder.textContent.text = meeting[position].title
         holder.meetingtime.text = meeting[position].time
-        holder.linearLayout.setBackgroundColor(Color.parseColor(ColorPicker.getColor()))
+        holder.linearLayout.setBackgroundColor(Color.parseColor(meeting[position].color))
         holder.deleteMeeting.setOnClickListener {
             listener.onItemClicked(meeting[position])
         }

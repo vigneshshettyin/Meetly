@@ -1,59 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
     android:layout_margin="5dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:orientation="horizontal">
 
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="wrap_content"
-    android:layout_margin="20dp"
-    android:layout_height="wrap_content">
-
-    <ImageView
-        android:layout_margin="5dp"
-        android:id="@+id/users_list_meeting_image"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/light_logo"
-        android:contentDescription="@string/user_meeting_list_image" />
-
-    <TextView
-        android:id="@+id/users_list_meeting_name"
-        android:layout_marginStart="5dp"
-        android:textStyle="bold"
-        android:layout_margin="5dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toEndOf="@id/users_list_meeting_image"
-        android:text="@string/app_name"
-        android:textSize="20sp"
-        android:fontFamily="@font/catamaran"/>
+        android:layout_margin="20dp">
 
-    <ImageView
-        android:id="@+id/user_list_meeting_delete"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_delete_"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/users_list_meeting_email"
-        android:padding="10dp"/>
+        <ImageView
+            android:id="@+id/users_list_meeting_image"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_margin="5dp"
+            android:contentDescription="@string/user_meeting_list_image"
+            android:src="@drawable/light_logo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/users_list_meeting_email"
-        android:layout_width="wrap_content"
-        android:layout_margin="5dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/users_list_meeting_name"
-        android:text="@string/meetly_meetly_vigneshcodes_in"
-        app:layout_constraintStart_toEndOf="@id/users_list_meeting_image"
-        android:textSize="18sp"
-        android:layout_marginStart="5dp"
-        android:fontFamily="@font/catamaran"/>
+        <TextView
+            android:id="@+id/users_list_meeting_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_marginStart="5dp"
+            android:fontFamily="@font/catamaran"
+            android:text="@string/app_name"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@id/users_list_meeting_image"
+            app:layout_constraintTop_toTopOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <ImageView
+            android:id="@+id/user_list_meeting_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:src="@drawable/ic_delete_"
+            app:layout_constraintBottom_toTopOf="@id/users_list_meeting_email"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <TextView
+            android:id="@+id/users_list_meeting_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_marginStart="5dp"
+            android:fontFamily="@font/catamaran"
+            android:text="@string/meetly_meetly_vigneshcodes_in"
+            android:textSize="18sp"
+            app:layout_constraintStart_toEndOf="@id/users_list_meeting_image"
+            app:layout_constraintTop_toBottomOf="@id/users_list_meeting_name" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

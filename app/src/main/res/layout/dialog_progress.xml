@@ -8,10 +8,10 @@
     android:padding="10dp">
 
     <com.airbnb.lottie.LottieAnimationView
-        android:layout_gravity="center"
         android:id="@+id/animationView"
         android:layout_width="100dp"
         android:layout_height="100dp"
+        android:layout_gravity="center"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
         app:lottie_rawRes="@raw/loaderanim1" />

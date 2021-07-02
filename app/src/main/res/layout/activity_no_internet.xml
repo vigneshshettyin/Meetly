@@ -22,15 +22,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:contentDescription="@string/delete_meeting_icon"
-        android:tooltipText="Retry"
-        android:src="@drawable/ic_baseline_sync_24"
         android:background="@drawable/white_bg_br"
+        android:contentDescription="@string/delete_meeting_icon"
+        android:onClick="checkcon"
         android:padding="10dp"
+        android:src="@drawable/ic_baseline_sync_24"
+        android:tooltipText="Retry"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/animationView"
-        android:onClick="checkcon"
-         />
+        app:layout_constraintTop_toBottomOf="@+id/animationView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

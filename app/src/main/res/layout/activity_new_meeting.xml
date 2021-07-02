@@ -6,37 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".NewMeeting">
 
-    <!--    This is only for Mad Lab Assignment -->
-
-    <!--    Don't Change anything for now
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/animationView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_margin="10dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/filterAppbar"
-        app:layout_constraintBottom_toBottomOf="@+id/guideline4"
-        app:lottie_autoPlay="true"
-        app:lottie_loop="true"
-        app:lottie_rawRes="@raw/girl" />-->
-
-    <!--    <TextView-->
-    <!--        android:id="@+id/head_for_new"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:fontFamily="@font/poppins_bold"-->
-    <!--        android:text="Add New Meeting"-->
-    <!--        android:textColor="@color/primary_blue"-->
-    <!--        android:textSize="34sp"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintLeft_toLeftOf="parent"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toTopOf="@+id/guideline3">-->
-    <!--    </TextView>-->
-
-
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/filterAppbar"
         android:layout_width="match_parent"
@@ -50,38 +19,38 @@
             style="@style/Widget.MaterialComponents.Toolbar.Primary"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
+            android:background="@color/secondary_blue"
             app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
-            app:title="New Meeting"
-            android:background="@color/secondary_blue"/>
+            app:title="New Meeting" />
     </com.google.android.material.appbar.AppBarLayout>
-<!--
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/testSelectDate"
-        android:layout_width="0dp"
-        android:layout_height="40dp"
-        android:layout_margin="30dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="10dp"
-        android:background="@drawable/square_button_grad"
-        android:text="@string/select_date"
-        app:backgroundTint="@null"
-        app:layout_constraintTop_toBottomOf="@id/detailOutline"
-        app:layout_constraintEnd_toEndOf="@id/guideline3"
-        app:layout_constraintStart_toStartOf="parent" />
+    <!--
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/testSelectDate"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_margin="30dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/square_button_grad"
+            android:text="@string/select_date"
+            app:backgroundTint="@null"
+            app:layout_constraintTop_toBottomOf="@id/detailOutline"
+            app:layout_constraintEnd_toEndOf="@id/guideline3"
+            app:layout_constraintStart_toStartOf="parent" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/testSelectTime"
-        android:layout_width="0dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="10dp"
-        android:layout_margin="30dp"
-        android:background="@drawable/square_button_grad"
-        android:text="@string/select_time"
-        app:backgroundTint="@null"
-        app:layout_constraintTop_toBottomOf="@id/detailOutline"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/guideline3" />-->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/testSelectTime"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="10dp"
+            android:layout_margin="30dp"
+            android:background="@drawable/square_button_grad"
+            android:text="@string/select_time"
+            app:backgroundTint="@null"
+            app:layout_constraintTop_toBottomOf="@id/detailOutline"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/guideline3" />-->
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -110,8 +79,7 @@
                 android:src="@drawable/ic_baseline_calendar_today_24"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                 />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/nm_date_text"
@@ -120,12 +88,11 @@
                 android:layout_marginStart="15dp"
                 android:fontFamily="@font/poppins_semibold"
                 android:text="@string/date"
+                android:textColor="@color/white"
+                android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/nm_date_logo"
-                app:layout_constraintTop_toTopOf="parent"
-                android:textColor="@color/white"
-                android:textSize="16sp" />
-
+                app:layout_constraintTop_toTopOf="parent" />
 
 
             <TextView
@@ -133,13 +100,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="25dp"
+                android:fontFamily="@font/poppins_semibold"
                 android:text="@string/_25_02_2000"
                 android:textColor="@color/white"
+                android:textSize="24sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:fontFamily="@font/poppins_semibold"
-                android:textSize="24sp" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <View
                 android:layout_width="match_parent"
@@ -168,8 +135,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:tint="@color/white"
-                 />
+                app:tint="@color/white" />
 
             <TextView
                 android:id="@+id/nm_time_text"
@@ -178,11 +144,11 @@
                 android:layout_marginStart="15dp"
                 android:fontFamily="@font/poppins_semibold"
                 android:text="@string/time"
+                android:textColor="@color/white"
+                android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/nm_time_logo"
-                app:layout_constraintTop_toTopOf="parent"
-                android:textSize="16sp"
-                android:textColor="@color/white" />
+                app:layout_constraintTop_toTopOf="parent" />
 
 
             <TextView
@@ -190,13 +156,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="25dp"
+                android:fontFamily="@font/poppins_semibold"
                 android:text="@string/_01_25_am"
                 android:textColor="@color/white"
+                android:textSize="24sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:fontFamily="@font/poppins_semibold"
-                android:textSize="24sp" />
+                app:layout_constraintTop_toTopOf="parent" />
 
 
             <View
@@ -263,8 +229,8 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/detailOutline"
-        android:layout_width="0dp"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="25dp"
         android:layout_marginTop="20dp"
@@ -294,12 +260,12 @@
         android:layout_margin="10dp"
         android:layout_marginTop="-60dp"
         android:background="@drawable/circular"
+        android:contentDescription="@string/appbar_scrolling_view_behavior"
         android:padding="10dp"
         android:scaleType="centerCrop"
         android:src="@drawable/ic_baseline_add_task_24"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline6"
-        android:contentDescription="@string/appbar_scrolling_view_behavior" />
+        app:layout_constraintTop_toTopOf="@+id/guideline6" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline3"
