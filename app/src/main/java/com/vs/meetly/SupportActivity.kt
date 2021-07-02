@@ -22,7 +22,7 @@ class SupportActivity : AppCompatActivity() {
 
 //        hideDefaultUI()
 
-        supportProgressBar.visibility = View.VISIBLE
+        supportPreloader.visibility = View.VISIBLE
 
         fetchData()
 
@@ -64,10 +64,10 @@ class SupportActivity : AppCompatActivity() {
                 val revSupportArrayList : ArrayList<Support> =
                     supportArray.reversed().toMutableList() as ArrayList<Support>;
                 //call recycle view
-                supportProgressBar.visibility = View.GONE
                 adapter = SupportAdapter(this, revSupportArrayList)
                 SupportRecyclerView.layoutManager = LinearLayoutManager(this)
                 SupportRecyclerView.adapter = adapter
+                supportPreloader.visibility = View.GONE
                 swipeRefresh.setRefreshing(false)
 
             },
