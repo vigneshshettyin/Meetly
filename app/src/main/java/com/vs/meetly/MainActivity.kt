@@ -30,6 +30,7 @@ import kotlinx.android.synthetic.main.activity_user_profile.*
 import kotlinx.android.synthetic.main.header_layout.*
 import kotlinx.coroutines.*
 import kotlinx.coroutines.tasks.await
+import java.text.SimpleDateFormat
 import java.time.Instant
 import java.time.LocalDateTime
 import java.time.ZoneId
@@ -183,6 +184,18 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
                     mainDrawer.closeDrawers()
                     val intent = Intent(this, UserProfile::class.java)
                     startActivityForResult(intent, MY_PROFILE_REQUEST_CODE)
+                    true
+                }
+
+                R.id.todayMeeting -> {
+                    mainDrawer.closeDrawers()
+                    val date = Calendar.getInstance().time
+                    val sdf = SimpleDateFormat("yyyy-MM-dd")
+                    val formatedDate = sdf.format(date)
+                    Toast.makeText(this, formatedDate.toString(), Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this, MeetingFilter::class.java)
+                    intent.putExtra("DATE", formatedDate)
+                    startActivityForResult(intent, MEETING_FILTER_REQUEST_CODE)
                     true
                 }
 

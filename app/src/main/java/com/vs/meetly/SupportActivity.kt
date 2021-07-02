@@ -58,14 +58,14 @@ class SupportActivity : AppCompatActivity() {
                         newsJsonObject.getString("user_avatar"),
                         newsJsonObject.getString("date"),
                         newsJsonObject.getString("content"),
-
                         )
                     supportArray.add(news)
                 }
-
+                val revSupportArrayList : ArrayList<Support> =
+                    supportArray.reversed().toMutableList() as ArrayList<Support>;
                 //call recycle view
                 supportProgressBar.visibility = View.GONE
-                adapter = SupportAdapter(this, supportArray)
+                adapter = SupportAdapter(this, revSupportArrayList)
                 SupportRecyclerView.layoutManager = LinearLayoutManager(this)
                 SupportRecyclerView.adapter = adapter
                 swipeRefresh.setRefreshing(false)
