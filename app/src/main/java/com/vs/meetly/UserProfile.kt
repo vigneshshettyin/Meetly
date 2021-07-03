@@ -4,7 +4,6 @@ package com.vs.meetly
 
 import android.Manifest
 import android.app.Activity
-import android.app.Dialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -12,12 +11,13 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
+import android.view.View
 import android.webkit.MimeTypeMap
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.core.content.res.ResourcesCompat
 import com.bumptech.glide.Glide
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
@@ -30,7 +30,6 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
-import www.sanju.motiontoast.MotionToast
 import java.io.IOException
 
 class UserProfile : AppCompatActivity() {
@@ -38,14 +37,13 @@ class UserProfile : AppCompatActivity() {
     // A global variable for a user profile image URL
     private var mProfileImageURL: String = ""
 
-    private var currentProfileImage : String = ""
+    private var currentProfileImage: String = ""
 
-    private lateinit var mProgressDialog: Dialog
 
     // Add a global variable for URI of a selected image from phone storage.
     private var mSelectedImageFileUri: Uri? = null
 
-    private lateinit var auth : FirebaseAuth
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,9 +61,6 @@ class UserProfile : AppCompatActivity() {
             ) {
                 showImageChooser(this)
             } else {
-                /*Requests permissions to be granted to this application. These permissions
-                     must be requested in your manifest, they should not be granted to your app,
-                     and they should have protection level*/
                 ActivityCompat.requestPermissions(
                     this,
                     arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
@@ -78,46 +73,61 @@ class UserProfile : AppCompatActivity() {
         buttonProfileUpdate.setOnClickListener {
             updateUserProfileData()
         }
+        verifyEmail.setOnClickListener {
+            if(!auth.currentUser!!.isEmailVerified){
+                auth.currentUser!!.sendEmailVerification()
+                Snackbar.make(
+                    profileSnackbar,
+                    "Verification email sent successfully!", Snackbar.LENGTH_LONG
+                )
+                    .show()
+            }else{
+                Snackbar.make(
+                    profileSnackbar,
+                    "Email already verified!", Snackbar.LENGTH_LONG
+                )
+                    .show()
+            }
+        }
     }
 
     private fun updateUserProfileData() {
 
-        val name=profileName.text.toString()
-        val email=profileEmail.text.toString()
-        val phone=profilePhone.text.toString()
-//        val userAvatar = mProfileImageURL
-        var userAvatar = ""
-        if (mProfileImageURL.isEmpty()){
-            userAvatar = currentProfileImage
+        val name = profileName.text.toString()
+        val email = profileEmail.text.toString()
+        val phone = profilePhone.text.toString()
+
+        if (name.isEmpty() || phone.isEmpty()) {
+            Snackbar.make(
+                profileSnackbar,
+                "Enter all the fields!", Snackbar.LENGTH_LONG
+            )
+                .show()
+        } else {
+
+            var userAvatar = ""
+            if (mProfileImageURL.isEmpty()) {
+                userAvatar = currentProfileImage
+            } else {
+                userAvatar = mProfileImageURL
+            }
+            profilePreloader.visibility = View.GONE
+            val user = User(auth.currentUser!!.uid, name, email, phone.toLong(), userAvatar)
+
+            GlobalScope.launch {
+                val userdao = UserDao()
+                userdao.addUser(user)
+            }
+            setResult(Activity.RESULT_OK)
+            Snackbar.make(
+                profileSnackbar,
+                "Profile updated successfully!", Snackbar.LENGTH_LONG
+            )
+                .show()
         }
-        else{
-            userAvatar = mProfileImageURL
-        }
-
-//        mProgressDialog.dismiss()
-
-//        Toast.makeText(this, "${name}, ${email}, ${phone}, ${userAvatar}", Toast.LENGTH_SHORT).show()
-
-        val user = User(auth.currentUser!!.uid, name, email, phone.toLong(), userAvatar)
-
-        GlobalScope.launch {
-            val userdao = UserDao()
-            userdao.addUser(user)
-        }
-
-        MotionToast.createToast(this,
-            "Success!",
-            "Profile updated!",
-            MotionToast.TOAST_SUCCESS,
-            MotionToast.GRAVITY_BOTTOM,
-            MotionToast.LONG_DURATION,
-            ResourcesCompat.getFont(this,R.font.helvetica_regular))
-
-        setResult(Activity.RESULT_OK)
-
     }
 
-    private fun getUserInfo(userId : String) {
+    private fun getUserInfo(userId: String) {
 
         GlobalScope.launch(Dispatchers.IO) {
             val userDao = UserDao()
@@ -128,6 +138,9 @@ class UserProfile : AppCompatActivity() {
                 profileName.setText(user.displayName)
                 profileEmail.setText(user.email)
                 profilePhone.setText(user.phone.toString())
+                if(auth.currentUser!!.isEmailVerified){
+                    emailCheckBox.isChecked=true
+                }
             }
         }
     }
@@ -148,7 +161,7 @@ class UserProfile : AppCompatActivity() {
 
     private fun uploadUserImage() {
 
-        progressPlsWait()
+        profilePreloader.visibility = View.VISIBLE
 
         if (mSelectedImageFileUri != null) {
 
@@ -175,7 +188,7 @@ class UserProfile : AppCompatActivity() {
                             // assign the image url to the variable.
                             mProfileImageURL = uri.toString()
 
-                            mProgressDialog.dismiss()
+                            profilePreloader.visibility = View.GONE
                         }
                 }
                 .addOnFailureListener { exception ->
@@ -185,9 +198,11 @@ class UserProfile : AppCompatActivity() {
                         Toast.LENGTH_LONG
                     ).show()
 
-                    mProgressDialog.dismiss()
+                    profilePreloader.visibility = View.GONE
 
                 }
+        } else {
+            profilePreloader.visibility = View.GONE
         }
     }
 
@@ -216,29 +231,7 @@ class UserProfile : AppCompatActivity() {
     }
 
     fun getFileExtension(activity: Activity, uri: Uri?): String? {
-        /*
-         * MimeTypeMap: Two-way map that maps MIME-types to file extensions and vice versa.
-         *
-         * getSingleton(): Get the singleton instance of MimeTypeMap.
-         *
-         * getExtensionFromMimeType: Return the registered extension for the given MIME type.
-         *
-         * contentResolver.getType: Return the MIME type of the given content URL.
-         */
         return MimeTypeMap.getSingleton()
             .getExtensionFromMimeType(activity.contentResolver.getType(uri!!))
-    }
-    fun progressPlsWait(){
-        //Progress Bar
-        mProgressDialog = Dialog(this)
-
-        /*Set the screen content from a layout resource.
-        The resource will be inflated, adding all top-level views to the screen.*/
-        mProgressDialog.setContentView(R.layout.dialog_progress)
-
-        //        mProgressDialog.tv_progress_text.text = text
-        //Start the dialog and display it on screen.
-        mProgressDialog.show()
-        // Call a function to update user details in the database.
     }
 }
