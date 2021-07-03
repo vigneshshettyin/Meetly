@@ -27,6 +27,8 @@ import com.vs.meetly.daos.UserDao
 import com.vs.meetly.modals.Meeting
 import com.vs.meetly.modals.User
 import kotlinx.android.synthetic.main.activity_meeting_view_detail.*
+import kotlinx.android.synthetic.main.activity_meeting_view_detail.topAppBar
+import kotlinx.android.synthetic.main.activity_user_profile.*
 import kotlinx.android.synthetic.main.dialog_new_user_meeting.*
 import kotlinx.android.synthetic.main.header_layout.*
 import kotlinx.coroutines.*
@@ -295,19 +297,29 @@ class MeetingViewDetail : AppCompatActivity(), IVdeleteUser {
     }
 
     fun onButtonClick(v: View?) {
-        val text = localMeeting.meeting_link
-        if (text.length > 0) {
-            // Build options object for joining the conference. The SDK will merge the default
-            // one we set earlier and this one when joining.
-            val options = JitsiMeetConferenceOptions.Builder()
-                .setRoom(text)
-                // Settings for audio and video
-                //.setAudioMuted(true)
-                //.setVideoMuted(true)
-                .build()
-            // Launch the new activity with the given options. The launch() method takes care
-            // of creating the required Intent and passing the options.
-            JitsiMeetActivity.launch(this, options)
+        if(auth.currentUser!!.isEmailVerified){
+            val text = localMeeting.meeting_link
+            if (text.length > 0) {
+                // Build options object for joining the conference. The SDK will merge the default
+                // one we set earlier and this one when joining.
+                val options = JitsiMeetConferenceOptions.Builder()
+                    .setRoom(text)
+                    // Settings for audio and video
+                    //.setAudioMuted(true)
+                    //.setVideoMuted(true)
+                    .build()
+                // Launch the new activity with the given options. The launch() method takes care
+                // of creating the required Intent and passing the options.
+                JitsiMeetActivity.launch(this, options)
+            }
+        }
+        else{
+            Snackbar.make(activity_view_detail_cr, "Please verify your email id before joining meeting!", Snackbar.LENGTH_LONG)
+                .setAction(R.string.action_profile) {
+                    startActivity(Intent(this, UserProfile::class.java))
+                    finish()
+                }
+                .show()
         }
     }
 

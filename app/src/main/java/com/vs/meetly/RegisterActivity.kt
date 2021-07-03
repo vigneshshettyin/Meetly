@@ -101,6 +101,7 @@ class RegisterActivity : AppCompatActivity() {
                             .show()
                         userDao.addUser(user)
                         registerPreloader.visibility = View.GONE
+                        firebaseAuth.currentUser!!.sendEmailVerification()
                         val intent = Intent(this, MainActivity::class.java)
                         startActivity(intent)
                         finish()
