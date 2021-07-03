@@ -11,6 +11,21 @@
 <h2 align=center> 📑 Introduction </h2>
 An intuitive productivity app for busy people. Life can be very chaotic, but it should not be. Bring order, manage your meetings and also create new meetings  with the help of Meetly.Meetly integrates meeting management and video conferencing under a single platform.
 
+<h2 align=center> 🔑 Features </h2>
+
+<img src="https://res.cloudinary.com/vigneshshettyin/image/upload/v1625326016/gtjqfda2vlogd3ofvdv7.png" align="right" width=150px height=260px/>
+
+<div style="display:flex;">
+  
+- Video Conferencing ( WebRTC )
+- Live Streaming & Recording
+- Organize Your Meetings
+- Support API ( RESTful API )
+- Sync with Multiple Devices
+- Security & Encryption
+
+</div>
+
 <h2 align=center> 👨🏻‍💻 How to get started? </h2> 
 
 You can refer to the following articles on **_basics of Git and Github and also contact the Project Mentors, in case you are stuck_**:
