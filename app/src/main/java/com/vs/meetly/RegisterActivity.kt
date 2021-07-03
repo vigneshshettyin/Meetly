@@ -60,7 +60,7 @@ class RegisterActivity : AppCompatActivity() {
         val email = etvEmail.text.toString()
         val password = etvPassword.text.toString()
         val imageUrl = randAvatar()
-        val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
+        val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z0-9.]+"
 
         if (name.isEmpty() || email.isEmpty() || password.isEmpty()) {
             Snackbar.make(
