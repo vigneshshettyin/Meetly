@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/profileSnackbar"
     android:layout_height="match_parent"
     tools:context=".UserProfile">
 
@@ -27,20 +28,24 @@
     <ImageView
         android:id="@+id/profileImage"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="125dp"
         android:layout_margin="10dp"
         android:src="@drawable/ic_baseline_supervised_user_circle_24"
-        app:layout_constraintBottom_toBottomOf="@id/guideline5"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/profileSection" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline5"
+    <CheckBox
+        android:layout_margin="10dp"
+        android:id="@+id/emailCheckBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.3" />
+        android:checked="false"
+        android:text="@string/email_verified"
+        android:enabled="false"
+        app:layout_constraintTop_toBottomOf="@id/profileImage"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textName"
@@ -52,14 +57,14 @@
         app:endIconMode="clear_text"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/guideline5"
+        app:layout_constraintTop_toBottomOf="@id/emailCheckBox"
         app:startIconDrawable="@drawable/ic_baseline_person_outline_24">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/profileName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName"
+            android:inputType="text"
             android:textSize="14sp" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -72,7 +77,6 @@
         android:layout_height="wrap_content"
         android:layout_margin="25dp"
         android:hint="@string/email"
-        app:endIconMode="clear_text"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textName"
@@ -83,6 +87,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
+            android:enabled="false"
             android:textSize="14sp" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -114,20 +119,52 @@
         style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="25dp"
-        android:background="@drawable/gradient_button"
+        android:layout_margin="10dp"
         android:fontFamily="@font/poppins_semibold"
-        android:paddingLeft="30dp"
-        android:paddingTop="5dp"
-        android:paddingRight="30dp"
-        android:paddingBottom="5dp"
         android:text="@string/update_profile"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
         android:textSize="16sp"
-        app:backgroundTint="@null"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textPhone" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/verifyEmail"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="@string/verify_email"
+        android:textSize="16sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/buttonProfileUpdate" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/profilePreloader"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:cardCornerRadius="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/loaderanim1" />
+
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

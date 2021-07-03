@@ -40,4 +40,6 @@
     <string name="dropbox_app_key">sz56rdeqes3x9uo</string>
     <string name="note_user_must_have_account_at_meetly">Note : User must have account at Meetly!</string>
     <string name="version_1_0_0">Version 1.0.0</string>
+    <string name="email_verified">Email Verified</string>
+    <string name="verify_email">Verify Email</string>
 </resources>
