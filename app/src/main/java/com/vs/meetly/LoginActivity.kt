@@ -73,7 +73,7 @@ class LoginActivity : AppCompatActivity() {
     private fun login() {
         val email = etvEmail.text.toString().trim()
         val password = etvPassword.text.toString().trim()
-        val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
+        val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z0-9.]+"
 
         if (email.isEmpty() || password.isEmpty()){
             Snackbar.make(
