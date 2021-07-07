@@ -2,12 +2,9 @@ package com.vs.meetly
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.android.volley.Request
-import com.android.volley.toolbox.JsonObjectRequest
 import com.vs.meetly.adapters.SupportAdapter
 import com.vs.meetly.modals.Support
 import com.vs.meetly.modals.SupportAPI
@@ -26,17 +23,14 @@ class SupportActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_support)
 
-//        hideDefaultUI()
+        supportPreloader.visibility = View.VISIBLE
 
-//        supportPreloader.visibility = View.VISIBLE
-
-//        fetchData()
         getSupportResponses()
 
         swipeRefresh.setOnRefreshListener {
             // This method performs the actual data-refresh operation.
             // The method calls setRefreshing(false) when it's finished.
-//            fetchData()
+            getSupportResponses()
         }
 
         topAppBar.setNavigationOnClickListener {
@@ -47,53 +41,28 @@ class SupportActivity : AppCompatActivity() {
 
     private fun getSupportResponses() {
         val support = SupportAPIService.SupportAPIInstance.getAllUpdates()
-        support.enqueue(object : Callback<SupportAPI>{
+        support.enqueue(object : Callback<SupportAPI> {
             override fun onResponse(call: Call<SupportAPI>, response: Response<SupportAPI>) {
                 val supportGetResponse = response.body()
                 if (supportGetResponse != null) {
-                    Log.d("TAG-MEETLY", "onResponse: ${supportGetResponse!!.notifications.toString()}")
-                    }
+                    setUpRecycleView(supportGetResponse!!.notifications as MutableList<Support>)
+                }
             }
 
             override fun onFailure(call: Call<SupportAPI>, t: Throwable) {
-                Log.d("TAG-MEETLY", "onResponse: ${t.toString()}")
+                Toast.makeText(this@SupportActivity, "${t.toString()}", Toast.LENGTH_SHORT).show()
             }
         })
     }
 
-    private fun fetchData() {
-        val url = "https://meetlyapiv2.herokuapp.com/api/v2/"
-        // Request a string response from the provided URL.
-        val jsonObjectRequest = JsonObjectRequest(
-            Request.Method.GET, url, null,
-            { val newsJsonArray = it.getJSONArray("notifications")
-                val supportArray = ArrayList<Support>()
-
-                for (i in 0 until newsJsonArray.length()){
-                    val newsJsonObject =  newsJsonArray.getJSONObject(i)
-                    val news = Support(
-                        newsJsonObject.getString("user_name"),
-                        newsJsonObject.getString("user_avatar"),
-                        newsJsonObject.getString("date"),
-                        newsJsonObject.getString("content"),
-                        )
-                    supportArray.add(news)
-                }
-                val revSupportArrayList : ArrayList<Support> =
-                    supportArray.reversed().toMutableList() as ArrayList<Support>;
-                //call recycle view
-                adapter = SupportAdapter(this, revSupportArrayList)
-                SupportRecyclerView.layoutManager = LinearLayoutManager(this)
-                SupportRecyclerView.adapter = adapter
-                supportPreloader.visibility = View.GONE
-                swipeRefresh.setRefreshing(false)
-
-            },
-            {
-                Toast.makeText(this, "Something Went Wrong!!", Toast.LENGTH_LONG).show()
-            })
-
-// Add the request to the RequestQueue.
-        MySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest)
+    private fun setUpRecycleView(supportArray: MutableList<Support>) {
+        val revSupportArrayList: ArrayList<Support> =
+            supportArray.reversed().toMutableList() as ArrayList<Support>;
+        //call recycle view
+        adapter = SupportAdapter(this, revSupportArrayList)
+        SupportRecyclerView.layoutManager = LinearLayoutManager(this)
+        SupportRecyclerView.adapter = adapter
+        supportPreloader.visibility = View.GONE
+        swipeRefresh.setRefreshing(false)
     }
 }
