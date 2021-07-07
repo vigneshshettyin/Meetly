@@ -2,8 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
     android:id="@+id/profileSnackbar"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".UserProfile">
 
@@ -29,35 +29,47 @@
         android:id="@+id/profileImage"
         android:layout_width="0dp"
         android:layout_height="125dp"
-        android:layout_margin="10dp"
+        android:layout_marginTop="30dp"
+
         android:src="@drawable/ic_baseline_supervised_user_circle_24"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/profileSection" />
 
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="90dp"
+        android:layout_marginLeft="10dp"
+        app:layout_constraintStart_toStartOf="@+id/ver50"
+        app:layout_constraintTop_toTopOf="@+id/profileImage"
+        android:src="@drawable/updatepp"/>
+
     <CheckBox
-        android:layout_margin="10dp"
         android:id="@+id/emailCheckBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_marginTop="4dp"
         android:checked="false"
-        android:text="@string/email_verified"
         android:enabled="false"
-        app:layout_constraintTop_toBottomOf="@id/profileImage"
+        android:text="@string/email_verified"
+        android:visibility="gone"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/profileImage" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textName"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="25dp"
+        android:layout_margin="30dp"
         android:hint="@string/name"
+        android:textColorHint="@color/secondary_blue"
+        app:boxBackgroundColor="@color/extreme_light_grey"
         app:endIconMode="clear_text"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/emailCheckBox"
+        app:layout_constraintTop_toBottomOf="@id/hor40"
         app:startIconDrawable="@drawable/ic_baseline_person_outline_24">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -65,6 +77,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
+            android:singleLine="false"
             android:textSize="14sp" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -72,11 +85,12 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textEmail"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="25dp"
+        android:layout_margin="30dp"
         android:hint="@string/email"
+        android:textColorHint="@color/secondary_blue"
+        app:boxBackgroundColor="@color/extreme_light_grey"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textName"
@@ -86,23 +100,27 @@
             android:id="@+id/profileEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"
             android:enabled="false"
+            android:inputType="textEmailAddress"
             android:textSize="14sp" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textPhone"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="25dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="30dp"
         android:hint="@string/phone"
+        android:textColorHint="@color/secondary_blue"
+        app:boxBackgroundColor="@color/extreme_light_grey"
+        app:boxStrokeColor="#0049FF"
         app:endIconMode="clear_text"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textEmail"
+        app:layout_constraintTop_toBottomOf="@+id/verifyEmailtBtn"
         app:startIconDrawable="@drawable/ic_baseline_phone_24">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -116,11 +134,14 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/buttonProfileUpdate"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+
+        android:layout_marginTop="40dp"
+        android:background="@drawable/gradient_button"
         android:fontFamily="@font/poppins_semibold"
+        android:paddingStart="25dp"
+        android:paddingEnd="25dp"
         android:text="@string/update_profile"
         android:textSize="16sp"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -132,13 +153,12 @@
         style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
         android:fontFamily="@font/poppins_semibold"
         android:text="@string/verify_email"
-        android:textSize="16sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/buttonProfileUpdate" />
+        android:textSize="12sp"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textEmail" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/profilePreloader"
@@ -166,5 +186,62 @@
         </androidx.cardview.widget.CardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:id="@+id/verifiedstatus"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginEnd="30dp"
+        android:orientation="horizontal"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/hor40"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profileImage">
+
+        <ImageView
+            android:id="@+id/verifiedlogo"
+            android:layout_width="30dp"
+            android:layout_height="25dp"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/verified" />
+
+        <TextView
+            android:id="@+id/verifiedtext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/poppins"
+            android:text="Verified Email!"
+            android:textColor="#0088FF"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/verifyEmailtBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:layout_marginRight="30dp"
+        android:fontFamily="@font/poppins"
+        android:text="@string/verify_email"
+        android:textColor="@color/primary_blue"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textEmail" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/hor40"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.4" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/ver50"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
