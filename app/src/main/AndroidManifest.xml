@@ -3,6 +3,7 @@
     package="com.vs.meetly">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
@@ -12,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_logo_final_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Meetly">
-        <activity android:name=".MeetingViewDetail"
+        <activity
+            android:name=".MeetingViewDetail"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
@@ -64,13 +66,15 @@
             android:screenOrientation="portrait" />
 
         <activity
+            android:name="com.dropbox.core.android.AuthActivity"
             android:configChanges="keyboard|orientation"
-            android:launchMode="singleTask"
-            android:name="com.dropbox.core.android.AuthActivity">
+            android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.BROWSABLE" />
                 <category android:name="android.intent.category.DEFAULT" />
+
                 <data android:scheme="db-sz56rdeqes3x9uo" />
             </intent-filter>
         </activity>
