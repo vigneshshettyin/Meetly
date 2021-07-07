@@ -2,10 +2,10 @@
   <img src="https://res.cloudinary.com/vigneshshettyin/image/upload/v1625324468/d7ukdroxqf1dqajxkndm.png" width=100px height=100px/>
 </p>
 
-[![forthebadge](https://forthebadge.com/images/badges/built-for-android.svg)](https://forthebadge.com)
-[![forthebadge](https://forthebadge.com/images/badges/open-source.svg)](https://forthebadge.com)
-[![forthebadge](https://forthebadge.com/images/badges/built-by-developers.svg)](https://github.com/vigneshshettyin/Flask-Generate-Certificate)
-[![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com)
+[![forthebadge](https://forthebadge.com/images/badges/built-for-android.svg)](#)
+[![forthebadge](https://forthebadge.com/images/badges/open-source.svg)](#)
+[![forthebadge](https://forthebadge.com/images/badges/built-by-developers.svg)](#)
+[![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](#)
 
 
 <h2 align=center> 📑 Introduction </h2>
@@ -17,14 +17,26 @@ An intuitive productivity app for busy people. Life can be very chaotic, but it 
 
 <div style="display:flex;">
   
-- Video Conferencing ( WebRTC )
-- Live Streaming & Recording
-- Organize Your Meetings
-- Support API ( RESTful API )
-- Sync with Multiple Devices
-- Security & Encryption
+- 
+- 
+- 
+- 
+- 
+- 
+-
+-
+-
 
 </div>
+
+<h2 align=center> ⚛️ Tech Stack </h2> 
+
+[![forthebadge](https://img.shields.io/badge/Kotlin-0095D5?&style=for-the-badge&logo=kotlin&logoColor=white)](#)
+[![forthebadge](https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white)](#)
+[![forthebadge](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)](#)
+[![forthebadge](https://img.shields.io/badge/Heroku-430098?style=for-the-badge&logo=heroku&logoColor=white)](#)
+[![forthebadge](https://img.shields.io/badge/Amazon_AWS-232F3E?style=for-the-badge&logo=amazon-aws&logoColor=white)](#)
+[![forthebadge](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](#)
 
 <h2 align=center> 👨🏻‍💻 How to get started? </h2> 
 
