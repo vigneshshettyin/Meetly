@@ -375,10 +375,11 @@ class MeetingViewDetail : AppCompatActivity(), IVdeleteUser {
 
     private fun setHostDetails(hostUIDPass : String){
         GlobalScope.launch {
+            // Get Meeting Data
             val meetingdao = MeetingDao()
             val meetings = meetingdao.getMeetingById(hostUIDPass).await().toObject(Meeting::class.java)!!
             val hostUID = meetings.userId[0]
-
+            // Get particular user data
             val userdao = UserDao()
             val hostUserDetails = userdao.getUserById(hostUID).await().toObject(User::class.java)!!
             withContext(Dispatchers.Main){
