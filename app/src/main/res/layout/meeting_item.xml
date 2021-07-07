@@ -86,7 +86,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="20dp"
             android:background="@color/design_default_color_on_primary"
             android:contentDescription="@string/delete_meeting_icon"
             android:src="@android:drawable/ic_menu_delete"
