@@ -6,6 +6,7 @@ import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Paint
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -13,6 +14,7 @@ import android.provider.MediaStore
 import android.util.Log
 import android.view.View
 import android.webkit.MimeTypeMap
+import android.widget.TextView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -49,6 +51,8 @@ class UserProfile : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_profile)
         auth = FirebaseAuth.getInstance()
+        val verifytbtn: TextView = findViewById(R.id.verifyEmailtBtn)
+        verifytbtn.underline()
 
         getUserInfo(auth.currentUser!!.uid)
 
@@ -73,7 +77,7 @@ class UserProfile : AppCompatActivity() {
         buttonProfileUpdate.setOnClickListener {
             updateUserProfileData()
         }
-        verifyEmail.setOnClickListener {
+        verifyEmailtBtn.setOnClickListener {
             if(!auth.currentUser!!.isEmailVerified){
                 auth.currentUser!!.sendEmailVerification()
                 Snackbar.make(
@@ -139,7 +143,10 @@ class UserProfile : AppCompatActivity() {
                 profileEmail.setText(user.email)
                 profilePhone.setText(user.phone.toString())
                 if(auth.currentUser!!.isEmailVerified){
-                    emailCheckBox.isChecked=true
+                    //emailCheckBox.isChecked=true
+                    verifiedstatus.setVisibility(View.VISIBLE);
+
+
                 }
             }
         }
@@ -233,5 +240,8 @@ class UserProfile : AppCompatActivity() {
     fun getFileExtension(activity: Activity, uri: Uri?): String? {
         return MimeTypeMap.getSingleton()
             .getExtensionFromMimeType(activity.contentResolver.getType(uri!!))
+    }
+    fun TextView.underline() {
+        paintFlags = paintFlags or Paint.UNDERLINE_TEXT_FLAG
     }
 }
