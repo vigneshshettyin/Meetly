@@ -22,10 +22,10 @@ class SupportAdapter(val context: Context, private val support: ArrayList<Suppor
     }
 
     override fun onBindViewHolder(holder: SupportViewHolder, position: Int) {
-        holder.username.text = support[position].name
+        holder.username.text = support[position].user_name
         holder.content.text = support[position].content
         holder.lastTime.text = Utils.getTimeAgo(support[position].date.toLong())
-        Glide.with(holder.userImage.context).load(support[position].avatar).circleCrop().into(holder.userImage)
+        Glide.with(holder.userImage.context).load(support[position].user_avatar).circleCrop().into(holder.userImage)
     }
 
     override fun getItemCount(): Int {
