@@ -180,8 +180,8 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/testTest"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         android:layout_width="0dp"
+        app:boxBackgroundColor="@color/extreme_light_grey"
         android:layout_height="wrap_content"
         android:layout_marginLeft="25dp"
         android:layout_marginTop="50dp"
@@ -196,16 +196,17 @@
             android:id="@+id/etvTestText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/design_default_color_on_primary"
+
             android:inputType="text"
             android:scrollbars="vertical"
+
             android:textSize="16sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/email"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         android:layout_width="0dp"
+        app:boxBackgroundColor="@color/extreme_light_grey"
         android:layout_height="wrap_content"
         android:layout_marginLeft="25dp"
         android:layout_marginTop="20dp"
@@ -221,7 +222,7 @@
             android:id="@+id/meetingLink"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/design_default_color_on_primary"
+
             android:inputType="text"
             android:scrollbars="vertical"
             android:textColor="@color/primary_dark"
@@ -230,7 +231,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/detailOutline"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        app:boxBackgroundColor="@color/extreme_light_grey"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="25dp"
@@ -246,7 +247,8 @@
             android:id="@+id/detail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/design_default_color_on_primary"
+            app:boxBackgroundColor="@color/extreme_light_grey"
+
             android:inputType="textMultiLine"
             android:lines="3"
             android:scrollbars="vertical"

@@ -1,35 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_view_detail_cr"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MeetingViewDetail">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:fontFamily="@font/catamaran_medium"
-        android:text="@string/meeting_attendees"
-        android:textColor="#858585"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@id/guideline7"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="onButtonClick"
-        android:text="@string/launch_meeting"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+    tools:context=".MeetingViewDetail"
+    android:scrollbars="vertical">
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/filterAppbar"
         android:layout_width="match_parent"
@@ -47,29 +26,182 @@
             app:title="Meeting Info" />
     </com.google.android.material.appbar.AppBarLayout>
 
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="50dp"
+        android:backgroundTint="#f4f4f4"
+
+        app:cardCornerRadius="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline7"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/filterAppbar" >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/meeting_info_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/catamaran"
+                android:text="@string/app_name"
+                android:textColor="@color/primary_blue"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/md_date_logo"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="20dp"
+                android:contentDescription="@string/display_calender"
+                android:src="@drawable/ic_baseline_calendar_today_24"
+                app:layout_constraintEnd_toStartOf="@+id/md_ver25"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/meeting_info_name"
+                app:tint="?attr/colorOnSecondary" />
+
+            <TextView
+                android:id="@+id/md_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins"
+                android:text="@string/_25_02_2000"
+                android:layout_marginTop="24dp"
+                android:textColor="?attr/colorOnSecondary"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="@+id/md_ver25"
+                app:layout_constraintTop_toBottomOf="@+id/meeting_info_name" />
+
+            <ImageView
+                android:id="@+id/md_clock_icon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="20dp"
+                android:contentDescription="@string/display_calender"
+
+                app:layout_constraintEnd_toStartOf="@+id/md_ver25"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/md_date_logo"
+                app:srcCompat="@drawable/ic_baseline_access_time_24"
+                app:tint="?attr/colorOnSecondary" />
+
+            <TextView
+                android:id="@+id/md_clock"
+                android:layout_marginTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins"
+                android:text="@string/_01_25_am"
+                android:textColor="?attr/colorOnSecondary"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="@+id/md_ver25"
+                app:layout_constraintTop_toBottomOf="@+id/md_date" />
+
+            <ImageView
+                android:id="@+id/deleteCustomMeeting"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:clickable="true"
+                android:contentDescription="@string/app_name"
+                android:focusable="true"
+                android:src="@android:drawable/ic_menu_delete"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginTop="40dp"
+                app:layout_constraintStart_toStartOf="@+id/md_ver75"
+                app:layout_constraintTop_toBottomOf="@+id/meeting_info_name"
+                app:tint="@color/black" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/md_ver25"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.25"  />
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/md_ver22"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.22"  />
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/md_ver75"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.75"  />
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/md_hor50"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.5"  />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                app:layout_constraintBottom_toTopOf="@+id/md_hor50"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:background="@color/light_grey"
+                app:layout_constraintStart_toStartOf="parent"></LinearLayout>
+
+            <TextView
+                android:id="@+id/host_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/catamaran"
+                android:text="Host"
+                android:textColor="@color/primary_blue"
+                android:textSize="18sp"
+                android:textStyle="bold"
+
+                app:layout_constraintEnd_toStartOf="@+id/md_ver25"
+                app:layout_constraintTop_toTopOf="@+id/md_hor50" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+
+
+
     <TextView
-        android:id="@+id/meeting_info_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/catamaran"
-        android:text="@string/app_name"
-        android:textSize="40sp"
+        android:layout_margin="10dp"
+        android:fontFamily="@font/catamaran_medium"
+        android:text="@string/meeting_attendees"
+        android:textColor="#858585"
+        android:textSize="25sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/guideline7"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/filterAppbar" />
+        android:visibility="gone"/>
 
-    <ImageView
-        android:id="@+id/deleteCustomMeeting"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:clickable="true"
-        android:contentDescription="@string/app_name"
-        android:focusable="true"
-        android:src="@drawable/ic_baseline_delete_forever_24"
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onButtonClick"
+        android:text="@string/launch_meeting"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/meeting_info_name" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="gone"/>
+
+
+
+
+
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/meeting_info_recycle_view"
@@ -77,11 +209,13 @@
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
         android:foregroundGravity="center"
+        android:isScrollContainer="true"
         android:orientation="horizontal"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/guideline7"
-        tools:listitem="@layout/users_meeting_list_horizonal" />
+        tools:listitem="@layout/users_meeting_list_horizonal"
+        android:visibility="gone"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/add_new_user"
@@ -92,7 +226,8 @@
         android:src="@drawable/ic_baseline_add_24"
         android:tooltipText="Add a new meeting attendee"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintRight_toRightOf="parent"
+        android:visibility="gone"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline7"
@@ -100,5 +235,6 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.75" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
