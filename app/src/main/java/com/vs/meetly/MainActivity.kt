@@ -139,15 +139,12 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
                 Toast.makeText(this, "Error fetching data", Toast.LENGTH_SHORT).show()
                 return@addSnapshotListener
             }
-            Log.d("DATA", value.toObjects(Meeting::class.java).toString())
             meetingList.clear()
             meetingList.addAll(value.toObjects(Meeting::class.java))
             if (meetingList.isEmpty()) {
-                Log.d("DATA-LIST_EMPTY", "List is empty")
                 mainNoData.visibility = View.VISIBLE
             } else {
                 mainNoData.visibility = View.GONE
-                Log.d("DATA-LIST_EMPTY", meetingList.toString())
                 adapter.notifyDataSetChanged()
             }
             tempMeetingList.clear()
@@ -289,7 +286,6 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
     }
 
     override fun onItemClicked(meeting: Meeting) {
-//        Toast.makeText(this, meeting.content, Toast.LENGTH_SHORT).show()
         val meetingColRef = firestore.collection("meetings")
         CoroutineScope(Dispatchers.IO).launch {
             val meetingQuery = meetingColRef
