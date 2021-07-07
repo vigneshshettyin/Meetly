@@ -2,6 +2,7 @@ package com.vs.meetly
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -9,8 +10,13 @@ import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.vs.meetly.adapters.SupportAdapter
 import com.vs.meetly.modals.Support
+import com.vs.meetly.modals.SupportAPI
+import com.vs.meetly.retrofit.SupportAPIService
 import kotlinx.android.synthetic.main.activity_meeting_filter.topAppBar
 import kotlinx.android.synthetic.main.activity_support.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class SupportActivity : AppCompatActivity() {
 
@@ -22,14 +28,15 @@ class SupportActivity : AppCompatActivity() {
 
 //        hideDefaultUI()
 
-        supportPreloader.visibility = View.VISIBLE
+//        supportPreloader.visibility = View.VISIBLE
 
-        fetchData()
+//        fetchData()
+        getSupportResponses()
 
         swipeRefresh.setOnRefreshListener {
             // This method performs the actual data-refresh operation.
             // The method calls setRefreshing(false) when it's finished.
-            fetchData()
+//            fetchData()
         }
 
         topAppBar.setNavigationOnClickListener {
@@ -38,9 +45,20 @@ class SupportActivity : AppCompatActivity() {
 
     }
 
-    private fun hideDefaultUI() {
-        @Suppress("DEPRECATION")
-        window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_FULLSCREEN)
+    private fun getSupportResponses() {
+        val support = SupportAPIService.SupportAPIInstance.getAllUpdates()
+        support.enqueue(object : Callback<SupportAPI>{
+            override fun onResponse(call: Call<SupportAPI>, response: Response<SupportAPI>) {
+                val supportGetResponse = response.body()
+                if (supportGetResponse != null) {
+                    Log.d("TAG-MEETLY", "onResponse: ${supportGetResponse!!.notifications.toString()}")
+                    }
+            }
+
+            override fun onFailure(call: Call<SupportAPI>, t: Throwable) {
+                Log.d("TAG-MEETLY", "onResponse: ${t.toString()}")
+            }
+        })
     }
 
     private fun fetchData() {
