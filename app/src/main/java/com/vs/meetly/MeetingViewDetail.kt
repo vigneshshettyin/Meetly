@@ -373,6 +373,20 @@ class MeetingViewDetail : AppCompatActivity(), IVdeleteUser {
         addUserToCurrentMeeting(email, false)
     }
 
+    private fun setHostDetails(hostUIDPass : String){
+        GlobalScope.launch {
+            val meetingdao = MeetingDao()
+            val meetings = meetingdao.getMeetingById(hostUIDPass).await().toObject(Meeting::class.java)!!
+            val hostUID = meetings.userId[0]
+
+            val userdao = UserDao()
+            val hostUserDetails = userdao.getUserById(hostUID).await().toObject(User::class.java)!!
+            withContext(Dispatchers.Main){
+                host_name.text = hostUserDetails.displayName
+            }
+        }
+    }
+
     private fun loadCurrentMeetingData(currentMeetingId: String) {
         GlobalScope.launch(Dispatchers.IO) {
             val meetingDao = MeetingDao()
@@ -380,6 +394,7 @@ class MeetingViewDetail : AppCompatActivity(), IVdeleteUser {
                 meetingDao.getMeetingById(currentMeetingId).await().toObject(Meeting::class.java)!!
             withContext(Dispatchers.Main) {
                 topBarSetup()
+                setHostDetails(currentMeetingId)
                 recycleViewSetup()
                 jitsiServerSetup()
             }
