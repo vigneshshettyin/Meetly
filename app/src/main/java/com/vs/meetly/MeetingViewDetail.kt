@@ -190,7 +190,10 @@ class MeetingViewDetail : AppCompatActivity(), IVdeleteUser {
                         activity_view_detail_cr,
                         "User doesn't have a account at Meetly!", Snackbar.LENGTH_LONG
                     )
+                        .setBackgroundTint(resources.getColor(R.color.snackbar_success))
+                        .setTextColor(resources.getColor(R.color.white))
                         .show()
+
                 } else {
                     //Update Recycleview on update operation
                     if (flag) {
@@ -235,6 +238,8 @@ class MeetingViewDetail : AppCompatActivity(), IVdeleteUser {
                                         activity_view_detail_cr,
                                         "User deleted successfully!!", Snackbar.LENGTH_LONG
                                     )
+                                        .setBackgroundTint(resources.getColor(R.color.snackbar_success))
+                                        .setTextColor(resources.getColor(R.color.white))
                                         .show()
                                     updateMyMeetingData(tempUsersList as ArrayList<String>)
                                 }
@@ -297,7 +302,14 @@ class MeetingViewDetail : AppCompatActivity(), IVdeleteUser {
     }
 
     fun onButtonClick(v: View?) {
-        if(auth.currentUser!!.isEmailVerified){
+        if(!auth.currentUser!!.isEmailVerified){
+            Snackbar.make(activity_view_detail_cr, "Please verify your email id!", Snackbar.LENGTH_LONG)
+                .setAction(R.string.action_profile) {
+                    startActivity(Intent(this, UserProfile::class.java))
+                    finish()
+                }
+                .show()
+        }
             val text = localMeeting.meeting_link
             if (text.length > 0) {
                 // Build options object for joining the conference. The SDK will merge the default
@@ -312,15 +324,6 @@ class MeetingViewDetail : AppCompatActivity(), IVdeleteUser {
                 // of creating the required Intent and passing the options.
                 JitsiMeetActivity.launch(this, options)
             }
-        }
-        else{
-            Snackbar.make(activity_view_detail_cr, "Please verify your email id before joining meeting!", Snackbar.LENGTH_LONG)
-                .setAction(R.string.action_profile) {
-                    startActivity(Intent(this, UserProfile::class.java))
-                    finish()
-                }
-                .show()
-        }
     }
 
 
