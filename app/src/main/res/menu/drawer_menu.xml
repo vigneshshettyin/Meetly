@@ -28,6 +28,9 @@
             <item android:title="Support Updates"
                 android:icon="@drawable/ic_baseline_new_releases_24"
                 android:id="@+id/devSupport"/>
+            <item android:title="Raise Request"
+                android:icon="@drawable/ic_baseline_report_problem_24"
+                android:id="@+id/raiseRequest"/>
             <item android:title="Team"
                 android:icon="@drawable/ic_baseline_person_outline_24"
                 android:id="@+id/meetDevs"/>
