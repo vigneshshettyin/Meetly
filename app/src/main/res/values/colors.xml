@@ -9,9 +9,12 @@
     <color name="primary_dark">#121212</color>
     <color name="secondary_dark">#414345</color>
     <color name="blue_500">#0094FF</color>
-    <color name="light_grey">#FFFFFF</color>
+    <color name="light_grey">#909090</color>
     <color name="snackbar_success">#4BB543</color>
     <color name="blue_100">#603a86ff</color>
     <color name="green_600">#1dab45</color>
     <color name="extreme_light_grey">#fbfbfb</color>
+    <color name="grey_800">#343536</color>
+    <color name="grey_600">#606060</color>
+
 </resources>
