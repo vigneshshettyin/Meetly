@@ -29,8 +29,9 @@ An intuitive productivity app for busy people. Life can be very chaotic, but it 
 
 </div>
 
-<h2 align=center> ⚛️ Tech Stack </h2> 
+<h2 align=center> ⚛️ Tech Stack </h2>
 
+[![forthebadge](https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white)](#)
 [![forthebadge](https://img.shields.io/badge/Kotlin-0095D5?&style=for-the-badge&logo=kotlin&logoColor=white)](#)
 [![forthebadge](https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white)](#)
 [![forthebadge](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)](#)
@@ -83,3 +84,9 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 ```
+
+<p align="center">
+  <a href="https://meetly.tawk.help/" target="_blank">
+  <img src="https://img.shields.io/badge/Ask%20me-anything-1abc9c.svg?style=for-the-badge"/>
+  </a>
+</p>
