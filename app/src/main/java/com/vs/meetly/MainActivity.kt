@@ -142,6 +142,8 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
             meetingList.clear()
             meetingList.addAll(value.toObjects(Meeting::class.java))
             if (meetingList.isEmpty()) {
+                tempMeetingList.clear()
+                adapter.notifyDataSetChanged()
                 mainNoData.visibility = View.VISIBLE
             } else {
                 mainNoData.visibility = View.GONE
