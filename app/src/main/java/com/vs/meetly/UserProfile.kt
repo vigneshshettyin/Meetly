@@ -51,7 +51,9 @@ class UserProfile : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_profile)
         auth = FirebaseAuth.getInstance()
+
         val verifytbtn: TextView = findViewById(R.id.verifyEmailtBtn)
+
         verifytbtn.underline()
 
         getUserInfo(auth.currentUser!!.uid)
@@ -143,7 +145,6 @@ class UserProfile : AppCompatActivity() {
                 profileEmail.setText(user.email)
                 profilePhone.setText(user.phone.toString())
                 if(auth.currentUser!!.isEmailVerified){
-                    //emailCheckBox.isChecked=true
                     verifiedstatus.setVisibility(View.VISIBLE);
 
 

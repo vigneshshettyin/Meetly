@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/profileSnackbar"
     android:layout_width="match_parent"
+    android:orientation="horizontal"
     android:layout_height="match_parent"
     tools:context=".UserProfile">
 
@@ -30,17 +31,18 @@
         android:layout_width="0dp"
         android:layout_height="125dp"
         android:layout_marginTop="30dp"
-
         android:src="@drawable/ic_baseline_supervised_user_circle_24"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/profileSection" />
+        app:layout_constraintTop_toBottomOf="@id/profileSection"
+        android:contentDescription="@string/verify_email" />
 
     <ImageView
+        android:contentDescription="@string/verify_email"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginTop="90dp"
-        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
         app:layout_constraintStart_toStartOf="@+id/ver50"
         app:layout_constraintTop_toTopOf="@+id/profileImage"
         android:src="@drawable/updatepp"/>
@@ -192,8 +194,9 @@
         android:id="@+id/verifiedstatus"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:layout_marginEnd="30dp"
+        android:gravity="center"
         android:orientation="horizontal"
+        android:layout_marginEnd="30dp"
         android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/hor40"
         app:layout_constraintEnd_toEndOf="parent"
@@ -204,7 +207,8 @@
             android:layout_width="30dp"
             android:layout_height="25dp"
             android:layout_gravity="center"
-            app:srcCompat="@drawable/verified" />
+            app:srcCompat="@drawable/verified"
+            android:contentDescription="@string/verify_email" />
 
         <TextView
             android:id="@+id/verifiedtext"
@@ -212,10 +216,11 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/poppins"
-            android:text="Verified Email!"
+            android:text="@string/verified_email"
             android:textColor="#0088FF"
             android:textSize="14sp"
             android:textStyle="bold" />
+
     </LinearLayout>
 
     <TextView
@@ -223,7 +228,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="7dp"
-        android:layout_marginRight="30dp"
+        android:layout_marginEnd="30dp"
         android:fontFamily="@font/poppins"
         android:text="@string/verify_email"
         android:textColor="@color/primary_blue"
