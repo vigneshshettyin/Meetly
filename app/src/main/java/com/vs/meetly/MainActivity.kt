@@ -13,10 +13,12 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.SearchView
+import androidx.core.view.GravityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.vs.meetly.adapters.IMeetingRVAdapter
@@ -25,6 +27,7 @@ import com.vs.meetly.daos.UserDao
 import com.vs.meetly.modals.Meeting
 import com.vs.meetly.modals.User
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_meeting_view_detail.*
 import kotlinx.android.synthetic.main.activity_new_meeting.*
 import kotlinx.android.synthetic.main.activity_user_profile.*
 import kotlinx.android.synthetic.main.header_layout.*
@@ -87,6 +90,33 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
             datePicker.addOnCancelListener {
                 Toast.makeText(this, "<- Back", Toast.LENGTH_SHORT).show()
             }
+        }
+    }
+
+    override fun onBackPressed()
+    {
+        if (mainDrawer.isDrawerOpen(GravityCompat.START)) {
+            mainDrawer.closeDrawer(GravityCompat.START)
+            Snackbar.make(
+                mainActivitySnackbar,
+                "Press back once more to exit!", Snackbar.LENGTH_LONG
+            )
+                .show()
+
+        } else
+        {
+            MaterialAlertDialogBuilder(
+                this@MainActivity,
+                R.style.Base_ThemeOverlay_MaterialComponents_MaterialAlertDialog
+            )
+                .setMessage(resources.getString(R.string.exitMessage))
+                .setNegativeButton(resources.getString(R.string.cancel)) { dialog, which ->
+                    // Respond to negative button press
+                }
+                .setPositiveButton(resources.getString(R.string.yes)) { dialog, which ->
+                    super.onBackPressed()
+                }
+                .show()
         }
     }
 
