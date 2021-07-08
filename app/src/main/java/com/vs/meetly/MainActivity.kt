@@ -2,6 +2,7 @@ package com.vs.meetly
 
 import android.app.Activity
 import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -13,6 +14,7 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.SearchView
+import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.view.GravityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
@@ -229,6 +231,14 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
                     mainDrawer.closeDrawers()
                     val intent = Intent(this, NewMeeting::class.java)
                     startActivity(intent)
+                    true
+                }
+                R.id.raiseRequest ->{
+                    mainDrawer.closeDrawers()
+                    val url = "https://meetly.tawk.help"
+                    val builder = CustomTabsIntent.Builder()
+                    val CustomTabsIntent = builder.build()
+                    CustomTabsIntent.launchUrl(this, Uri.parse(url))
                     true
                 }
                 R.id.devSupport -> {
