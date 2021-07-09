@@ -11,9 +11,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
-
 import com.vs.meetly.R
-import com.vs.meetly.miscellaneous.ColorPicker
 import com.vs.meetly.modals.Meeting
 
 
@@ -30,6 +28,7 @@ class MeetingAdapter(val context: Context, private val meeting: List<Meeting>, p
         holder.meetingdate.text = meeting[position].date
         holder.textContent.text = meeting[position].title
         holder.meetingtime.text = meeting[position].time
+        holder.main_attende_count.text = meeting[position].userId.size.toString()
         holder.linearLayout.setBackgroundColor(Color.parseColor(meeting[position].color))
         holder.deleteMeeting.setOnClickListener {
             listener.onItemClicked(meeting[position])
@@ -47,6 +46,7 @@ class MeetingAdapter(val context: Context, private val meeting: List<Meeting>, p
         val meetingdate: TextView = itemView.findViewById(R.id.meetingdate)
         val textContent: TextView = itemView.findViewById(R.id.textContent)
         val meetingtime : TextView = itemView.findViewById(R.id.meetingtime)
+        val main_attende_count : TextView = itemView.findViewById(R.id.main_attende_count)
         val linearLayout:LinearLayout=itemView.findViewById(R.id.linearLayout)
         val deleteMeeting : ImageView = itemView.findViewById(R.id.deleteMeeting)
         val cardViewMeeting : CardView = itemView.findViewById(R.id.cardViewMeeting)

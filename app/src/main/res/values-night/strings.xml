@@ -45,4 +45,5 @@
     <string name="action_profile">Profile</string>
     <string name="verified_email">Verified Email!</string>
     <string name="exitMessage">Exit Meetly ?</string>
+    <string name="_1">1</string>
 </resources>

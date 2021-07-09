@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cardViewMeeting"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -82,7 +81,7 @@
             app:layout_constraintStart_toEndOf="@+id/imageView2"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageButton
+        <ImageView
             android:id="@+id/deleteMeeting"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -111,17 +110,18 @@
             android:layout_width="40dp"
             android:layout_height="30dp"
             android:layout_marginBottom="16dp"
-            android:layout_marginLeft="30dp"
+            android:layout_marginStart="30dp"
             android:src="@drawable/ic_baseline_group_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/linearLayout"
-            app:tint="@color/secondary_dark" />
+            app:tint="@color/secondary_dark"
+            android:contentDescription="@string/app_name" />
 
         <TextView
             android:id="@+id/main_attende_head"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
             android:layout_marginBottom="18dp"
             android:fontFamily="@font/catamaran"
             android:text="@string/attendee"
@@ -135,9 +135,10 @@
             android:id="@+id/main_attende_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="18dp"
             android:fontFamily="@font/catamaran"
-            android:text="01"
+            android:layout_margin="10dp"
+            app:layout_constraintBaseline_toBaselineOf="@id/main_attende_head"
+            android:text="@string/_1"
             android:textColor="@color/secondary_dark"
             android:textSize="18sp"
             android:textStyle="bold"
