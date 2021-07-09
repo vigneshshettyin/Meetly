@@ -291,14 +291,4 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.32" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:gravity="center"
-        android:text="Note: Don't include http in meeting link!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/detailOutline" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
