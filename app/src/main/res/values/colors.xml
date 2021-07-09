@@ -16,5 +16,8 @@
     <color name="extreme_light_grey">#fbfbfb</color>
     <color name="grey_800">#343536</color>
     <color name="grey_600">#606060</color>
+    <color name="grey_300">#E6E6E6</color>
+    <color name="grey_200"> #F2F2F2</color>
+    <color name="grey_100"> #F7F7F7</color>
 
 </resources>

@@ -8,9 +8,9 @@
     android:id="@+id/activity_view_detail_cr"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     tools:context=".MeetingViewDetail"
     android:scrollbars="vertical">
+
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/filterAppbar"
         android:layout_width="match_parent"
@@ -37,7 +37,6 @@
         android:layout_marginRight="20dp"
         android:backgroundTint="#f4f4f4"
         android:elevation="100dp"
-
         app:cardCornerRadius="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -59,7 +58,6 @@
                 android:textStyle="bold"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
@@ -93,7 +91,6 @@
                 android:layout_height="30dp"
                 android:layout_marginTop="20dp"
                 android:contentDescription="@string/display_calender"
-
                 app:layout_constraintEnd_toStartOf="@+id/md_ver25"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/md_date_logo"
@@ -178,7 +175,7 @@
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/md_clock"></LinearLayout>
+                app:layout_constraintTop_toBottomOf="@+id/md_clock"/>
 
             <TextView
                 android:id="@+id/host_name_head"
@@ -215,7 +212,7 @@
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/md_desc"></LinearLayout>
+                app:layout_constraintTop_toBottomOf="@+id/md_desc"/>
 
             <TextView
                 android:id="@+id/md_desc_head"
@@ -234,12 +231,10 @@
                 android:id="@+id/md_desc"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-
                 android:fontFamily="@font/catamaran"
                 android:text="Lorem ipsum geniusm expotenum dcecrcrc crfcrcfcrfcrfcfcrfc fcfrcrfcfrccfcfcfc cfcfcfcfcfccfcrfcfrcrfc"
                 android:textColor="@color/grey_600"
                 android:textSize="16sp"
-
                 app:layout_constraintEnd_toStartOf="@+id/md_ver85"
                 app:layout_constraintStart_toStartOf="@+id/md_ver22"
                 app:layout_constraintTop_toBottomOf="@+id/md_desc_head" />
@@ -257,7 +252,6 @@
                 android:textColor="@color/grey_800"
                 android:textSize="14sp"
                 android:textStyle="bold"
-                app:icon="@drawable/ic_baseline_launch_24"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/md_ver85" />
 
@@ -271,7 +265,6 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:tint="@color/grey_800">
-
             </ImageView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -283,41 +276,79 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-
         android:fontFamily="@font/catamaran_medium"
         android:text="@string/meeting_attendees"
-        android:textColor="@color/secondary_blue"
-        android:textSize="25sp"
+        android:textColor="@color/secondary_dark"
+        android:textSize="26sp"
         android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/imageView4"
         app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/materialCardView" />
 
 
     <ImageView
+        android:id="@+id/imageView4"
         android:layout_width="40dp"
         android:layout_height="30dp"
-        android:layout_marginRight="40dp"
         android:src="@drawable/ic_baseline_group_24"
         app:layout_constraintBottom_toBottomOf="@+id/meetattendies_head"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:tint="#000" />
+        app:layout_constraintEnd_toStartOf="@+id/md_attende_count"
+        app:tint="@color/secondary_dark" />
 
+    <TextView
+        android:id="@+id/md_attende_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/catamaran"
+        android:text="01"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="43dp"
+        android:textColor="@color/secondary_dark"
+        android:textSize="27sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/materialCardView" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/md_for_space"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/meetattendies_head"
+        android:gravity="right"
+        android:layout_marginTop="15dp"
+        >
+
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="45dp"
+            android:id="@+id/add_new_user"
+            android:tooltipText="Add a new meeting attendee"
+            android:text="+ Add More" />
+    </LinearLayout>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/meeting_info_recycle_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        android:foregroundGravity="center"
+        android:layout_gravity="center"
         android:isScrollContainer="true"
         android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/meetattendies_head"
-        tools:listitem="@layout/users_meeting_list_horizonal"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/md_for_space"
+        tools:listitem="@layout/users_meeting_list_horizonal" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/add_new_user"
+        android:id="@+id/add_new_user."
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"

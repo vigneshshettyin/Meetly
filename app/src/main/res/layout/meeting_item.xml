@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cardViewMeeting"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -8,7 +9,8 @@
     android:backgroundTint="@color/white"
     android:clickable="true"
     android:focusable="true"
-    app:cardCornerRadius="15dp">
+    app:cardCornerRadius="15dp"
+    android:elevation="10dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -84,7 +86,6 @@
             android:id="@+id/deleteMeeting"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="20dp"
             android:background="@color/design_default_color_on_primary"
@@ -92,7 +93,6 @@
             android:src="@android:drawable/ic_menu_delete"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView"
             app:tint="@color/black" />
 
         <LinearLayout
@@ -106,16 +106,43 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="1.0" />
 
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="40dp"
+            android:layout_height="30dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginLeft="30dp"
+            android:src="@drawable/ic_baseline_group_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/linearLayout"
+            app:tint="@color/secondary_dark" />
+
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/main_attende_head"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="@string/https_meet_com_demo"
-            android:textColor="?attr/colorOnSecondary"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="@+id/imageView"
-            app:layout_constraintTop_toBottomOf="@+id/meetingdate" />
+            android:layout_marginLeft="5dp"
+            android:layout_marginBottom="18dp"
+            android:fontFamily="@font/catamaran"
+            android:text="@string/attendee"
+            android:textColor="@color/secondary_dark"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageView4" />
+
+        <TextView
+            android:id="@+id/main_attende_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="18dp"
+            android:fontFamily="@font/catamaran"
+            android:text="01"
+            android:textColor="@color/secondary_dark"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/main_attende_head" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
