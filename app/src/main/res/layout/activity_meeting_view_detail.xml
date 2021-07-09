@@ -7,7 +7,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     android:id="@+id/activity_view_detail_cr"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".MeetingViewDetail"
     android:scrollbars="vertical">
 
@@ -232,7 +232,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/catamaran"
-                android:text="Lorem ipsum geniusm expotenum dcecrcrc crfcrcfcrfcrfcfcrfc fcfrcrfcfrccfcfcfc cfcfcfcfcfccfcrfcfrcrfc"
+                android:text="@string/dumy_text_area"
                 android:textColor="@color/grey_600"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toStartOf="@+id/md_ver85"
@@ -294,16 +294,17 @@
         android:src="@drawable/ic_baseline_group_24"
         app:layout_constraintBottom_toBottomOf="@+id/meetattendies_head"
         app:layout_constraintEnd_toStartOf="@+id/md_attende_count"
-        app:tint="@color/secondary_dark" />
+        app:tint="@color/secondary_dark"
+        android:contentDescription="@string/app_name" />
 
     <TextView
         android:id="@+id/md_attende_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/catamaran"
-        android:text="01"
+        android:text="@string/_1"
         android:layout_marginTop="30dp"
-        android:layout_marginRight="43dp"
+        android:layout_marginEnd="43dp"
         android:textColor="@color/secondary_dark"
         android:textSize="27sp"
         android:textStyle="bold"

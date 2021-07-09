@@ -94,13 +94,17 @@ class MeetingViewDetail : AppCompatActivity(), IVdeleteUser {
     fun topBarSetup() {
         meeting_info_name.text = localMeeting.title + localMeeting.meeting_link
         topAppBar.title = localMeeting.title
+        md_date.text = localMeeting.date
+        md_clock.text = localMeeting.time
+        md_desc.text = localMeeting.content
+        md_attende_count.text = localMeeting.userId.size.toString()
     }
 
 
     fun recycleViewSetup() {
         adapter = UsersListAdapter(this, localMeeting.userId, this)
         val mLayoutManager = LinearLayoutManager(this)
-        mLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
+        mLayoutManager.orientation = LinearLayoutManager.VERTICAL
         meeting_info_recycle_view.layoutManager = mLayoutManager
         meeting_info_recycle_view.itemAnimator = DefaultItemAnimator()
         meeting_info_recycle_view.adapter = adapter
@@ -294,6 +298,7 @@ class MeetingViewDetail : AppCompatActivity(), IVdeleteUser {
             )
             val meetingColRef = firestore.collection("meetings")
             meetingColRef.document(currentMeetingId).set(newMeeting)
+            loadCurrentMeetingData(currentMeetingId)
             withContext(Dispatchers.Main) {
                 loadCurrentMeetingData(currentMeetingId)
             }
@@ -380,9 +385,7 @@ class MeetingViewDetail : AppCompatActivity(), IVdeleteUser {
     private fun setHostDetails(hostUIDPass : String){
         GlobalScope.launch {
             // Get Meeting Data
-            val meetingdao = MeetingDao()
-            val meetings = meetingdao.getMeetingById(hostUIDPass).await().toObject(Meeting::class.java)!!
-            val hostUID = meetings.userId[0]
+            val hostUID = localMeeting.userId[0]
             // Get particular user data
             val userdao = UserDao()
             val hostUserDetails = userdao.getUserById(hostUID).await().toObject(User::class.java)!!
