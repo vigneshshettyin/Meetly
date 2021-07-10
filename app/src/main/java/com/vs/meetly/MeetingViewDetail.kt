@@ -66,6 +66,8 @@ class MeetingViewDetail : AppCompatActivity(), IVdeleteUser {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_meeting_view_detail)
 
+        meetingViewDetailPreloader.visibility = View.VISIBLE
+
         currentMeetingId = intent.getStringExtra("meeting_document_id").toString()
 
         loadCurrentMeetingData(currentMeetingId)
@@ -153,6 +155,8 @@ class MeetingViewDetail : AppCompatActivity(), IVdeleteUser {
         JitsiMeet.setDefaultConferenceOptions(defaultOptions)
 
         registerForBroadcastMessages()
+
+        meetingViewDetailPreloader.visibility = View.GONE
 
     }
 

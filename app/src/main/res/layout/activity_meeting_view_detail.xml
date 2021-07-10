@@ -185,7 +185,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:fontFamily="@font/catamaran"
-                android:text="Host"
+                android:text="@string/host"
                 android:textColor="@color/primary_blue"
                 android:textSize="18sp"
                 android:textStyle="bold"
@@ -198,7 +198,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
                 android:fontFamily="@font/catamaran"
-                android:text="Host"
+                android:text="@string/host"
                 android:textColor="@color/primary_dark"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -222,7 +222,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:fontFamily="@font/catamaran"
-                android:text="Description"
+                android:text="@string/description"
                 android:textColor="@color/primary_blue"
                 android:textSize="18sp"
                 android:textStyle="bold"
@@ -250,12 +250,13 @@
                 android:clickable="true"
                 android:fontFamily="@font/poppins"
                 android:onClick="onButtonClick"
-                android:text="Join Meeting!"
+                android:text="@string/join_meeting"
                 android:textColor="@color/grey_800"
                 android:textSize="14sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/md_ver85" />
+                app:layout_constraintEnd_toStartOf="@+id/md_ver85"
+                android:focusable="true" />
 
             <ImageView
                 android:layout_width="20dp"
@@ -266,7 +267,9 @@
                 android:src="@drawable/ic_baseline_launch_24"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:tint="@color/grey_800">
+                app:tint="@color/grey_800"
+                android:focusable="true"
+                android:contentDescription="@string/host">
             </ImageView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -323,7 +326,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/meetattendies_head"
-        android:gravity="right"
+        android:gravity="end"
         android:layout_marginTop="15dp"
         >
 
@@ -331,10 +334,9 @@
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="45dp"
+            android:layout_marginEnd="45dp"
             android:id="@+id/add_new_user"
-            android:tooltipText="Add a new meeting attendee"
-            android:text="+ Add More" />
+            android:text="@string/add_more" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -358,10 +360,30 @@
         android:layout_margin="20dp"
         android:contentDescription="@string/app_name"
         android:src="@drawable/ic_baseline_add_24"
-        android:tooltipText="Add a new meeting attendee"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:visibility="gone"/>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/meetingViewDetailPreloader"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:cardCornerRadius="20dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/loaderanim1" />
+    </androidx.cardview.widget.CardView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
