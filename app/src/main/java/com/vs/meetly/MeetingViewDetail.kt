@@ -94,7 +94,7 @@ class MeetingViewDetail : AppCompatActivity(), IVdeleteUser {
 
 
     fun topBarSetup() {
-        meeting_info_name.text = localMeeting.title + localMeeting.meeting_link
+        meeting_info_name.text = localMeeting.title
         topAppBar.title = localMeeting.title
         md_date.text = localMeeting.date
         md_clock.text = localMeeting.time
