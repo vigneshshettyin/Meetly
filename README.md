@@ -36,7 +36,7 @@ An intuitive productivity app for busy people. Life can be very chaotic, but it 
 [![forthebadge](https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white)](#)
 [![forthebadge](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)](#)
 [![forthebadge](https://img.shields.io/badge/Heroku-430098?style=for-the-badge&logo=heroku&logoColor=white)](#)
-[![forthebadge](https://img.shields.io/badge/Amazon_AWS-232F3E?style=for-the-badge&logo=amazon-aws&logoColor=white)](#)
+[![forthebadge](https://img.shields.io/badge/firebase-%23039BE5.svg?style=for-the-badge&logo=firebase)](#)
 [![forthebadge](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](#)
 
 <h2 align=center> 👨🏻‍💻 How to get started? </h2> 
@@ -88,5 +88,8 @@ SOFTWARE.
 <p align="center">
   <a href="https://meetly.tawk.help/" target="_blank">
   <img src="https://img.shields.io/badge/Ask%20me-anything-1abc9c.svg?style=for-the-badge"/>
+  </a>
+  <a href="https://meetly.tawk.help/" target="_blank">
+  <img alt="Play Store" src="https://img.shields.io/badge/Google_Play-414141?style=for-the-badge&logo=google-play&logoColor=white" />
   </a>
 </p>
