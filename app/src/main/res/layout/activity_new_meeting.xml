@@ -21,37 +21,11 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/secondary_blue"
+            app:navigationIconTint="?attr/colorOnSecondary"
             app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
             app:title="New Meeting" />
     </com.google.android.material.appbar.AppBarLayout>
-    <!--
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/testSelectDate"
-            android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:layout_margin="30dp"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="10dp"
-            android:background="@drawable/square_button_grad"
-            android:text="@string/select_date"
-            app:backgroundTint="@null"
-            app:layout_constraintTop_toBottomOf="@id/detailOutline"
-            app:layout_constraintEnd_toEndOf="@id/guideline3"
-            app:layout_constraintStart_toStartOf="parent" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/testSelectTime"
-            android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginEnd="10dp"
-            android:layout_margin="30dp"
-            android:background="@drawable/square_button_grad"
-            android:text="@string/select_time"
-            app:backgroundTint="@null"
-            app:layout_constraintTop_toBottomOf="@id/detailOutline"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@id/guideline3" />-->
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -67,7 +41,6 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_margin="25dp"
-
             app:layout_constraintTop_toTopOf="parent"
             tools:layout_editor_absoluteX="25dp">
 
@@ -196,10 +169,9 @@
             android:id="@+id/etvTestText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
+            android:textColor="@color/primary_dark"
             android:inputType="text"
             android:scrollbars="vertical"
-
             android:textSize="16sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -222,7 +194,6 @@
             android:id="@+id/meetingLink"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             android:inputType="text"
             android:scrollbars="vertical"
             android:textColor="@color/primary_dark"
@@ -248,7 +219,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:boxBackgroundColor="@color/extreme_light_grey"
-
             android:inputType="textMultiLine"
             android:lines="3"
             android:scrollbars="vertical"
@@ -266,6 +236,7 @@
         android:contentDescription="@string/appbar_scrolling_view_behavior"
         android:padding="10dp"
         android:scaleType="centerCrop"
+        app:tint="?attr/colorOnSecondary"
         android:src="@drawable/ic_baseline_add_task_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline6" />
