@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DevsActivity">
+    tools:context=".DevsActivity"
+    >
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/filterAppbar"
@@ -20,7 +21,8 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
-            app:title="Team Section" />
+            app:title="Team Section"
+            app:navigationIconTint="?attr/colorOnSecondary"/>
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -44,7 +46,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
-
         </LinearLayout>
 
         <ImageView
@@ -142,7 +143,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
-
         </LinearLayout>
 
         <ImageView

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="18dp"
-    android:backgroundTint="@color/white"
+    android:backgroundTint="?attr/colorSurface"
     app:cardCornerRadius="15dp"
     app:cardElevation="3dp">
 
@@ -23,7 +23,7 @@
             android:layout_marginTop="16dp"
             android:fontFamily="@font/catamaran_medium"
             android:text="@string/app_name"
-            android:textColor="?attr/colorOnSecondary"
+            android:textColor="@color/primary_blue"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="@+id/guideline2"
             app:layout_constraintTop_toTopOf="parent" />
@@ -35,7 +35,7 @@
             android:layout_margin="10dp"
             android:fontFamily="@font/catamaran_medium"
             android:text="@string/bottom_sheet_behavior"
-            android:textColor="@color/secondary_dark"
+            android:textColor="?attr/colorOnSurface"
             android:textSize="16sp"
             app:autoSizeTextType="none"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -52,7 +52,7 @@
             android:layout_marginTop="5dp"
             android:fontFamily="@font/catamaran"
             android:text="@string/just_now"
-            android:textColor="@color/secondary_dark"
+            android:textColor="?attr/colorOnSurface"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/guideline2"

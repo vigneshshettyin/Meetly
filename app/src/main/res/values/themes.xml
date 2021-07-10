@@ -8,11 +8,13 @@
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/primary_blue</item>
         <item name="colorSecondaryVariant">@color/secondary_blue</item>
-        <item name="colorOnSecondary">@color/primary_dark</item>
+        <item name="colorOnSecondary">@color/grey_300</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">@color/black</item>
         <!-- Customize your theme here. -->
         <item name="colorOnSurface">@color/secondary_dark</item>
+        <item name="colorSurface">@color/grey_200</item>
+        <item name="colorOnBackground">@color/secondary_dark</item>
     </style>
     <style name="drawerListItems" parent="android:Widget.TextView">
         <item name="android:fontFamily">@font/catamaran</item>
