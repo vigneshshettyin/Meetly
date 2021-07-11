@@ -4,15 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     >
 
+
     <item android:title="SUBSCRIBER">
         <menu>
             <item android:title="Profile"
                 android:tooltipText="Edit your profile here!"
                 android:icon="@drawable/ic_baseline_supervised_user_circle_24"
-                android:id="@+id/profile"/>
+                android:id="@+id/profile" />
         </menu>
     </item>
-    <item android:title="MEETING'S">
+    <item android:title="MEETING'S"
+        >
         <menu>
             <item android:title="Today's"
                 android:icon="@drawable/ic_baseline_connect_without_contact_24"
@@ -36,7 +38,8 @@
                 android:id="@+id/meetDevs"/>
         </menu>
     </item>
-    <group android:id="@+id/logoutGroup">
+    <group android:id="@+id/logoutGroup"
+        android:textColor="?attr/colorOnSurface">
         <item android:title="Logout"
             android:id="@+id/logout"
             android:icon="@drawable/ic_baseline_exit_to_app_24"/>
