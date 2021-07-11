@@ -1,0 +1,44 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "contributorsPerLine": 4,
+  "contributorsSortAlphabetically": false,
+  "badgeTemplate": "[![All Contributors](https://img.shields.io/badge/all_contributors-<%= contributors.length %>-orange.svg?style=flat-square)](#contributors)",
+  "contributorTemplate": "<a href=\"<%= contributor.profile %>\"><img src=\"<%= contributor.avatar_url %>\" width=\"<%= options.imageSize %>px;\" alt=\"\"/><br /><sub><b><%= contributor.name %></b></sub></a>",
+  "types": {
+    "custom": {
+      "symbol": "🔭",
+      "description": "A custom contribution type.",
+      "link": "[<%= symbol %>](<%= url %> \"<%= description %>\"),"
+    }
+  },
+  "skipCi": true,
+  "contributors": [
+    {
+      "login": "vigneshshettyin",
+      "name": "Vignesh Shetty",
+      "avatar_url": "https://avatars.githubusercontent.com/u/77713888?v=4",
+      "profile": "http://vigneshcodes.in",
+      "contributions": [
+        "design",
+        "code"
+      ]
+    },
+    {
+      "login": "Xfinity-bot",
+      "name": "Xfinity",
+      "avatar_url": "https://avatars.githubusercontent.com/u/65854432?v=4",
+      "profile": "https://xfinity.ml",
+      "contributions": [
+        "design",
+        "code"
+      ]
+    }
+  ],
+  "projectName": "Meetly",
+  "projectOwner": "vigneshshettyin",
+  "repoType": "github",
+  "repoHost": "https://github.com"
+}
