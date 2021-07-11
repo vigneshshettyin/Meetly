@@ -85,6 +85,11 @@ SOFTWARE.
 
 ```
 
+<h2 align=center> Contributors ✨ </h2>
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
 <p align="center">
   <a href="https://meetly.tawk.help/" target="_blank">
   <img src="https://img.shields.io/badge/Ask%20me-anything-1abc9c.svg?style=for-the-badge"/>
