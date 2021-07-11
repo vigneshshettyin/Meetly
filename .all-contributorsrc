@@ -25,6 +25,16 @@
         "design",
         "code"
       ]
+    },
+    {
+      "login": "Xfinity-bot",
+      "name": "Xfinity",
+      "avatar_url": "https://avatars.githubusercontent.com/u/65854432?v=4",
+      "profile": "https://xfinity.ml",
+      "contributions": [
+        "design",
+        "code"
+      ]
     }
   ],
   "projectName": "Meetly",
