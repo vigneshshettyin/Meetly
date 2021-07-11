@@ -53,4 +53,17 @@
     <string name="exitMessage">Exit Meetly ?</string>
     <string name="attendee">Attendees : </string>
     <string name="_1">1</string>
+    <string name="host">Host</string>
+    <string name="description">Description</string>
+    <string name="join_meeting">Join Meeting!</string>
+    <string name="add_more">+ Add More</string>
+    <string name="help_amp_support"><![CDATA[HELP & SUPPORT]]></string>
+    <string name="support_updates">Support Updates</string>
+    <string name="raise_request">Raise Request</string>
+    <string name="team">Team</string>
+    <string name="create">Create</string>
+    <string name="today_s">Today\'s</string>
+    <string name="meeting_s">MEETING\'S</string>
+    <string name="profile">Profile</string>
+    <string name="subscriber">SUBSCRIBER</string>
 </resources>
