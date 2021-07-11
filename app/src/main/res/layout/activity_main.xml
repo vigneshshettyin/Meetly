@@ -85,6 +85,7 @@
                 app:lottie_loop="true"
                 app:lottie_rawRes="@raw/loaderanim1" />
         </androidx.cardview.widget.CardView>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.navigation.NavigationView

@@ -1,46 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     >
 
-
-    <item android:title="SUBSCRIBER">
+    <item android:title="@string/subscriber">
         <menu>
-            <item android:title="Profile"
-                android:tooltipText="Edit your profile here!"
+            <item android:title="@string/profile"
                 android:icon="@drawable/ic_baseline_supervised_user_circle_24"
                 android:id="@+id/profile" />
         </menu>
     </item>
-    <item android:title="MEETING'S"
-        >
+    <item android:title="@string/meeting_s">
         <menu>
-            <item android:title="Today's"
+            <item android:title="@string/today_s"
                 android:icon="@drawable/ic_baseline_connect_without_contact_24"
                 android:id="@+id/todayMeeting"/>
-            <item android:title="Create"
+            <item android:title="@string/create"
                 android:icon="@drawable/ic_baseline_add_24"
                 android:id="@+id/newMeeting"/>
         </menu>
     </item>
 
-    <item android:title="HELP &amp; SUPPORT">
+    <item android:title="@string/help_amp_support">
         <menu>
-            <item android:title="Support Updates"
+            <item android:title="@string/support_updates"
                 android:icon="@drawable/ic_baseline_new_releases_24"
                 android:id="@+id/devSupport"/>
-            <item android:title="Raise Request"
+            <item android:title="@string/raise_request"
                 android:icon="@drawable/ic_baseline_report_problem_24"
                 android:id="@+id/raiseRequest"/>
-            <item android:title="Team"
+            <item android:title="@string/team"
                 android:icon="@drawable/ic_baseline_person_outline_24"
                 android:id="@+id/meetDevs"/>
         </menu>
     </item>
-    <group android:id="@+id/logoutGroup"
-        android:textColor="?attr/colorOnSurface">
-        <item android:title="Logout"
+    <group android:id="@+id/logoutGroup">
+        <item android:title="@string/logout"
             android:id="@+id/logout"
             android:icon="@drawable/ic_baseline_exit_to_app_24"/>
     </group>

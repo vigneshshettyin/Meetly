@@ -66,6 +66,8 @@ class MeetingViewDetail : AppCompatActivity(), IVdeleteUser {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_meeting_view_detail)
 
+        meetingViewDetailPreloader.visibility = View.VISIBLE
+
         currentMeetingId = intent.getStringExtra("meeting_document_id").toString()
 
         loadCurrentMeetingData(currentMeetingId)
@@ -92,7 +94,7 @@ class MeetingViewDetail : AppCompatActivity(), IVdeleteUser {
 
 
     fun topBarSetup() {
-        meeting_info_name.text = localMeeting.title + localMeeting.meeting_link
+        meeting_info_name.text = localMeeting.title
         topAppBar.title = localMeeting.title
         md_date.text = localMeeting.date
         md_clock.text = localMeeting.time
@@ -153,6 +155,8 @@ class MeetingViewDetail : AppCompatActivity(), IVdeleteUser {
         JitsiMeet.setDefaultConferenceOptions(defaultOptions)
 
         registerForBroadcastMessages()
+
+        meetingViewDetailPreloader.visibility = View.GONE
 
     }
 
