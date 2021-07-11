@@ -161,6 +161,7 @@
         android:layout_marginRight="25dp"
         android:hint="@string/title"
         android:textColorHint="?attr/colorOnBackground"
+        app:endIconTint="?attr/colorOnBackground"
         app:endIconMode="clear_text"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -186,11 +187,13 @@
         android:layout_marginRight="25dp"
         android:hint="@string/room_name"
         app:endIconMode="clear_text"
+        app:endIconTint="?attr/colorOnBackground"
         android:textColorHint="?attr/colorOnBackground"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/testTest"
-        app:prefixText="R:ID">
+        app:prefixText="R:ID"
+        app:prefixTextColor="@color/primary_blue">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/meetingLink"
@@ -212,6 +215,7 @@
         android:layout_marginRight="25dp"
         android:hint="@string/content"
         app:endIconMode="clear_text"
+        app:endIconTint="?attr/colorOnBackground"
         android:textColorHint="?attr/colorOnBackground"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
