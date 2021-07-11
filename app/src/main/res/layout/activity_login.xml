@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:layout_gravity="center"
     android:id="@+id/loginSnackbar"
-    android:background="@drawable/bg_light"
+    android:background="@drawable/bg"
     tools:context=".LoginActivity">
 
     <TextView
@@ -23,12 +23,14 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textEmail"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        style="@style/LoginTextInputLayoutStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="25dp"
         android:hint="@string/email"
         app:endIconMode="clear_text"
+        app:startIconTint="?attr/colorOnBackground"
+        app:endIconTint="?attr/colorOnBackground"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/hglafterhead"
@@ -39,18 +41,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
-            android:textColor="@color/primary_dark"
+            android:textColor="?attr/colorOnBackground"
             android:textSize="14sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textPassword"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="25dp"
         android:hint="@string/password"
         app:endIconMode="password_toggle"
+        style="@style/LoginTextInputLayoutStyle"
+        app:startIconTint="?attr/colorOnBackground"
+        app:endIconTint="?attr/colorOnBackground"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textEmail"
@@ -61,7 +65,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
-            android:textColor="@color/primary_dark"
+            android:textColor="?attr/colorOnBackground"
             android:textSize="14sp" />
     </com.google.android.material.textfield.TextInputLayout>
 

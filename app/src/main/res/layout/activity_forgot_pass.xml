@@ -41,14 +41,14 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textEmail"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="30dp"
         android:hint="@string/email"
         app:endIconMode="clear_text"
-        app:endIconTint="?attr/colorSurface"
-        android:background="@color/grey_200"
+        style="@style/LoginTextInputLayoutStyle"
+        app:startIconTint="?attr/colorOnBackground"
+        app:endIconTint="?attr/colorOnBackground"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/titlepass"
@@ -58,7 +58,7 @@
             android:id="@+id/etvEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/primary_dark"
+            android:textColor="?attr/colorOnBackground"
             android:inputType="textEmailAddress"
             />
     </com.google.android.material.textfield.TextInputLayout>
