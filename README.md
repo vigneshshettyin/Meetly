@@ -93,6 +93,7 @@ SOFTWARE.
 <table>
   <tr>
     <td align="center"><a href="http://vigneshcodes.in"><img src="https://avatars.githubusercontent.com/u/77713888?v=4" width="100px;" alt=""/><br /><sub><b>Vignesh Shetty</b></sub></a></td>
+    <td align="center"><a href="https://xfinity.ml"><img src="https://avatars.githubusercontent.com/u/65854432?v=4" width="100px;" alt=""/><br /><sub><b>Xfinity</b></sub></a></td>
   </tr>
 </table>
 
