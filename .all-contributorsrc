@@ -1,5 +1,7 @@
 {
-  "files": ["README.md"],
+  "files": [
+    "README.md"
+  ],
   "imageSize": 100,
   "contributorsPerLine": 4,
   "contributorsSortAlphabetically": false,
@@ -12,6 +14,21 @@
       "link": "[<%= symbol %>](<%= url %> \"<%= description %>\"),"
     }
   },
-  "skipCi": "true",
-  "contributors": []
+  "skipCi": true,
+  "contributors": [
+    {
+      "login": "vigneshshettyin",
+      "name": "Vignesh Shetty",
+      "avatar_url": "https://avatars.githubusercontent.com/u/77713888?v=4",
+      "profile": "http://vigneshcodes.in",
+      "contributions": [
+        "design",
+        "code"
+      ]
+    }
+  ],
+  "projectName": "Meetly",
+  "projectOwner": "vigneshshettyin",
+  "repoType": "github",
+  "repoHost": "https://github.com"
 }
