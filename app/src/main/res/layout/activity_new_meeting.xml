@@ -154,12 +154,13 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/testTest"
         android:layout_width="0dp"
-        app:boxBackgroundColor="@color/extreme_light_grey"
+        style="@style/LoginTextInputLayoutStyle"
         android:layout_height="wrap_content"
         android:layout_marginLeft="25dp"
         android:layout_marginTop="50dp"
         android:layout_marginRight="25dp"
         android:hint="@string/title"
+        android:textColorHint="?attr/colorOnBackground"
         app:endIconMode="clear_text"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -169,7 +170,7 @@
             android:id="@+id/etvTestText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/primary_dark"
+            android:textColor="?attr/colorOnBackground"
             android:inputType="text"
             android:scrollbars="vertical"
             android:textSize="16sp" />
@@ -178,13 +179,14 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/email"
         android:layout_width="0dp"
-        app:boxBackgroundColor="@color/extreme_light_grey"
+        style="@style/LoginTextInputLayoutStyle"
         android:layout_height="wrap_content"
         android:layout_marginLeft="25dp"
         android:layout_marginTop="20dp"
         android:layout_marginRight="25dp"
         android:hint="@string/room_name"
         app:endIconMode="clear_text"
+        android:textColorHint="?attr/colorOnBackground"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/testTest"
@@ -196,13 +198,13 @@
             android:layout_height="wrap_content"
             android:inputType="text"
             android:scrollbars="vertical"
-            android:textColor="@color/primary_dark"
+            android:textColor="?attr/colorOnBackground"
             android:textSize="14sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/detailOutline"
-        app:boxBackgroundColor="@color/extreme_light_grey"
+        style="@style/LoginTextInputLayoutStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="25dp"
@@ -210,6 +212,7 @@
         android:layout_marginRight="25dp"
         android:hint="@string/content"
         app:endIconMode="clear_text"
+        android:textColorHint="?attr/colorOnBackground"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/email">
@@ -218,11 +221,10 @@
             android:id="@+id/detail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:boxBackgroundColor="@color/extreme_light_grey"
             android:inputType="textMultiLine"
             android:lines="3"
             android:scrollbars="vertical"
-            android:textColor="@color/primary_dark"
+            android:textColor="?attr/colorOnBackground"
             android:textSize="14sp" />
     </com.google.android.material.textfield.TextInputLayout>
 

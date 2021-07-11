@@ -29,7 +29,7 @@
                 android:icon="@drawable/ic_baseline_report_problem_24"
                 android:id="@+id/raiseRequest"/>
             <item android:title="@string/team"
-                android:icon="@drawable/ic_baseline_person_outline_24"
+                android:icon="@drawable/ic_baseline_person_24"
                 android:id="@+id/meetDevs"/>
         </menu>
     </item>
