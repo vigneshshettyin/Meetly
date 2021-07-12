@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="?attr/colorOnPrimary"
+    app:cardCornerRadius="15dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -11,14 +13,17 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/testTest"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            style="@style/LoginTextInputLayoutStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/email"
             android:paddingTop="40dp"
             android:paddingBottom="25dp"
             app:endIconMode="clear_text"
+            app:endIconTint="?attr/colorOnBackground"
+            app:startIconTint="?attr/colorOnBackground"
             app:helperText="@string/note_user_must_have_account_at_meetly"
+            app:helperTextTextColor="?attr/colorOnBackground"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -30,9 +35,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="8dp"
-                android:backgroundTint="@color/primary_dark"
                 android:inputType="textEmailAddress"
-                android:textColor="@color/primary_dark"
+                android:textColor="?attr/colorOnBackground"
                 android:textSize="16sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
