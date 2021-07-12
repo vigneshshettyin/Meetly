@@ -202,8 +202,6 @@ class MeetingViewDetail : AppCompatActivity(), IVdeleteUser {
                         activity_view_detail_cr,
                         "User doesn't have a account at Meetly!", Snackbar.LENGTH_LONG
                     )
-                        .setBackgroundTint(resources.getColor(R.color.snackbar_success))
-                        .setTextColor(resources.getColor(R.color.white))
                         .show()
 
                 } else {
@@ -250,8 +248,6 @@ class MeetingViewDetail : AppCompatActivity(), IVdeleteUser {
                                         activity_view_detail_cr,
                                         "User deleted successfully!!", Snackbar.LENGTH_LONG
                                     )
-                                        .setBackgroundTint(resources.getColor(R.color.snackbar_success))
-                                        .setTextColor(resources.getColor(R.color.white))
                                         .show()
                                     updateMyMeetingData(tempUsersList as ArrayList<String>)
                                 }
@@ -315,28 +311,32 @@ class MeetingViewDetail : AppCompatActivity(), IVdeleteUser {
     }
 
     fun onButtonClick(v: View?) {
-        if(!auth.currentUser!!.isEmailVerified){
-            Snackbar.make(activity_view_detail_cr, "Please verify your email id!", Snackbar.LENGTH_LONG)
+        if (!auth.currentUser!!.isEmailVerified) {
+            Snackbar.make(
+                activity_view_detail_cr,
+                "Please verify your email id!",
+                Snackbar.LENGTH_LONG
+            )
                 .setAction(R.string.action_profile) {
                     startActivity(Intent(this, UserProfile::class.java))
                     finish()
                 }
                 .show()
         }
-            val text = localMeeting.meeting_link
-            if (text.length > 0) {
-                // Build options object for joining the conference. The SDK will merge the default
-                // one we set earlier and this one when joining.
-                val options = JitsiMeetConferenceOptions.Builder()
-                    .setRoom(text)
-                    // Settings for audio and video
-                    //.setAudioMuted(true)
-                    //.setVideoMuted(true)
-                    .build()
-                // Launch the new activity with the given options. The launch() method takes care
-                // of creating the required Intent and passing the options.
-                JitsiMeetActivity.launch(this, options)
-            }
+        val text = localMeeting.meeting_link
+        if (text.length > 0) {
+            // Build options object for joining the conference. The SDK will merge the default
+            // one we set earlier and this one when joining.
+            val options = JitsiMeetConferenceOptions.Builder()
+                .setRoom(text)
+                // Settings for audio and video
+                //.setAudioMuted(true)
+                //.setVideoMuted(true)
+                .build()
+            // Launch the new activity with the given options. The launch() method takes care
+            // of creating the required Intent and passing the options.
+            JitsiMeetActivity.launch(this, options)
+        }
     }
 
 
@@ -386,14 +386,14 @@ class MeetingViewDetail : AppCompatActivity(), IVdeleteUser {
         addUserToCurrentMeeting(email, false)
     }
 
-    private fun setHostDetails(hostUIDPass : String){
+    private fun setHostDetails(hostUIDPass: String) {
         GlobalScope.launch {
             // Get Meeting Data
             val hostUID = localMeeting.userId[0]
             // Get particular user data
             val userdao = UserDao()
             val hostUserDetails = userdao.getUserById(hostUID).await().toObject(User::class.java)!!
-            withContext(Dispatchers.Main){
+            withContext(Dispatchers.Main) {
                 host_name.text = hostUserDetails.displayName
             }
         }
@@ -412,6 +412,7 @@ class MeetingViewDetail : AppCompatActivity(), IVdeleteUser {
             }
         }
     }
+
     fun TextView.underline() {
         paintFlags = paintFlags or Paint.UNDERLINE_TEXT_FLAG
     }
