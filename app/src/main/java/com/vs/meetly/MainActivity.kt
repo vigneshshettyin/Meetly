@@ -153,7 +153,7 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
         else if (resultCode == Activity.RESULT_OK
             && requestCode == MEETING_VIEW_DETAIL_CODE
         ) {
-            Toast.makeText(this, "Meeting View Detail!", Toast.LENGTH_SHORT).show()
+//            Toast.makeText(this, "Meeting View Detail!", Toast.LENGTH_SHORT).show()
             setUpFireStore()
             setUpRecyclerView()
             adapter.notifyDataSetChanged()
@@ -168,7 +168,7 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
             firestore.collection("meetings").whereArrayContains("userId", auth.currentUser!!.uid)
         collectionReference.addSnapshotListener { value, error ->
             if (value == null || error != null) {
-                Toast.makeText(this, "Error fetching data", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(this, "Error fetching data", Toast.LENGTH_SHORT).show()
                 return@addSnapshotListener
             }
             meetingList.clear()
@@ -267,6 +267,7 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
                         .setPositiveButton(resources.getString(R.string.logout)) { dialog, which ->
                             // Respond to positive button press
                             FirebaseAuth.getInstance().signOut()
+                            Toast.makeText(this, "Logout Successfull!", Toast.LENGTH_SHORT).show()
                             val intent = Intent(this, LoginActivity::class.java)
                             startActivity(intent)
                             finish()
@@ -364,7 +365,7 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
                         }
                     } catch (e: Exception) {
                         withContext(Dispatchers.Main) {
-                            Toast.makeText(this@MainActivity, e.message, Toast.LENGTH_LONG).show()
+                            Toast.makeText(this@MainActivity, "Error!", Toast.LENGTH_LONG).show()
                         }
                     }
                 }
@@ -396,7 +397,7 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
             if (meetingQuery.documents.isNotEmpty()) {
                 for (document in meetingQuery) {
                     withContext(Dispatchers.Main) {
-                        Toast.makeText(this@MainActivity, document.id, Toast.LENGTH_SHORT).show()
+//                        Toast.makeText(this@MainActivity, document.id, Toast.LENGTH_SHORT).show()
                         val intent = Intent(this@MainActivity, MeetingViewDetail::class.java)
                         intent.putExtra("meeting_document_id", document.id)
                         startActivityForResult(intent, MEETING_VIEW_DETAIL_CODE)
