@@ -154,12 +154,13 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/testTest"
         android:layout_width="0dp"
-        style="@style/LoginTextInputLayoutStyle"
+        style="@style/newMeeting"
         android:layout_height="wrap_content"
         android:layout_marginLeft="25dp"
         android:layout_marginTop="50dp"
         android:layout_marginRight="25dp"
         android:hint="@string/title"
+        app:boxStrokeWidth="2dp"
         android:textColorHint="?attr/colorOnBackground"
         app:endIconTint="?attr/colorOnBackground"
         app:endIconMode="clear_text"
@@ -180,7 +181,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/email"
         android:layout_width="0dp"
-        style="@style/LoginTextInputLayoutStyle"
+        style="@style/newMeeting"
         android:layout_height="wrap_content"
         android:layout_marginLeft="25dp"
         android:layout_marginTop="20dp"
@@ -207,7 +208,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/detailOutline"
-        style="@style/LoginTextInputLayoutStyle"
+        style="@style/newMeeting"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="25dp"

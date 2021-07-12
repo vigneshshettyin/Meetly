@@ -22,4 +22,9 @@
         <item name="boxStrokeWidth">2dp</item>
         <item name="android:textColorHint">@color/primary_blue</item>
     </style>
+    <style name="newMeeting" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        <item name="boxStrokeColor">@color/text_input_box_stroke_new</item>
+        <item name="boxStrokeWidth">2dp</item>
+        <item name="android:textColorHint">@color/primary_blue</item>
+    </style>
 </resources>
