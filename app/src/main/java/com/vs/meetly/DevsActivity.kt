@@ -28,9 +28,9 @@ class DevsActivity : AppCompatActivity() {
 
         // TODO: Change to dev images at last!
 
-        val url_vdp = "https://res.cloudinary.com/vigneshshettyin/image/upload/v1624102716/dfgmvgwtlyc08gcfmtly.png"
+        val url_vdp = "https://avatars.githubusercontent.com/u/77713888?v=4"
 
-        val url_sdp = "https://res.cloudinary.com/vigneshshettyin/image/upload/v1624102716/dfgmvgwtlyc08gcfmtly.png"
+        val url_sdp = "https://avatars.githubusercontent.com/u/65854432?v=4"
 
         Glide.with(vdp).load(url_vdp).circleCrop().into(vdp)
         Glide.with(sdp).load(url_sdp).circleCrop().into(sdp)

@@ -87,10 +87,10 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
                 onDateSelected(dateInMillis)
             }
             datePicker.addOnNegativeButtonClickListener {
-                Toast.makeText(this, "-", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(this, "-", Toast.LENGTH_SHORT).show()
             }
             datePicker.addOnCancelListener {
-                Toast.makeText(this, "<- Back", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(this, "<- Back", Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -143,7 +143,7 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
         } else if (resultCode == Activity.RESULT_OK
             && requestCode == MEETING_FILTER_REQUEST_CODE
         ) {
-            Toast.makeText(this, "<- pressed!!", Toast.LENGTH_SHORT).show()
+//            Toast.makeText(this, "<- pressed!!", Toast.LENGTH_SHORT).show()
             setUpFireStore()
             setUpRecyclerView()
             adapter.notifyDataSetChanged()
@@ -216,7 +216,7 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
                     val date = Calendar.getInstance().time
                     val sdf = SimpleDateFormat("yyyy-MM-dd")
                     val formatedDate = sdf.format(date)
-                    Toast.makeText(this, formatedDate.toString(), Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(this, formatedDate.toString(), Toast.LENGTH_SHORT).show()
                     val intent = Intent(this, MeetingFilter::class.java)
                     intent.putExtra("DATE", formatedDate)
                     startActivityForResult(intent, MEETING_FILTER_REQUEST_CODE)
