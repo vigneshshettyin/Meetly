@@ -3,6 +3,7 @@ package com.vs.meetly.adapters
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -50,6 +51,7 @@ class MeetingAdapter(val context: Context, private val meeting: List<Meeting>, p
         val linearLayout:LinearLayout=itemView.findViewById(R.id.linearLayout)
         val deleteMeeting : ImageView = itemView.findViewById(R.id.deleteMeeting)
         val cardViewMeeting : CardView = itemView.findViewById(R.id.cardViewMeeting)
+
     }
 }
 interface IMeetingRVAdapter{
