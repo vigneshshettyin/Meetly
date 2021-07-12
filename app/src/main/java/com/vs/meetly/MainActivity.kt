@@ -95,8 +95,7 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
         }
     }
 
-    override fun onBackPressed()
-    {
+    override fun onBackPressed() {
         if (mainDrawer.isDrawerOpen(GravityCompat.START)) {
             mainDrawer.closeDrawer(GravityCompat.START)
             Snackbar.make(
@@ -105,8 +104,7 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
             )
                 .show()
 
-        } else
-        {
+        } else {
             MaterialAlertDialogBuilder(
                 this@MainActivity,
                 R.style.Base_ThemeOverlay_MaterialComponents_MaterialAlertDialog
@@ -149,16 +147,14 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
             setUpFireStore()
             setUpRecyclerView()
             adapter.notifyDataSetChanged()
-        }
-        else if (resultCode == Activity.RESULT_OK
+        } else if (resultCode == Activity.RESULT_OK
             && requestCode == MEETING_VIEW_DETAIL_CODE
         ) {
 //            Toast.makeText(this, "Meeting View Detail!", Toast.LENGTH_SHORT).show()
             setUpFireStore()
             setUpRecyclerView()
             adapter.notifyDataSetChanged()
-        }
-        else {
+        } else {
             Log.e("Cancelled", "Cancelled")
         }
     }
@@ -233,7 +229,7 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
                     startActivity(intent)
                     true
                 }
-                R.id.raiseRequest ->{
+                R.id.raiseRequest -> {
                     mainDrawer.closeDrawers()
                     val url = "https://meetly.tawk.help"
                     val builder = CustomTabsIntent.Builder()
@@ -305,17 +301,14 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
                         if (it.title.toLowerCase(Locale.getDefault()).contains(searchText)) {
                             tempMeetingList.add(it)
                             mainNoData.visibility = View.GONE
-                        }
-                        else{
+                        } else {
                             mainNoData.visibility = View.VISIBLE
                         }
                     }
                     adapter.notifyDataSetChanged()
-                }
-                else if(meetingList.isEmpty()){
+                } else if (meetingList.isEmpty()) {
                     mainNoData.visibility = View.VISIBLE
-                }
-                else {
+                } else {
                     mainNoData.visibility = View.GONE
                     tempMeetingList.clear()
                     tempMeetingList.addAll(meetingList)
@@ -425,12 +418,12 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
         //A unique code for starting the activity for result
         const val MY_PROFILE_REQUEST_CODE: Int = 11
 
-        const val MEETING_FILTER_REQUEST_CODE : Int = 22
+        const val MEETING_FILTER_REQUEST_CODE: Int = 22
 
-        const val MEETING_VIEW_DETAIL_CODE : Int = 33
+        const val MEETING_VIEW_DETAIL_CODE: Int = 33
     }
 
-    fun closeLayoutDrawer(view: View){
+    fun closeLayoutDrawer(view: View) {
         mainDrawer.closeDrawers()
     }
 }

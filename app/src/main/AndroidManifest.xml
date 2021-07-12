@@ -75,7 +75,7 @@
                 <category android:name="android.intent.category.BROWSABLE" />
                 <category android:name="android.intent.category.DEFAULT" />
 
-                <data android:scheme="db-sz56rdeqes3x9uo" />
+                <data android:scheme="db-gmh5c05ywt6q1te" />
             </intent-filter>
         </activity>
 

@@ -80,14 +80,14 @@ class UserProfile : AppCompatActivity() {
             updateUserProfileData()
         }
         verifyEmailtBtn.setOnClickListener {
-            if(!auth.currentUser!!.isEmailVerified){
+            if (!auth.currentUser!!.isEmailVerified) {
                 auth.currentUser!!.sendEmailVerification()
                 Snackbar.make(
                     profileSnackbar,
                     "Verification email sent successfully!", Snackbar.LENGTH_LONG
                 )
                     .show()
-            }else{
+            } else {
                 Snackbar.make(
                     profileSnackbar,
                     "Email already verified!", Snackbar.LENGTH_LONG
@@ -144,7 +144,7 @@ class UserProfile : AppCompatActivity() {
                 profileName.setText(user.displayName)
                 profileEmail.setText(user.email)
                 profilePhone.setText(user.phone.toString())
-                if(auth.currentUser!!.isEmailVerified){
+                if (auth.currentUser!!.isEmailVerified) {
                     verifiedstatus.setVisibility(View.VISIBLE);
 
 
@@ -242,6 +242,7 @@ class UserProfile : AppCompatActivity() {
         return MimeTypeMap.getSingleton()
             .getExtensionFromMimeType(activity.contentResolver.getType(uri!!))
     }
+
     fun TextView.underline() {
         paintFlags = paintFlags or Paint.UNDERLINE_TEXT_FLAG
     }
