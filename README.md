@@ -29,6 +29,12 @@ An intuitive productivity app for busy people. Life can be very chaotic, but it 
 
 </div>
 
+<br>
+
+https://user-images.githubusercontent.com/77713888/125432947-e5bdf087-017d-49dc-bcfa-0a61e6307fb9.mp4
+
+<br>
+
 <h2 align=center> ⚛️ Tech Stack </h2>
 
 [![forthebadge](https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white)](#)
