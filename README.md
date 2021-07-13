@@ -17,15 +17,15 @@ An intuitive productivity app for busy people. Life can be very chaotic, but it 
 
 <div style="display:flex;">
   
-- 
-- 
-- 
-- 
-- 
-- 
--
--
--
+- Schedule Meetings.
+- Add or remove meeting attendees.
+- Developer support channel.
+- Secure and Encrypted.
+- Realtime updates.
+- Recording meeting using dropbox support.
+- Live streaming support.
+- Share yt video option.
+- HD quality video support.
 
 </div>
 
