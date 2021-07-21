@@ -10,6 +10,7 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.EditText
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -287,6 +288,8 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
         menuInflater.inflate(R.menu.right_menu_search_bar, menu)
         val item = menu?.findItem(R.id.search_action)
         val searchView = item?.actionView as androidx.appcompat.widget.SearchView
+        val edittext=searchView.findViewById<EditText>(androidx.appcompat.R.id.search_src_text)
+        edittext.setTextColor(getResources().getColor(R.color.lblue_200))
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
