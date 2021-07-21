@@ -23,7 +23,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textEmail"
-        style="@style/LoginTextInputLayoutStyle"
+        style="@style/newMeeting"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="25dp"
@@ -52,7 +52,7 @@
         android:layout_margin="25dp"
         android:hint="@string/password"
         app:endIconMode="password_toggle"
-        style="@style/LoginTextInputLayoutStyle"
+        style="@style/newMeeting"
         app:startIconTint="?attr/colorOnBackground"
         app:endIconTint="?attr/colorOnBackground"
         app:layout_constraintLeft_toLeftOf="parent"
