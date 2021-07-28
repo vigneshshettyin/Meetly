@@ -112,7 +112,7 @@ SOFTWARE.
   <a href="https://meetly.tawk.help/" target="_blank">
   <img src="https://img.shields.io/badge/Ask%20me-anything-1abc9c.svg?style=for-the-badge"/>
   </a>
-  <a href="https://meetly.tawk.help/" target="_blank">
+  <a href="https://go.vigneshcodes.in/meetly" target="_blank">
   <img alt="Play Store" src="https://img.shields.io/badge/Google_Play-414141?style=for-the-badge&logo=google-play&logoColor=white" />
   </a>
 </p>
