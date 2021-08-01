@@ -239,7 +239,7 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
 
                 R.id.newMeeting -> {
                     mainDrawer.closeDrawers()
-                    val dialog = BottomSheetDialog(this)
+                    val dialog = BottomSheetDialog(this, R.style.BottomSheetDialogTheme)
                     // on below line we are inflating a layout file which we have created.
                     val view = layoutInflater.inflate(R.layout.dialog_bottom_navigation, null)
                     dialog.setCancelable(true)
