@@ -4,68 +4,104 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="wrap_content">
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
+        android:layout_marginBottom="20dp"
         android:layout_height="wrap_content"
-        android:layout_margin="2dp">
+        >
 
-        <!--image view for displaying course image-->
-        <ImageView
-            android:id="@+id/idIVCourse"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_margin="10dp"
-            android:src="@drawable/googleg_disabled_color_18" />
-
-        <!--text view for displaying course name-->
-        <TextView
-            android:id="@+id/idTVCourseName"
-            android:layout_width="match_parent"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textDateTime"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_toEndOf="@id/idIVCourse"
-            android:layout_toRightOf="@id/idIVCourse"
-            android:text="DSA Self Paced Course"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            android:layout_margin="20dp"
+            android:hint="@string/date_amp_time"
+            style="@style/newMeeting"
+            app:boxStrokeWidth="2dp"
+            android:textColorHint="?attr/colorOnBackground"
+            app:endIconTint="?attr/colorOnBackground"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <!--text view for displaying course tracks-->
-        <TextView
-            android:id="@+id/idTVCourseTracks"
-            android:layout_width="match_parent"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/date_time_new_meeting_v2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="false"
+                android:onClick="DateTimeFunction"
+                android:textColor="?attr/colorOnBackground"
+                android:inputType="datetime"
+                android:textSize="14sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/testTest"
+            android:layout_width="0dp"
+            style="@style/newMeeting"
             android:layout_height="wrap_content"
-            android:layout_below="@id/idTVCourseName"
-            android:layout_marginTop="10dp"
-            android:layout_toEndOf="@id/idIVCourse"
-            android:layout_toRightOf="@id/idIVCourse"
-            android:text="Course Tracks : 30"
-            android:textColor="@color/black"
-            android:textSize="15sp" />
+            android:hint="@string/title"
+            app:boxStrokeWidth="2dp"
+            android:layout_margin="20dp"
+            android:textColorHint="?attr/colorOnBackground"
+            app:endIconTint="?attr/colorOnBackground"
+            app:endIconMode="clear_text"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textDateTime">
 
-        <!--text view for displaying course duration-->
-        <TextView
-            android:id="@+id/idTVCourseDuration"
-            android:layout_width="match_parent"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/meeting_title_v2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="?attr/colorOnBackground"
+                android:inputType="text"
+                android:scrollbars="vertical"
+                android:textSize="16sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/detailOutline"
+            style="@style/newMeeting"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_below="@id/idTVCourseTracks"
-            android:layout_marginTop="10dp"
-            android:layout_toEndOf="@id/idIVCourse"
-            android:layout_toRightOf="@id/idIVCourse"
-            android:text="Course Duration : 4 Months"
-            android:textColor="@color/black"
-            android:textSize="15sp" />
+            android:layout_margin="20dp"
+            android:hint="@string/content"
+            app:endIconMode="clear_text"
+            app:endIconTint="?attr/colorOnBackground"
+            android:textColorHint="?attr/colorOnBackground"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/testTest">
 
-        <!--button for dismissing our dialog-->
-        <Button
-            android:id="@+id/idBtnDismiss"
-            android:layout_width="match_parent"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/meeting_content_v2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine"
+                android:lines="3"
+                android:scrollbars="vertical"
+                android:textColor="?attr/colorOnBackground"
+                android:textSize="14sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonProfileUpdate"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/idIVCourse"
-            android:layout_margin="10dp"
-            android:text="Dismiss dialog"
-            android:textAllCaps="false" />
+            android:layout_margin="20dp"
+            android:background="@drawable/gradient_button"
+            android:fontFamily="@font/poppins_semibold"
+            android:paddingStart="25dp"
+            android:paddingEnd="25dp"
+            android:text="@string/submit"
+            android:textSize="16sp"
+            android:textColor="?attr/colorSurface"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/detailOutline" />
 
-    </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

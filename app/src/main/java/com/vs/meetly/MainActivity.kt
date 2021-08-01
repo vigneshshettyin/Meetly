@@ -24,6 +24,8 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.timepicker.MaterialTimePicker
+import com.google.android.material.timepicker.TimeFormat
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.vs.meetly.adapters.IMeetingRVAdapter
@@ -52,6 +54,8 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
     lateinit var actionBarDrawerToggle: ActionBarDrawerToggle
 
     private lateinit var auth: FirebaseAuth
+
+    private var dateTimeSelectorFlag : Boolean = false
 
     private lateinit var user: User
 
@@ -120,11 +124,11 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
                 dialog.setContentView(view)
 
 
-            val closeButton = view.findViewById<Button>(R.id.idBtnDismiss) as Button
-
-            closeButton.setOnClickListener {
-                dialog.dismiss()
-            }
+//            val closeButton = view.findViewById<Button>(R.id.idBtnDismiss) as Button
+//
+//            closeButton.setOnClickListener {
+//                dialog.dismiss()
+//            }
                 // on below line we are calling
                 // a show method to display a dialog.
                 dialog.show()
@@ -454,6 +458,46 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
         startActivityForResult(intent, MEETING_FILTER_REQUEST_CODE)
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun setForDateAndTime(dateTimeStampInMillis: Long, view: View){
+        currentSelectedDate = dateTimeStampInMillis
+        val dateTime: LocalDateTime = LocalDateTime.ofInstant(
+            Instant.ofEpochMilli(
+                currentSelectedDate!!
+            ), ZoneId.systemDefault()
+        )
+        val dateAsFormattedText: String = dateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
+        var picker = MaterialTimePicker.Builder()
+            .setTimeFormat(TimeFormat.CLOCK_12H)
+            .setHour(12)
+            .setMinute(0)
+            .setTitleText("Select Time")
+            .build()
+
+        picker.show(supportFragmentManager, "Meetly")
+
+        var localTime : String = ""
+
+        picker.addOnPositiveButtonClickListener {
+            if (picker.hour > 12) {
+                localTime =
+                    String.format("%02d", picker.hour - 12) + ":" + String.format(
+                        "%02d", picker.minute
+                    ) + " PM"
+            } else {
+                localTime = String.format("%02d", picker.hour) + ":" + String.format(
+                    "%02d", picker.minute
+                ) + " AM"
+
+            }
+
+            val dateTimeV2 = view.findViewById<EditText>(R.id.date_time_new_meeting_v2) as EditText
+            dateTimeV2.setText("${dateAsFormattedText}  ${localTime}")
+            // Flag to check if date and time are selected
+            dateTimeSelectorFlag = true
+        }
+    }
+
     companion object {
         //A unique code for starting the activity for result
         const val MY_PROFILE_REQUEST_CODE: Int = 11
@@ -465,5 +509,23 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
 
     fun closeLayoutDrawer(view: View) {
         mainDrawer.closeDrawers()
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun DateTimeFunction(view: View) {
+        val selectedDateInMillis = currentSelectedDate ?: System.currentTimeMillis()
+
+        val datePicker =
+            MaterialDatePicker.Builder.datePicker().setSelection(selectedDateInMillis).build()
+        datePicker.show(supportFragmentManager, "DatePicker")
+        datePicker.addOnPositiveButtonClickListener { dateInMillis ->
+            setForDateAndTime(dateInMillis, view)
+        }
+        datePicker.addOnNegativeButtonClickListener {
+//                Toast.makeText(this, "-", Toast.LENGTH_SHORT).show()
+        }
+        datePicker.addOnCancelListener {
+//                Toast.makeText(this, "<- Back", Toast.LENGTH_SHORT).show()
+        }
     }
 }

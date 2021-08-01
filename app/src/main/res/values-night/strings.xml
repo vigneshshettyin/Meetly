@@ -60,4 +60,6 @@
     <string name="profile">Profile</string>
     <string name="subscriber">SUBSCRIBER</string>
     <string name="save">SAVE</string>
+    <string name="date_amp_time"><![CDATA[Date & Time]]></string>
+    <string name="submit">Submit</string>
 </resources>
