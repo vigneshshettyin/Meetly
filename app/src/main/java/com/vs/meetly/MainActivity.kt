@@ -10,6 +10,7 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.annotation.RequiresApi
@@ -19,6 +20,7 @@ import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.view.GravityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
@@ -33,6 +35,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_meeting_view_detail.*
 import kotlinx.android.synthetic.main.activity_new_meeting.*
 import kotlinx.android.synthetic.main.activity_user_profile.*
+import kotlinx.android.synthetic.main.dialog_bottom_navigation.*
 import kotlinx.android.synthetic.main.header_layout.*
 import kotlinx.coroutines.*
 import kotlinx.coroutines.tasks.await
@@ -93,6 +96,38 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
             datePicker.addOnCancelListener {
 //                Toast.makeText(this, "<- Back", Toast.LENGTH_SHORT).show()
             }
+        }
+        bottom_app_bar.setOnClickListener {
+
+                // on below line we are creating a new bottom sheet dialog.
+                val dialog = BottomSheetDialog(this)
+
+                // on below line we are inflating a layout file which we have created.
+                val view = layoutInflater.inflate(R.layout.dialog_bottom_navigation, null)
+
+                // on below line we are creating a variable for our button
+                // which we are using to dismiss our dialog.
+
+
+                // on below line we are adding on click listener
+                // for our dismissing the dialog button.
+                // below line is use to set cancelable to avoid
+                // closing of dialog box when clicking on the screen.
+                dialog.setCancelable(true)
+
+                // on below line we are setting
+                // content view to our view.
+                dialog.setContentView(view)
+
+
+            val closeButton = view.findViewById<Button>(R.id.idBtnDismiss) as Button
+
+            closeButton.setOnClickListener {
+                dialog.dismiss()
+            }
+                // on below line we are calling
+                // a show method to display a dialog.
+                dialog.show()
         }
     }
 
@@ -288,7 +323,9 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
         menuInflater.inflate(R.menu.right_menu_search_bar, menu)
         val item = menu?.findItem(R.id.search_action)
         val searchView = item?.actionView as androidx.appcompat.widget.SearchView
-        val edittext=searchView.findViewById<EditText>(androidx.appcompat.R.id.search_src_text)
+
+        val edittext=searchView.findViewById<EditText>(R.id.search_src_text) as EditText
+
         edittext.setTextColor(getResources().getColor(R.color.lblue_200))
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {

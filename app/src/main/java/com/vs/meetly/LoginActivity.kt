@@ -9,7 +9,6 @@ import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
 import android.widget.TextView
-import android.widget.Toast
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_login.*
@@ -18,7 +17,7 @@ import kotlinx.android.synthetic.main.activity_login.etvPassword
 
 class LoginActivity : AppCompatActivity() {
 
-    private lateinit var firebaseAuth: FirebaseAuth
+    private lateinit var auth: FirebaseAuth
 
 
 
@@ -38,16 +37,7 @@ class LoginActivity : AppCompatActivity() {
         tvforgotpass.underline()
         tvreg.underline()
 
-        val auth: FirebaseAuth = FirebaseAuth.getInstance()
-
-        if (auth.currentUser != null) {
-            Toast.makeText(this, "Logged in!", Toast.LENGTH_SHORT).show()
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
-
-        firebaseAuth = FirebaseAuth.getInstance()
+        auth = FirebaseAuth.getInstance()
 
         etvLogin.setOnClickListener {
             loginPreloader.visibility = View.VISIBLE
@@ -99,13 +89,23 @@ class LoginActivity : AppCompatActivity() {
             loginPreloader.visibility = View.GONE
         }
         else{
-            firebaseAuth.signInWithEmailAndPassword(email, password)
+            auth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this) {
                     if (it.isSuccessful) {
-                        loginPreloader.visibility = View.GONE
-                        val intent = Intent(this, MainActivity::class.java)
-                        startActivity(intent)
-                        finish()
+                        if(auth.currentUser!!.isEmailVerified){
+                            loginPreloader.visibility = View.GONE
+                            val intent = Intent(this, MainActivity::class.java)
+                            startActivity(intent)
+                            finish()
+                        }
+                        else{
+                            loginPreloader.visibility = View.GONE
+                            Snackbar.make(
+                                loginSnackbar,
+                                "Email not verified yet!", Snackbar.LENGTH_LONG
+                            )
+                                .show()
+                        }
                     } else {
                         loginPreloader.visibility = View.GONE
                         Snackbar.make(

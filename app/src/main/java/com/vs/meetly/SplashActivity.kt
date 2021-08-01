@@ -8,12 +8,16 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
+import com.google.firebase.auth.FirebaseAuth
 import com.vs.meetly.internetcheck.isNetworkAvailable
 
 @Suppress("DEPRECATION")
 class SplashActivity : AppCompatActivity() {
+
+    private lateinit var auth : FirebaseAuth
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,6 +30,8 @@ class SplashActivity : AppCompatActivity() {
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
+
+        auth = FirebaseAuth.getInstance()
 
         if (ActivityCompat.checkSelfPermission(
                 this,
@@ -47,11 +53,22 @@ class SplashActivity : AppCompatActivity() {
         Handler().postDelayed({
             val intentl = Intent(this, LoginActivity::class.java)
             val intentno = Intent(this, NoInternet::class.java)
-            if (isNetworkAvailable(this))
-                startActivity(intentl)
-            else
+            if (isNetworkAvailable(this)) {
+                if (auth.currentUser != null && auth.currentUser!!.isEmailVerified) {
+                    Toast.makeText(this, "Logged in!", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }
+                else{
+                    startActivity(intentl)
+                    finish()
+                }
+            }
+            else {
                 startActivity(intentno)
-            finish()
+                finish()
+            }
         }, 3000)
     }
 

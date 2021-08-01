@@ -20,11 +20,13 @@ import kotlinx.android.synthetic.main.activity_register.etvPassword
 
 class RegisterActivity : AppCompatActivity() {
 
-    private lateinit var firebaseAuth: FirebaseAuth
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
+
+        auth = FirebaseAuth.getInstance()
 
 
         // This is used to hide the status bar and make the splash screen as a full screen activity.
@@ -36,8 +38,6 @@ class RegisterActivity : AppCompatActivity() {
         //For Underline
         val tvlogin: TextView = findViewById(R.id.redirectToLogin)
         tvlogin.underline()
-
-        firebaseAuth = FirebaseAuth.getInstance()
 
         buttonRegister.setOnClickListener {
             registerPreloader.visibility = View.VISIBLE
@@ -84,13 +84,13 @@ class RegisterActivity : AppCompatActivity() {
                 .show()
             registerPreloader.visibility = View.GONE
         } else {
-            firebaseAuth.createUserWithEmailAndPassword(email, password)
+            auth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this) {
                     if (it.isSuccessful) {
                         user = User(
-                            firebaseAuth.currentUser!!.uid,
+                            auth.currentUser!!.uid,
                             name,
-                            firebaseAuth.currentUser!!.email.toString(),
+                            auth.currentUser!!.email.toString(),
                             0,
                             imageUrl
                         )
@@ -100,11 +100,22 @@ class RegisterActivity : AppCompatActivity() {
                         )
                             .show()
                         userDao.addUser(user)
-                        registerPreloader.visibility = View.GONE
-                        firebaseAuth.currentUser!!.sendEmailVerification()
-                        val intent = Intent(this, MainActivity::class.java)
-                        startActivity(intent)
-                        finish()
+                        auth.currentUser!!.sendEmailVerification().addOnCompleteListener {
+                            if (it.isSuccessful) {
+                                registerPreloader.visibility = View.GONE
+                                val intent = Intent(this, LoginActivity::class.java)
+                                startActivity(intent)
+                                finish()
+                            }
+                            else{
+                                Snackbar.make(
+                                    registerSnackbar,
+                                    "Error, while creating user!", Snackbar.LENGTH_LONG
+                                )
+                                    .show()
+                                registerPreloader.visibility = View.GONE
+                            }
+                        }
                     } else {
                         Snackbar.make(
                             registerSnackbar,
