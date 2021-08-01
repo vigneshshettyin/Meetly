@@ -30,15 +30,6 @@
                 app:title="@string/app_name" />
         </com.google.android.material.appbar.AppBarLayout>
 
-        <Button
-            android:id="@+id/bottom_app_bar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/appBarLayout"
-            app:layout_constraintLeft_toLeftOf="parent"
-            android:text="@string/action_profile"
-            app:layout_constraintRight_toRightOf="parent"/>
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/meetingRecyclerview"
             android:layout_width="match_parent"

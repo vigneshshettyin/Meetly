@@ -30,7 +30,10 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.vs.meetly.adapters.IMeetingRVAdapter
 import com.vs.meetly.adapters.MeetingAdapter
+import com.vs.meetly.daos.MeetingDao
 import com.vs.meetly.daos.UserDao
+import com.vs.meetly.miscellaneous.ColorPicker
+import com.vs.meetly.miscellaneous.LinkPicker
 import com.vs.meetly.modals.Meeting
 import com.vs.meetly.modals.User
 import kotlinx.android.synthetic.main.activity_main.*
@@ -56,6 +59,10 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
     private lateinit var auth: FirebaseAuth
 
     private var dateTimeSelectorFlag : Boolean = false
+
+    private var dateSelected : String = ""
+
+    private var timeSelected : String = ""
 
     private lateinit var user: User
 
@@ -100,38 +107,6 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
             datePicker.addOnCancelListener {
 //                Toast.makeText(this, "<- Back", Toast.LENGTH_SHORT).show()
             }
-        }
-        bottom_app_bar.setOnClickListener {
-
-                // on below line we are creating a new bottom sheet dialog.
-                val dialog = BottomSheetDialog(this)
-
-                // on below line we are inflating a layout file which we have created.
-                val view = layoutInflater.inflate(R.layout.dialog_bottom_navigation, null)
-
-                // on below line we are creating a variable for our button
-                // which we are using to dismiss our dialog.
-
-
-                // on below line we are adding on click listener
-                // for our dismissing the dialog button.
-                // below line is use to set cancelable to avoid
-                // closing of dialog box when clicking on the screen.
-                dialog.setCancelable(true)
-
-                // on below line we are setting
-                // content view to our view.
-                dialog.setContentView(view)
-
-
-//            val closeButton = view.findViewById<Button>(R.id.idBtnDismiss) as Button
-//
-//            closeButton.setOnClickListener {
-//                dialog.dismiss()
-//            }
-                // on below line we are calling
-                // a show method to display a dialog.
-                dialog.show()
         }
     }
 
@@ -265,8 +240,56 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
 
                 R.id.newMeeting -> {
                     mainDrawer.closeDrawers()
-                    val intent = Intent(this, NewMeeting::class.java)
-                    startActivity(intent)
+                    val dialog = BottomSheetDialog(this)
+                    // on below line we are inflating a layout file which we have created.
+                    val view = layoutInflater.inflate(R.layout.dialog_bottom_navigation, null)
+                    dialog.setCancelable(true)
+                    dialog.setContentView(view)
+                    dialog.show()
+                    // Getting all data
+                    val finalMeetingLink = LinkPicker.getLink() + "-r-" + getRandomString(6)
+                    val title = view.findViewById<EditText>(R.id.meeting_title_v2) as EditText
+                    val content = view.findViewById<EditText>(R.id.meeting_content_v2) as EditText
+                    val dateTimeSelect = view.findViewById<EditText>(R.id.date_time_new_meeting_v2) as EditText
+                    val submitButtonV2 = view.findViewById<Button>(R.id.buttonSubmitNewMeetingV2) as Button
+                    submitButtonV2.setOnClickListener {
+                        if(title.text.isEmpty() || content.text.isEmpty() || !dateTimeSelectorFlag ){
+                            if(title.text.isEmpty()){
+                                title.setError("Title is required!")
+                            }
+                            else if ( content.text.isEmpty()){
+                                content.setError("Content is required!")
+                            }
+                            else{
+                                dateTimeSelect.setError("Date & Time is required!")
+                            }
+                        }
+                        else{
+                            val userId: ArrayList<String> = ArrayList()
+                            userId.add(auth.currentUser!!.uid)
+                            val newMeeting = Meeting(
+                                dateSelected,
+                                title.text.toString(),
+                                content.text.toString(),
+                                finalMeetingLink,
+                                timeSelected,
+                                userId,
+                                ColorPicker.getColor()
+                            )
+                            dialog.dismiss()
+                            GlobalScope.launch {
+                                val meetingDao = MeetingDao()
+                                meetingDao.addMeeting(newMeeting)
+                            }
+
+                            Snackbar.make(
+                                mainActivitySnackbar,
+                                "Meeting added successfully!", Snackbar.LENGTH_LONG
+                            )
+                                .show()
+
+                        }
+                    }
                     true
                 }
                 R.id.raiseRequest -> {
@@ -495,6 +518,8 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
             dateTimeV2.setText("${dateAsFormattedText}  ${localTime}")
             // Flag to check if date and time are selected
             dateTimeSelectorFlag = true
+            dateSelected = dateAsFormattedText
+            timeSelected = localTime
         }
     }
 
@@ -511,8 +536,16 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
         mainDrawer.closeDrawers()
     }
 
+    fun getRandomString(length: Int) : String {
+        val allowedChars = ('A'..'Z') + ('a'..'z') + ('0'..'9')
+        return (1..length)
+            .map { allowedChars.random() }
+            .joinToString("")
+    }
+
     @RequiresApi(Build.VERSION_CODES.O)
     fun DateTimeFunction(view: View) {
+        dateTimeSelectorFlag = false
         val selectedDateInMillis = currentSelectedDate ?: System.currentTimeMillis()
 
         val datePicker =
