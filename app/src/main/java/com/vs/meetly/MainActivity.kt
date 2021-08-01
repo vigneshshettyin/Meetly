@@ -38,7 +38,6 @@ import com.vs.meetly.modals.Meeting
 import com.vs.meetly.modals.User
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_meeting_view_detail.*
-import kotlinx.android.synthetic.main.activity_new_meeting.*
 import kotlinx.android.synthetic.main.activity_user_profile.*
 import kotlinx.android.synthetic.main.dialog_bottom_navigation.*
 import kotlinx.android.synthetic.main.header_layout.*
