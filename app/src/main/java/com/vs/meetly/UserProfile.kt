@@ -183,15 +183,15 @@ class UserProfile : AppCompatActivity() {
             sRef.putFile(mSelectedImageFileUri!!)
                 .addOnSuccessListener { taskSnapshot ->
                     // The image upload is success
-                    Log.e(
-                        "Firebase Image URL",
-                        taskSnapshot.metadata!!.reference!!.downloadUrl.toString()
-                    )
+//                    Log.e(
+//                        "Firebase Image URL",
+//                        taskSnapshot.metadata!!.reference!!.downloadUrl.toString()
+//                    )
 
                     // Get the downloadable url from the task snapshot
                     taskSnapshot.metadata!!.reference!!.downloadUrl
                         .addOnSuccessListener { uri ->
-                            Log.e("Downloadable Image URL", uri.toString())
+//                            Log.e("Downloadable Image URL", uri.toString())
 
                             // assign the image url to the variable.
                             mProfileImageURL = uri.toString()
