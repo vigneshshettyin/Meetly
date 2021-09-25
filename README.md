@@ -116,3 +116,8 @@ SOFTWARE.
   <img alt="Play Store" src="https://img.shields.io/badge/Google_Play-414141?style=for-the-badge&logo=google-play&logoColor=white" />
   </a>
 </p>
+
+
+<p align="center">
+<a href="https://www.producthunt.com/posts/meetly-free-video-conferencing?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-meetly-free-video-conferencing" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=312829&theme=light" alt="Meetly - Free Video Conferencing - An intuitive productivity app for busy people. | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
+</p>
