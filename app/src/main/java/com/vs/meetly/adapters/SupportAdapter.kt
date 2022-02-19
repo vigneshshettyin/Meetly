@@ -10,11 +10,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.vs.meetly.R
 import com.vs.meetly.miscellaneous.Utils
-import com.vs.meetly.modals.Support
+import com.vs.meetly.modals.SupportSection
 
 
-class SupportAdapter(val context: Context, private val support: ArrayList<Support>) :
+class SupportAdapter(val context: Context, private val support: MutableList<SupportSection>) :
     RecyclerView.Adapter<SupportAdapter.SupportViewHolder>() {
+
+    val imageUrl = "https://res.cloudinary.com/vigneshshettyin/image/upload/v1645255066/bxjitajzus4yw2apmmdb.png"
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SupportViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.dev_news_item, parent, false)
@@ -22,10 +24,10 @@ class SupportAdapter(val context: Context, private val support: ArrayList<Suppor
     }
 
     override fun onBindViewHolder(holder: SupportViewHolder, position: Int) {
-        holder.username.text = support[position].user_name
+        holder.username.text = support[position].uid
         holder.content.text = support[position].content
         holder.lastTime.text = Utils.getTimeAgo(support[position].date.toLong())
-        Glide.with(holder.userImage.context).load(support[position].user_avatar).circleCrop().into(holder.userImage)
+        Glide.with(holder.userImage.context).load(imageUrl).circleCrop().into(holder.userImage)
     }
 
     override fun getItemCount(): Int {

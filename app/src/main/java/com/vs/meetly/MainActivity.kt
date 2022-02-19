@@ -489,7 +489,7 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
             ), ZoneId.systemDefault()
         )
         val dateAsFormattedText: String = dateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
-        var picker = MaterialTimePicker.Builder()
+        val picker = MaterialTimePicker.Builder()
             .setTimeFormat(TimeFormat.CLOCK_12H)
             .setHour(12)
             .setMinute(0)
