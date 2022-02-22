@@ -5,6 +5,10 @@
       <map>
         <entry key="..\:/Users/Garuda/AndroidStudioProjects/Meetly/app/src/main/res/layout/activity_login.xml" value="0.2" />
         <entry key="..\:/Users/Garuda/AndroidStudioProjects/Meetly/app/src/main/res/layout/activity_main.xml" value="0.215625" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.21302083333333333" />
+        <entry key="app/src/main/res/layout/activity_support.xml" value="0.21302083333333333" />
+        <entry key="app/src/main/res/layout/dialog_bottom_navigation.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/dialog_new_user_meeting.xml" value="0.15070921985815602" />
       </map>
     </option>
   </component>
