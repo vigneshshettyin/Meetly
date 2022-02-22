@@ -69,7 +69,7 @@ You can refer to the following articles on **_basics of Git and Github and also 
 ```
 MIT License
 
-Copyright (c) 2021 Vignesh Shetty & Sriganesh Rao
+Copyright (c) 2022 Vignesh Shetty & Sriganesh Rao
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -121,5 +121,5 @@ SOFTWARE.
 
 
 <p align="center">
-<a href="https://www.producthunt.com/posts/meetly-free-video-conferencing?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-meetly-free-video-conferencing" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=312829&theme=light" alt="Meetly - Free Video Conferencing - An intuitive productivity app for busy people. | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
+<a href="https://www.producthunt.com/posts/meetly-free-video-conferencing?utm_source=badge-review&utm_medium=badge&utm_souce=badge-meetly-free-video-conferencing#discussion-body" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/review.svg?post_id=312829&theme=dark" alt="Meetly - Free Video Conferencing - An intuitive productivity app for busy people. | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
 </p>
