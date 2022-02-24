@@ -1,7 +1,7 @@
 name: Report Bug
 description: Create a report to help us improve
 title: "[Report Bug]: "
-labels: ["GSSOC21"]
+labels: ["Meetly"]
 body:
   - type: markdown
     attributes:
@@ -31,7 +31,7 @@ body:
     id: terms
     attributes:
       label: Code of Conduct
-      description: By submitting this issue, you agree to follow our [Code of Conduct]()
+      description: By submitting this issue, you agree to follow our [Code of Conduct](https://github.com/vigneshshettyin/Meetly/blob/main/.github/CODE_OF_CONDUCT.md)
       options:
-        - label: I follow [Code of Conduct](https://github.com/vigneshshettyin/Meetly/blob/main/docs/CODE_OF_CONDUCT.md) of this project.
+        - label: I follow [Code of Conduct](https://github.com/vigneshshettyin/Meetly/blob/main/.github/CODE_OF_CONDUCT.md) of this project.
           required: true
