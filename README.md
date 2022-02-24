@@ -57,7 +57,7 @@ You can refer to the following articles on **_basics of Git and Github and also 
 
 <h2 align=center> 📝 How to Contribute? </h2>  
 
-- Take a look at [CODE OF CONDUCT](https://github.com/vigneshshettyin/Meetly/blob/main/CODE_OF_CONDUCT.md)
+- Take a look at [CODE OF CONDUCT](https://github.com/vigneshshettyin/Meetly/blob/main/.github/CODE_OF_CONDUCT.md)
 - Take a look at the Existing Issues or create your own Issues!
 - Wait for the Issue to be assigned to you after which you can start working on it.
 - Fork the Repo and create a Branch for any Issue that you are working upon.
@@ -93,20 +93,9 @@ SOFTWARE.
 
 <h2 align=center> Contributors ✨ </h2>
 
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-<!-- prettier-ignore-start -->
-<!-- markdownlint-disable -->
-<table align="center">
-  <tr>
-    <td align="center"><a href="http://vigneshcodes.in"><img src="https://avatars.githubusercontent.com/u/77713888?v=4" width="100px;" alt=""/><br /><sub><b>Vignesh Shetty</b></sub></a></td>
-    <td align="center"><a href="https://xfinity.ml"><img src="https://avatars.githubusercontent.com/u/65854432?v=4" width="100px;" alt=""/><br /><sub><b>Xfinity</b></sub></a></td>
-  </tr>
-</table>
-
-<!-- markdownlint-restore -->
-<!-- prettier-ignore-end -->
-
-<!-- ALL-CONTRIBUTORS-LIST:END -->
+<a href="https://github.com/vigneshshettyin/Meetly/graphs/contributors">
+  <img src="https://contributors-img.web.app/image?repo=vigneshshettyin/Meetly" />
+</a>
 
 <hr/>
 
