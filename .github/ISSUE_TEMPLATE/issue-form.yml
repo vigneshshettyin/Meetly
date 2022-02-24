@@ -1,6 +1,6 @@
 name: Feature Request
 description: Suggest an idea for this project
-title: ["Title"]
+title: "[Feature Request]: "
 labels: ["GSSOC21"]
 body:
   - type: markdown
