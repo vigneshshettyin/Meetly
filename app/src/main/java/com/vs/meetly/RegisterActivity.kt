@@ -56,9 +56,9 @@ class RegisterActivity : AppCompatActivity() {
 
         var user: User
 
-        val name = etvName.text.toString()
-        val email = etvEmail.text.toString()
-        val password = etvPassword.text.toString()
+        val name = etvName.text.toString().trim()
+        val email = etvEmail.text.toString().trim()
+        val password = etvPassword.text.toString().trim()
         val imageUrl = randAvatar()
         val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z0-9.]+"
 
