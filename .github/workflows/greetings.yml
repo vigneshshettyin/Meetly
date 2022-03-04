@@ -1,23 +1,16 @@
 name: Greetings
 
-on: [pull_request, issues]
+on:
+  issues:
+    types: [opened]
 
 jobs:
   greeting:
     runs-on: ubuntu-latest
-    permissions:
-      issues: write
-      pull-requests: write
     steps:
-    - uses: actions/first-interaction@v1
+    - uses: Suvraneel/Greeting-action@main
       with:
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
-        issue-message: 'Hello @${{github.actor}}, <br>
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        issue_message: 'Hello @${{github.actor}}, <br>
                         Thank you for opening an issue. :octocat: <br>
-                        Note - Self-assigns by the original author will be prioritised by mentors manually<br>
-                        To get assigned to this particular issue please use <b>/assign</b><br>
-                        <i> Check this <a href="https://github.com/vigneshshettyin/Meetly/blob/main/docs/CODE_OF_CONDUCT.md">guide</a> before contributing.'
-        pr-message: 'Hello @${{github.actor}}, <br>
-                        Thank you for opening an pull request. :octocat: <br>
-                        Our team will review your pull request ASAP!<br>
-                        <i> Check this <a href="https://github.com/vigneshshettyin/Meetly/blob/main/docs/CODE_OF_CONDUCT.md">guide</a> before contributing.'
+                        <i> Check this <a href="https://github.com/vigneshshettyin/Meetly/blob/main/.github/CODE_OF_CONDUCT.md">guide</a> before contributing.'
