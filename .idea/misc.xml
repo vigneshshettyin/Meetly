@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Meetly/app/src/main/res/layout/activity_devs.xml" value="0.2484375" />
+        <entry key="..\:/Meetly/app/src/main/res/layout/activity_forgot_pass.xml" value="0.2484375" />
+        <entry key="..\:/Meetly/app/src/main/res/layout/activity_register.xml" value="0.2484375" />
         <entry key="..\:/Users/Garuda/AndroidStudioProjects/Meetly/app/src/main/res/layout/activity_login.xml" value="0.2" />
         <entry key="..\:/Users/Garuda/AndroidStudioProjects/Meetly/app/src/main/res/layout/activity_main.xml" value="0.215625" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.21302083333333333" />

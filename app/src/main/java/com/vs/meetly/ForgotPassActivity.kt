@@ -1,7 +1,9 @@
 package com.vs.meetly
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
@@ -25,8 +27,9 @@ class ForgotPassActivity : AppCompatActivity() {
         firebaseAuth = FirebaseAuth.getInstance()
 
         val email = etvEmail.text.toString()
-
         val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z0-9.]+"
+
+        hideKeyboard()
 
         if (email.isEmpty()) {
             Snackbar.make(
@@ -44,13 +47,19 @@ class ForgotPassActivity : AppCompatActivity() {
         else{
             firebaseAuth.sendPasswordResetEmail(email).addOnCompleteListener(this) {
                 if (it.isComplete) {
-                    Toast.makeText(this, "Rest email generated successfully!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Reset email generated successfully!", Toast.LENGTH_SHORT).show()
                 } else {
-                    Toast.makeText(this, "Something went wrong, ${it.toString()}!", Toast.LENGTH_SHORT)
+                    Toast.makeText(this, "Something went wrong, $it!", Toast.LENGTH_SHORT)
                         .show()
                 }
                 finish()
             }
         }
+    }
+
+    private fun hideKeyboard() {
+        val view = this.currentFocus
+        val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(view?.windowToken, 0)
     }
 }

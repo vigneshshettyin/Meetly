@@ -2,12 +2,14 @@
 
 package com.vs.meetly
 
+import android.content.Context
 import android.content.Intent
 import android.graphics.Paint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
+import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
@@ -64,6 +66,7 @@ class LoginActivity : AppCompatActivity() {
         val email = etvEmail.text.toString().trim()
         val password = etvPassword.text.toString().trim()
         val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z0-9.]+"
+        hideKeyboard()
 
         if (email.isEmpty() || password.isEmpty()){
             Snackbar.make(
@@ -120,5 +123,11 @@ class LoginActivity : AppCompatActivity() {
 
     fun TextView.underline() {
         paintFlags = paintFlags or Paint.UNDERLINE_TEXT_FLAG
+    }
+
+    private fun hideKeyboard() {
+        val view = this.currentFocus
+        val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(view?.windowToken, 0)
     }
 }
