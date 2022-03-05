@@ -100,8 +100,8 @@ class RegisterActivity : AppCompatActivity() {
                             "Registration successfully complete!", Snackbar.LENGTH_LONG)
                             .show()
                         userDao.addUser(user)
-                        auth.currentUser!!.sendEmailVerification().addOnCompleteListener {
-                            if (it.isSuccessful) {
+                        auth.currentUser!!.sendEmailVerification().addOnCompleteListener { result ->
+                            if (result.isSuccessful) {
                                 registerPreloader.visibility = View.GONE
                                 val intent = Intent(this, LoginActivity::class.java)
                                 startActivity(intent)
@@ -129,7 +129,7 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     //Function to put Underline
-    fun TextView.underline() {
+    private fun TextView.underline() {
         paintFlags = paintFlags or Paint.UNDERLINE_TEXT_FLAG
     }
 
