@@ -117,7 +117,7 @@ class LoginActivity : AppCompatActivity() {
         paintFlags = paintFlags or Paint.UNDERLINE_TEXT_FLAG
     }
 
-    private fun hideKeyboard() {
+    private fun hideKeyboard() { // Hides the keyboard
         val view = this.currentFocus
         val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(view?.windowToken, 0)

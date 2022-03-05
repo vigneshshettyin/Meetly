@@ -57,7 +57,7 @@ class ForgotPassActivity : AppCompatActivity() {
         }
     }
 
-    private fun hideKeyboard() {
+    private fun hideKeyboard() { // Hides the keyboard
         val view = this.currentFocus
         val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(view?.windowToken, 0)
