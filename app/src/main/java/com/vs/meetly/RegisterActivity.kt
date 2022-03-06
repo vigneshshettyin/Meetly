@@ -2,12 +2,14 @@
 
 package com.vs.meetly
 
+import android.content.Context
 import android.content.Intent
 import android.graphics.Paint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
+import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
@@ -66,6 +68,7 @@ class RegisterActivity : AppCompatActivity() {
 
         //Valid email pattern.
         val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z0-9.]+"
+        hideKeyboard()
 
         /* We check for the following things :
          * a) If email, name and password fields are empty, we show appropriate message.
@@ -106,16 +109,13 @@ class RegisterActivity : AppCompatActivity() {
                             name,
                             auth.currentUser!!.email.toString(),
                             0,
-                            imageUrl
-                        )
-                        Snackbar.make(
-                            registerSnackbar,
-                            "Registration successfully complete!", Snackbar.LENGTH_LONG
-                        )
+                            imageUrl)
+                        Snackbar.make(registerSnackbar,
+                            "Registration successfully complete!", Snackbar.LENGTH_LONG)
                             .show()
                         userDao.addUser(user)
-                        auth.currentUser!!.sendEmailVerification().addOnCompleteListener {
-                            if (it.isSuccessful) {
+                        auth.currentUser!!.sendEmailVerification().addOnCompleteListener { result ->
+                            if (result.isSuccessful) {
                                 registerPreloader.visibility = View.GONE
                                 val intent = Intent(this, LoginActivity::class.java)
                                 startActivity(intent)
@@ -143,13 +143,19 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     //Function to put Underline
-    fun TextView.underline() {
+    private fun TextView.underline() {
         paintFlags = paintFlags or Paint.UNDERLINE_TEXT_FLAG
     }
 
     private fun hideDefaultUI() {
         @Suppress("DEPRECATION")
         window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_FULLSCREEN)
+    }
+
+    private fun hideKeyboard() { // Hides the keyboard
+        val view = this.currentFocus
+        val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(view?.windowToken, 0)
     }
 
 }

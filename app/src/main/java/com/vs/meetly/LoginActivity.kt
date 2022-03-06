@@ -2,24 +2,22 @@
 
 package com.vs.meetly
 
+import android.content.Context
 import android.content.Intent
 import android.graphics.Paint
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
+import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.android.synthetic.main.activity_login.etvEmail
-import kotlinx.android.synthetic.main.activity_login.etvPassword
 
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +28,6 @@ class LoginActivity : AppCompatActivity() {
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
-
 
         val tvforgotpass: TextView = findViewById(R.id.etvForgotPassword)
         val tvreg: TextView = findViewById(R.id.redirectToRegister)
@@ -64,16 +61,15 @@ class LoginActivity : AppCompatActivity() {
         val email = etvEmail.text.toString().trim()
         val password = etvPassword.text.toString().trim()
         val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z0-9.]+"
+        hideKeyboard()
 
-        if (email.isEmpty() || password.isEmpty()){
+        if (email.isEmpty() || password.isEmpty()) {
             Snackbar.make(
                 loginSnackbar,
                 "Enter all the fields!", Snackbar.LENGTH_LONG
-            )
-                .show()
+            ).show()
             loginPreloader.visibility = View.GONE
-        }
-        else if (!email.matches(emailPattern.toRegex())) {
+        } else if (!email.matches(emailPattern.toRegex())) {
             Snackbar.make(
                 loginSnackbar,
                 "Enter a valid email id!", Snackbar.LENGTH_LONG
@@ -87,18 +83,16 @@ class LoginActivity : AppCompatActivity() {
             )
                 .show()
             loginPreloader.visibility = View.GONE
-        }
-        else{
+        } else {
             auth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this) {
                     if (it.isSuccessful) {
-                        if(auth.currentUser!!.isEmailVerified){
+                        if (auth.currentUser!!.isEmailVerified) {
                             loginPreloader.visibility = View.GONE
                             val intent = Intent(this, MainActivity::class.java)
                             startActivity(intent)
                             finish()
-                        }
-                        else{
+                        } else {
                             loginPreloader.visibility = View.GONE
                             Snackbar.make(
                                 loginSnackbar,
@@ -110,7 +104,8 @@ class LoginActivity : AppCompatActivity() {
                         loginPreloader.visibility = View.GONE
                         Snackbar.make(
                             loginSnackbar,
-                            "Incorrect login credentials or account not found!", Snackbar.LENGTH_LONG
+                            "Incorrect login credentials or account not found!",
+                            Snackbar.LENGTH_LONG
                         )
                             .show()
                     }
@@ -118,7 +113,13 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    fun TextView.underline() {
+    private fun TextView.underline() {
         paintFlags = paintFlags or Paint.UNDERLINE_TEXT_FLAG
+    }
+
+    private fun hideKeyboard() { // Hides the keyboard
+        val view = this.currentFocus
+        val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(view?.windowToken, 0)
     }
 }

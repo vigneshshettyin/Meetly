@@ -2,8 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
     android:id="@+id/registerSnackbar"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg"
     tools:context=".RegisterActivity">
@@ -36,18 +36,18 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textName"
+        style="@style/newMeeting"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="25dp"
         android:hint="@string/name"
         app:endIconMode="clear_text"
-        style="@style/newMeeting"
-        app:startIconTint="?attr/colorOnBackground"
         app:endIconTint="?attr/colorOnBackground"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/hglafterhead"
-        app:startIconDrawable="@drawable/ic_baseline_person_24">
+        app:startIconDrawable="@drawable/ic_baseline_person_24"
+        app:startIconTint="?attr/colorOnBackground">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etvName"
@@ -62,18 +62,18 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textEmail"
+        style="@style/newMeeting"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="25dp"
         android:hint="@string/email"
-        style="@style/newMeeting"
-        app:startIconTint="?attr/colorOnBackground"
-        app:endIconTint="?attr/colorOnBackground"
         app:endIconMode="clear_text"
+        app:endIconTint="?attr/colorOnBackground"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textName"
-        app:startIconDrawable="@drawable/ic_baseline_email_24">
+        app:startIconDrawable="@drawable/ic_baseline_email_24"
+        app:startIconTint="?attr/colorOnBackground">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etvEmail"
@@ -87,18 +87,18 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textPassword"
+        style="@style/newMeeting"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="25dp"
         android:hint="@string/password"
-        style="@style/newMeeting"
-        app:startIconTint="?attr/colorOnBackground"
-        app:endIconTint="?attr/colorOnBackground"
         app:endIconMode="password_toggle"
+        app:endIconTint="?attr/colorOnBackground"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textEmail"
-        app:startIconDrawable="@drawable/ic_baseline_lock_24">
+        app:startIconDrawable="@drawable/ic_baseline_lock_24"
+        app:startIconTint="?attr/colorOnBackground">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etvPassword"
