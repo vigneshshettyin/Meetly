@@ -56,12 +56,26 @@ class RegisterActivity : AppCompatActivity() {
 
         var user: User
 
-        val name = etvName.text.toString()
-        val email = etvEmail.text.toString()
-        val password = etvPassword.text.toString()
+        //Storing the field inputs and trimming them to ensure no extra whitespaces at the ends.
+        val name = etvName.text.toString().trim()
+        val email = etvEmail.text.toString().trim()
+        val password = etvPassword.text.toString().trim()
+
+        //Generating random avatar for the user.
         val imageUrl = randAvatar()
+
+        //Valid email pattern.
         val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z0-9.]+"
 
+        /* We check for the following things :
+         * a) If email, name and password fields are empty, we show appropriate message.
+         * b) If the email entered is not in a valid format, we show appropriate message.
+         * c) If password length is less than 6 characters, we show appropriate message.
+         * d) If all of the above checks are passed, we go on to register the user. If the
+         *    user is registered successfully, we proceed to add the user to the firestore
+         *    database, and we also send a verification email to the user. If the registration
+         *    service fails somehow, we show appropriate message.
+         */
         if (name.isEmpty() || email.isEmpty() || password.isEmpty()) {
             Snackbar.make(
                 registerSnackbar,
