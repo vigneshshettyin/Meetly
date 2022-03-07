@@ -31,6 +31,9 @@
             <item android:title="@string/team"
                 android:icon="@drawable/ic_baseline_person_24"
                 android:id="@+id/meetDevs"/>
+            <item android:title="@string/library"
+                android:icon="@drawable/ic_baseline_source_24"
+                android:id="@+id/usedLib"/>
         </menu>
     </item>
     <group android:id="@+id/logoutGroup">

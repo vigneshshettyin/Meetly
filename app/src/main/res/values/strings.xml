@@ -69,4 +69,8 @@
     <string name="save">SAVE</string>
     <string name="date_amp_time"><![CDATA[Date & Time]]></string>
     <string name="submit">Submit</string>
+    <string name="library">Libraries Used</string>
+    <string name="retrofit">Retrofit</string>
+    <string name="retrofit_info">Copyright 2013 Square, Inc.Licensed under the Apache License, Version 2.0; you may not use this file except in compliance with the License (the \'License\'). You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an \'AS IS\' BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</string>
+    <string name="jetsi_info">jitsi is licensed under the Apache License 2.0 Version 2.0, January 2004 http://www.apache.org/licenses/ \'License\' shall mean the terms and conditions for use, reproduction, and distribution as defined by Sections 1 through 9 of this document. \'Licensor\' shall mean the copyright owner or entity authorized by the copyright owner that is granting the License.</string>
 </resources>
