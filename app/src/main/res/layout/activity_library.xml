@@ -99,10 +99,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <TextView
-                        android:id="@+id/jetsiText"
+                        android:id="@+id/jitsiText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Jetsi meet"
+                        android:text="@string/jitsi_meet"
                         android:textSize="22sp"
                         android:textColor="@color/black"
                         android:textStyle="bold"
@@ -112,14 +112,14 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/jetsi_info"
+                        android:text="@string/jitsi_info"
                         android:textAlignment="center"
                         android:layout_marginStart="5dp"
                         android:layout_marginEnd="5dp"
                         android:textSize="18sp"
                         android:textColor="@color/black"
                         android:layout_marginTop="10dp"
-                        app:layout_constraintTop_toBottomOf="@id/jetsiText"
+                        app:layout_constraintTop_toBottomOf="@id/jitsiText"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"/>
 
