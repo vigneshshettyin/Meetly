@@ -29,9 +29,21 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/githubAnim"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/github" />
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/retrofit"
@@ -40,11 +52,11 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="5dp"
                 android:layout_marginLeft="5dp"
-                app:cardBackgroundColor="@color/white"
+                app:cardBackgroundColor="@color/secondary_blue"
                 app:cardCornerRadius="15dp"
-                app:cardElevation="4dp"
-                app:contentPadding="4dp"
-                app:layout_constraintTop_toTopOf="parent"
+                app:cardElevation="5dp"
+                app:contentPadding="10dp"
+                app:layout_constraintTop_toBottomOf="@id/githubAnim"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent">
 
@@ -56,23 +68,40 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/retrofit"
+                        android:fontFamily="@font/montserrat_bold"
                         android:textSize="22sp"
-                        android:textColor="@color/black"
+                        android:textColor="@color/white"
                         android:textStyle="bold"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintTop_toTopOf="parent"/>
                     <TextView
+                        android:id="@+id/retrofitInfo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/retrofit_info"
                         android:textAlignment="center"
                         android:layout_marginStart="5dp"
-                        android:textColor="@color/black"
+                        android:textColor="@color/white"
                         android:layout_marginEnd="5dp"
                         android:textSize="18sp"
                         android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
                         app:layout_constraintTop_toBottomOf="@id/retrofitText"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintBottom_toTopOf ="@id/retrofitBtn"
+                        app:layout_constraintEnd_toEndOf="parent"/>
+
+                    <Button
+                        android:id="@+id/retrofitBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:backgroundTint="@color/white"
+                        android:drawableLeft="@drawable/ic_github_icon"
+                        android:text="@string/github"
+                        android:textColor="@color/black"
+                        app:layout_constraintTop_toBottomOf="@id/retrofitInfo"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"/>
 
@@ -87,10 +116,10 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="5dp"
                 android:layout_marginLeft="5dp"
-                app:cardBackgroundColor="@color/white"
+                app:cardBackgroundColor="@color/secondary_blue"
                 app:cardCornerRadius="15dp"
                 app:cardElevation="4dp"
-                app:contentPadding="4dp"
+                app:contentPadding="10dp"
                 app:layout_constraintTop_toBottomOf="@id/retrofit"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent">
@@ -104,12 +133,15 @@
                         android:layout_height="wrap_content"
                         android:text="@string/jitsi_meet"
                         android:textSize="22sp"
-                        android:textColor="@color/black"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:textColor="@color/white"
                         android:textStyle="bold"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintTop_toTopOf="parent"/>
+
                     <TextView
+                        android:id="@+id/jitsiInfo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/jitsi_info"
@@ -117,9 +149,148 @@
                         android:layout_marginStart="5dp"
                         android:layout_marginEnd="5dp"
                         android:textSize="18sp"
-                        android:textColor="@color/black"
+                        android:textColor="@color/white"
                         android:layout_marginTop="10dp"
                         app:layout_constraintTop_toBottomOf="@id/jitsiText"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"/>
+
+                    <Button
+                        android:id="@+id/jitsiBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/white"
+                        android:drawableLeft="@drawable/ic_github_icon"
+                        android:text="@string/github"
+                        android:layout_marginTop="10dp"
+                        android:textColor="@color/black"
+                        app:layout_constraintTop_toBottomOf="@id/jitsiInfo"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/glide"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
+                app:cardBackgroundColor="@color/secondary_blue"
+                app:cardCornerRadius="15dp"
+                app:cardElevation="4dp"
+                app:contentPadding="10dp"
+                app:layout_constraintTop_toBottomOf="@id/jetsi"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/glideText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/glide"
+                        android:textSize="22sp"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"/>
+
+                    <TextView
+                        android:id="@+id/glideInfo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/glide_info"
+                        android:textAlignment="center"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:textSize="18sp"
+                        android:textColor="@color/white"
+                        android:layout_marginTop="10dp"
+                        app:layout_constraintTop_toBottomOf="@id/glideText"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"/>
+
+                    <Button
+                        android:id="@+id/glideBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/white"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/github"
+                        android:drawableLeft="@drawable/ic_github_icon"
+                        android:textColor="@color/black"
+                        app:layout_constraintTop_toBottomOf="@id/glideInfo"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/lottie"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
+                app:cardBackgroundColor="@color/secondary_blue"
+                app:cardCornerRadius="15dp"
+                app:cardElevation="4dp"
+                app:contentPadding="10dp"
+                app:layout_constraintTop_toBottomOf="@id/glide"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/lottieText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/lottie"
+                        android:textSize="22sp"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"/>
+
+                    <TextView
+                        android:id="@+id/lottieInfo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/lottie_info"
+                        android:textAlignment="center"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:textSize="18sp"
+                        android:textColor="@color/white"
+                        android:layout_marginTop="10dp"
+                        app:layout_constraintTop_toBottomOf="@id/lottieText"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"/>
+
+                    <Button
+                        android:id="@+id/lottieBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/white"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/github"
+                        android:textColor="@color/black"
+                        android:drawableLeft="@drawable/ic_github_icon"
+                        app:layout_constraintTop_toBottomOf="@id/lottieInfo"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"/>
 
