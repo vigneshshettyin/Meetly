@@ -2,50 +2,69 @@ package com.vs.meetly
 
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.View
-import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.browser.customtabs.CustomTabsIntent
-import com.bumptech.glide.Glide
-import kotlinx.android.synthetic.main.activity_meeting_filter.*
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.facebook.shimmer.ShimmerFrameLayout
+import com.vs.meetly.adapters.TeamAdapter
+import com.vs.meetly.adapters.itemclicked
+import com.vs.meetly.retrofit.TeamAPI
+import kotlinx.android.synthetic.main.activity_devs.*
+import kotlinx.android.synthetic.main.activity_meeting_filter.topAppBar
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
-
-class DevsActivity : AppCompatActivity() {
+const val BASE_URL = "https://githubcapi.herokuapp.com/"
+class DevsActivity : AppCompatActivity() , itemclicked {
+    lateinit var mAdapter:TeamAdapter
+    lateinit var linearlayoutmanager:LinearLayoutManager
+    lateinit var shimmerframelayout:ShimmerFrameLayout
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_devs)
-
-        loadImage()
-
+        shimmerframelayout = findViewById(R.id.shimmer)
+        shimmerframelayout.startShimmer()
+        recyclerview.setHasFixedSize(true)
+        linearlayoutmanager = LinearLayoutManager(this)
+        recyclerview.layoutManager=linearlayoutmanager
+        getMyData()
         topAppBar.setNavigationOnClickListener {
             finish()
         }
     }
 
-    private fun loadImage() {
-        val vdp = findViewById<ImageView>(R.id.vdp) as ImageView
-        val sdp = findViewById<ImageView>(R.id.sdp) as ImageView
-
-        // TODO: Change to dev images at last!
-
-        val url_vdp = "https://avatars.githubusercontent.com/u/77713888?v=4"
-
-        val url_sdp = "https://avatars.githubusercontent.com/u/65854432?v=4"
-
-        Glide.with(vdp).load(url_vdp).circleCrop().into(vdp)
-        Glide.with(sdp).load(url_sdp).circleCrop().into(sdp)
+    private fun getMyData() {
+        val retrofitBuilder = Retrofit.Builder()
+            .addConverterFactory(GsonConverterFactory.create())
+            .baseUrl(BASE_URL)
+            .build()
+            .create(TeamAPI::class.java)
+        val retrofitData = retrofitBuilder.getData()
+        retrofitData.enqueue(object : Callback<HashMap<String,Map<String,String>>?> {
+            override fun onResponse(call: Call<HashMap<String,Map<String,String>>?>,
+                                    response: Response<HashMap<String,Map<String,String>>?>) {
+                shimmerframelayout.stopShimmer()
+                shimmerframelayout.visibility= View.GONE
+                recyclerview.visibility=View.VISIBLE
+                val responseBody = response.body()!!
+                val valuelist = ArrayList(responseBody.values)
+                mAdapter= TeamAdapter(this@DevsActivity,baseContext, valuelist)
+                mAdapter.notifyDataSetChanged()
+                recyclerview.adapter=mAdapter
+            }
+            override fun onFailure(call: Call<HashMap<String,Map<String,String>>?>, t: Throwable) {
+                Log.d("DevsActivity","onFAILURE"+t.message)
+            }
+        })
     }
 
-    fun iVclick(view: View) {
-        var url=""
-        when(view.id){
-            R.id.viVgithub->{ url="https://github.com/vigneshshettyin" }
-            R.id.viVgmail->{url="mailto:vigneshshetty.in@gmail.com" }
-            R.id.viVlinkedin->{url="https://www.linkedin.com/in/vigneshshettyin/"}
-            R.id.siVgithub->{url="https://github.com/Xfinity-bot" }
-            R.id.siVgmail->{url="mailto:sriganesh7334@gmail.com" }
-            R.id.siVlinkedin->{url="https://www.linkedin.com/in/sriganesh-rao-1b6a921a5/"}
-        }
+    override fun onitemclicked(datamap: Map<String, String>) {
+        val url = datamap.get("profile_url")
         val builder = CustomTabsIntent.Builder()
         val CustomTabsIntent = builder.build()
         CustomTabsIntent.launchUrl(this, Uri.parse(url))
