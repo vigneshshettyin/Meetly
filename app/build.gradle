@@ -93,6 +93,9 @@ dependencies {
     // Splash Screen Animation
     implementation 'com.airbnb.android:lottie:3.7.0'
 
+    //Shimmer Effect
+    implementation 'com.facebook.shimmer:shimmer:0.5.0'
+
     // Kotlin Core
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.6.0'
