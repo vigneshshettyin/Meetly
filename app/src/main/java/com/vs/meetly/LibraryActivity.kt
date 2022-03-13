@@ -23,6 +23,10 @@ class LibraryActivity : AppCompatActivity() {
         lottieBtn.setOnClickListener {
             openLink("https://github.com/airbnb/lottie-android")
         }
+        libTopAppBar.setNavigationOnClickListener {
+            finish()
+        }
+
     }
 
     private fun openLink(link : String){
