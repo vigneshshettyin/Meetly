@@ -339,6 +339,22 @@
             android:text="@string/add_more" />
     </LinearLayout>
 
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:layout_width="match_parent"
+        android:id="@+id/shimmer_meeting_view"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/md_for_space">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <include layout="@layout/user_meeting_list_shimmer"/>
+            <include layout="@layout/user_meeting_list_shimmer"/>
+
+        </LinearLayout>
+    </com.facebook.shimmer.ShimmerFrameLayout>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/meeting_info_recycle_view"
         android:layout_width="match_parent"
@@ -346,6 +362,7 @@
         android:layout_gravity="center"
         android:isScrollContainer="true"
         android:orientation="horizontal"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -364,25 +381,7 @@
         app:layout_constraintRight_toRightOf="parent"
         android:visibility="gone"/>
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/meetingViewDetailPreloader"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        app:cardCornerRadius="20dp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
 
-        <com.airbnb.lottie.LottieAnimationView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            app:lottie_autoPlay="true"
-            app:lottie_loop="true"
-            app:lottie_rawRes="@raw/loaderanim1" />
-    </androidx.cardview.widget.CardView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
