@@ -16,6 +16,7 @@
         <item name="colorSurface">@color/grey_300</item>
         <item name="colorOnBackground">@color/grey_300</item>
         <item name="android:textColorSecondary">@color/black</item>
+        <item name="android:windowTranslucentStatus">true</item>
     </style>
     <style name="LoginTextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
         <item name="boxStrokeColor">@color/text_input_box_stroke</item>

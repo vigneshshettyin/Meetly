@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Forked Repos/Meetly/app/src/main/res/drawable/gradient_toolbar.xml" value="0.245" />
+        <entry key="..\:/Forked Repos/Meetly/app/src/main/res/layout/activity_main.xml" value="0.2390625" />
         <entry key="..\:/Meetly/app/src/main/res/layout/activity_devs.xml" value="0.2484375" />
         <entry key="..\:/Meetly/app/src/main/res/layout/activity_forgot_pass.xml" value="0.2484375" />
         <entry key="..\:/Meetly/app/src/main/res/layout/activity_register.xml" value="0.2484375" />
