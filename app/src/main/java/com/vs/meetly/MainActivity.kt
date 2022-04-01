@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
@@ -15,6 +14,7 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.view.GravityCompat
@@ -37,9 +37,6 @@ import com.vs.meetly.miscellaneous.LinkPicker
 import com.vs.meetly.modals.Meeting
 import com.vs.meetly.modals.User
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_meeting_view_detail.*
-import kotlinx.android.synthetic.main.activity_user_profile.*
-import kotlinx.android.synthetic.main.dialog_bottom_navigation.*
 import kotlinx.android.synthetic.main.header_layout.*
 import kotlinx.coroutines.*
 import kotlinx.coroutines.tasks.await
@@ -57,11 +54,11 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
 
     private lateinit var auth: FirebaseAuth
 
-    private var dateTimeSelectorFlag : Boolean = false
+    private var dateTimeSelectorFlag: Boolean = false
 
-    private var dateSelected : String = ""
+    private var dateSelected: String = ""
 
-    private var timeSelected : String = ""
+    private var timeSelected: String = ""
 
     private lateinit var user: User
 
@@ -249,21 +246,20 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
                     val finalMeetingLink = LinkPicker.getLink() + "-r-" + getRandomString(6)
                     val title = view.findViewById<EditText>(R.id.meeting_title_v2) as EditText
                     val content = view.findViewById<EditText>(R.id.meeting_content_v2) as EditText
-                    val dateTimeSelect = view.findViewById<EditText>(R.id.date_time_new_meeting_v2) as EditText
-                    val submitButtonV2 = view.findViewById<Button>(R.id.buttonSubmitNewMeetingV2) as Button
+                    val dateTimeSelect =
+                        view.findViewById<EditText>(R.id.date_time_new_meeting_v2) as EditText
+                    val submitButtonV2 =
+                        view.findViewById<Button>(R.id.buttonSubmitNewMeetingV2) as Button
                     submitButtonV2.setOnClickListener {
-                        if(title.text.isEmpty() || content.text.isEmpty() || !dateTimeSelectorFlag ){
-                            if(title.text.isEmpty()){
+                        if (title.text.isEmpty() || content.text.isEmpty() || !dateTimeSelectorFlag) {
+                            if (title.text.isEmpty()) {
                                 title.setError("Title is required!")
-                            }
-                            else if ( content.text.isEmpty()){
+                            } else if (content.text.isEmpty()) {
                                 content.setError("Content is required!")
-                            }
-                            else{
+                            } else {
                                 dateTimeSelect.setError("Date & Time is required!")
                             }
-                        }
-                        else{
+                        } else {
                             val userId: ArrayList<String> = ArrayList()
                             userId.add(auth.currentUser!!.uid)
                             val newMeeting = Meeting(
@@ -314,7 +310,7 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
                 }
                 R.id.usedLib -> {
                     mainDrawer.closeDrawers()
-                    val intent = Intent(this,LibraryActivity::class.java)
+                    val intent = Intent(this, LibraryActivity::class.java)
                     startActivity(intent)
                     true
                 }
@@ -356,7 +352,7 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
         val item = menu?.findItem(R.id.search_action)
         val searchView = item?.actionView as androidx.appcompat.widget.SearchView
 
-        val edittext=searchView.findViewById<EditText>(R.id.search_src_text) as EditText
+        val edittext = searchView.findViewById<EditText>(R.id.search_src_text) as EditText
 
         edittext.setTextColor(getResources().getColor(R.color.lblue_200))
 
@@ -487,7 +483,7 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    private fun setForDateAndTime(dateTimeStampInMillis: Long, view: View){
+    private fun setForDateAndTime(dateTimeStampInMillis: Long, view: View) {
         currentSelectedDate = dateTimeStampInMillis
         val dateTime: LocalDateTime = LocalDateTime.ofInstant(
             Instant.ofEpochMilli(
@@ -504,7 +500,7 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
 
         picker.show(supportFragmentManager, "Meetly")
 
-        var localTime : String = ""
+        var localTime: String = ""
 
         picker.addOnPositiveButtonClickListener {
             if (picker.hour > 12) {
@@ -541,7 +537,7 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
         mainDrawer.closeDrawers()
     }
 
-    fun getRandomString(length: Int) : String {
+    fun getRandomString(length: Int): String {
         val allowedChars = ('A'..'Z') + ('a'..'z') + ('0'..'9')
         return (1..length)
             .map { allowedChars.random() }

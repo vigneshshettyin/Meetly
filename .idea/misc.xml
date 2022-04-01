@@ -3,6 +3,21 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Forked Repos/Meetly/app/src/main/res/drawable/ic_baseline_exit_to_app_24.xml" value="0.245" />
+        <entry key="..\:/Forked Repos/Meetly/app/src/main/res/drawable/ic_exit.xml" value="0.245" />
+        <entry key="..\:/Forked Repos/Meetly/app/src/main/res/font/catamaran.xml" value="0.26927083333333335" />
+        <entry key="..\:/Forked Repos/Meetly/app/src/main/res/font/catamaran_medium.xml" value="0.26927083333333335" />
+        <entry key="..\:/Forked Repos/Meetly/app/src/main/res/font/montserrat_alternates_bold.xml" value="0.26927083333333335" />
+        <entry key="..\:/Forked Repos/Meetly/app/src/main/res/font/montserrat_bold.xml" value="0.26927083333333335" />
+        <entry key="..\:/Forked Repos/Meetly/app/src/main/res/font/poppins.xml" value="0.26927083333333335" />
+        <entry key="..\:/Forked Repos/Meetly/app/src/main/res/font/poppins_bold.xml" value="0.26927083333333335" />
+        <entry key="..\:/Forked Repos/Meetly/app/src/main/res/font/poppins_semibold.xml" value="0.26927083333333335" />
+        <entry key="..\:/Forked Repos/Meetly/app/src/main/res/font/righteous.xml" value="0.26927083333333335" />
+        <entry key="..\:/Forked Repos/Meetly/app/src/main/res/font/ubuntu_mono_bold.xml" value="0.26927083333333335" />
+        <entry key="..\:/Forked Repos/Meetly/app/src/main/res/layout/activity_main.xml" value="0.2390625" />
+        <entry key="..\:/Forked Repos/Meetly/app/src/main/res/layout/exit_dialog.xml" value="0.2390625" />
+        <entry key="..\:/Forked Repos/Meetly/app/src/main/res/layout/meeting_item.xml" value="0.2390625" />
+        <entry key="..\:/Forked Repos/Meetly/app/src/main/res/layout/users_meeting_list_horizonal.xml" value="0.2390625" />
         <entry key="..\:/Meetly/app/src/main/res/layout/activity_devs.xml" value="0.2484375" />
         <entry key="..\:/Meetly/app/src/main/res/layout/activity_forgot_pass.xml" value="0.2484375" />
         <entry key="..\:/Meetly/app/src/main/res/layout/activity_register.xml" value="0.2484375" />

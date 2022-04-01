@@ -10,7 +10,7 @@
     <string name="register">Register</string>
     <string name="name">Name</string>
     <string name="logout">Logout!</string>
-    <string name="yes">Yes!</string>
+    <string name="yes">EXIT</string>
     <string name="cancel">Cancel</string>
     <string name="confirm_logout">Are you sure?</string>
     <string name="already_have_a_account_login">Already have an account? Login</string>
@@ -50,7 +50,7 @@
     <string name="verify_email">Verify Email Address!</string>
     <string name="action_profile">Profile</string>
     <string name="verified_email">Verified Email!</string>
-    <string name="exitMessage">Exit Meetly ?</string>
+    <string name="exitMessage">Are you sure want to exit ?</string>
     <string name="attendee">Attendees : </string>
     <string name="_1">1</string>
     <string name="host">Host</string>
