@@ -20,6 +20,7 @@ import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.view.GravityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.facebook.shimmer.ShimmerFrameLayout
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -54,6 +55,7 @@ import java.util.*
 class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
 
     lateinit var actionBarDrawerToggle: ActionBarDrawerToggle
+    lateinit var shimmerframelayout: ShimmerFrameLayout
 
     private lateinit var auth: FirebaseAuth
 
@@ -80,11 +82,12 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        shimmerframelayout= findViewById(R.id.shimmer_meeting)
+        shimmerframelayout.startShimmer()
         auth = FirebaseAuth.getInstance()
 
         firestore = FirebaseFirestore.getInstance()
 
-        mainPreloader.visibility = View.VISIBLE
         setUpViews()
         setUpFireStore()
         setUpRecyclerView()
@@ -200,11 +203,13 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
         adapter = MeetingAdapter(this, tempMeetingList, this)
         meetingRecyclerview.layoutManager = LinearLayoutManager(this)
         meetingRecyclerview.adapter = adapter
+        shimmerframelayout.stopShimmer()
+        shimmerframelayout.visibility = View.GONE
+        meetingRecyclerview.visibility = View.VISIBLE
     }
 
     private fun loadImage(imageUrl: String) {
         Glide.with(this).load(imageUrl).circleCrop().into(header_image)
-        mainPreloader.visibility = View.GONE
     }
 
     private fun setUpViews() {
