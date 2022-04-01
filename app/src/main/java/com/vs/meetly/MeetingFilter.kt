@@ -10,6 +10,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.facebook.shimmer.ShimmerFrameLayout
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -24,6 +25,7 @@ import kotlinx.coroutines.tasks.await
 class MeetingFilter : AppCompatActivity(), IMeetingRVAdapter {
 
     lateinit var adapter: MeetingAdapter
+    lateinit var shimmerlayout:ShimmerFrameLayout
 
     private var meetingList = mutableListOf<Meeting>()
 
@@ -38,7 +40,8 @@ class MeetingFilter : AppCompatActivity(), IMeetingRVAdapter {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_meeting_filter)
-
+        shimmerlayout = findViewById(R.id.shimmer_filter_meeting)
+        shimmerlayout.startShimmer()
         auth = FirebaseAuth.getInstance()
 
          DATE = intent.getStringExtra("DATE").toString()
@@ -93,6 +96,9 @@ class MeetingFilter : AppCompatActivity(), IMeetingRVAdapter {
         adapter = MeetingAdapter(this, meetingList, this)
         meetingFilterRecyclerView.layoutManager = LinearLayoutManager(this)
         meetingFilterRecyclerView.adapter = adapter
+        shimmerlayout.stopShimmer()
+        shimmerlayout.visibility = View.GONE
+        meetingFilterRecyclerView.visibility = View.VISIBLE
     }
 
     override fun onItemClicked(meeting: Meeting) {

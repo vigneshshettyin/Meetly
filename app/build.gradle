@@ -91,7 +91,10 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
 
     // Splash Screen Animation
-    implementation 'com.airbnb.android:lottie:3.7.0'
+    implementation 'com.airbnb.android:lottie:4.2.2'
+
+    //Shimmer Effect
+    implementation 'com.facebook.shimmer:shimmer:0.5.0'
 
     // Kotlin Core
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
