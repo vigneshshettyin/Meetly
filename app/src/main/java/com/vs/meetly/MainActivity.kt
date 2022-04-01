@@ -80,7 +80,7 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        shimmerframelayout= findViewById(R.id.shimmer_meeting)
+        shimmerframelayout = findViewById(R.id.shimmer_meeting)
         shimmerframelayout.startShimmer()
         auth = FirebaseAuth.getInstance()
 
