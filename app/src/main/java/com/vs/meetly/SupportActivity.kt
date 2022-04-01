@@ -5,14 +5,18 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.facebook.shimmer.ShimmerFrameLayout
 import com.google.firebase.firestore.FirebaseFirestore
 import com.vs.meetly.adapters.SupportAdapter
 import com.vs.meetly.modals.SupportSection
+import kotlinx.android.synthetic.main.activity_devs.*
 import kotlinx.android.synthetic.main.activity_support.*
+import kotlinx.android.synthetic.main.activity_support.topAppBar
 
 class SupportActivity : AppCompatActivity() {
 
     lateinit var adapter: SupportAdapter
+    lateinit var shimmerframelayout:ShimmerFrameLayout
 
     private var supportList = mutableListOf<SupportSection>()
 
@@ -21,8 +25,9 @@ class SupportActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_support)
+        shimmerframelayout = findViewById(R.id.shimmer_support)
+        shimmerframelayout.startShimmer()
 
-        supportPreloader.visibility = View.VISIBLE
 
         setUpRecycleView()
 
@@ -77,10 +82,13 @@ class SupportActivity : AppCompatActivity() {
             }
             supportList.clear()
             supportList.addAll(value.toObjects(SupportSection::class.java))
+            shimmerframelayout.stopShimmer()
+            shimmerframelayout.visibility=View.GONE
+            SupportRecyclerView.visibility=View.VISIBLE
             adapter = SupportAdapter(this, supportList)
             SupportRecyclerView.layoutManager = LinearLayoutManager(this)
             SupportRecyclerView.adapter = adapter
-            supportPreloader.visibility = View.GONE
+
         }
 
 

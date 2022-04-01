@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardViewMeeting"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="18dp"
+    android:background="?attr/colorSurface"
+    android:clickable="true"
+    android:focusable="true"
+    app:cardCornerRadius="15dp"
+    android:elevation="10dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="170dp">
+
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:contentDescription="@string/select_time"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/meetingdate"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_baseline_access_time_24"
+            app:tint="?attr/colorOnSurface" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="30dp"
+            android:contentDescription="@string/display_calender"
+            android:src="@drawable/ic_baseline_calendar_today_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/linearLayout"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="?attr/colorOnSurface" />
+
+        <TextView
+            android:id="@+id/meetingdate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:fontFamily="@font/poppins"
+            android:text=" "
+            android:textColor="?attr/colorOnSurface"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textContent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:fontFamily="@font/righteous"
+            android:text="@string/app_name"
+            android:textColor="?attr/colorOnSurface"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/meetingdate"
+            app:layout_constraintStart_toEndOf="@+id/linearLayout"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/meetingtime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginStart="10dp"
+            android:fontFamily="@font/poppins"
+            android:text=" "
+            android:textColor="?attr/colorOnSurface"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageView2"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/deleteMeeting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="20dp"
+
+            android:contentDescription="@string/delete_meeting_icon"
+            android:src="@android:drawable/ic_menu_delete"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:tint="@color/black" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="15dp"
+            android:layout_height="match_parent"
+            android:background="#3C0E0E"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="40dp"
+            android:layout_height="30dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginStart="30dp"
+            android:src="@drawable/ic_baseline_group_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/linearLayout"
+            app:tint="@color/secondary_dark"
+            android:contentDescription="@string/app_name" />
+
+        <TextView
+            android:id="@+id/main_attende_head"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginBottom="18dp"
+            android:fontFamily="@font/catamaran"
+            android:text=" "
+            android:textColor="@color/secondary_dark"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageView4" />
+
+        <TextView
+            android:id="@+id/main_attende_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/catamaran"
+            android:layout_margin="10dp"
+            app:layout_constraintBaseline_toBaselineOf="@id/main_attende_head"
+            android:text=" "
+            android:textColor="@color/secondary_dark"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/main_attende_head" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

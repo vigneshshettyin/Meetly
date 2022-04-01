@@ -4,12 +4,12 @@ import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.google.firebase.auth.FirebaseAuth
 import com.vs.meetly.internetcheck.isNetworkAvailable
@@ -17,7 +17,7 @@ import com.vs.meetly.internetcheck.isNetworkAvailable
 @Suppress("DEPRECATION")
 class SplashActivity : AppCompatActivity() {
 
-    private lateinit var auth : FirebaseAuth
+    private lateinit var auth: FirebaseAuth
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,8 +34,7 @@ class SplashActivity : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
 
         if (ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.READ_EXTERNAL_STORAGE
+                this, Manifest.permission.READ_EXTERNAL_STORAGE
             ) != PackageManager.PERMISSION_GRANTED
         ) {
             ActivityCompat.requestPermissions(
@@ -55,17 +54,15 @@ class SplashActivity : AppCompatActivity() {
             val intentno = Intent(this, NoInternet::class.java)
             if (isNetworkAvailable(this)) {
                 if (auth.currentUser != null && auth.currentUser!!.isEmailVerified) {
-                    Toast.makeText(this, "Logged in!", Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(this, "Logged in!", Toast.LENGTH_SHORT).show()
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
                     finish()
-                }
-                else{
+                } else {
                     startActivity(intentl)
                     finish()
                 }
-            }
-            else {
+            } else {
                 startActivity(intentno)
                 finish()
             }

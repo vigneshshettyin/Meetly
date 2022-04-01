@@ -18,6 +18,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.facebook.shimmer.ShimmerFrameLayout
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
@@ -51,6 +52,7 @@ class MeetingViewDetail : AppCompatActivity(), IVdeleteUser {
     }
 
     private lateinit var auth: FirebaseAuth
+    private lateinit var shimmerlayout:ShimmerFrameLayout
 
     private lateinit var localMeeting: Meeting
 
@@ -65,8 +67,8 @@ class MeetingViewDetail : AppCompatActivity(), IVdeleteUser {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_meeting_view_detail)
-
-        meetingViewDetailPreloader.visibility = View.VISIBLE
+        shimmerlayout = findViewById(R.id.shimmer_meeting_view)
+        shimmerlayout.startShimmer()
 
         currentMeetingId = intent.getStringExtra("meeting_document_id").toString()
 
@@ -110,6 +112,9 @@ class MeetingViewDetail : AppCompatActivity(), IVdeleteUser {
         meeting_info_recycle_view.layoutManager = mLayoutManager
         meeting_info_recycle_view.itemAnimator = DefaultItemAnimator()
         meeting_info_recycle_view.adapter = adapter
+        shimmerlayout.stopShimmer()
+        shimmerlayout.visibility=View.GONE
+        meeting_info_recycle_view.visibility=View.VISIBLE
     }
 
 
@@ -156,7 +161,7 @@ class MeetingViewDetail : AppCompatActivity(), IVdeleteUser {
 
         registerForBroadcastMessages()
 
-        meetingViewDetailPreloader.visibility = View.GONE
+
 
     }
 
