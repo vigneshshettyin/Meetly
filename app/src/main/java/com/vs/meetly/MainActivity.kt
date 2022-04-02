@@ -17,6 +17,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.browser.customtabs.CustomTabsIntent
+import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
@@ -79,7 +80,7 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        shimmerframelayout= findViewById(R.id.shimmer_meeting)
+        shimmerframelayout = findViewById(R.id.shimmer_meeting)
         shimmerframelayout.startShimmer()
         auth = FirebaseAuth.getInstance()
 
@@ -119,17 +120,13 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
                 .show()
 
         } else {
-            MaterialAlertDialogBuilder(
-                this@MainActivity,
-                R.style.Base_ThemeOverlay_MaterialComponents_MaterialAlertDialog
-            )
-                .setMessage(resources.getString(R.string.exitMessage))
-                .setNegativeButton(resources.getString(R.string.cancel)) { dialog, which ->
-                    // Respond to negative button press
+            MaterialAlertDialogBuilder(this)
+                .setNegativeButton(resources.getString(R.string.cancel)) { _, _ -> }
+                .setPositiveButton(resources.getString(R.string.yes)) { _, _ ->
+                    finishAffinity()
                 }
-                .setPositiveButton(resources.getString(R.string.yes)) { dialog, which ->
-                    super.onBackPressed()
-                }
+                .setBackground(ContextCompat.getDrawable(this, R.drawable.curved_exit_dialog))
+                .setView(layoutInflater.inflate(R.layout.exit_dialog, null))
                 .show()
         }
     }
@@ -315,7 +312,7 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
                 }
                 R.id.usedLib -> {
                     mainDrawer.closeDrawers()
-                    val intent = Intent(this,LibraryActivity::class.java)
+                    val intent = Intent(this, LibraryActivity::class.java)
                     startActivity(intent)
                     true
                 }

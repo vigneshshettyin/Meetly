@@ -15,6 +15,7 @@
         <item name="colorOnSurface">@color/secondary_dark</item>
         <item name="colorSurface">@color/grey_200</item>
         <item name="colorOnBackground">@color/secondary_dark</item>
+        <item name="android:windowTranslucentStatus">true</item>
     </style>
     <style name="drawerListItems" parent="android:Widget.TextView">
         <item name="android:fontFamily">@font/catamaran</item>

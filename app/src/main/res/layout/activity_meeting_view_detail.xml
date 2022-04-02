@@ -1,389 +1,391 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView  xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-   android:layout_height="match_parent"
-    android:layout_width="match_parent">
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:id="@+id/activity_view_detail_cr"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    tools:context=".MeetingViewDetail"
-    android:scrollbars="vertical"
-    >
+    android:layout_height="match_parent">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/filterAppbar"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/activity_view_detail_cr"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:scrollbars="vertical"
+        tools:context=".MeetingViewDetail">
 
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/topAppBar"
-            style="@style/Widget.MaterialComponents.Toolbar.Primary"
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/filterAppbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            app:navigationIconTint="?attr/colorOnSecondary"
-            app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
-            app:title="Meeting Info" />
-    </com.google.android.material.appbar.AppBarLayout>
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/materialCardView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginRight="20dp"
-        android:backgroundTint="#f4f4f4"
-        android:elevation="100dp"
-        app:cardCornerRadius="30dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/filterAppbar">
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/topAppBar"
+                style="@style/Widget.MaterialComponents.Toolbar.Primary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/gradient_toolbar"
+                android:paddingTop="23dp"
+                app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
+                app:navigationIconTint="?attr/colorOnSecondary"
+                app:title="Meeting Info" />
+        </com.google.android.material.appbar.AppBarLayout>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/materialCardView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="20dp"
+            android:backgroundTint="#f4f4f4"
+            android:elevation="100dp"
+            app:cardCornerRadius="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/filterAppbar">
 
-            <TextView
-                android:id="@+id/meeting_info_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:fontFamily="@font/catamaran"
-                android:text="@string/app_name"
-                android:textColor="@color/secondary_blue"
-                android:textSize="28sp"
-                android:textStyle="bold"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageView
-                android:id="@+id/md_date_logo"
-                android:layout_width="28dp"
-                android:layout_height="28dp"
-                android:layout_marginTop="20dp"
-                android:contentDescription="@string/display_calender"
-                android:src="@drawable/ic_baseline_calendar_today_24"
-                app:layout_constraintEnd_toStartOf="@+id/md_ver25"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/meeting_info_name"
-                app:tint="?attr/colorOnSurface" />
-
-            <TextView
-                android:id="@+id/md_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:fontFamily="@font/poppins"
-                android:text="@string/_25_02_2000"
-                android:textColor="?attr/colorOnSurface"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@+id/md_ver25"
-                app:layout_constraintTop_toBottomOf="@+id/meeting_info_name" />
-
-            <ImageView
-                android:id="@+id/md_clock_icon"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginTop="20dp"
-                android:contentDescription="@string/display_calender"
-                app:layout_constraintEnd_toStartOf="@+id/md_ver25"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/md_date_logo"
-                app:srcCompat="@drawable/ic_baseline_access_time_24"
-                app:tint="?attr/colorOnSurface" />
-
-            <TextView
-                android:id="@+id/md_clock"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:fontFamily="@font/poppins"
-                android:text="@string/_01_25_am"
-                android:textColor="?attr/colorOnSurface"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@+id/md_ver25"
-                app:layout_constraintTop_toBottomOf="@+id/md_date" />
-
-            <ImageView
-                android:id="@+id/deleteCustomMeeting"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginTop="40dp"
-                android:clickable="true"
-                android:contentDescription="@string/app_name"
-                android:focusable="true"
-                android:src="@drawable/ic_delete"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/md_ver75"
-                app:layout_constraintTop_toBottomOf="@+id/meeting_info_name"
-                app:tint="@color/grey_800" />
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/md_ver25"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.25" />
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/md_ver22"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.18" />
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/md_ver75"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.75" />
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/md_ver85"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.85" />
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/md_ver15"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.15" />
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/md_hor50"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.5" />
-
-            <LinearLayout
-                android:id="@+id/md_sep_host"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_marginTop="20dp"
-                android:background="@color/light_grey"
-                android:orientation="horizontal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/md_clock"/>
+                android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/host_name_head"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:fontFamily="@font/catamaran"
-                android:text="@string/host"
-                android:textColor="@color/primary_blue"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@+id/md_ver15"
-                app:layout_constraintTop_toBottomOf="@+id/md_sep_desc" />
+                <TextView
+                    android:id="@+id/meeting_info_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/catamaran"
+                    android:text="@string/app_name"
+                    android:textColor="@color/secondary_blue"
+                    android:textSize="28sp"
+                    android:textStyle="bold"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/host_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
-                android:fontFamily="@font/catamaran"
-                android:text="@string/host"
-                android:textColor="@color/primary_dark"
-                android:textSize="16sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/md_ver22"
-                app:layout_constraintTop_toBottomOf="@+id/host_name_head" />
+                <ImageView
+                    android:id="@+id/md_date_logo"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_marginTop="20dp"
+                    android:contentDescription="@string/display_calender"
+                    android:src="@drawable/ic_baseline_calendar_today_24"
+                    app:layout_constraintEnd_toStartOf="@+id/md_ver25"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/meeting_info_name"
+                    app:tint="?attr/colorOnSurface" />
 
-            <LinearLayout
-                android:id="@+id/md_sep_desc"
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_marginTop="20dp"
-                android:background="@color/light_grey"
-                android:orientation="horizontal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/md_desc"/>
+                <TextView
+                    android:id="@+id/md_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="@font/poppins"
+                    android:text="@string/_25_02_2000"
+                    android:textColor="?attr/colorOnSurface"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@+id/md_ver25"
+                    app:layout_constraintTop_toBottomOf="@+id/meeting_info_name" />
 
-            <TextView
-                android:id="@+id/md_desc_head"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:fontFamily="@font/catamaran"
-                android:text="@string/description"
-                android:textColor="@color/primary_blue"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@+id/md_ver15"
-                app:layout_constraintTop_toBottomOf="@+id/md_sep_host" />
+                <ImageView
+                    android:id="@+id/md_clock_icon"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="20dp"
+                    android:contentDescription="@string/display_calender"
+                    app:layout_constraintEnd_toStartOf="@+id/md_ver25"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/md_date_logo"
+                    app:srcCompat="@drawable/ic_baseline_access_time_24"
+                    app:tint="?attr/colorOnSurface" />
 
-            <TextView
-                android:id="@+id/md_desc"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/catamaran"
-                android:text="@string/dumy_text_area"
-                android:textColor="@color/grey_600"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toStartOf="@+id/md_ver85"
-                app:layout_constraintStart_toStartOf="@+id/md_ver22"
-                app:layout_constraintTop_toBottomOf="@+id/md_desc_head" />
+                <TextView
+                    android:id="@+id/md_clock"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/poppins"
+                    android:text="@string/_01_25_am"
+                    android:textColor="?attr/colorOnSurface"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@+id/md_ver25"
+                    app:layout_constraintTop_toBottomOf="@+id/md_date" />
+
+                <ImageView
+                    android:id="@+id/deleteCustomMeeting"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="40dp"
+                    android:clickable="true"
+                    android:contentDescription="@string/app_name"
+                    android:focusable="true"
+                    android:src="@drawable/ic_delete"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/md_ver75"
+                    app:layout_constraintTop_toBottomOf="@+id/meeting_info_name"
+                    app:tint="@color/grey_800" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/md_ver25"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.25" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/md_ver22"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.18" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/md_ver75"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.75" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/md_ver85"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.85" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/md_ver15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.15" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/md_hor50"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_percent="0.5" />
+
+                <LinearLayout
+                    android:id="@+id/md_sep_host"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@color/light_grey"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/md_clock" />
+
+                <TextView
+                    android:id="@+id/host_name_head"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="@font/catamaran"
+                    android:text="@string/host"
+                    android:textColor="@color/primary_blue"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@+id/md_ver15"
+                    app:layout_constraintTop_toBottomOf="@+id/md_sep_desc" />
+
+                <TextView
+                    android:id="@+id/host_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
+                    android:fontFamily="@font/catamaran"
+                    android:text="@string/host"
+                    android:textColor="@color/primary_dark"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/md_ver22"
+                    app:layout_constraintTop_toBottomOf="@+id/host_name_head" />
+
+                <LinearLayout
+                    android:id="@+id/md_sep_desc"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@color/light_grey"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/md_desc" />
+
+                <TextView
+                    android:id="@+id/md_desc_head"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="@font/catamaran"
+                    android:text="@string/description"
+                    android:textColor="@color/primary_blue"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@+id/md_ver15"
+                    app:layout_constraintTop_toBottomOf="@+id/md_sep_host" />
+
+                <TextView
+                    android:id="@+id/md_desc"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/catamaran"
+                    android:text="@string/dumy_text_area"
+                    android:textColor="@color/grey_600"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toStartOf="@+id/md_ver85"
+                    app:layout_constraintStart_toStartOf="@+id/md_ver22"
+                    app:layout_constraintTop_toBottomOf="@+id/md_desc_head" />
 
 
-            <TextView
-                android:id="@+id/joinMeet"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="23dp"
-                android:clickable="true"
-                android:fontFamily="@font/poppins"
-                android:onClick="onButtonClick"
-                android:text="@string/join_meeting"
-                android:textColor="@color/grey_800"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/md_ver85"
-                android:focusable="true" />
+                <TextView
+                    android:id="@+id/joinMeet"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="23dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:fontFamily="@font/poppins"
+                    android:onClick="onButtonClick"
+                    android:text="@string/join_meeting"
+                    android:textColor="@color/grey_800"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/md_ver85" />
 
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_margin="25dp"
-                android:clickable="true"
-                android:onClick="onButtonClick"
-                android:src="@drawable/ic_baseline_launch_24"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:tint="@color/grey_800"
-                android:focusable="true"
-                android:contentDescription="@string/host">
-            </ImageView>
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_margin="25dp"
+                    android:clickable="true"
+                    android:contentDescription="@string/host"
+                    android:focusable="true"
+                    android:onClick="onButtonClick"
+                    android:src="@drawable/ic_baseline_launch_24"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:tint="@color/grey_800"></ImageView>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </com.google.android.material.card.MaterialCardView>
-
-
-    <TextView
-        android:id="@+id/meetattendies_head"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:fontFamily="@font/catamaran_medium"
-        android:text="@string/meeting_attendees"
-        android:textColor="?attr/colorOnBackground"
-        android:textSize="26sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/imageView4"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/materialCardView" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
 
 
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="40dp"
-        android:layout_height="30dp"
-        android:src="@drawable/ic_baseline_group_24"
-        app:layout_constraintBottom_toBottomOf="@+id/meetattendies_head"
-        app:layout_constraintEnd_toStartOf="@+id/md_attende_count"
-        app:tint="?attr/colorOnBackground"
-        android:contentDescription="@string/app_name" />
-
-    <TextView
-        android:id="@+id/md_attende_count"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/catamaran"
-        android:text="@string/_1"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="43dp"
-        android:textColor="?attr/colorOnBackground"
-        android:textSize="27sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/materialCardView" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/md_for_space"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/meetattendies_head"
-        android:gravity="end"
-        android:layout_marginTop="15dp"
-        >
-
-        <com.google.android.material.button.MaterialButton
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        <TextView
+            android:id="@+id/meetattendies_head"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="45dp"
-            android:id="@+id/add_new_user"
-            android:text="@string/add_more" />
-    </LinearLayout>
+            android:layout_marginTop="30dp"
+            android:fontFamily="@font/catamaran_medium"
+            android:text="@string/meeting_attendees"
+            android:textColor="?attr/colorOnBackground"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/imageView4"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/materialCardView" />
 
-    <com.facebook.shimmer.ShimmerFrameLayout
-        android:layout_width="match_parent"
-        android:id="@+id/shimmer_meeting_view"
-        android:layout_height="0dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/md_for_space">
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="40dp"
+            android:layout_height="30dp"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/ic_baseline_group_24"
+            app:layout_constraintBottom_toBottomOf="@+id/meetattendies_head"
+            app:layout_constraintEnd_toStartOf="@+id/md_attende_count"
+            app:tint="?attr/colorOnBackground" />
+
+        <TextView
+            android:id="@+id/md_attende_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="43dp"
+            android:fontFamily="@font/catamaran"
+            android:text="@string/_1"
+            android:textColor="?attr/colorOnBackground"
+            android:textSize="27sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/materialCardView" />
+
         <LinearLayout
-            android:orientation="vertical"
+            android:id="@+id/md_for_space"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <include layout="@layout/user_meeting_list_shimmer"/>
-            <include layout="@layout/user_meeting_list_shimmer"/>
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:gravity="end"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/meetattendies_head">
 
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/add_new_user"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="45dp"
+                android:text="@string/add_more" />
         </LinearLayout>
-    </com.facebook.shimmer.ShimmerFrameLayout>
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/meeting_info_recycle_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:isScrollContainer="true"
-        android:orientation="horizontal"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/md_for_space"
-        tools:listitem="@layout/users_meeting_list_horizonal" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/add_new_user."
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:contentDescription="@string/app_name"
-        android:src="@drawable/ic_baseline_add_24"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:visibility="gone"/>
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmer_meeting_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/md_for_space">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <include layout="@layout/user_meeting_list_shimmer" />
+
+                <include layout="@layout/user_meeting_list_shimmer" />
+
+            </LinearLayout>
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/meeting_info_recycle_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:isScrollContainer="true"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/md_for_space"
+            tools:listitem="@layout/users_meeting_list_horizonal" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/add_new_user."
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/ic_baseline_add_24"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
 
 
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>
