@@ -3,46 +3,48 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Forked Repos/Meetly/app/src/main/res/drawable/curved_exit_dialog.xml" value="0.245" />
-        <entry key="..\:/Forked Repos/Meetly/app/src/main/res/drawable/gradient_toolbar.xml" value="0.245" />
-        <entry key="..\:/Forked Repos/Meetly/app/src/main/res/font/catamaran.xml" value="0.26927083333333335" />
-        <entry key="..\:/Forked Repos/Meetly/app/src/main/res/font/catamaran_medium.xml" value="0.26927083333333335" />
-        <entry key="..\:/Forked Repos/Meetly/app/src/main/res/font/montserrat_alternates_bold.xml" value="0.26927083333333335" />
-        <entry key="..\:/Forked Repos/Meetly/app/src/main/res/font/montserrat_bold.xml" value="0.26927083333333335" />
-        <entry key="..\:/Forked Repos/Meetly/app/src/main/res/font/poppins.xml" value="0.26927083333333335" />
-        <entry key="..\:/Forked Repos/Meetly/app/src/main/res/font/poppins_bold.xml" value="0.26927083333333335" />
-        <entry key="..\:/Forked Repos/Meetly/app/src/main/res/font/poppins_semibold.xml" value="0.26927083333333335" />
-        <entry key="..\:/Forked Repos/Meetly/app/src/main/res/font/righteous.xml" value="0.26927083333333335" />
-        <entry key="..\:/Forked Repos/Meetly/app/src/main/res/font/ubuntu_mono_bold.xml" value="0.26927083333333335" />
-        <entry key="..\:/Forked Repos/Meetly/app/src/main/res/layout/activity_devs.xml" value="0.16" />
-        <entry key="..\:/Forked Repos/Meetly/app/src/main/res/layout/activity_forgot_pass.xml" value="0.2390625" />
-        <entry key="..\:/Forked Repos/Meetly/app/src/main/res/layout/activity_library.xml" value="0.264" />
-        <entry key="..\:/Forked Repos/Meetly/app/src/main/res/layout/activity_login.xml" value="0.2390625" />
-        <entry key="..\:/Forked Repos/Meetly/app/src/main/res/layout/activity_main.xml" value="0.2390625" />
-        <entry key="..\:/Forked Repos/Meetly/app/src/main/res/layout/activity_meeting_filter.xml" value="0.2390625" />
-        <entry key="..\:/Forked Repos/Meetly/app/src/main/res/layout/activity_meeting_view_detail.xml" value="0.2390625" />
-        <entry key="..\:/Forked Repos/Meetly/app/src/main/res/layout/activity_no_internet.xml" value="0.2390625" />
-        <entry key="..\:/Forked Repos/Meetly/app/src/main/res/layout/activity_register.xml" value="0.2390625" />
-        <entry key="..\:/Forked Repos/Meetly/app/src/main/res/layout/activity_splash.xml" value="0.2390625" />
-        <entry key="..\:/Forked Repos/Meetly/app/src/main/res/layout/activity_support.xml" value="0.2390625" />
-        <entry key="..\:/Forked Repos/Meetly/app/src/main/res/layout/activity_user_profile.xml" value="0.2390625" />
-        <entry key="..\:/Forked Repos/Meetly/app/src/main/res/layout/dev_news_item.xml" value="0.2390625" />
-        <entry key="..\:/Forked Repos/Meetly/app/src/main/res/layout/dialog_bottom_navigation.xml" value="0.2390625" />
-        <entry key="..\:/Forked Repos/Meetly/app/src/main/res/layout/dialog_new_user_meeting.xml" value="0.2390625" />
-        <entry key="..\:/Forked Repos/Meetly/app/src/main/res/layout/dialog_progress.xml" value="0.2390625" />
-        <entry key="..\:/Forked Repos/Meetly/app/src/main/res/layout/exit_dialog.xml" value="0.2390625" />
-        <entry key="..\:/Forked Repos/Meetly/app/src/main/res/layout/header_layout.xml" value="0.2390625" />
-        <entry key="..\:/Forked Repos/Meetly/app/src/main/res/layout/list_item.xml" value="0.2390625" />
-        <entry key="..\:/Forked Repos/Meetly/app/src/main/res/layout/meeting_item.xml" value="0.2390625" />
-        <entry key="..\:/Forked Repos/Meetly/app/src/main/res/layout/shimmer_item.xml" value="0.2390625" />
-        <entry key="..\:/Forked Repos/Meetly/app/src/main/res/layout/user_meeting_list_shimmer.xml" value="0.2390625" />
-        <entry key="..\:/Forked Repos/Meetly/app/src/main/res/layout/users_meeting_list_horizonal.xml" value="0.2390625" />
-        <entry key="..\:/Forked Repos/Meetly/app/src/main/res/menu/bottom_navigation_view_menu.xml" value="0.2390625" />
         <entry key="..\:/Meetly/app/src/main/res/layout/activity_devs.xml" value="0.2484375" />
         <entry key="..\:/Meetly/app/src/main/res/layout/activity_forgot_pass.xml" value="0.2484375" />
         <entry key="..\:/Meetly/app/src/main/res/layout/activity_register.xml" value="0.2484375" />
+        <entry key="..\:/Users/Aayush/AndroidStudioProjects/Meetly/app/src/main/res/drawable/circular.xml" value="0.1615" />
+        <entry key="..\:/Users/Aayush/AndroidStudioProjects/Meetly/app/src/main/res/drawable/profile_bg.xml" value="0.1615" />
+        <entry key="..\:/Users/Aayush/AndroidStudioProjects/Meetly/app/src/main/res/layout/activity_devs.xml" value="0.12158054711246201" />
+        <entry key="..\:/Users/Aayush/AndroidStudioProjects/Meetly/app/src/main/res/layout/activity_devs_test.xml" value="0.136" />
+        <entry key="..\:/Users/Aayush/AndroidStudioProjects/Meetly/app/src/main/res/layout/activity_forgot_pass.xml" value="0.22644927536231885" />
+        <entry key="..\:/Users/Aayush/AndroidStudioProjects/Meetly/app/src/main/res/layout/activity_library.xml" value="0.22644927536231885" />
+        <entry key="..\:/Users/Aayush/AndroidStudioProjects/Meetly/app/src/main/res/layout/activity_login.xml" value="0.22644927536231885" />
+        <entry key="..\:/Users/Aayush/AndroidStudioProjects/Meetly/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/Users/Aayush/AndroidStudioProjects/Meetly/app/src/main/res/layout/activity_meeting_filter.xml" value="0.12158054711246201" />
+        <entry key="..\:/Users/Aayush/AndroidStudioProjects/Meetly/app/src/main/res/layout/activity_meeting_view_detail.xml" value="0.12158054711246201" />
+        <entry key="..\:/Users/Aayush/AndroidStudioProjects/Meetly/app/src/main/res/layout/activity_no_internet.xml" value="0.22644927536231885" />
+        <entry key="..\:/Users/Aayush/AndroidStudioProjects/Meetly/app/src/main/res/layout/activity_register.xml" value="0.12158054711246201" />
+        <entry key="..\:/Users/Aayush/AndroidStudioProjects/Meetly/app/src/main/res/layout/activity_splash.xml" value="0.12158054711246201" />
+        <entry key="..\:/Users/Aayush/AndroidStudioProjects/Meetly/app/src/main/res/layout/activity_support.xml" value="0.22644927536231885" />
+        <entry key="..\:/Users/Aayush/AndroidStudioProjects/Meetly/app/src/main/res/layout/activity_user_profile.xml" value="0.22644927536231885" />
+        <entry key="..\:/Users/Aayush/AndroidStudioProjects/Meetly/app/src/main/res/layout/dev_news_item.xml" value="0.22644927536231885" />
+        <entry key="..\:/Users/Aayush/AndroidStudioProjects/Meetly/app/src/main/res/layout/dialog_bottom_navigation.xml" value="0.22644927536231885" />
+        <entry key="..\:/Users/Aayush/AndroidStudioProjects/Meetly/app/src/main/res/layout/dialog_new_user_meeting.xml" value="0.22644927536231885" />
+        <entry key="..\:/Users/Aayush/AndroidStudioProjects/Meetly/app/src/main/res/layout/dialog_progress.xml" value="0.22644927536231885" />
+        <entry key="..\:/Users/Aayush/AndroidStudioProjects/Meetly/app/src/main/res/layout/header_layout.xml" value="0.12158054711246201" />
+        <entry key="..\:/Users/Aayush/AndroidStudioProjects/Meetly/app/src/main/res/layout/list_item.xml" value="0.2" />
+        <entry key="..\:/Users/Aayush/AndroidStudioProjects/Meetly/app/src/main/res/layout/meeting_item.xml" value="0.22644927536231885" />
+        <entry key="..\:/Users/Aayush/AndroidStudioProjects/Meetly/app/src/main/res/layout/shimmer_item.xml" value="0.22644927536231885" />
+        <entry key="..\:/Users/Aayush/AndroidStudioProjects/Meetly/app/src/main/res/layout/shimmer_item_meeting.xml" value="0.22644927536231885" />
+        <entry key="..\:/Users/Aayush/AndroidStudioProjects/Meetly/app/src/main/res/layout/shimmer_item_support.xml" value="0.22644927536231885" />
+        <entry key="..\:/Users/Aayush/AndroidStudioProjects/Meetly/app/src/main/res/layout/user_meeting_list_shimmer.xml" value="0.22644927536231885" />
+        <entry key="..\:/Users/Aayush/AndroidStudioProjects/Meetly/app/src/main/res/layout/users_meeting_list_horizonal.xml" value="0.22644927536231885" />
+        <entry key="..\:/Users/Aayush/AndroidStudioProjects/Meetly/app/src/main/res/menu/drawer_menu.xml" value="0.25" />
+        <entry key="..\:/Users/Aayush/AndroidStudioProjects/Meetly/app/src/main/res/menu/right_menu_search_bar.xml" value="0.25" />
         <entry key="..\:/Users/Garuda/AndroidStudioProjects/Meetly/app/src/main/res/layout/activity_login.xml" value="0.2" />
         <entry key="..\:/Users/Garuda/AndroidStudioProjects/Meetly/app/src/main/res/layout/activity_main.xml" value="0.215625" />
+        <entry key="..\:/Users/priyanshu borole/AndroidOtherProj/Meetly/app/src/main/res/drawable/ic_github.xml" value="0.1" />
+        <entry key="..\:/Users/priyanshu borole/AndroidOtherProj/Meetly/app/src/main/res/drawable/ic_github_icon.xml" value="0.168" />
+        <entry key="..\:/Users/priyanshu borole/AndroidOtherProj/Meetly/app/src/main/res/layout/activity_devs.xml" value="0.12681159420289856" />
+        <entry key="..\:/Users/priyanshu borole/AndroidOtherProj/Meetly/app/src/main/res/layout/activity_library.xml" value="0.264" />
+        <entry key="..\:/Users/priyanshu borole/AndroidOtherProj/Meetly/app/src/main/res/layout/activity_main.xml" value="0.12681159420289856" />
+        <entry key="..\:/Users/priyanshu borole/AndroidOtherProj/Meetly/app/src/main/res/layout/activity_support.xml" value="0.12681159420289856" />
+        <entry key="..\:/Users/priyanshu borole/AndroidOtherProj/Meetly/app/src/main/res/layout/dev_news_item.xml" value="0.10461956521739131" />
+        <entry key="..\:/Users/priyanshu borole/AndroidOtherProj/Meetly/app/src/main/res/menu/drawer_menu.xml" value="0.264" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.21302083333333333" />
         <entry key="app/src/main/res/layout/activity_support.xml" value="0.21302083333333333" />
         <entry key="app/src/main/res/layout/dialog_bottom_navigation.xml" value="0.25" />

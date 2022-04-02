@@ -11,6 +11,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -48,13 +49,14 @@ import java.time.LocalDateTime
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.util.*
+import kotlin.properties.Delegates
 
 @Suppress("DEPRECATION")
 class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
 
     lateinit var actionBarDrawerToggle: ActionBarDrawerToggle
     lateinit var shimmerframelayout: ShimmerFrameLayout
-
+    private var mcheck:Boolean = false
     private lateinit var auth: FirebaseAuth
 
     private var dateTimeSelectorFlag: Boolean = false
@@ -357,7 +359,7 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
         val edittext = searchView.findViewById<EditText>(R.id.search_src_text) as EditText
 
         edittext.setTextColor(getResources().getColor(R.color.lblue_200))
-
+        edittext.hint="Search..."
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return true
@@ -366,13 +368,20 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
             override fun onQueryTextChange(newText: String?): Boolean {
                 tempMeetingList.clear()
                 val searchText = newText!!.toLowerCase(Locale.getDefault())
+                mcheck=false
                 if (searchText.isNotEmpty()) {
                     meetingList.forEach {
                         if (it.title.toLowerCase(Locale.getDefault()).contains(searchText)) {
+                            mcheck=true
                             tempMeetingList.add(it)
                             mainNoData.visibility = View.GONE
                         } else {
-                            mainNoData.visibility = View.VISIBLE
+                            if(mcheck==true){
+                                mainNoData.visibility = View.GONE
+                            }else{
+                                mainNoData.visibility = View.VISIBLE
+                            }
+
                         }
                     }
                     adapter.notifyDataSetChanged()
