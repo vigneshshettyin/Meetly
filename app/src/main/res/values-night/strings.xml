@@ -72,4 +72,8 @@
     <string name="glide_info">Glide is a fast and efficient image loading library for Android focused on smooth scrolling. Glide offers an easy to use API, a performant and extensible resource decoding pipeline and automatic resource pooling. Glide supports fetching, decoding, and displaying video stills, images, and animated GIFs. Glide includes a flexible api that allows developers to plug in to almost any network stack. By default Glide uses a custom HttpUrlConnection based stack, but also includes utility libraries plug in to Google’s Volley project or Square’s OkHttp library instead.</string>
     <string name="lottie">Lottie</string>
     <string name="lottie_info">Lottie is a mobile library for Android and iOS that parses Adobe After Effects animations exported as json with Bodymovin and renders them natively on mobile! For the first time, designers can create and ship beautiful animations without an engineer painstakingly recreating it by hand. They say a picture is worth 1,000 words so here are 13,000:</string>
+    <string name="alertDialogDeniedPermissionText"><font color='#000000'>We need access to Reading External Storage for performing necessary task. Please permit the permission through
+	Settings screen.\n\nGo to App permissions -> Storage -> Allow</font></string>
+    <string name="alertDialogPermissionText"><font color='#000000'>Meetly needs read permission in order to properly work. Please grant this permission to proceed</font></string>
+    <string name="permit">Permit Manually</string>
 </resources>
