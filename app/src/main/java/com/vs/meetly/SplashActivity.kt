@@ -3,14 +3,16 @@ package com.vs.meetly
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
+import android.provider.Settings
 import android.view.WindowManager
-import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
 import com.vs.meetly.internetcheck.isNetworkAvailable
 
@@ -33,6 +35,10 @@ class SplashActivity : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance()
 
+        checkPermission()
+    }
+
+    private fun checkPermission() {
         if (ActivityCompat.checkSelfPermission(
                 this, Manifest.permission.READ_EXTERNAL_STORAGE
             ) != PackageManager.PERMISSION_GRANTED
@@ -78,6 +84,30 @@ class SplashActivity : AppCompatActivity() {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == 111 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             moveToNextIntent()
+        } else {
+            if (shouldShowRequestPermissionRationale(Manifest.permission.READ_EXTERNAL_STORAGE)) {
+                MaterialAlertDialogBuilder(this)
+                    .setMessage(R.string.alertDialogPermissionText)
+                    .setCancelable(false)
+                    .setPositiveButton("Next") { _, _ ->
+                        checkPermission()
+                    }
+                    .show()
+            } else {
+                MaterialAlertDialogBuilder(this)
+                    .setMessage(R.string.alertDialogDeniedPermissionText)
+                    .setCancelable(false)
+                    .setPositiveButton(R.string.permit) { _, _ ->
+                        val intent = Intent()
+                        intent.action = Settings.ACTION_APPLICATION_DETAILS_SETTINGS
+                        val uri = Uri.fromParts("package", packageName, null)
+                        intent.data = uri
+                        startActivity(intent)
+                        finish()
+                    }
+                    .setNeutralButton(R.string.exit) { _, _ -> finishAffinity() }
+                    .show()
+            }
         }
     }
 }
