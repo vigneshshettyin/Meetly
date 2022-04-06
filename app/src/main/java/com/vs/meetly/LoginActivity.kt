@@ -63,25 +63,32 @@ class LoginActivity : AppCompatActivity() {
         val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z0-9.]+"
         hideKeyboard()
 
-        if (email.isEmpty() || password.isEmpty()) {
-            Snackbar.make(
-                loginSnackbar,
-                "Enter all the fields!", Snackbar.LENGTH_LONG
-            ).show()
+        if (email.isEmpty()) {
+//            Snackbar.make(
+//                loginSnackbar,
+//                "Enter all the fields!", Snackbar.LENGTH_LONG
+//            ).show()
+            textEmail.error = "Enter the email!"
             loginPreloader.visibility = View.GONE
-        } else if (!email.matches(emailPattern.toRegex())) {
-            Snackbar.make(
-                loginSnackbar,
-                "Enter a valid email id!", Snackbar.LENGTH_LONG
-            )
-                .show()
+        } else if(password.isEmpty()){
+            textPassword.error = "Enter the password!"
+            loginPreloader.visibility = View.GONE
+        }
+        else if (!email.matches(emailPattern.toRegex())) {
+//            Snackbar.make(
+//                loginSnackbar,
+//                "Enter a valid email id!", Snackbar.LENGTH_LONG
+//            )
+//                .show()
+            textEmail.error = "Enter a valid email id!"
             loginPreloader.visibility = View.GONE
         } else if (password.length < 6) {
-            Snackbar.make(
-                loginSnackbar,
-                "Password is too short!", Snackbar.LENGTH_LONG
-            )
-                .show()
+//            Snackbar.make(
+//                loginSnackbar,
+//                "Password is too short!", Snackbar.LENGTH_LONG
+//            )
+//                .show()
+            etvPassword.error = "Password is too short!"
             loginPreloader.visibility = View.GONE
         } else {
             auth.signInWithEmailAndPassword(email, password)
