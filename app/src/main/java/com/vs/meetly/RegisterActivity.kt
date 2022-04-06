@@ -19,6 +19,7 @@ import com.vs.meetly.modals.User
 import kotlinx.android.synthetic.main.activity_register.*
 import kotlinx.android.synthetic.main.activity_register.etvEmail
 import kotlinx.android.synthetic.main.activity_register.etvPassword
+import kotlinx.android.synthetic.main.activity_splash.*
 
 class RegisterActivity : AppCompatActivity() {
 
@@ -79,26 +80,35 @@ class RegisterActivity : AppCompatActivity() {
          *    database, and we also send a verification email to the user. If the registration
          *    service fails somehow, we show appropriate message.
          */
-        if (name.isEmpty() || email.isEmpty() || password.isEmpty()) {
-            Snackbar.make(
-                registerSnackbar,
-                "Enter all the fields!", Snackbar.LENGTH_LONG
-            )
-                .show()
+        if (name.isEmpty()) {
+//            Snackbar.make(
+//                registerSnackbar,
+//                "Enter all the fields!", Snackbar.LENGTH_LONG
+//            )
+//                .show()
+            textName.error = "Enter a name!"
+            registerPreloader.visibility = View.GONE
+        } else if (email.isEmpty()) {
+            textEmail.error = "Enter an email!"
+            registerPreloader.visibility = View.GONE
+        } else if (password.isEmpty()) {
+            textPassword.error = "Enter the password!"
             registerPreloader.visibility = View.GONE
         } else if (!email.matches(emailPattern.toRegex())) {
-            Snackbar.make(
-                registerSnackbar,
-                "Enter a valid email id!", Snackbar.LENGTH_LONG
-            )
-                .show()
+//            Snackbar.make(
+//                registerSnackbar,
+//                "Enter a valid email id!", Snackbar.LENGTH_LONG
+//            )
+//                .show()
+            textEmail.error = "Enter a valid email id!"
             registerPreloader.visibility = View.GONE
         } else if (password.length < 6) {
-            Snackbar.make(
-                registerSnackbar,
-                "Password should be atleast 6 digits long!", Snackbar.LENGTH_LONG
-            )
-                .show()
+//            Snackbar.make(
+//                registerSnackbar,
+//                "Password should be atleast 6 digits long!", Snackbar.LENGTH_LONG
+//            )
+//                .show()
+            textPassword.error = "Password should be at least 6 digits long!"
             registerPreloader.visibility = View.GONE
         } else {
             auth.createUserWithEmailAndPassword(email, password)
@@ -109,9 +119,12 @@ class RegisterActivity : AppCompatActivity() {
                             name,
                             auth.currentUser!!.email.toString(),
                             0,
-                            imageUrl)
-                        Snackbar.make(registerSnackbar,
-                            "Registration successfully complete!", Snackbar.LENGTH_LONG)
+                            imageUrl
+                        )
+                        Snackbar.make(
+                            registerSnackbar,
+                            "Registration successfully complete!", Snackbar.LENGTH_LONG
+                        )
                             .show()
                         userDao.addUser(user)
                         auth.currentUser!!.sendEmailVerification().addOnCompleteListener { result ->
@@ -120,8 +133,7 @@ class RegisterActivity : AppCompatActivity() {
                                 val intent = Intent(this, LoginActivity::class.java)
                                 startActivity(intent)
                                 finish()
-                            }
-                            else{
+                            } else {
                                 Snackbar.make(
                                     registerSnackbar,
                                     "Error, while creating user!", Snackbar.LENGTH_LONG
