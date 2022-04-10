@@ -2,22 +2,34 @@
 
 package com.vs.meetly
 
+
 import android.content.Context
 import android.content.Intent
 import android.graphics.Paint
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.GoogleAuthProvider
+import com.vs.meetly.daos.UserDao
+import com.vs.meetly.modals.User
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
 
+    private val RC_SIGN_IN=100
     private lateinit var auth: FirebaseAuth
+    private lateinit var user:User
+    private lateinit var googlesigninclient:GoogleSignInClient
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +40,13 @@ class LoginActivity : AppCompatActivity() {
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
+        //google sign-in
+        val gso = GoogleSignInOptions
+            .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.default_web_client_id))
+            .requestEmail()
+            .build()
+        googlesigninclient = GoogleSignIn.getClient(this,gso)
 
         val tvforgotpass: TextView = findViewById(R.id.etvForgotPassword)
         val tvreg: TextView = findViewById(R.id.redirectToRegister)
@@ -36,6 +55,9 @@ class LoginActivity : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance()
 
+        googleLogin.setOnClickListener{
+            signIn()
+        }
         etvLogin.setOnClickListener {
             loginPreloader.visibility = View.VISIBLE
             login()
@@ -128,5 +150,59 @@ class LoginActivity : AppCompatActivity() {
         val view = this.currentFocus
         val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(view?.windowToken, 0)
+    }
+
+    private fun signIn() {
+        loginPreloader.visibility=View.VISIBLE
+        googlesigninclient.signOut()
+        val signInIntent = googlesigninclient.signInIntent
+        startActivityForResult(signInIntent,RC_SIGN_IN)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(requestCode==RC_SIGN_IN){
+            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+            val exception = task.exception
+            if (task.isSuccessful){
+                try {
+                    val account = task.getResult(ApiException::class.java)!!
+                    firebaseAuthWithGoogle(account.idToken!!)
+                }catch (e:ApiException){
+                    Log.d("ApiException","Google Sign in failed")
+                }
+            }else{
+                loginPreloader.visibility=View.GONE
+                Log.d("Error",exception.toString())
+            }
+        }
+    }
+    private fun firebaseAuthWithGoogle(idToken:String) {
+        val credential = GoogleAuthProvider.getCredential(idToken, null)
+        auth.signInWithCredential(credential)
+            .addOnCompleteListener(this) { task ->
+                loginPreloader.visibility=View.GONE
+                val userDao = UserDao()
+                if (task.isSuccessful) {
+                    if(task.result.additionalUserInfo!!.isNewUser){
+                        user = User(
+                            auth.currentUser!!.uid,
+                            auth.currentUser!!.displayName,
+                            auth.currentUser!!.email.toString(),
+                            0,
+                            auth.currentUser!!.photoUrl.toString()
+                        )
+                        userDao.addUser(user)
+                        startActivity(Intent(this,MainActivity::class.java))
+                        finish()
+                    }else{
+                        startActivity(Intent(this,MainActivity::class.java))
+                        finish()
+                    }
+                } else {
+                    loginPreloader.visibility=View.GONE
+                    Log.d("CredentialFailure", "Sign in with credential failure"+ task.exception)
+                }
+            }
     }
 }
