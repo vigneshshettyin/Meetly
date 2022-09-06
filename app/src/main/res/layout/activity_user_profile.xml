@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/profileSnackbar"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
     android:orientation="horizontal"
+    android:layout_height="match_parent"
     tools:context=".UserProfile">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -20,11 +20,9 @@
             android:id="@+id/topAppBar"
             style="@style/Widget.MaterialComponents.Toolbar.Primary"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/gradient_toolbar"
-            android:paddingTop="23dp"
-            app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
+            android:layout_height="?attr/actionBarSize"
             app:navigationIconTint="?attr/colorOnSecondary"
+            app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
             app:title="Profile" />
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -34,21 +32,21 @@
         android:layout_width="0dp"
         android:layout_height="125dp"
         android:layout_marginTop="30dp"
-        android:contentDescription="@string/verify_email"
         android:src="@drawable/ic_baseline_supervised_user_circle_24"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/profileSection" />
+        app:layout_constraintTop_toBottomOf="@id/profileSection"
+        android:contentDescription="@string/verify_email" />
 
     <ImageView
+        android:contentDescription="@string/verify_email"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_marginStart="10dp"
         android:layout_marginTop="90dp"
-        android:contentDescription="@string/verify_email"
-        android:src="@drawable/updatepp"
+        android:layout_marginStart="10dp"
         app:layout_constraintStart_toStartOf="@+id/ver50"
-        app:layout_constraintTop_toTopOf="@+id/profileImage" />
+        app:layout_constraintTop_toTopOf="@+id/profileImage"
+        android:src="@drawable/updatepp"/>
 
     <CheckBox
         android:id="@+id/emailCheckBox"
@@ -65,26 +63,26 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textName"
-        style="@style/LoginTextInputLayoutStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="30dp"
         android:hint="@string/name"
-        app:endIconMode="clear_text"
+        style="@style/LoginTextInputLayoutStyle"
+        app:startIconTint="?attr/colorOnBackground"
         app:endIconTint="?attr/colorOnBackground"
+        app:endIconMode="clear_text"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/hor40"
-        app:startIconDrawable="@drawable/ic_baseline_person_24"
-        app:startIconTint="?attr/colorOnBackground">
+        app:startIconDrawable="@drawable/ic_baseline_person_24">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/profileName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
-            android:singleLine="false"
             android:textColor="?attr/colorOnBackground"
+            android:singleLine="false"
             android:textSize="14sp" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -92,32 +90,31 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textEmail"
-        style="@style/LoginTextInputLayoutStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="30dp"
         android:hint="@string/email"
+        style="@style/LoginTextInputLayoutStyle"
+        app:startIconTint="?attr/colorOnBackground"
         app:endIconTint="?attr/colorOnBackground"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textPhone"
-        app:startIconDrawable="@drawable/ic_baseline_email_24"
-        app:startIconTint="?attr/colorOnBackground">
+        app:startIconDrawable="@drawable/ic_baseline_email_24">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/profileEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:enabled="false"
-            android:inputType="textEmailAddress"
             android:textColor="?attr/colorOnBackground"
+            android:inputType="textEmailAddress"
             android:textSize="14sp" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textPhone"
-        style="@style/LoginTextInputLayoutStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
@@ -125,13 +122,14 @@
         android:layout_marginRight="30dp"
         android:hint="@string/phone"
         android:textColorHint="@color/secondary_blue"
-        app:endIconMode="clear_text"
+        style="@style/LoginTextInputLayoutStyle"
+        app:startIconTint="?attr/colorOnBackground"
         app:endIconTint="?attr/colorOnBackground"
+        app:endIconMode="clear_text"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textName"
-        app:startIconDrawable="@drawable/ic_baseline_phone_24"
-        app:startIconTint="?attr/colorOnBackground">
+        app:startIconDrawable="@drawable/ic_baseline_phone_24">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/profilePhone"
@@ -153,8 +151,8 @@
         android:paddingStart="25dp"
         android:paddingEnd="25dp"
         android:text="@string/update_profile"
-        android:textColor="?attr/colorSurface"
         android:textSize="16sp"
+        android:textColor="?attr/colorSurface"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textEmail" />
@@ -202,9 +200,9 @@
         android:id="@+id/verifiedstatus"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:layout_marginEnd="30dp"
         android:gravity="center"
         android:orientation="horizontal"
+        android:layout_marginEnd="30dp"
         android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/hor40"
         app:layout_constraintEnd_toEndOf="parent"
@@ -215,8 +213,8 @@
             android:layout_width="30dp"
             android:layout_height="25dp"
             android:layout_gravity="center"
-            android:contentDescription="@string/verify_email"
-            app:srcCompat="@drawable/verified" />
+            app:srcCompat="@drawable/verified"
+            android:contentDescription="@string/verify_email" />
 
         <TextView
             android:id="@+id/verifiedtext"
