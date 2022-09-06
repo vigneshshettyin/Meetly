@@ -9,7 +9,7 @@
                 android:id="@+id/profile" />
         </menu>
     </item>
-    <item android:title="@string/meeting_s">
+    <item android:title="@string/calender">
         <menu>
             <item android:title="@string/today_s"
                 android:icon="@drawable/ic_baseline_connect_without_contact_24"
@@ -20,22 +20,22 @@
         </menu>
     </item>
 
-    <item android:title="@string/help_amp_support">
-        <menu>
-            <item android:title="@string/support_updates"
-                android:icon="@drawable/ic_baseline_new_releases_24"
-                android:id="@+id/devSupport"/>
-            <item android:title="@string/raise_request"
-                android:icon="@drawable/ic_baseline_report_problem_24"
-                android:id="@+id/raiseRequest"/>
-            <item android:title="@string/team"
-                android:icon="@drawable/ic_baseline_person_24"
-                android:id="@+id/meetDevs"/>
-            <item android:title="@string/library"
-                android:icon="@drawable/ic_baseline_source_24"
-                android:id="@+id/usedLib"/>
-        </menu>
-    </item>
+<!--    <item android:title="@string/help_amp_support">-->
+<!--        <menu>-->
+<!--            <item android:title="@string/support_updates"-->
+<!--                android:icon="@drawable/ic_baseline_new_releases_24"-->
+<!--                android:id="@+id/devSupport"/>-->
+<!--            <item android:title="@string/raise_request"-->
+<!--                android:icon="@drawable/ic_baseline_report_problem_24"-->
+<!--                android:id="@+id/raiseRequest"/>-->
+<!--            <item android:title="@string/team"-->
+<!--                android:icon="@drawable/ic_baseline_person_24"-->
+<!--                android:id="@+id/meetDevs"/>-->
+<!--            <item android:title="@string/library"-->
+<!--                android:icon="@drawable/ic_baseline_source_24"-->
+<!--                android:id="@+id/usedLib"/>-->
+<!--        </menu>-->
+<!--    </item>-->
     <group android:id="@+id/logoutGroup">
         <item android:title="@string/logout"
             android:id="@+id/logout"

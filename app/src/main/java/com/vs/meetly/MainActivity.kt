@@ -291,33 +291,33 @@ class MainActivity : AppCompatActivity(), IMeetingRVAdapter {
                     }
                     true
                 }
-                R.id.raiseRequest -> {
-                    mainDrawer.closeDrawers()
-                    val url = "https://meetly.tawk.help"
-                    val builder = CustomTabsIntent.Builder()
-                    val CustomTabsIntent = builder.build()
-                    CustomTabsIntent.launchUrl(this, Uri.parse(url))
-                    true
-                }
-                R.id.devSupport -> {
-                    mainDrawer.closeDrawers()
-                    val intent = Intent(this, SupportActivity::class.java)
-                    startActivity(intent)
-                    true
-                }
-                R.id.meetDevs -> {
-                    mainDrawer.closeDrawers()
-                    val intent = Intent(this, DevsActivity::class.java)
-                    startActivity(intent)
-                    true
-
-                }
-                R.id.usedLib -> {
-                    mainDrawer.closeDrawers()
-                    val intent = Intent(this, LibraryActivity::class.java)
-                    startActivity(intent)
-                    true
-                }
+//                R.id.raiseRequest -> {
+//                    mainDrawer.closeDrawers()
+//                    val url = "https://meetly.tawk.help"
+//                    val builder = CustomTabsIntent.Builder()
+//                    val CustomTabsIntent = builder.build()
+//                    CustomTabsIntent.launchUrl(this, Uri.parse(url))
+//                    true
+//                }
+//                R.id.devSupport -> {
+//                    mainDrawer.closeDrawers()
+//                    val intent = Intent(this, SupportActivity::class.java)
+//                    startActivity(intent)
+//                    true
+//                }
+//                R.id.meetDevs -> {
+//                    mainDrawer.closeDrawers()
+//                    val intent = Intent(this, DevsActivity::class.java)
+//                    startActivity(intent)
+//                    true
+//
+//                }
+//                R.id.usedLib -> {
+//                    mainDrawer.closeDrawers()
+//                    val intent = Intent(this, LibraryActivity::class.java)
+//                    startActivity(intent)
+//                    true
+//                }
                 R.id.logout -> {
                     mainDrawer.closeDrawers()
                     MaterialAlertDialogBuilder(

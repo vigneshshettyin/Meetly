@@ -50,6 +50,9 @@
         <entry key="app/src/main/res/layout/activity_support.xml" value="0.21302083333333333" />
         <entry key="app/src/main/res/layout/dialog_bottom_navigation.xml" value="0.25" />
         <entry key="app/src/main/res/layout/dialog_new_user_meeting.xml" value="0.15070921985815602" />
+        <entry key="app/src/main/res/layout/header_layout.xml" value="0.221875" />
+        <entry key="app/src/main/res/menu/drawer_menu.xml" value="0.1" />
+        <entry key="app/src/main/res/menu/right_menu_search_bar.xml" value="0.1712962962962963" />
       </map>
     </option>
   </component>

@@ -76,4 +76,5 @@
 	Settings screen.\n\nGo to App permissions -> Storage -> Allow</font></string>
     <string name="alertDialogPermissionText"><font color='#000000'>Meetly needs read permission in order to properly work. Please grant this permission to proceed</font></string>
     <string name="permit">Permit Manually</string>
+    <string name="calender">Calender</string>
 </resources>
