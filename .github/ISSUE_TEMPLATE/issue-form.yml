@@ -25,6 +25,7 @@ body:
         - Documentation
         - Android (Kotlin)
         - Backend (Express)
+        - Static Page (React)
     validations:
       required: true
   - type: checkboxes
