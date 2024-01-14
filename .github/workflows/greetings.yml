@@ -5,12 +5,28 @@ on:
     types: [opened]
 
 jobs:
-  greeting:
+  issue_greeting:
     runs-on: ubuntu-latest
     steps:
-    - uses: Suvraneel/Greeting-action@main
+    - name: Greet User and Provide Guidance
+      uses: Suvraneel/Greeting-action@main
       with:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        issue_message: 'Hello @${{github.actor}}, <br>
-                        Thank you for opening an issue. :octocat: <br>
-                        <i> Check this <a href="https://github.com/vigneshshettyin/Meetly/blob/main/.github/CODE_OF_CONDUCT.md">guide</a> before contributing.'
+        issue_message: |
+          Hello @${{ github.actor }},
+
+          Thank you for opening an issue. :octocat:
+
+          We appreciate your contribution to the project! To ensure a smooth collaboration, please take note of the following:
+
+          - **Describe the Issue:** Provide as much detail as possible about the problem you're facing or the enhancement you're suggesting.
+
+          - **Reproducible Steps:** If applicable, include steps to reproduce the issue. This helps us understand and address the problem more effectively.
+
+          - **Code of Conduct:** Familiarize yourself with our [Code of Conduct](https://github.com/vigneshshettyin/Meetly/blob/main/.github/CODE_OF_CONDUCT.md). We expect all contributors to adhere to these guidelines to maintain a positive and inclusive community.
+
+          - **Contributing Guidelines:** Before making any contributions, please review our [Contributing Guidelines](https://github.com/vigneshshettyin/Meetly/blob/main/CONTRIBUTING.md). It provides essential information on the development process, coding standards, and more.
+
+          Feel free to reach out if you have any questions or need further assistance. We look forward to your involvement in the project!
+
+          Happy coding! 🚀
