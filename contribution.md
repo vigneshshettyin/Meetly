@@ -1,6 +1,6 @@
 <h2 align=center> 📝 How to Contribute? </h2>  
 
-####Setting up environment<br>
+#### Setting up environment<br>
 install android studio
 
 #### Type below command in terminal to clone forked repository in your local machine<br>
