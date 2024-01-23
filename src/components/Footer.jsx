@@ -8,11 +8,11 @@ function Footer() {
         <section className="content py-5 flex flex-col items-center gap-3">
           <div className="flex items-center justify-center font-bold gap-2">
             <a href="https://github.com/vigneshshettyin/Meetly" target="_blank">
-              <span className="text-white">Meetly</span>
+              <span className="text-black">Meetly</span>
             </a>
-            <span className="text-black font-semibold">is maintained by</span>
+            <span className="text-white font-semibold">is maintained by</span>
             <a href="https://github.com/vigneshshettyin" target="_blank">
-              <span className="text-white">vigneshshettyin. </span>
+              <span className="text-black">vigneshshettyin. </span>
             </a>
           </div>
           <div className="github">

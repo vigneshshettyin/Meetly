@@ -43,7 +43,7 @@
 	right: 0;
 	height: 100%;
 	width: 5px;
-	background: linear-gradient(to right,#00BBF9 , blue);
+	background: linear-gradient(to bottom,#00BBF9 , blue);
 	animation: animate2 2s linear infinite;
 	animation-delay: 1s;
 }
@@ -62,7 +62,7 @@
 	right: 0;
 	width: 100%;
 	height: 3px;
-	background: linear-gradient(to right,#00BBF9 , blue);
+	background: linear-gradient(to left,#00BBF9 , blue);
 	animation: animate3 2s linear infinite;
 }
 
@@ -81,7 +81,7 @@
 	left: 0;
 	height: 100%;
 	width: 5px;
-	background: linear-gradient(to right,#00BBF9 , blue);
+	background: linear-gradient(to top,#00BBF9 , blue);
 	animation: animate4 2s linear infinite;
 	animation-delay: 1s;
 }
