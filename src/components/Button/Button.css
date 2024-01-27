@@ -1,0 +1,96 @@
+.Button {
+	/* margin: 0; */
+	/* background: #171618; */
+	/* height: 100vh; */
+	display: flex;
+	/* place-items: center; */
+}
+
+.button {
+	position: relative;
+	padding: 15px 30px;
+	box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.4);
+	/* color: #999; */
+	/* text-decoration: none; */
+	/* text-transform: uppercase; */
+	/* letter-spacing: 4px; */
+	/* font: 700 30px consolas; */
+	overflow: hidden;
+}
+
+.button .animationline:nth-child(1) {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 100%;
+	height: 3px;
+	background: linear-gradient(to right,#00BBF9 , blue);
+	animation: animate1 2s linear infinite;
+}
+
+@keyframes animate1 {
+	0% {
+		transform: translateX(-100%);
+	}
+	100% {
+		transform: translateX(100%);
+	}
+}
+
+.button .animationline:nth-child(2) {
+	position: absolute;
+	top: 0;
+	right: 0;
+	height: 100%;
+	width: 5px;
+	background: linear-gradient(to bottom,#00BBF9 , blue);
+	animation: animate2 2s linear infinite;
+	animation-delay: 1s;
+}
+@keyframes animate2 {
+	0% {
+		transform: translateY(-100%);
+	}
+	100% {
+		transform: translateY(100%);
+	}
+}
+
+.button .animationline:nth-child(3) {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	width: 100%;
+	height: 3px;
+	background: linear-gradient(to left,#00BBF9 , blue);
+	animation: animate3 2s linear infinite;
+}
+
+@keyframes animate3 {
+	0% {
+		transform: translateX(100%);
+	}
+	100% {
+		transform: translateX(-100%);
+	}
+}
+
+.button .animationline:nth-child(4) {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 5px;
+	background: linear-gradient(to top,#00BBF9 , blue);
+	animation: animate4 2s linear infinite;
+	animation-delay: 1s;
+}
+
+@keyframes animate4 {
+	0% {
+		transform: translateY(100%);
+	}
+	100% {
+		transform: translateY(-100%);
+	}
+}
